@@ -20,12 +20,12 @@ const Login = () => {
 
     if (!(dataLogin.username === "") && !(dataLogin.password === "")) {
       await axios
-        .post("https://ao-web.herokuapp.com/api/v1/auth/login", dataLogin)
+        .post("http://localhost:8000/api/v1/auth/login", dataLogin)
         .then((response) => {
           if (response.status === 200) {
             cookies.set("token", response.data.token);
             cookies.set("username", dataLogin.username);
-            navigate("/profile")
+            navigate("/profile");
           }
         });
     }

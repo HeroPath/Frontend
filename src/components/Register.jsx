@@ -21,7 +21,7 @@ const Register = () => {
       !(values.password === "")
     ) {
       await axios
-        .post("https://ao-web.herokuapp.com/api/v1/auth/register", values)
+        .post("http://localhost:8000/api/v1/auth/register", values)
         .then((response) => {
           if (response.status === 200) {
             navigate("/");
