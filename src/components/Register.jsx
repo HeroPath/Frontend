@@ -8,6 +8,7 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    classId: "",
   });
 
   const navigate = useNavigate();
@@ -18,10 +19,12 @@ const Register = () => {
     if (
       !(values.username === "") &&
       !(values.email === "") &&
+      !(values.classId === "") &&
       !(values.password === "")
     ) {
+      values.classId = parseInt(values.classId);
       await axios
-        .post("http://localhost:8000/api/v1/auth/register", values)
+        .post("https://ao-web.herokuapp.com/api/v1/auth/register", values)
         .then((response) => {
           if (response.status === 200) {
             navigate("/");
@@ -75,6 +78,18 @@ const Register = () => {
             value={values.password}
             onChange={handleChange}
           />
+          <label className="form-label">Class</label>
+          <select
+            className="form-select"
+            name="classId"
+            value={values.classId}
+            onChange={handleChange}
+          >
+            <option value="1">Mage</option>
+            <option value="2">Warrior</option>
+            <option value="3">Archer</option>
+          </select>
+
           <button className="btn btn-dark pe-5 ps-5 mt-2" type="submit">
             Sign up
           </button>
