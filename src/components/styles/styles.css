@@ -1,0 +1,101 @@
+/* ---------------- UTILIDAD ----------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+colorres {
+  color: #291509;
+  color: #3e370c;
+  color: #648bd4;
+  color: #c9d4e8;
+  color: #f3f3f3;
+}
+
+.links,
+.links:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.form {
+  margin: 10px;
+}
+
+/* ---------------- //UTILIDAD ----------------------*/
+
+/* ---------------- REGISTER ----------------------*/
+
+.register {
+  background-color: #c9d4e8;
+  color: #000;
+  width: 22rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+/* ---------------- //REGISTER ----------------------*/
+
+/* ---------------- LOGIN ----------------------*/
+
+.login {
+  background-color: #c9d4e8;
+  color: #000;
+  width: 21rem;
+  border: 1px solid #000;
+  border-radius: 10px;
+}
+
+/* ---------------- //LOGIN ----------------------*/
+
+/* ---------------- PROFILE ----------------------*/
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  margin: 10px 100px;
+  justify-items: center;
+}
+
+.titleProfile {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  margin: 10px;
+}
+
+.firstSection {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+}
+
+.firstSection--card {
+  display: flex;
+  width: 250px;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid;
+}
+
+.firstSection--arrow {
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  border-left: none;
+}
+
+.secondSection {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+}
+.secondSection--form {
+  margin: auto;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------------- //PROFILE ----------------------*/
