@@ -30,6 +30,7 @@ const Profile = () => {
     <div>
       <h1 className="titleProfile">Character stats</h1>
       <UserCard profile={profile} />
+	{/*Gianca agrego un nuevo componente*/}
       <form>
         <button className="btn btn-dark m-2" type="submit">
           <a href="/playervsnpc" className="links">
