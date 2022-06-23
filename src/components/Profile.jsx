@@ -27,6 +27,8 @@ const Profile = () => {
       });
   }
 
+  console.log(profile)
+
   useEffect(() => {
     handleData();
   }, []);
@@ -37,7 +39,7 @@ const Profile = () => {
         <div className="profileNavbar--labels">
           <label>☼{profile.gold}</label>
           <label>♦{profile.diamond}</label>
-          <label>Role: {profile.roleName}</label>
+          {profile.role && <label>Role: {profile.role.roleName}</label>}
         </div>
         <div>SERVER STATUS</div>
         <div>NEWS</div>

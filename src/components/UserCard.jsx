@@ -24,9 +24,11 @@ const UserCard = ({ profile }) => {
         </button>
         <div className="userCard--card">
           <h4 className="p-1">{profile.username}</h4>
-          {profile.aclassName && (
+          {profile.aclass && (
             <img
-              src={require("./img/class/" + profile.aclassName.toLowerCase() + ".jpg")}
+              src={require("./img/class/" +
+                profile.aclass.name.toLowerCase() +
+                ".jpg")}
               width="250px"
               height="315px"
               alt=""

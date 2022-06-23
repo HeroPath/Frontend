@@ -20,6 +20,7 @@ const PlayerVsNPC = () => {
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);
+          console.log(response.data)
         }
       });
   }
