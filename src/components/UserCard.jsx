@@ -1,64 +1,69 @@
 import React from "react";
-import war from "./class/war.jpg";
-import "../components/styles/styles.css";
+import "./styles/styles.css";
+import UserStats from "./UserStats";
 
 const UserCard = ({ profile }) => {
-  const [showDetail, setShowDetail] = React.useState(false);
+  const [showInventory, setshowInventory] = React.useState(false);
+  const [showStats, setshowStats] = React.useState(false);
 
   return (
-    <div className="profile">
-      <section className="firstSection">
-        <div className="firstSection--card">
-          <label>{profile.username}</label>
-          <img src={war} width="250px" height="315px" />
-          <label>
-            ☼{profile.gold} || ♦{profile.diamond}
-          </label>
-          <label>Level: {profile.level}</label>
-          <label>Class: {profile.aclassName}</label>
-          <label>Role: {profile.roleName}</label>
+    <div>
+      <section className="userCard">
+        {showInventory && (
+          <div style={{ border: "2px solid", marginLeft: "30px" }}>
+            INVENTARIO
+          </div>
+        )}
+        <button
+          className="userCard--arrow userCard--arrow__left"
+          onClick={() => {
+            setshowInventory(showInventory ? false : true);
+          }}
+        >
+          🢀
+        </button>
+        <div className="userCard--card">
+          <h4 className="p-1">{profile.username}</h4>
+          {profile.aclassName && (
+            <img
+              src={require("./img/class/" + profile.aclassName.toLowerCase() + ".jpg")}
+              width="250px"
+              height="315px"
+              alt=""
+            />
+          )}
+
           <label>
             Hp: {profile.hp}/{profile.maxHp}
           </label>
           <label>
             Exp: {profile.experience}/{profile.experienceToNextLevel}
           </label>
+          <label>Level: {profile.level}</label>
+          <label>Class: {profile.aclassName}</label>
         </div>
         <button
-          className="firstSection--arrow"
+          className="userCard--arrow userCard--arrow__right"
           onClick={() => {
-            if (showDetail === false) {
-              setShowDetail(true);
-            } else {
-              setShowDetail(false);
-            }
+            setshowStats(showStats ? false : true);
           }}
         >
-          ➤
+          🢂
         </button>
+        {showStats && (
+          <UserStats
+            key={profile.username}
+            freeSkillPoints={profile.freeSkillPoints}
+            strength={profile.strength}
+            dexterity={profile.dexterity}
+            vitality={profile.vitality}
+            intelligence={profile.intelligence}
+            luck={profile.luck}
+            minDmg={profile.minDmg}
+            maxDmg={profile.maxDmg}
+          />
+        )}
       </section>
-
-      {showDetail && (
-        <section className="secondSection">
-          <div className="secondSection--title">
-            <h3>Stats</h3>
-          </div>
-          <div className="secondSection--form">
-            <label>Skill points: {profile.freeSkillPoints}</label>
-            <label>Strength (STR): {profile.strength}</label>
-            <label>Dexterity (DEX): {profile.dexterity}</label>
-            <label>Vitality (INT): {profile.vitality}</label>
-            <label>Intelligence: {profile.intelligence}</label>
-            <label>Critical Chance: {profile.luck}%</label>
-            <label>
-              Min/Max DMG: {profile.minDmg}/{profile.maxDmg}
-            </label>
-            <div>
-              <button>Add stats</button>
-            </div>
-          </div>
-        </section>
-      )}
     </div>
   );
 };

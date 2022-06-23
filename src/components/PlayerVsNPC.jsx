@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -6,36 +6,69 @@ import { useNavigate } from "react-router-dom";
 const PlayerVsNPC = () => {
   const cookies = new Cookies();
   const headers = {
+    "content-type": "application/json",
     Authorization: "Bearer " + cookies.get("token"),
   };
 
   const navigate = useNavigate();
 
-  return (
-    <div>
-      <button
-        className="btn btn-dark m-2"
-        type="submit"
-        onClick={async () => {
-          const data = { npcId: 1 };
+  const [npcData, setNpcData] = React.useState([]);
 
-          await axios
-            .post(
-              "https://ao-web.herokuapp.com/api/v1/users/attack-npc",
-              data,
-              {
-                headers,
-              }
-            )
-            .then((response) => {
-              if (response.status === 200) {
-                navigate("/profile");
-              }
-            });
-        }}
-      >
-        Murcielago
-      </button>
+  async function handleData() {
+    await axios
+      .get("https://ao-web.herokuapp.com/api/v1/npcs", { headers })
+      .then((response) => {
+        if (response.status === 200) {
+          setNpcData(response.data);
+        }
+      });
+  }
+
+  useEffect(() => {
+    handleData();
+  }, []);
+
+  return (
+    <div className="npcCards">
+      {npcData?.map((npc) => (
+        <form key={npc.id} className="npcCards--form">
+          <h5>
+            {npc.name.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}
+          </h5>
+          <div>
+            <img
+              src={require("./img/npc/murcielago.png")}
+              width="108px"
+              height="206px"
+              alt=""
+            />
+          </div>
+          <button
+            className="btn btn-dark m-2 p-2"
+            type="submit"
+            onClick={async (e) => {
+              e.preventDefault();
+              await axios
+                .post(
+                  "https://ao-web.herokuapp.com/api/v1/users/attack-npc",
+                  npc.id,
+                  {
+                    headers,
+                  }
+                )
+                .then((response) => {
+                  if (response.status === 200) {
+                    navigate("/profile");
+                    console.log(response.data);
+                  }
+                });
+            }}
+          >
+            Fight
+          </button>
+          <h6>Recommended level: 25 - 30 </h6>
+        </form>
+      ))}
     </div>
   );
 };

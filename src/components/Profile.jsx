@@ -7,6 +7,7 @@ import UserCard from "./UserCard";
 const Profile = () => {
   const cookies = new Cookies();
   const headers = {
+    "content-type": "application/json",
     Authorization: "Bearer " + cookies.get("token"),
   };
 
@@ -17,6 +18,10 @@ const Profile = () => {
       .get("https://ao-web.herokuapp.com/api/v1/users/profile", { headers })
       .then(async (response) => {
         if (response.status === 200) {
+          response.data.username = response.data.username.replace(
+            /(^\w{1})/g,
+            (letter) => letter.toUpperCase()
+          );
           setProfile(response.data);
         }
       });
@@ -27,16 +32,18 @@ const Profile = () => {
   }, []);
 
   return (
-    <div>
+    <div className="profile">
+      <div className="profileNavbar">
+        <div className="profileNavbar--labels">
+          <label>☼{profile.gold}</label>
+          <label>♦{profile.diamond}</label>
+          <label>Role: {profile.roleName}</label>
+        </div>
+        <div>SERVER STATUS</div>
+        <div>NEWS</div>
+      </div>
       <h1 className="titleProfile">Character stats</h1>
       <UserCard profile={profile} />
-      <form>
-        <button className="btn btn-dark m-2" type="submit">
-          <a href="/playervsnpc" className="links">
-            NPC
-          </a>
-        </button>
-      </form>
     </div>
   );
 };

@@ -12,8 +12,8 @@ const Login = () => {
 
   const navigate = useNavigate();
   const cookies = new Cookies();
-  cookies.remove("token")
-  cookies.remove("username")
+  cookies.remove("token");
+  cookies.remove("username");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -26,6 +26,7 @@ const Login = () => {
             cookies.set("token", response.data.token);
             cookies.set("username", dataLogin.username);
             navigate("/profile");
+            window.location.reload();
           }
         });
     }
