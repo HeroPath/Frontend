@@ -158,15 +158,34 @@ colorres {
 /* ---------------- //USERCARD ----------------------*/
 
 .secondSection {
-  display: flex;
-  flex-direction: column;
+  align-self: center;
   border: 2px solid;
-  margin-right: 30px;
+  height: 100%;
 }
+
 .secondSection--form {
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  align-items: center;
+}
+.secondSection--stats {
+  height: 100%;
+  min-height: 200px;
+}
+.secondSection--stats label {
+  padding: 15px;
+}
+
+.secondSection--add {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}
+
+.secondSection--add input {
+  margin: 5px;
 }
 
 /* ---------------- //PROFILE ----------------------*/

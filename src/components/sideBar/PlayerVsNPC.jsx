@@ -16,11 +16,10 @@ const PlayerVsNPC = () => {
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/npcs/zone/forest", { headers })
+      .get("https://ao-web.herokuapp.com/api/v1/npcs/zone/desert", { headers })
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);
-          console.log(response.data);
         }
       });
   }
@@ -51,8 +50,8 @@ const PlayerVsNPC = () => {
               e.preventDefault();
               await axios
                 .post(
-                  "https://ao-web.herokuapp.com/api/v1/users/attack-npc",
-                  npc.id,
+                  "https://ao-web.herokuapp.com/api/v1/users/attack-npc/",
+                  npc.name,
                   {
                     headers,
                   }
@@ -60,14 +59,15 @@ const PlayerVsNPC = () => {
                 .then((response) => {
                   if (response.status === 200) {
                     navigate("/profile");
-                    console.log(response.data);
                   }
                 });
             }}
           >
             Fight
           </button>
-          <h6>Recommended level: 25 - 30 </h6>
+          <h6>
+            Recommended level: {npc.level} - {npc.level + 3}
+          </h6>
         </form>
       ))}
     </div>
