@@ -13,11 +13,20 @@ const UserStats = ({
   minDmg,
   maxDmg,
 }) => {
+
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
     Authorization: "Bearer " + cookies.get("token"),
   };
+
+  const data = [
+    { id: 1, skill: "strength" },
+    { id: 2, skill: "dexterity" },
+    { id: 3, skill: "vitality" },
+    { id: 4, skill: "intelligence" },
+    { id: 5, skill: "luck" },
+  ];
 
   const [clickAddSkill, setClickAddSkill] = React.useState({
     stat: "",
@@ -39,7 +48,7 @@ const UserStats = ({
 
   function handleChangeAmount(e) {
     const newValues = {
-      stat: "strength",
+      stat: e.target.id,
       amount: e.target.value,
     };
 
@@ -74,22 +83,22 @@ const UserStats = ({
 
         {showAddStat && (
           <div className="secondSection--add">
-            <input
-              type="number"
-              className="form-control"
-              onChange={handleChangeAmount}
-            />
-            <button className="btn btn-danger" onClick={handleClickAddSkill}>
-              +
-            </button>
-            <input type="number" className="form-control" />
-            <button className="btn btn-danger">+</button>
-            <input type="number" className="form-control" />
-            <button className="btn btn-danger">+</button>
-            <input type="number" className="form-control" />
-            <button className="btn btn-danger">+</button>
-            <input type="number" className="form-control" />
-            <button className="btn btn-danger">+</button>
+            {data.map((zone) => (
+              <div key={zone.id} className="secondSection--add--form">
+                <input
+                  type="number"
+                  className="form-control"
+                  onChange={handleChangeAmount}
+                  id={zone.skill}
+                />
+                <button
+                  className="btn btn-danger"
+                  onClick={handleClickAddSkill}
+                >
+                  +
+                </button>
+              </div>
+            ))}
           </div>
         )}
       </form>

@@ -175,8 +175,7 @@ colorres {
 .secondSection--stats label {
   padding: 15px;
 }
-
-.secondSection--add {
+.secondSection--add--form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100%;
@@ -184,7 +183,7 @@ colorres {
   justify-items: center;
 }
 
-.secondSection--add input {
+.secondSection--add--form input {
   margin: 5px;
 }
 
