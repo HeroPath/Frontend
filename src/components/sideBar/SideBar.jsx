@@ -16,7 +16,7 @@ const SideBar = () => {
         </a>
       </button>
       <button className="btn btn-dark m-3" type="submit">
-        <a href="/playervsnpc" className="links">
+        <a href="/playervsplayer" className="links">
           Arena
         </a>
       </button>
@@ -41,7 +41,7 @@ const SideBar = () => {
         </a>
       </button>
       <button className="btn btn-dark m-3 mb-5" type="submit">
-        <a href="/playervsnpc" className="links">
+        <a href="/ranking" className="links">
           Ranking
         </a>
       </button>

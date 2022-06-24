@@ -182,11 +182,13 @@ const Register = () => {
                 />
               </div>
               <div className="classSelected--stats">
-                <h2 className="classSelected--stats__head">{dataClassSelected}</h2>
+                <h2 className="classSelected--stats__head">
+                  {dataClassSelected}
+                </h2>
                 <label className="classSelected--stats__head">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Mollitia suscipit quo ut quibusdam totam amet nam praesentium
-                  ipsam officiis neque?
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                  laboriosam perferendis ex illum enim similique, fugit ratione
+                  nisi quasi ipsam?
                 </label>
                 <label>Strength: {classSelected.strength}</label>
                 <label>Dexterity: {classSelected.dexterity}</label>

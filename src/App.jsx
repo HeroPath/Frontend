@@ -21,6 +21,17 @@ import Zone from "./components/sideBar/Zone";
 import PlayerVsNPC from "./components/sideBar/PlayerVsNPC";
 /* -------------------------------- //MAP --------------------------------------------*/
 
+/* -------------------------------- ARENA --------------------------------------------*/
+
+import PlayerVsPlayer from "./components/sideBar/PlayerVsPlayer";
+
+/* -------------------------------- //ARENA --------------------------------------------*/
+/* -------------------------------- RANKING --------------------------------------------*/
+
+import Ranking from "./components/sideBar/Ranking";
+
+/* -------------------------------- //RANKING --------------------------------------------*/
+
 /* -------------------------------- //SIDEBAR --------------------------------------------*/
 
 function App() {
@@ -42,6 +53,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/map" element={<Zone />} />
             <Route path="/playervsnpc" element={<PlayerVsNPC />} />
+            <Route path="/playervsplayer" element={<PlayerVsPlayer />} />
+            <Route path="/ranking" element={<Ranking />} />
           </Routes>
         </BrowserRouter>
       </div>
