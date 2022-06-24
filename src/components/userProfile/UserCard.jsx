@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/styles.css";
+import "../styles/styles.css";
 import UserStats from "./UserStats";
 
 const UserCard = ({ profile }) => {
@@ -26,9 +26,7 @@ const UserCard = ({ profile }) => {
           <h4 className="p-1">{profile.username}</h4>
           {profile.aclass && (
             <img
-              src={require("./img/class/" +
-                profile.aclass.name.toLowerCase() +
-                ".jpg")}
+              src={require("../img/class/" + profile.aclass.name + ".jpg")}
               width="250px"
               height="315px"
               alt=""

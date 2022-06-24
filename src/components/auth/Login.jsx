@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import "./styles/styles.css";
+import "../styles/styles.css";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

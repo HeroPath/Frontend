@@ -16,11 +16,11 @@ const PlayerVsNPC = () => {
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/npcs", { headers })
+      .get("https://ao-web.herokuapp.com/api/v1/npcs/zone/forest", { headers })
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);
-          console.log(response.data)
+          console.log(response.data);
         }
       });
   }
@@ -38,7 +38,7 @@ const PlayerVsNPC = () => {
           </h5>
           <div>
             <img
-              src={require("./img/npc/murcielago.png")}
+              src={require("../img/npc/murcielago.png")}
               width="108px"
               height="206px"
               alt=""

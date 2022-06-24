@@ -3,12 +3,25 @@ import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
-import Register from "./components/Register";
-import Login from "./components/Login";
-import Profile from "./components/Profile";
-import PlayerVsNPC from "./components/PlayerVsNPC";
-import SideBar from "./components/SideBar";
-import Map from "./components/Map";
+
+/* -------------------------------- AUTH --------------------------------------------*/
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+/* -------------------------------- //AUTH --------------------------------------------*/
+
+/* -------------------------------- USERPROFILE --------------------------------------------*/
+import Profile from "./components/userProfile/Profile";
+/* -------------------------------- //USERPROFILE --------------------------------------------*/
+
+/* -------------------------------- SIDEBAR --------------------------------------------*/
+import SideBar from "./components/sideBar/SideBar";
+
+/* -------------------------------- MAP --------------------------------------------*/
+import Zone from "./components/sideBar/Zone";
+import PlayerVsNPC from "./components/sideBar/PlayerVsNPC";
+/* -------------------------------- //MAP --------------------------------------------*/
+
+/* -------------------------------- //SIDEBAR --------------------------------------------*/
 
 function App() {
   const [cookiesToken, setCookiesToken] = React.useState(null);
@@ -27,7 +40,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/map" element={<Map />} />
+            <Route path="/map" element={<Zone />} />
             <Route path="/playervsnpc" element={<PlayerVsNPC />} />
           </Routes>
         </BrowserRouter>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import "./styles/styles.css";
+import "../styles/styles.css";
 import UserCard from "./UserCard";
 
 const Profile = () => {
@@ -26,8 +26,6 @@ const Profile = () => {
         }
       });
   }
-
-  console.log(profile)
 
   useEffect(() => {
     handleData();

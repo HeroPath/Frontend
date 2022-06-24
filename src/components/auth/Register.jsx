@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import "./styles/styles.css";
+import "../styles/styles.css";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -175,7 +175,7 @@ const Register = () => {
             <div className="classSelected">
               <div className="classSelected--img">
                 <img
-                  src={require("./img/class/" + dataClassSelected + ".jpg")}
+                  src={require("../img/class/" + dataClassSelected + ".jpg")}
                   width="250px"
                   height="315px"
                   alt=""

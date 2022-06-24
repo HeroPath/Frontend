@@ -6,8 +6,13 @@ const SideBar = () => {
       <div className="sidebar--logo">IMG</div>
 
       <button className="btn btn-dark m-3" type="submit">
+        <a href="/profile" className="links">
+          Home
+        </a>
+      </button>
+      <button className="btn btn-dark m-3" type="submit">
         <a href="/map" className="links">
-          Map
+          Maps
         </a>
       </button>
       <button className="btn btn-dark m-3" type="submit">
@@ -35,14 +40,9 @@ const SideBar = () => {
           Guild
         </a>
       </button>
-      <button className="btn btn-dark m-3" type="submit">
+      <button className="btn btn-dark m-3 mb-5" type="submit">
         <a href="/playervsnpc" className="links">
           Ranking
-        </a>
-      </button>
-      <button className="btn btn-dark m-3 mb-5" type="submit">
-        <a href="/profile" className="links">
-          Home
         </a>
       </button>
       <button className="btn btn-danger m-3" type="submit">
