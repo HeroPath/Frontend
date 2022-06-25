@@ -26,7 +26,6 @@ const Zone = () => {
           <button className="btn btn-dark m-1" type="submit">
             <a
               href="/playervsnpc"
-              onClick={() => console.log(zone.name)}
               className="links"
             >
               Travel

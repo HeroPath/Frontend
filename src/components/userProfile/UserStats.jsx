@@ -13,7 +13,6 @@ const UserStats = ({
   minDmg,
   maxDmg,
 }) => {
-
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
@@ -76,8 +75,8 @@ const UserStats = ({
         <div className="secondSection--stats">
           <label>Strength (STR): {strength}</label>
           <label>Dexterity (DEX): {dexterity}</label>
-          <label>Vitality (INT): {vitality}</label>
-          <label>Intelligence: {intelligence}</label>
+          <label>Vitality (VIT): {vitality}</label>
+          <label>Intelligence (INT): {intelligence}</label>
           <label>Critical Chance: {luck}%</label>
         </div>
 

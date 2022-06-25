@@ -16,7 +16,7 @@ const PlayerVsNPC = () => {
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/npcs/zone/forest", { headers })
+      .get("https://ao-web.herokuapp.com/api/v1/npcs/zone/desert", { headers })
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);
@@ -58,8 +58,7 @@ const PlayerVsNPC = () => {
                 )
                 .then((response) => {
                   if (response.status === 200) {
-                    // navigate("/profile");
-                    console.log(response.data);
+                    navigate("/profile");
                   }
                 });
             }}
