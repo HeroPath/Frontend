@@ -51,7 +51,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/map" element={<Zone />} />
+            <Route path="/zone" element={<Zone />} />
             <Route path="/playervsnpc" element={<PlayerVsNPC />} />
             <Route path="/playervsplayer" element={<PlayerVsPlayer />} />
             <Route path="/ranking" element={<Ranking />} />

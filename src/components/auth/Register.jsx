@@ -86,8 +86,6 @@ const Register = () => {
       vitality: resSplited[5],
       luck: resSplited[6],
     });
-
-    console.log(resSplited);
   }
 
   return (

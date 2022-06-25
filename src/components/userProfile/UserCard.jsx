@@ -40,7 +40,7 @@ const UserCard = ({ profile }) => {
             Exp: {profile.experience}/{profile.experienceToNextLevel}
           </label>
           <label>Level: {profile.level}</label>
-          <label>Class: {profile.aclassName}</label>
+          {profile.aclass && <label>Class: {profile.aclass.name}</label>}
         </div>
         <button
           className="userCard--arrow userCard--arrow__right"

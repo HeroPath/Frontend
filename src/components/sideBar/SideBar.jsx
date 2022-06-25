@@ -11,7 +11,7 @@ const SideBar = () => {
         </a>
       </button>
       <button className="btn btn-dark m-3" type="submit">
-        <a href="/map" className="links">
+        <a href="/zone" className="links">
           Maps
         </a>
       </button>
