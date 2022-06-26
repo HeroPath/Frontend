@@ -10,14 +10,17 @@ const PlayerVsNPC = () => {
     Authorization: "Bearer " + cookies.get("token"),
   };
 
-  const location = useLocation()
+  const location = useLocation();
   const navigate = useNavigate();
 
   const [npcData, setNpcData] = React.useState([]);
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/npcs/zone/" + location.state.name, { headers })
+      .get(
+        "https://ao-web.herokuapp.com/api/v1/npcs/zone/" + location.state.name,
+        { headers }
+      )
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);

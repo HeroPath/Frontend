@@ -26,16 +26,17 @@ const Zone = () => {
             alt=""
           />
 
-          <button className="btn btn-dark m-1" type="submit">
-            <a
-              className="links"
-              onClick={() => {
-                navigate("/playervsnpc", {state: { id: zone.name, name: zone.name }});
-              }}
-            >
-              Travel
-            </a>
-          </button>
+          <a
+            className="button--links links mt-1"
+            type="submit"
+            onClick={() => {
+              navigate("/playervsnpc", {
+                state: { id: zone.name, name: zone.name },
+              });
+            }}
+          >
+            Travel
+          </a>
           <p>
             Recommended lvl: {zone.rLvlMin} / {zone.rLvlMax}
           </p>

@@ -122,18 +122,16 @@ const Register = () => {
               onChange={handleChange}
             />
 
-            <button className="btn btn-dark pe-5 ps-5 mt-4" type="submit">
+            <button className="button--links pe-5 ps-5 mt-4" type="submit">
               Sign up
             </button>
-            <p className="mt-4">
-              Are you already registered?
-              <br />
-              <span>
-                <a href="/" className="mt-4">
-                  Sign in
-                </a>
-              </span>
-            </p>
+
+            <div className="login--footer">
+              <p>Are you already registered?</p>
+              <a href="/" className="button--links">
+                LOGIN
+              </a>
+            </div>
           </form>
         </section>
       </div>

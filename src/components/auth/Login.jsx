@@ -46,7 +46,7 @@ const Login = () => {
 
   return (
     <div className="login" style={cardStyle}>
-      <section className="form">
+      <section className="form login--form">
         <h1>Sign In</h1>
         <form onSubmit={handleSubmit}>
           <label className="form-label">Username</label>
@@ -58,6 +58,7 @@ const Login = () => {
             value={dataLogin.username}
             onChange={handleChange}
           />
+
           <label className="form-label">Password</label>
           <input
             type="password"
@@ -67,17 +68,18 @@ const Login = () => {
             value={dataLogin.password}
             onChange={handleChange}
           />
-          <button className="btn btn-dark mt-2 ps-5 pe-5" type="submit">
+          <button className="button--links mt-2 ps-5 pe-5" type="submit">
             Sign in
           </button>
         </form>
-        <p>
-          Need an Account?
-          <br />
-          <span>
-            <a href="/register">Sign up</a>
-          </span>
-        </p>
+        <div className="login--footer mt-4">
+          <a href="/register" className="button--links">
+            REGISTER
+          </a>
+          <a href="" className="button--links">
+            FORGOT PASSWORD
+          </a>
+        </div>
       </section>
     </div>
   );
@@ -85,10 +87,4 @@ const Login = () => {
 
 export default Login;
 
-const cardStyle = {
-  width: "20%",
-  textAlign: "center",
-  margin: "10% 0% 2% 40%",
-  background: "#000",
-  color: "white",
-};
+const cardStyle = {};

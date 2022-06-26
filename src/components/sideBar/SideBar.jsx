@@ -5,51 +5,33 @@ const SideBar = () => {
     <div className="sidebar">
       <div className="sidebar--logo">IMG</div>
 
-      <button className="btn btn-dark m-3" type="submit">
-        <a href="/profile" className="links">
-          Home
-        </a>
-      </button>
-      <button className="btn btn-dark m-3" type="submit">
-        <a href="/zone" className="links">
-          Maps
-        </a>
-      </button>
-      <button className="btn btn-dark m-3" type="submit">
-        <a href="/playervsplayer" className="links">
-          Arena
-        </a>
-      </button>
-      <button className="btn btn-dark m-3" type="submit">
-        <a href="/playervsnpc" className="links">
-          Shop
-        </a>
-      </button>
-      <button className="btn btn-dark m-3" type="submit">
-        <a href="/playervsnpc" className="links">
-          Quests
-        </a>
-      </button>
-      <button className="btn btn-dark m-3" type="submit">
-        <a href="/playervsnpc" className="links">
-          Dungeon
-        </a>
-      </button>
-      <button className="btn btn-dark m-3" type="submit">
-        <a href="/profile" className="links">
-          Profile
-        </a>
-      </button>
-      <button className="btn btn-dark m-3 mb-5" type="submit">
-        <a href="/ranking" className="links">
-          Ranking
-        </a>
-      </button>
-      <button className="btn btn-danger m-3" type="submit">
-        <a href="/" className="links">
-          Log Out
-        </a>
-      </button>
+      <a href="/home" className="button--links links m-3">
+        Home
+      </a>
+      <a href="/zone" className="button--links links m-3">
+        Maps
+      </a>
+      <a href="/playervsplayer" className="button--links links m-3">
+        Arena
+      </a>
+      <a href="/playervsplayer" className="button--links links m-3">
+        Shop
+      </a>
+      <a href="/playervsplayer" className="button--links links m-3">
+        Quests
+      </a>
+      <a href="/playervsplayer" className="button--links links m-3">
+        Dungeon
+      </a>
+      <a href="/profile" className="button--links links m-3">
+        Profile
+      </a>
+      <a href="/profile" className="button--links links m-3 mb-5">
+        Ranking
+      </a>
+      <a href="/" className="button--links links btn btn-danger m-3">
+        Log Out
+      </a>
     </div>
   );
 };

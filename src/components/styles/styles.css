@@ -15,6 +15,15 @@ colorres {
   color: #fff;
 }
 
+.button--links,
+.button--links:hover {
+  text-decoration: none;
+  padding: 5px 10px;
+  color: black;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
 .form {
   margin: 10px;
 }
@@ -73,11 +82,29 @@ colorres {
 /* ---------------- LOGIN ----------------------*/
 
 .login {
-  background-color: #c9d4e8;
-  color: #000;
-  width: 21rem;
-  border: 1px solid #000;
+  height: 100vh;
+  width: 100vw;
   border-radius: 10px;
+  text-align: center;
+}
+
+.login--form {
+  width: 400px;
+  height: 350px;
+  border: 2px solid #000;
+  padding: 20px;
+}
+
+.login--footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin-top: 10px;
+}
+
+.login--footer p {
+  margin: 15px 0px;
 }
 
 /* ---------------- //LOGIN ----------------------*/
