@@ -46,6 +46,9 @@ const UserStats = ({
   }
 
   function handleChangeAmount(e) {
+    if (e.target.value < 0) {
+      e.target.value = e.target.value * -1;
+    }
     const newValues = {
       stat: e.target.id,
       amount: e.target.value,
@@ -89,6 +92,8 @@ const UserStats = ({
                   className="form-control"
                   onChange={handleChangeAmount}
                   id={zone.skill}
+                  min="1"
+                  pattern="^[0-9]+"
                 />
                 <button
                   className="btn btn-danger"

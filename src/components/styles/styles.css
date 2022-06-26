@@ -64,9 +64,6 @@ colorres {
   margin: 30px 0;
 }
 
-.classSelected--img {
-}
-
 .classSelected--stats {
   display: grid;
   grid-template-columns: 1fr 1fr;

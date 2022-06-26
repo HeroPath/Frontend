@@ -70,7 +70,7 @@ const PlayerVsNPC = () => {
             Fight
           </button>
           <h6>
-            Recommended level: {npc.level} - {npc.level + 3}
+            Recommended level: {npc.level}-{npc.level + 3}
           </h6>
         </form>
       ))}

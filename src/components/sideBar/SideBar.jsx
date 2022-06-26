@@ -26,7 +26,7 @@ const SideBar = () => {
       <a href="/profile" className="button--links links m-3">
         Profile
       </a>
-      <a href="/profile" className="button--links links m-3 mb-5">
+      <a href="/ranking" className="button--links links m-3 mb-5">
         Ranking
       </a>
       <a href="/" className="button--links links btn btn-danger m-3">
