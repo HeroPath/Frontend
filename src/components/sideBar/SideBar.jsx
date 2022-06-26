@@ -36,8 +36,8 @@ const SideBar = () => {
         </a>
       </button>
       <button className="btn btn-dark m-3" type="submit">
-        <a href="/playervsnpc" className="links">
-          Guild
+        <a href="/profile" className="links">
+          Profile
         </a>
       </button>
       <button className="btn btn-dark m-3 mb-5" type="submit">

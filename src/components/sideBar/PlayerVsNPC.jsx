@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const PlayerVsNPC = () => {
   const cookies = new Cookies();
@@ -10,13 +10,14 @@ const PlayerVsNPC = () => {
     Authorization: "Bearer " + cookies.get("token"),
   };
 
+  const location = useLocation()
   const navigate = useNavigate();
 
   const [npcData, setNpcData] = React.useState([]);
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/npcs/zone/desert", { headers })
+      .get("https://ao-web.herokuapp.com/api/v1/npcs/zone/" + location.state.name, { headers })
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);

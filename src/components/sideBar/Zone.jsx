@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Zone = () => {
   const zoneMap = [
@@ -9,6 +10,8 @@ const Zone = () => {
     { name: "mountain", rLvlMin: "70", rLvlMax: "85" },
     { name: "hell", rLvlMin: "85", rLvlMax: "100" },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <div className="zone">
@@ -25,8 +28,10 @@ const Zone = () => {
 
           <button className="btn btn-dark m-1" type="submit">
             <a
-              href="/playervsnpc"
               className="links"
+              onClick={() => {
+                navigate("/playervsnpc", {state: { id: zone.name, name: zone.name }});
+              }}
             >
               Travel
             </a>

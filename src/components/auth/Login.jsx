@@ -25,7 +25,7 @@ const Login = () => {
           if (response.status === 200) {
             cookies.set("token", response.data.token);
             cookies.set("username", dataLogin.username);
-            navigate("/profile");
+            navigate("/profile", { replace: true });
             window.location.reload();
           }
         });
