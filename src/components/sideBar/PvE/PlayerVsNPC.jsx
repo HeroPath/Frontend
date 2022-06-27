@@ -62,6 +62,9 @@ const PlayerVsNPC = () => {
                 )
                 .then((response) => {
                   if (response.status === 200) {
+                    response.data = Object.assign(response.data, {
+                      nameData: npc.name,
+                    });
                     navigate("/pvebattle", {
                       state: { battleData: response.data },
                     });

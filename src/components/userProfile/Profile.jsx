@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import "../styles/styles.css";
-import UserCard from "./UserCard";
+import ProfileCard from "./ProfileCard";
 
 const Profile = () => {
   const cookies = new Cookies();
@@ -23,6 +23,7 @@ const Profile = () => {
             (letter) => letter.toUpperCase()
           );
           setProfile(response.data);
+          console.log(response.data);
         }
       });
   }
@@ -43,7 +44,7 @@ const Profile = () => {
         <div>NEWS</div>
       </div>
       <h1 className="titleProfile">Character stats</h1>
-      <UserCard profile={profile} />
+      <ProfileCard profile={profile} />
     </div>
   );
 };

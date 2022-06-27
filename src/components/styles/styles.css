@@ -160,7 +160,6 @@
   text-align: center;
   flex-direction: column;
   align-items: center;
-  border: 2px solid;
 }
 .userCard--card label {
 }
@@ -266,19 +265,15 @@
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
   text-align: center;
 }
 
 .pvebattle--usercard {
-  height: 500px;
-  margin: 20px;
-  border: 1px solid;
+  align-self: center;
 }
 .pvebattle--npccard {
-  height: 500px;
-  margin: 20px;
-  border: 1px solid;
+  align-self: center;
 }
 
 .rounds--console {
@@ -304,7 +299,6 @@
 /* ---------------- //PVEBATTLE ----------------------*/
 
 /* ---------------- PVP ----------------------*/
-
 
 /* ---------------- //PVP ----------------------*/
 

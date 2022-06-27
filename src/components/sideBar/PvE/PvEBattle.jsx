@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import { Table } from "react-bootstrap";
+import NpcCard from "./NpcCard";
 
 const PvEBattle = () => {
   const cookies = new Cookies();
@@ -39,9 +40,22 @@ const PvEBattle = () => {
   return (
     <div className="pvebattle">
       <div className="pvebattle--usercard">
-        <UserCard profile={profile} />
+        {profile.aclass && (
+          <UserCard
+            key={profile.username}
+            username={profile.username}
+            aclass={profile.aclass}
+            hp={profile.hp}
+            maxHp={profile.maxHp}
+            experience={profile.experience}
+            experienceToNextLevel={profile.experienceToNextLevel}
+            level={profile.level}
+          />
+        )}
       </div>
-      <div className="pvebattle--npccard">NPCCARD</div>
+      <div className="pvebattle--npccard">
+        <NpcCard />
+      </div>
 
       <div className="rounds--console">
         <Table striped bordered hover>
