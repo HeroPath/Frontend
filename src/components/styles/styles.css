@@ -265,14 +265,41 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 3fr 1fr;
+  text-align: center;
 }
 
-.rounds {
-  text-align: center;
-  align-self: center;
-  margin: 10px;
+.pvebattle--usercard {
+  height: 500px;
+  margin: 20px;
   border: 1px solid;
+}
+.pvebattle--npccard {
+  height: 500px;
+  margin: 20px;
+  border: 1px solid;
+}
+
+.rounds--console {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 350px;
+  border: 1px solid;
+  max-height: 150px;
+}
+
+.round {
+  display: flex;
+  text-align: center;
+  margin: 10px;
+}
+
+.round p {
+  margin: 10px;
 }
 
 /* ---------------- //PVEBATTLE ----------------------*/

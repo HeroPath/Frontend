@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { useLocation } from "react-router-dom";
+import UserCard from "../../userProfile/UserCard";
 
 const PvEBattle = () => {
   const cookies = new Cookies();
@@ -29,8 +30,6 @@ const PvEBattle = () => {
       });
   }
 
-  console.log(profile);
-
   useEffect(() => {
     handleData();
     setBattleData(location.state.battleData);
@@ -38,15 +37,22 @@ const PvEBattle = () => {
 
   return (
     <div className="pvebattle">
-      {battleData?.map((rounds) => (
-        <div className="rounds" key={rounds.round}>
-          <h6>Round: {rounds.round}</h6>
-          <p>User life: {rounds.userLife}</p>
-          <p>User dmg: {rounds.userDmg}</p>
-          <p>Npc life: {rounds.NpcLife}</p>
-          <p>Npc dmg: {rounds.NpcDmg}</p>
-        </div>
-      ))}
+      <div className="pvebattle--usercard">
+        <UserCard profile={profile} />
+      </div>
+      <div className="pvebattle--npccard">NPCCARD</div>
+
+      <div className="rounds--console">
+        {battleData?.map((rounds) => (
+          <div className="round" key={rounds.round}>
+            <p>Round: {rounds.round}</p>
+            <p>User life: {rounds.userLife}</p>
+            <p>User dmg: {rounds.userDmg}</p>
+            <p>Npc life: {rounds.NpcLife}</p>
+            <p>Npc dmg: {rounds.NpcDmg}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
