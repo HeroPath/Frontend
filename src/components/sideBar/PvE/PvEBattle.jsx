@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import { Table } from "react-bootstrap";
 import NpcCard from "./NpcCard";
+import { MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 
 const PvEBattle = () => {
   const cookies = new Cookies();
@@ -37,6 +38,36 @@ const PvEBattle = () => {
     setBattleData(location.state.battleData);
   }, []);
 
+  const data = {
+    columns: [
+      {
+        label: "Round",
+        field: "id",
+        sort: "asc",
+      },
+      {
+        label: "User life",
+        field: "userlife",
+        sort: "asc",
+      },
+      {
+        label: "User Damage",
+        field: "userdamage",
+        sort: "asc",
+      },
+      {
+        label: "Npc life",
+        field: "npclife",
+        sort: "asc",
+      },
+      {
+        label: "Npc Damage",
+        field: "npcdamage",
+        sort: "asc",
+      },
+    ],
+  };
+
   return (
     <div className="pvebattle">
       <div className="pvebattle--usercard">
@@ -58,7 +89,11 @@ const PvEBattle = () => {
       </div>
 
       <div className="rounds--console">
-        <Table striped bordered hover>
+        <MDBTable scrollY small bordered>
+          <MDBTableHead columns={data.columns} />
+          <MDBTableBody rows={battleData} />
+        </MDBTable>
+        {/* <Table striped bordered hover>
           <thead>
             <tr>
               <th>Round</th>
@@ -69,7 +104,7 @@ const PvEBattle = () => {
             </tr>
           </thead>
           {battleData?.map((rounds) => (
-            <tbody key={rounds.round}>
+            <tbody key={rounds.round} className="rounds">
               <tr>
                 <td>{rounds.round}</td>
                 <td>{rounds.userLife}</td>
@@ -79,7 +114,10 @@ const PvEBattle = () => {
               </tr>
             </tbody>
           ))}
-        </Table>
+        </Table> */}
+        <a href="/profile" className="button--links links m-3 pe-5 ps-5">
+          Profile
+        </a>
       </div>
     </div>
   );

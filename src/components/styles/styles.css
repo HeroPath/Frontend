@@ -19,12 +19,6 @@
 .form {
   margin: 10px;
 }
-
-. {
-  pointer-events: none;
-  cursor: default;
-}
-
 /* ---------------- //UTILIDAD ----------------------*/
 
 /* ---------------- REGISTER ----------------------*/
@@ -161,8 +155,6 @@
   flex-direction: column;
   align-items: center;
 }
-.userCard--card label {
-}
 
 .userCard--arrow__left {
   width: 100%;
@@ -282,21 +274,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 350px;
-  border: 1px solid;
-  max-height: 150px;
 }
 
-.round {
-  display: flex;
-  text-align: center;
-}
+.rounds {
 
-.round p {
-  margin: 0px 10px;
 }
 
 /* ---------------- //PVEBATTLE ----------------------*/
+
+/* ---------------- NPCCARD ----------------------*/
+.pvebattle--npccard--form {
+  display: flex;
+  flex-direction: column;
+}
+/* ---------------- //NPCCARD ----------------------*/
 
 /* ---------------- PVP ----------------------*/
 

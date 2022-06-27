@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const PlayerVsPlayer = () => {
   const cookies = new Cookies();
   const headers = {
-    "content-type": "application/json",
     Authorization: "Bearer " + cookies.get("token"),
   };
 
