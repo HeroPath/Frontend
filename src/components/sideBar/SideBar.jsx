@@ -11,7 +11,7 @@ const SideBar = () => {
       <a href="/zone" className="button--links links m-3">
         Maps
       </a>
-      <a href="#" className="button--links links m-3" disabled>
+      <a href="/playervsplayer" className="button--links links m-3" disabled>
         Arena
       </a>
       <a href="#" className="button--links links m-3">
