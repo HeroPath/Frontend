@@ -287,7 +287,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px 350px;
+  margin: 10px 350px;
   border: 1px solid;
   max-height: 150px;
 }
@@ -295,11 +295,10 @@
 .round {
   display: flex;
   text-align: center;
-  margin: 10px;
 }
 
 .round p {
-  margin: 10px;
+  margin: 0px 10px;
 }
 
 /* ---------------- //PVEBATTLE ----------------------*/

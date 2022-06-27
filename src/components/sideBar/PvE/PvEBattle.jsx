@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
+import { Table } from "react-bootstrap";
 
 const PvEBattle = () => {
   const cookies = new Cookies();
@@ -43,15 +44,28 @@ const PvEBattle = () => {
       <div className="pvebattle--npccard">NPCCARD</div>
 
       <div className="rounds--console">
-        {battleData?.map((rounds) => (
-          <div className="round" key={rounds.round}>
-            <p>Round: {rounds.round}</p>
-            <p>User life: {rounds.userLife}</p>
-            <p>User dmg: {rounds.userDmg}</p>
-            <p>Npc life: {rounds.NpcLife}</p>
-            <p>Npc dmg: {rounds.NpcDmg}</p>
-          </div>
-        ))}
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Round</th>
+              <th>User life</th>
+              <th>User dmg</th>
+              <th>Npc life</th>
+              <th>Npc dmg</th>
+            </tr>
+          </thead>
+          {battleData?.map((rounds) => (
+            <tbody key={rounds.round}>
+              <tr>
+                <td>{rounds.round}</td>
+                <td>{rounds.userLife}</td>
+                <td>{rounds.userDmg}</td>
+                <td>{rounds.NpcLife}</td>
+                <td>{rounds.NpcDmg}</td>
+              </tr>
+            </tbody>
+          ))}
+        </Table>
       </div>
     </div>
   );
