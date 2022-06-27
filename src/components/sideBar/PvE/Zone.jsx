@@ -11,6 +11,7 @@ const Zone = () => {
     { name: "hell", rLvlMin: "85", rLvlMax: "100" },
   ];
 
+
   const navigate = useNavigate();
 
   return (

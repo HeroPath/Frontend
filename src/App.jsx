@@ -24,7 +24,7 @@ import PvEBattle from "./components/sideBar/PvE/PvEBattle";
 
 /* -------------------------------- ARENA --------------------------------------------*/
 
-import PlayerVsPlayer from "./components/sideBar/PlayerVsPlayer";
+import PlayerVsPlayer from "./components/sideBar/PvP/PlayerVsPlayer";
 
 /* -------------------------------- //ARENA --------------------------------------------*/
 /* -------------------------------- RANKING --------------------------------------------*/
