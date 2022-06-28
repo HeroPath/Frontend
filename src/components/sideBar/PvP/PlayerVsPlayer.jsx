@@ -24,12 +24,14 @@ const PlayerVsPlayer = () => {
 
     await axios
       .post(
-        "https://ao-web.herokuapp.com/api/v1/users/attack-user/" + userAttack,
+        "https://ao-web.herokuapp.com/api/v1/users/attack-user",
+        { name: userAttack },
         { headers }
       )
       .then((response) => {
         if (response.status === 200) {
-          navigate("/profile");
+          // navigate("/profile");
+          console.log(response.data);
         }
       });
   }

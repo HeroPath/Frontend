@@ -4,19 +4,28 @@ import Cookies from "universal-cookie";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
-import { Table } from "react-bootstrap";
+
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 const PvEBattle = () => {
+  /* --------------- DECLARATION ----------------------*/
+
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
     Authorization: "Bearer " + cookies.get("token"),
   };
-
   const location = useLocation();
-
   const [profile, setProfile] = React.useState({});
   const [battleData, setBattleData] = React.useState([]);
+  let i = 1;
+  const npcName = location.state.battleData.nameData.replace(
+    /(^\w{1})/g,
+    (letter) => letter.toUpperCase()
+  );
+
+  /* --------------- //DECLARATION ----------------------*/
 
   async function handleData() {
     await axios
@@ -37,10 +46,17 @@ const PvEBattle = () => {
     setBattleData(location.state.battleData);
   }, []);
 
-  const npcName = location.state.battleData.nameData.replace(
-    /(^\w{1})/g,
-    (letter) => letter.toUpperCase()
-  );
+  /* --------------- FILTER ARRAY OBJECT ----------------------*/
+
+  let winner = {};
+
+  for (let i = battleData.length - 1; i < battleData.length; i++) {
+    winner = battleData[i];
+  }
+
+  let roundsData = battleData.filter((r) => r.round);
+
+  /* --------------- //FILTER ARRAY OBJECT ----------------------*/
 
   return (
     <div className="pvebattle">
@@ -64,8 +80,8 @@ const PvEBattle = () => {
 
       <div className="rounds--console">
         <div className="history-box">
-          {battleData?.map((rounds) => (
-            <ul key={rounds.round} className="round">
+          {roundsData?.map((rounds) => (
+            <ul key={i++} className="round">
               <h6>Round: {rounds.round}</h6>
               <div>
                 <li>
@@ -79,32 +95,17 @@ const PvEBattle = () => {
               </div>
             </ul>
           ))}
+          {winner && (
+            <ul className="round">
+              <h6>Final</h6>
+              <div>
+                <li>Winner: {winner.win}</li>
+                <li>Loser: {winner.lose}</li>
+                <li>Gold won: {winner.goldAmountWin}</li>
+              </div>
+            </ul>
+          )}
         </div>
-
-        {/* <div className="history--box--2">
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Round</th>
-                <th>User life</th>
-                <th>User dmg</th>
-                <th>Npc life</th>
-                <th>Npc dmg</th>
-              </tr>
-            </thead>
-            <tbody className="rounds">
-              {battleData?.map((rounds) => (
-                <tr key={rounds.round}>
-                  <td>{rounds.round}</td>
-                  <td>{rounds.userLife}</td>
-                  <td>{rounds.userDmg}</td>
-                  <td>{rounds.NpcLife}</td>
-                  <td>{rounds.NpcDmg}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
-        </div> */}
         <a href="/profile" className="button--links links m-3 pe-5 ps-5">
           Profile
         </a>

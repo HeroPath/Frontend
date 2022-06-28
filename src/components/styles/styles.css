@@ -302,16 +302,6 @@
   align-items: center;
 }
 
-.history--box--2 {
-  text-align: center;
-  width: 600px;
-  height: 180px;
-  margin-top: 20px;
-  border: 1px solid #646464;
-  border-radius: 5px;
-  overflow-y: scroll;
-}
-
 .history-box {
   width: 700px;
   height: 180px;

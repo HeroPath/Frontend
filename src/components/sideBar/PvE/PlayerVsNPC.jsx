@@ -54,8 +54,8 @@ const PlayerVsNPC = () => {
               e.preventDefault();
               await axios
                 .post(
-                  "https://ao-web.herokuapp.com/api/v1/users/attack-npc/",
-                  npc.name,
+                  "https://ao-web.herokuapp.com/api/v1/users/attack-npc",
+                  { name: npc.name },
                   {
                     headers,
                   }
