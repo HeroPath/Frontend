@@ -25,7 +25,7 @@ const ProfileCard = ({ profile }) => {
         </button>
         {profile.aclass && (
           <UserCard
-            key={profile.username}
+            key={profile.aclass}
             username={profile.username}
             aclass={profile.aclass}
             hp={profile.hp}

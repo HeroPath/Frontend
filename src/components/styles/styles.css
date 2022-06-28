@@ -200,6 +200,33 @@
   margin: 5px;
 }
 
+/* --------------------------------------------------------------------------------------- */
+
+.bar--background {
+  height: 25px;
+  text-align: center;
+  background: -webkit-linear-gradient(to top, grey, clear);
+  background: linear-gradient(to top, #555, #aaa);
+  color: white;
+}
+
+.bar--foreground--health {
+  height: 25px;
+  background: -webkit-linear-gradient(to top, #d20000, #d90101);
+  background: linear-gradient(to top, #ac0101, #d90101);
+  color: white;
+}
+
+.bar--foreground--exp {
+  height: 25px;
+  background: -webkit-linear-gradient(to top, #0c0, #0f0);
+  background: linear-gradient(to top, #090, #0f0);
+  color: white;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------------------- */
+
 /* ---------------- //PROFILE ----------------------*/
 
 /* ---------------- ZONE ----------------------*/
@@ -276,8 +303,14 @@
   align-items: center;
 }
 
-.rounds {
-
+.history--box {
+  text-align: center;
+  width: 600px;
+  height: 180px;
+  margin-top: 20px;
+  border: 1px solid #646464;
+  border-radius: 5px;
+  overflow-y: scroll;
 }
 
 /* ---------------- //PVEBATTLE ----------------------*/
@@ -285,7 +318,9 @@
 /* ---------------- NPCCARD ----------------------*/
 .pvebattle--npccard--form {
   display: flex;
+  text-align: center;
   flex-direction: column;
+  align-items: center;
 }
 /* ---------------- //NPCCARD ----------------------*/
 

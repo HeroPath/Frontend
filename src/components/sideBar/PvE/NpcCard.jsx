@@ -30,6 +30,8 @@ const NpcCard = () => {
     handleData();
   }, []);
 
+  let barHealthWidth = (npcData.hp * 250) / npcData.maxHp;
+
   return (
     <div className="pvebattle--npccard">
       <form className="pvebattle--npccard--form">
@@ -44,9 +46,15 @@ const NpcCard = () => {
             alt=""
           />
         </div>
-        <label>
-          Hp: {npcData.hp}/{npcData.maxHp}
-        </label>
+
+        <div className="bar--background" style={{ width: "250px" }}>
+          <div
+            className="bar--foreground--health"
+            style={{ width: barHealthWidth + "px" }}
+          >
+            {npcData.hp} / {npcData.maxHp}
+          </div>
+        </div>
         <label>
           Dmg: {npcData.minDmg}/{npcData.maxDmg}
         </label>

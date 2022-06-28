@@ -89,10 +89,36 @@ const PvEBattle = () => {
       </div>
 
       <div className="rounds--console">
-        <MDBTable scrollY small bordered>
+        {/* <MDBTable scrollY small bordered>
           <MDBTableHead columns={data.columns} />
           <MDBTableBody rows={battleData} />
-        </MDBTable>
+        </MDBTable> */}
+
+        <div className="history--box">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Round</th>
+                <th>User life</th>
+                <th>User dmg</th>
+                <th>Npc life</th>
+                <th>Npc dmg</th>
+              </tr>
+            </thead>
+            <tbody className="rounds">
+              {battleData?.map((rounds) => (
+                <tr key={rounds.round}>
+                  <td>{rounds.round}</td>
+                  <td>{rounds.userLife}</td>
+                  <td>{rounds.userDmg}</td>
+                  <td>{rounds.NpcLife}</td>
+                  <td>{rounds.NpcDmg}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+
         {/* <Table striped bordered hover>
           <thead>
             <tr>
@@ -103,17 +129,17 @@ const PvEBattle = () => {
               <th>Npc dmg</th>
             </tr>
           </thead>
-          {battleData?.map((rounds) => (
-            <tbody key={rounds.round} className="rounds">
-              <tr>
+          <tbody className="rounds">
+            {battleData?.map((rounds) => (
+              <tr key={rounds.round}>
                 <td>{rounds.round}</td>
                 <td>{rounds.userLife}</td>
                 <td>{rounds.userDmg}</td>
                 <td>{rounds.NpcLife}</td>
                 <td>{rounds.NpcDmg}</td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </Table> */}
         <a href="/profile" className="button--links links m-3 pe-5 ps-5">
           Profile
