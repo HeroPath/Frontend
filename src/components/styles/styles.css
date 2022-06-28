@@ -285,7 +285,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  text-align: center;
 }
 
 .pvebattle--usercard {
@@ -303,7 +302,7 @@
   align-items: center;
 }
 
-.history--box {
+.history--box--2 {
   text-align: center;
   width: 600px;
   height: 180px;
@@ -311,6 +310,25 @@
   border: 1px solid #646464;
   border-radius: 5px;
   overflow-y: scroll;
+}
+
+.history-box {
+  width: 700px;
+  height: 180px;
+  background-color: #ffffff;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #646464;
+  overflow-y: scroll;
+}
+
+.round {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  background-color: rgb(251, 223, 164);
+  border: 1px solid #000;
+  align-items: center;
 }
 
 /* ---------------- //PVEBATTLE ----------------------*/
