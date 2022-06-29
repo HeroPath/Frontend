@@ -10,8 +10,8 @@ const UserCard = ({
   experienceToNextLevel,
   level,
 }) => {
-  let barExpWidth = (experience * 250) / experienceToNextLevel;
   let barHealthWidth = (hp * 250) / maxHp;
+  let barExpWidth = (experience * 250) / experienceToNextLevel;
 
   let hpComplete = `${hp}/${maxHp}`;
 
@@ -41,19 +41,17 @@ const UserCard = ({
       </div>
 
       <div className="bar--background" style={{ width: "250px" }}>
-        {experience && (
-          <div
-            className="bar--foreground--exp"
-            style={{ width: barExpWidth + "px" }}
-            onClick={() => {
-              setShowExpComplete(showExpComplete ? false : true);
-              setShowPercentExp(showPercentExp ? false : true);
-            }}
-          >
-            {showPercentExp && percentExp + "%"}
-            {showExpComplete && expComplete}
-          </div>
-        )}
+        <div
+          className="bar--foreground--exp"
+          style={{ width: barExpWidth + "px" }}
+          onClick={() => {
+            setShowExpComplete(showExpComplete ? false : true);
+            setShowPercentExp(showPercentExp ? false : true);
+          }}
+        >
+          {showPercentExp && percentExp + "%"}
+          {showExpComplete && expComplete}
+        </div>
       </div>
 
       <label>Level: {level}</label>

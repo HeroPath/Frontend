@@ -2,19 +2,16 @@ import React from "react";
 import "../styles/styles.css";
 import UserCard from "./UserCard";
 import UserStats from "./UserStats";
+import UserInventory from "./UserInventory";
 
 const ProfileCard = ({ profile }) => {
-  const [showInventory, setshowInventory] = React.useState(false);
+  const [showInventory, setshowInventory] = React.useState(true);
   const [showStats, setshowStats] = React.useState(false);
 
   return (
     <div>
       <section className="userCard">
-        {showInventory && (
-          <div style={{ border: "2px solid", marginLeft: "30px" }}>
-            INVENTARIO
-          </div>
-        )}
+        {showInventory && <UserInventory />}
         <button
           className="userCard--arrow userCard--arrow__left"
           onClick={() => {

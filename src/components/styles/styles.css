@@ -117,9 +117,13 @@
 /* ---------------- PROFILE ----------------------*/
 
 .profile {
+  display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   text-align: center;
+
+  align-items: center;
 }
 .profileNavbar {
   display: grid;
@@ -127,6 +131,7 @@
   background-color: #000;
   color: white;
   height: 80px;
+  width: 100%;
 }
 
 .profileNavbar--labels {
@@ -147,6 +152,8 @@
   display: grid;
   grid-template-columns: 8fr 1fr 8fr 1fr 8fr;
   text-align: center;
+  width: 1000px;
+  min-height: 460px;
 }
 
 .userCard--card {
@@ -168,6 +175,34 @@
   grid-column-end: 5;
 }
 /* ---------------- //USERCARD ----------------------*/
+/* --------------------------------------------------------------------------------------- */
+
+.bar--background {
+  height: 25px;
+  text-align: center;
+  background: -webkit-linear-gradient(to top, grey, clear);
+  background: linear-gradient(to top, #555, #aaa);
+  color: white;
+}
+
+.bar--foreground--health {
+  height: 25px;
+  background: -webkit-linear-gradient(to top, #d20000, #d90101);
+  background: linear-gradient(to top, #ac0101, #d90101);
+  color: white;
+}
+
+.bar--foreground--exp {
+  height: 25px;
+  background: -webkit-linear-gradient(to top, #0c0, #0f0);
+  background: linear-gradient(to top, #090, #0f0);
+  color: white;
+  cursor: pointer;
+}
+
+/* --------------------------------------------------------------------------------------- */
+
+/* ---------------- USERSTATS ----------------------*/
 
 .secondSection {
   align-self: center;
@@ -200,32 +235,63 @@
   margin: 5px;
 }
 
-/* --------------------------------------------------------------------------------------- */
+/* ---------------- //USERSTATS ----------------------*/
 
-.bar--background {
-  height: 25px;
-  text-align: center;
-  background: -webkit-linear-gradient(to top, grey, clear);
-  background: linear-gradient(to top, #555, #aaa);
-  color: white;
+/* ----------------- USERINVENTORY -----------------------*/
+
+.inventory {
+  display: flex;
+  flex-direction: column;
+  /* background-image: url("../img/items/inventory.png");
+  background-repeat: no-repeat;
+  background-position: center; */
+  align-items: center;
+  margin-left: 30px;
+  border: 2px solid;
+  color: black;
 }
 
-.bar--foreground--health {
-  height: 25px;
-  background: -webkit-linear-gradient(to top, #d20000, #d90101);
-  background: linear-gradient(to top, #ac0101, #d90101);
-  color: white;
+.inventory--equiped {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+  background-image: url("../img/items/inventoryEquiped.BMP");
+  width: 127px;
+  height: 125px;
+  margin: 20px 10px;
+}
+.inventory--box {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  background-image: url("../img/items/inventoryBox.BMP");
+  width: 244px;
+  height: 164px;
+  padding: 3px;
+  margin: 20px 10px;
 }
 
-.bar--foreground--exp {
-  height: 25px;
-  background: -webkit-linear-gradient(to top, #0c0, #0f0);
-  background: linear-gradient(to top, #090, #0f0);
-  color: white;
+.item {
+  width: 32px;
+  height: 32px;
+  filter: brightness(0.9);
+}
+
+.itemEquiped {
+  margin-top: 5px;
+  margin-left: 0px;
+}
+
+.itemBox {
+  margin-top: 3px;
+  margin-left: 5px;
+}
+
+.item:hover {
+  filter: brightness(1.5);
   cursor: pointer;
 }
-
-/* --------------------------------------------------------------------------------------- */
+/* ---------------- //USERINVENTORY ----------------------*/
 
 /* ---------------- //PROFILE ----------------------*/
 
@@ -304,7 +370,7 @@
 
 .history-box {
   width: 700px;
-  height: 180px;
+  height: 190px;
   background-color: #ffffff;
   margin-top: 20px;
   padding: 10px;
@@ -319,6 +385,10 @@
   background-color: rgb(251, 223, 164);
   border: 1px solid #000;
   align-items: center;
+}
+
+.winner {
+  background-color: rgb(248, 203, 255);
 }
 
 /* ---------------- //PVEBATTLE ----------------------*/

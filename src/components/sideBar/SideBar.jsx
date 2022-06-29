@@ -5,7 +5,7 @@ const SideBar = () => {
     <div className="sidebar">
       <div className="sidebar--logo">IMG</div>
 
-      <a href="#" className="button--links links m-3">
+      <a href="/profile" className="button--links links m-3">
         Home
       </a>
       <a href="/zone" className="button--links links m-3">

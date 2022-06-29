@@ -48,7 +48,10 @@ const UserStats = ({
   function handleChangeAmount(e) {
     if (e.target.value < 0) {
       e.target.value = e.target.value * -1;
+    } else if (e.target.value > freeSkillPoints) {
+      e.target.value = freeSkillPoints;
     }
+
     const newValues = {
       stat: e.target.id,
       amount: e.target.value,
@@ -93,6 +96,7 @@ const UserStats = ({
                   onChange={handleChangeAmount}
                   id={zone.skill}
                   min="1"
+                  max={freeSkillPoints}
                   pattern="^[0-9]+"
                 />
                 <button
