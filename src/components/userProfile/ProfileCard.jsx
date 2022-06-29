@@ -5,7 +5,7 @@ import UserStats from "./UserStats";
 import UserInventory from "./UserInventory";
 
 const ProfileCard = ({ profile }) => {
-  const [showInventory, setshowInventory] = React.useState(true);
+  const [showInventory, setshowInventory] = React.useState(false);
   const [showStats, setshowStats] = React.useState(false);
 
   return (

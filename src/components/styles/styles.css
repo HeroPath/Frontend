@@ -274,7 +274,7 @@
 .item {
   width: 32px;
   height: 32px;
-  filter: brightness(0.9);
+  filter: brightness(1.1);
 }
 
 .itemEquiped {
@@ -288,7 +288,7 @@
 }
 
 .item:hover {
-  filter: brightness(1.5);
+  filter: brightness(1.8);
   cursor: pointer;
 }
 /* ---------------- //USERINVENTORY ----------------------*/

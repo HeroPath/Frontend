@@ -16,7 +16,13 @@ const UserCard = ({
   let hpComplete = `${hp}/${maxHp}`;
 
   let expComplete = `${experience} / ${experienceToNextLevel}`;
-  let percentExp = ((experience / experienceToNextLevel) * 100).toFixed(2);
+  let percentExp;
+
+  if (experience > 0) {
+    percentExp = ((experience / experienceToNextLevel) * 100).toFixed(2) + "%";
+  } else if (experience === 0 && level === 300) {
+    percentExp = "Lvl Max";
+  }
 
   const [showPercentExp, setShowPercentExp] = React.useState(true);
   const [showExpComplete, setShowExpComplete] = React.useState(false);
@@ -49,7 +55,7 @@ const UserCard = ({
             setShowPercentExp(showPercentExp ? false : true);
           }}
         >
-          {showPercentExp && percentExp + "%"}
+          {showPercentExp && percentExp}
           {showExpComplete && expComplete}
         </div>
       </div>

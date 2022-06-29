@@ -42,8 +42,10 @@ const UserInventory = () => {
 
   /* ----------------------------------- DRAG AND DROP --------------------------------------*/
 
-  let idItemBox = location.state.itemId;
-  let idItemEquiped = location.state.itemId;
+  let idItemBox = "10";
+  let idItemEquiped = "10";
+  // let idItemBox = location.state.itemId;
+  // let idItemEquiped = location.state.itemId;
 
   const invEquiped = document.getElementById("inventory--equiped");
   const itemBox = document.getElementById(idItemBox);
@@ -79,18 +81,7 @@ const UserInventory = () => {
         onDrop={dropEquiped}
       >
         {inventoryEquiped?.map((items) => (
-          <div
-            draggable="true"
-            onClick={() => {
-              navigate("", {
-                state: { itemId: items.id, itemName: items.name },
-              });
-
-              console.log(location.state);
-            }}
-            key={j++}
-            id={items.id}
-          >
+          <div draggable="true" key={j++} id={items.id}>
             <img
               src={require(`../img/items/${items.name}.png`)}
               className="item itemEquiped"
@@ -106,19 +97,7 @@ const UserInventory = () => {
         onDrop={dropBox}
       >
         {inventoryBox?.map((items) => (
-          <div
-            draggable="true"
-            onClick={() => {
-              navigate("", {
-                state: { itemId: items.id, itemName: items.name },
-              });
-
-              console.log(location.state);
-            }}
-            key={items.id}
-            id={items.id}
-            className="invBox"
-          >
+          <div draggable="true" key={items.id} id={items.id} className="invBox">
             <img
               src={require(`../img/items/${items.name}.png`)}
               className="item itemBox"
