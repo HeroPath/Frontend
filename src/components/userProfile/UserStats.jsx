@@ -12,6 +12,7 @@ const UserStats = ({
   luck,
   minDmg,
   maxDmg,
+  npcKills,
 }) => {
   const cookies = new Cookies();
   const headers = {
@@ -111,9 +112,12 @@ const UserStats = ({
         )}
       </form>
 
-      <label style={{ display: "block" }}>
-        Min/Max DMG: {minDmg}/{maxDmg}
-      </label>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <label>
+          Min/Max DMG: {minDmg}/{maxDmg}
+        </label>
+      </div>
+      <label className="mt-5">Npc killed: {npcKills}</label>
     </section>
   );
 };

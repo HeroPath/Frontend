@@ -32,6 +32,7 @@ const ProfileCard = ({ profile }) => {
           luck={profile.luck}
           minDmg={profile.minDmg}
           maxDmg={profile.maxDmg}
+          npcKills={profile.npcKills}
         />
       </section>
     </div>

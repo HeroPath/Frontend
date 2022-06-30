@@ -46,9 +46,10 @@ const Login = () => {
 
   return (
     <div className="login" style={cardStyle}>
-      <section className="form login--form">
+      <div className="login--img"></div>
+      <section className="login--section">
         <h1>Sign In</h1>
-        <form onSubmit={handleSubmit}>
+        <form className="login--form" onSubmit={handleSubmit}>
           <label className="form-label">Username</label>
           <input
             type="text"

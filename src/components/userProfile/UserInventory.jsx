@@ -6,6 +6,7 @@ const UserInventory = () => {
   let inventoryEquiped = [
     { name: "ring", id: 30 },
     { name: "hat", id: 31 },
+    { name: "hat", id: 32 },
   ];
   let inventoryBox = [
     { name: "ring", id: 1 },
@@ -50,22 +51,16 @@ const UserInventory = () => {
     e.preventDefault();
   };
   const dropEquiped = () => {
-
     invEquiped.appendChild(itemBox);
-    inventoryEquiped.push(dataItemBox);
-    inventoryBox.slice(dataItemBox);
 
-    console.log(inventoryEquiped);
+    /* Post a la api para cargar el item que equipamos */
   };
   const dropBox = (e) => {
     e.preventDefault();
 
     invBox.appendChild(itemEquiped);
 
-    inventoryBox.push(dataItemEquiped);
-    inventoryEquiped.splice(dataItemEquiped);
-
-    console.log(inventoryBox);
+    /* Post a la api para cargar el item que desequipamos */
   };
   /* ----------------------------------- //DROP --------------------------------------*/
 
