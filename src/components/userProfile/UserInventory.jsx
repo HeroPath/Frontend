@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 
 import "../utilities.js";
 
 const UserInventory = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  let [inventoryEquiped, setInventoryEquiped] = useState([
-    { name: "ring", id: 25 },
-    { name: "hat", id: 26 },
-  ]);
+  let inventoryEquiped = [
+    { name: "ring", id: 30 },
+    { name: "hat", id: 31 },
+  ];
   let inventoryBox = [
     { name: "ring", id: 1 },
     { name: "hat", id: 2 },
@@ -31,27 +27,21 @@ const UserInventory = () => {
     { name: "hat", id: 17 },
     { name: "staff", id: 18 },
     { name: "daga", id: 19 },
-    { name: "shield", id: 20 },
-    { name: "ring", id: 21 },
-    { name: "hat", id: 22 },
-    { name: "staff", id: 23 },
-    { name: "daga", id: 24 },
   ];
-  let i = 1;
+
   let j = 1;
 
   /* ----------------------------------- DRAG AND DROP --------------------------------------*/
 
-  let idItemBox = "10";
-  let idItemEquiped = "10";
-  // let idItemBox = location.state.itemId;
-  // let idItemEquiped = location.state.itemId;
+  let [dataItemBox, setDataItemBox] = useState({});
+  let [dataItemEquiped, setDataItemEquiped] = useState({});
 
   const invEquiped = document.getElementById("inventory--equiped");
-  const itemBox = document.getElementById(idItemBox);
+  const itemBox = document.getElementById(dataItemBox.id);
 
   const invBox = document.getElementById("inventory--box");
-  const itemEquiped = document.getElementById(idItemEquiped);
+  const itemEquiped = document.getElementById(dataItemEquiped.id);
+
   /* ----------------------------------- DRAG --------------------------------------*/
   /* ----------------------------------- //DRAG--------------------------------------*/
 
@@ -59,13 +49,23 @@ const UserInventory = () => {
   const dragOver = (e) => {
     e.preventDefault();
   };
-  const dropEquiped = (e) => {
-    e.preventDefault();
+  const dropEquiped = () => {
+
     invEquiped.appendChild(itemBox);
+    inventoryEquiped.push(dataItemBox);
+    inventoryBox.slice(dataItemBox);
+
+    console.log(inventoryEquiped);
   };
   const dropBox = (e) => {
     e.preventDefault();
+
     invBox.appendChild(itemEquiped);
+
+    inventoryBox.push(dataItemEquiped);
+    inventoryEquiped.splice(dataItemEquiped);
+
+    console.log(inventoryBox);
   };
   /* ----------------------------------- //DROP --------------------------------------*/
 
@@ -81,7 +81,15 @@ const UserInventory = () => {
         onDrop={dropEquiped}
       >
         {inventoryEquiped?.map((items) => (
-          <div draggable="true" key={j++} id={items.id}>
+          <div
+            draggable="true"
+            key={j++}
+            id={items.id}
+            className="invEquiped"
+            onDrag={() => {
+              setDataItemEquiped({ name: items.name, id: items.id });
+            }}
+          >
             <img
               src={require(`../img/items/${items.name}.png`)}
               className="item itemEquiped"
@@ -97,7 +105,15 @@ const UserInventory = () => {
         onDrop={dropBox}
       >
         {inventoryBox?.map((items) => (
-          <div draggable="true" key={items.id} id={items.id} className="invBox">
+          <div
+            draggable="true"
+            key={items.id}
+            id={items.id}
+            className="invBox"
+            onDrag={() => {
+              setDataItemBox({ name: items.name, id: items.id });
+            }}
+          >
             <img
               src={require(`../img/items/${items.name}.png`)}
               className="item itemBox"

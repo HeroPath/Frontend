@@ -5,21 +5,11 @@ import UserStats from "./UserStats";
 import UserInventory from "./UserInventory";
 
 const ProfileCard = ({ profile }) => {
-  const [showInventory, setshowInventory] = React.useState(false);
-  const [showStats, setshowStats] = React.useState(false);
-
   return (
     <div>
       <section className="userCard">
-        {showInventory && <UserInventory />}
-        <button
-          className="userCard--arrow userCard--arrow__left"
-          onClick={() => {
-            setshowInventory(showInventory ? false : true);
-          }}
-        >
-          🢀
-        </button>
+        <UserInventory />
+
         {profile.aclass && (
           <UserCard
             key={profile.aclass}
@@ -32,28 +22,17 @@ const ProfileCard = ({ profile }) => {
             level={profile.level}
           />
         )}
-
-        <button
-          className="userCard--arrow userCard--arrow__right"
-          onClick={() => {
-            setshowStats(showStats ? false : true);
-          }}
-        >
-          🢂
-        </button>
-        {showStats && (
-          <UserStats
-            key={profile.username}
-            freeSkillPoints={profile.freeSkillPoints}
-            strength={profile.strength}
-            dexterity={profile.dexterity}
-            vitality={profile.vitality}
-            intelligence={profile.intelligence}
-            luck={profile.luck}
-            minDmg={profile.minDmg}
-            maxDmg={profile.maxDmg}
-          />
-        )}
+        <UserStats
+          key={profile.username}
+          freeSkillPoints={profile.freeSkillPoints}
+          strength={profile.strength}
+          dexterity={profile.dexterity}
+          vitality={profile.vitality}
+          intelligence={profile.intelligence}
+          luck={profile.luck}
+          minDmg={profile.minDmg}
+          maxDmg={profile.maxDmg}
+        />
       </section>
     </div>
   );

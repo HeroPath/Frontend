@@ -150,9 +150,9 @@
 
 .userCard {
   display: grid;
-  grid-template-columns: 8fr 1fr 8fr 1fr 8fr;
+  grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
-  width: 1000px;
+  min-width: 1000px;
   min-height: 460px;
 }
 
@@ -215,13 +215,14 @@
   display: grid;
   grid-template-columns: 3fr 2fr;
   align-items: center;
+  width: 100%;
 }
 .secondSection--stats {
   height: 100%;
   min-height: 200px;
 }
 .secondSection--stats label {
-  padding: 15px;
+  padding: 10px;
 }
 .secondSection--add--form {
   display: grid;
@@ -403,7 +404,10 @@
 /* ---------------- //NPCCARD ----------------------*/
 
 /* ---------------- PVP ----------------------*/
-
+.pvpbattle {
+  width: 100vw;
+  height: 100vh;
+}
 /* ---------------- //PVP ----------------------*/
 
 /* ---------------- RANKING ----------------------*/

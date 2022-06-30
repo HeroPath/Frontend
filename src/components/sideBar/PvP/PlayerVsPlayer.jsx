@@ -1,15 +1,12 @@
 import React from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const PlayerVsPlayer = () => {
   const cookies = new Cookies();
   const headers = {
     Authorization: "Bearer " + cookies.get("token"),
   };
-
-  const navigate = useNavigate();
 
   const [userAttack, setUserAttack] = React.useState("");
 
@@ -37,7 +34,7 @@ const PlayerVsPlayer = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="pvpbattle">
       <label>Usuario al que queres atacar</label>
       <input type="text" placeholder="Username" onChange={handleChange} />
       <button type="submit">ATACAR</button>
