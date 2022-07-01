@@ -3,55 +3,27 @@ import React, { useEffect, useState } from "react";
 import "../utilities.js";
 
 const UserInventory = ({ inventory, equipment }) => {
-  /* ----------------------------------- DRAG AND DROP --------------------------------------*/
-
   let [dataItemBox, setDataItemBox] = useState({});
   let [dataItemEquiped, setDataItemEquiped] = useState({});
-
-  // const invEquiped = document.getElementById("inventory--equiped");
   const itemBox = document.getElementById(dataItemBox.id);
-
   const invBox = document.getElementById("inventory--box");
   const itemEquiped = document.getElementById(dataItemEquiped.id);
 
-  /* ----------------------------------- DRAG --------------------------------------*/
-  /* ----------------------------------- //DRAG--------------------------------------*/
-
-  const divShip = document.getElementById("ship");
-  const divHelmet = document.getElementById("helmet");
-  const divWings = document.getElementById("wings");
-  const divWeapon = document.getElementById("weapon");
-  const divArmor = document.getElementById("armor");
-  const divShield = document.getElementById("shield");
-  const divGloves = document.getElementById("gloves");
-  const divPants = document.getElementById("pants");
-  const divBoots = document.getElementById("boots");
-
-  /* ----------------------------------- DROP --------------------------------------*/
   const dragOver = (e) => {
     e.preventDefault();
   };
-
-  if (equipment) {
-    equipment.items.sort((a, b) => (a.id > b.id ? 1 : -1));
-  }
-
-  console.log(equipment);
 
   const testing = () => {
     for (let i = 0; i < equipment.items.length; i++) {
       let divGeneric = document.getElementById(equipment.items[i].type);
 
-      if (
-        divGeneric.id === equipment.items[i].type &&
-        !divGeneric.hasChildNodes()
-      ) {
+      if (!divGeneric.hasChildNodes()) {
         const divItemEquiped = document.createElement("div");
         const imgItemEquiped = document.createElement("img");
-        divItemEquiped.setAttribute("id", equipment.items[i].id);
         divItemEquiped.setAttribute("draggable", true);
+        divItemEquiped.setAttribute("id", equipment.items[i].id);
 
-        divItemEquiped.ondrag = function draggg() {
+        divItemEquiped.ondragstart = function dragItemEquiped() {
           setDataItemEquiped({
             name: equipment.items[i].name,
             id: equipment.items[i].id,
@@ -59,7 +31,7 @@ const UserInventory = ({ inventory, equipment }) => {
           });
         };
 
-        divItemEquiped.classList.add("invEquiped");
+        divItemEquiped.classList.add("item");
 
         imgItemEquiped.setAttribute(
           "src",
@@ -74,52 +46,19 @@ const UserInventory = ({ inventory, equipment }) => {
   };
 
   const dropEquiped = () => {
-    if (divShip.id === dataItemBox.type && !divShip.hasChildNodes()) {
-      divShip.appendChild(itemBox);
-    } else if (
-      divShield.id === dataItemBox.type &&
-      !divShield.hasChildNodes()
-    ) {
-      divShield.appendChild(itemBox);
-    } else if (
-      divHelmet.id === dataItemBox.type &&
-      !divHelmet.hasChildNodes()
-    ) {
-      divHelmet.appendChild(itemBox);
-    } else if (divWings.id === dataItemBox.type && !divWings.hasChildNodes()) {
-      divWings.appendChild(itemBox);
-    } else if (
-      divWeapon.id === dataItemBox.type &&
-      !divWeapon.hasChildNodes()
-    ) {
-      divWeapon.appendChild(itemBox);
-    } else if (divArmor.id === dataItemBox.type && !divArmor.hasChildNodes()) {
-      divArmor.appendChild(itemBox);
-    } else if (divBoots.id === dataItemBox.type && !divBoots.hasChildNodes()) {
-      divBoots.appendChild(itemBox);
-    } else if (
-      divGloves.id === dataItemBox.type &&
-      !divGloves.hasChildNodes()
-    ) {
-      divGloves.appendChild(itemBox);
-    } else if (divPants.id === dataItemBox.type && !divPants.hasChildNodes()) {
-      divPants.appendChild(itemBox);
-    } else if (divBoots.id === dataItemBox.type && !divBoots.hasChildNodes()) {
-      divBoots.appendChild(itemBox);
-    }
+    const divGenericEquiped = document.getElementById(dataItemBox.type);
 
-    /* Post a la api para cargar el item que equipamos */
+    if (
+      divGenericEquiped.id === dataItemBox.type &&
+      !divGenericEquiped.hasChildNodes()
+    ) {
+      divGenericEquiped.appendChild(itemBox);
+    }
   };
   const dropBox = (e) => {
     e.preventDefault();
-
     invBox.appendChild(itemEquiped);
-
-    /* Post a la api para cargar el item que desequipamos */
   };
-  /* ----------------------------------- //DROP --------------------------------------*/
-
-  /* ----------------------------------- //DRAG AND DROP --------------------------------------*/
 
   return (
     <div className="inventory" id="inventory">
@@ -154,7 +93,7 @@ const UserInventory = ({ inventory, equipment }) => {
               key={item.id}
               id={item.id}
               className="invBox"
-              onDrag={() => {
+              onDragStart={() => {
                 setDataItemBox({
                   name: item.name,
                   id: item.id,
@@ -164,7 +103,7 @@ const UserInventory = ({ inventory, equipment }) => {
             >
               <img
                 src={require(`../img/items/${item.type}.png`)}
-                className="item itemBox"
+                className="item"
                 alt=""
               />
             </div>
@@ -175,11 +114,3 @@ const UserInventory = ({ inventory, equipment }) => {
 };
 
 export default UserInventory;
-
-// const item = {
-//   backgroundImage: `url("../img/items/daga.png")`,
-//   width: "32px",
-//   height: "32px",
-//   marginTop: "3px",
-//   marginLeft: "5px",
-// };

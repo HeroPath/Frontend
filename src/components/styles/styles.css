@@ -297,16 +297,8 @@
   width: 32px;
   height: 32px;
   filter: brightness(1.1);
-}
-
-.itemEquiped {
-  margin-top: 4px;
-  margin-left: 7px;
-}
-
-.itemBox {
-  margin-top: 3px;
-  margin-left: 5px;
+  margin-top: 2px;
+  margin-left: 2px;
 }
 
 .item:hover {

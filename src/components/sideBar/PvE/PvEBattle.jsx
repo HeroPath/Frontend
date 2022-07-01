@@ -100,7 +100,9 @@ const PvEBattle = () => {
                   <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>
                 )}
                 {winnerBattle.levelUp === true && (
-                  <li>Congratulations, you have moved up a level</li>
+                  <li>
+                    Congratulations, you have reached level {profile.level}
+                  </li>
                 )}
               </div>
             </ul>
