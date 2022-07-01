@@ -8,7 +8,7 @@ const UserInventory = ({ inventory, equipment }) => {
   let [dataItemBox, setDataItemBox] = useState({});
   let [dataItemEquiped, setDataItemEquiped] = useState({});
 
-  const invEquiped = document.getElementById("inventory--equiped");
+  // const invEquiped = document.getElementById("inventory--equiped");
   const itemBox = document.getElementById(dataItemBox.id);
 
   const invBox = document.getElementById("inventory--box");
@@ -17,52 +17,15 @@ const UserInventory = ({ inventory, equipment }) => {
   /* ----------------------------------- DRAG --------------------------------------*/
   /* ----------------------------------- //DRAG--------------------------------------*/
 
-  const divRing = document.getElementById("ring");
+  const divShip = document.getElementById("ship");
   const divHelmet = document.getElementById("helmet");
   const divWings = document.getElementById("wings");
-  const divSword = document.getElementById("sword");
+  const divWeapon = document.getElementById("weapon");
   const divArmor = document.getElementById("armor");
   const divShield = document.getElementById("shield");
   const divGloves = document.getElementById("gloves");
   const divPants = document.getElementById("pants");
   const divBoots = document.getElementById("boots");
-
-  const equipo = {
-    id: 1,
-    items: [
-      { id: 1, name: "daga", type: "gloves" },
-      { id: 2, name: "shield", type: "pants" },
-      { id: 3, name: "ring", type: "boots" },
-    ],
-  };
-
-  // if (divGloves) {
-  //   if (divGloves.id === equipo.items[0].type && !divGloves.hasChildNodes()) {
-  //     const divItemEquiped = document.createElement("div");
-  //     const imgItemEquiped = document.createElement("img");
-  //     divItemEquiped.setAttribute("id", equipo.items[0].id);
-  //     divItemEquiped.setAttribute("draggable", true);
-
-  //     divItemEquiped.ondrag = function draggg() {
-  //       setDataItemEquiped({
-  //         name: equipo.items[0].name,
-  //         id: equipo.items[0].id,
-  //         type: equipo.items[0].type,
-  //       });
-  //     };
-
-  //     divItemEquiped.classList.add("invEquiped");
-
-  //     imgItemEquiped.setAttribute(
-  //       "src",
-  //       require(`../img/items/${equipo.items[0].name}.png`)
-  //     );
-  //     imgItemEquiped.classList.add("item", "itemEquiped");
-
-  //     divItemEquiped.appendChild(imgItemEquiped);
-  //     divGloves.appendChild(divItemEquiped);
-  //   }
-  // }
 
   /* ----------------------------------- DROP --------------------------------------*/
   const dragOver = (e) => {
@@ -70,64 +33,49 @@ const UserInventory = ({ inventory, equipment }) => {
   };
 
   if (equipment) {
-    equipment.items.sort((a, b) => {
-      let fa = a.id,
-        fb = b.id;
-      if (fa < fb) {
-        return -1;
-      }
-      if (fa > fb) {
-        return 1;
-      }
-      return 0;
-    });
+    equipment.items.sort((a, b) => (a.id > b.id ? 1 : -1));
   }
 
+  console.log(equipment);
+
   const testing = () => {
-    // const equipamientoInventario = [
-    //   "ring",
-    //   "helmet",
-    //   "wings",
-    //   "sword",
-    //   "armor",
-    //   "shield",
-    //   "gloves",
-    //   "pants",
-    //   "boots",
-    // ];
+    for (let i = 0; i < equipment.items.length; i++) {
+      let divGeneric = document.getElementById(equipment.items[i].type);
 
-    // for(let i = 0; i < equipment.items.length, i++) {}
+      if (
+        divGeneric.id === equipment.items[i].type &&
+        !divGeneric.hasChildNodes()
+      ) {
+        const divItemEquiped = document.createElement("div");
+        const imgItemEquiped = document.createElement("img");
+        divItemEquiped.setAttribute("id", equipment.items[i].id);
+        divItemEquiped.setAttribute("draggable", true);
 
-    if (
-      divGloves.id === equipment.items[1].type &&
-      !divGloves.hasChildNodes()
-    ) {
-      const divItemEquiped = document.createElement("div");
-      const imgItemEquiped = document.createElement("img");
-      divItemEquiped.setAttribute("id", equipment.items[1].id);
-      divItemEquiped.setAttribute("draggable", true);
+        divItemEquiped.ondrag = function draggg() {
+          setDataItemEquiped({
+            name: equipment.items[i].name,
+            id: equipment.items[i].id,
+            type: equipment.items[i].type,
+          });
+        };
 
-      divItemEquiped.ondrag = function draggg() {
-        setDataItemEquiped({
-          name: equipment.items[1].name,
-          id: equipment.items[1].id,
-          type: equipment.items[1].type,
-        });
-      };
+        divItemEquiped.classList.add("invEquiped");
 
-      divItemEquiped.classList.add("invEquiped");
+        imgItemEquiped.setAttribute(
+          "src",
+          require(`../img/items/${equipment.items[i].type}.png`)
+        );
+        imgItemEquiped.classList.add("item", "itemEquiped");
 
-      imgItemEquiped.setAttribute("src", require(`../img/items/daga.png`));
-      imgItemEquiped.classList.add("item", "itemEquiped");
-
-      divItemEquiped.appendChild(imgItemEquiped);
-      divGloves.appendChild(divItemEquiped);
+        divItemEquiped.appendChild(imgItemEquiped);
+        divGeneric.appendChild(divItemEquiped);
+      }
     }
   };
 
   const dropEquiped = () => {
-    if (divRing.id === dataItemBox.type && !divRing.hasChildNodes()) {
-      divRing.appendChild(itemBox);
+    if (divShip.id === dataItemBox.type && !divShip.hasChildNodes()) {
+      divShip.appendChild(itemBox);
     } else if (
       divShield.id === dataItemBox.type &&
       !divShield.hasChildNodes()
@@ -140,15 +88,15 @@ const UserInventory = ({ inventory, equipment }) => {
       divHelmet.appendChild(itemBox);
     } else if (divWings.id === dataItemBox.type && !divWings.hasChildNodes()) {
       divWings.appendChild(itemBox);
-    } else if (divSword.id === dataItemBox.type && !divSword.hasChildNodes()) {
-      divSword.appendChild(itemBox);
+    } else if (
+      divWeapon.id === dataItemBox.type &&
+      !divWeapon.hasChildNodes()
+    ) {
+      divWeapon.appendChild(itemBox);
     } else if (divArmor.id === dataItemBox.type && !divArmor.hasChildNodes()) {
       divArmor.appendChild(itemBox);
-    } else if (
-      divShield.id === dataItemBox.type &&
-      !divShield.hasChildNodes()
-    ) {
-      divShield.appendChild(itemBox);
+    } else if (divBoots.id === dataItemBox.type && !divBoots.hasChildNodes()) {
+      divBoots.appendChild(itemBox);
     } else if (
       divGloves.id === dataItemBox.type &&
       !divGloves.hasChildNodes()
@@ -183,32 +131,10 @@ const UserInventory = ({ inventory, equipment }) => {
         onDrop={dropEquiped}
         onClick={testing}
       >
-        {/* {equipment &&
-          equipment.items?.map((items) => (
-            <div
-              draggable="true"
-              key={items.id}
-              id={items.id}
-              className="invEquiped"
-              onDrag={() => {
-                setDataItemEquiped({
-                  name: items.name,
-                  id: items.id,
-                  type: items.type,
-                });
-              }}
-            >
-              <img
-                src={require(`../img/items/daga.png`)}
-                className="item itemEquiped"
-                alt=""
-              />
-            </div>
-          ))} */}
-        <div id="ring" className="divEquiped"></div>
+        <div id="ship" className="divEquiped"></div>
         <div id="helmet" className="divEquiped"></div>
         <div id="wings" className="divEquiped"></div>
-        <div id="sword" className="divEquiped"></div>
+        <div id="weapon" className="divEquiped"></div>
         <div id="armor" className="divEquiped"></div>
         <div id="shield" className="divEquiped"></div>
         <div id="gloves" className="divEquiped"></div>
@@ -237,7 +163,7 @@ const UserInventory = ({ inventory, equipment }) => {
               }}
             >
               <img
-                src={require(`../img/items/ring.png`)}
+                src={require(`../img/items/${item.type}.png`)}
                 className="item itemBox"
                 alt=""
               />
