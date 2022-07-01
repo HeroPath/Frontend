@@ -116,7 +116,7 @@
   display: flex;
   flex-direction: column;
   min-width: 300px;
-  background-color: grey;
+  background-color: rgb(187, 187, 187);
   text-align: center;
 }
 
@@ -134,7 +134,6 @@
   width: 100vw;
   height: 100vh;
   text-align: center;
-
   align-items: center;
 }
 .profileNavbar {
@@ -174,20 +173,9 @@
   flex-direction: column;
   align-items: center;
 }
-
-.userCard--arrow__left {
-  width: 100%;
-  grid-column-start: 2;
-  grid-column-end: 3;
-}
-
-.userCard--arrow__right {
-  width: 100%;
-  grid-column-start: 4;
-  grid-column-end: 5;
-}
 /* ---------------- //USERCARD ----------------------*/
-/* --------------------------------------------------------------------------------------- */
+
+/* ---------------- BAR HEALTH AND EXP ----------------------*/
 
 .bar--background {
   height: 25px;
@@ -212,31 +200,31 @@
   cursor: pointer;
 }
 
-/* --------------------------------------------------------------------------------------- */
+/* ---------------- //BAR HEALTH AND EXP ----------------------*/
 
 /* ---------------- USERSTATS ----------------------*/
 
-.secondSection {
+.userstats {
   align-self: center;
   border: 2px solid;
   height: 100%;
   margin-right: 30px;
 }
 
-.secondSection--form {
+.userstats--form {
   display: grid;
   grid-template-columns: 3fr 2fr;
   align-items: center;
   width: 100%;
 }
-.secondSection--stats {
+.userstats--stats {
   height: 100%;
   min-height: 200px;
 }
-.secondSection--stats label {
+.userstats--stats label {
   padding: 12px;
 }
-.secondSection--add--form {
+.userstats--add--form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100%;
@@ -250,7 +238,7 @@
   border-radius: 5px;
 }
 
-.secondSection--add--form input {
+.userstats--add--form input {
   margin: 5px;
 }
 
@@ -275,11 +263,9 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
   background-image: url("../img/items/inventoryEquiped.BMP");
-  /* row-gap: 30px;
-  column-gap: 30px; */
-  /* padding: 10px; */
   width: 127px;
   height: 125px;
+  padding: 3px;
   margin: 10px;
 }
 .inventory--box {
@@ -306,10 +292,6 @@
   cursor: pointer;
 }
 
-.divEquiped {
-  width: 32px;
-  height: 32px;
-}
 /* ---------------- //USERINVENTORY ----------------------*/
 
 /* ---------------- //PROFILE ----------------------*/

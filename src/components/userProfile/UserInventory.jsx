@@ -3,41 +3,38 @@ import React, { useEffect, useState } from "react";
 import "../utilities.js";
 
 const UserInventory = ({ inventory, equipment }) => {
-  let [dataItemBox, setDataItemBox] = useState({});
-  let [dataItemEquiped, setDataItemEquiped] = useState({});
-  const itemBox = document.getElementById(dataItemBox.id);
+  let [dataItem, setDataItem] = useState({});
   const invBox = document.getElementById("inventory--box");
-  const itemEquiped = document.getElementById(dataItemEquiped.id);
+  const itemSelect = document.getElementById(dataItem.id);
 
   const dragOver = (e) => {
     e.preventDefault();
   };
 
   const testing = () => {
-    for (let i = 0; i < equipment.items.length; i++) {
-      let divGeneric = document.getElementById(equipment.items[i].type);
+    const res = equipment.items;
+    for (let i = 0; i < res.length; i++) {
+      const divGeneric = document.getElementById(res[i].type);
 
       if (!divGeneric.hasChildNodes()) {
         const divItemEquiped = document.createElement("div");
         const imgItemEquiped = document.createElement("img");
         divItemEquiped.setAttribute("draggable", true);
-        divItemEquiped.setAttribute("id", equipment.items[i].id);
+        divItemEquiped.setAttribute("id", res[i].id);
 
         divItemEquiped.ondragstart = function dragItemEquiped() {
-          setDataItemEquiped({
-            name: equipment.items[i].name,
-            id: equipment.items[i].id,
-            type: equipment.items[i].type,
+          setDataItem({
+            name: res[i].name,
+            id: res[i].id,
+            type: res[i].type,
           });
         };
 
-        divItemEquiped.classList.add("item");
-
         imgItemEquiped.setAttribute(
           "src",
-          require(`../img/items/${equipment.items[i].type}.png`)
+          require(`../img/items/${res[i].type}.png`)
         );
-        imgItemEquiped.classList.add("item", "itemEquiped");
+        imgItemEquiped.classList.add("item");
 
         divItemEquiped.appendChild(imgItemEquiped);
         divGeneric.appendChild(divItemEquiped);
@@ -45,24 +42,31 @@ const UserInventory = ({ inventory, equipment }) => {
     }
   };
 
+  // {
+  //   equipment && testing();
+  // }
+
+  useEffect(() => {}, []);
+
   const dropEquiped = () => {
-    const divGenericEquiped = document.getElementById(dataItemBox.type);
+    const divGenericEquiped = document.getElementById(dataItem.type);
 
     if (
-      divGenericEquiped.id === dataItemBox.type &&
+      divGenericEquiped.id === dataItem.type &&
       !divGenericEquiped.hasChildNodes()
     ) {
-      divGenericEquiped.appendChild(itemBox);
+      divGenericEquiped.appendChild(itemSelect);
     }
   };
+
   const dropBox = (e) => {
     e.preventDefault();
-    invBox.appendChild(itemEquiped);
+    invBox.appendChild(itemSelect);
   };
 
   return (
     <div className="inventory" id="inventory">
-      <h4>Inventory</h4>
+      <h3>Inventory</h3>
       <div
         className="inventory--equiped"
         id="inventory--equiped"
@@ -70,15 +74,15 @@ const UserInventory = ({ inventory, equipment }) => {
         onDrop={dropEquiped}
         onClick={testing}
       >
-        <div id="ship" className="divEquiped"></div>
-        <div id="helmet" className="divEquiped"></div>
-        <div id="wings" className="divEquiped"></div>
-        <div id="weapon" className="divEquiped"></div>
-        <div id="armor" className="divEquiped"></div>
-        <div id="shield" className="divEquiped"></div>
-        <div id="gloves" className="divEquiped"></div>
-        <div id="pants" className="divEquiped"></div>
-        <div id="boots" className="divEquiped"></div>
+        <div id="ship"></div>
+        <div id="helmet"></div>
+        <div id="wings"></div>
+        <div id="weapon"></div>
+        <div id="armor"></div>
+        <div id="shield"></div>
+        <div id="gloves"></div>
+        <div id="pants"></div>
+        <div id="boots"></div>
       </div>
       <div
         className="inventory--box"
@@ -92,9 +96,8 @@ const UserInventory = ({ inventory, equipment }) => {
               draggable="true"
               key={item.id}
               id={item.id}
-              className="invBox"
               onDragStart={() => {
-                setDataItemBox({
+                setDataItem({
                   name: item.name,
                   id: item.id,
                   type: item.type,

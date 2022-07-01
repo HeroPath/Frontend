@@ -74,12 +74,12 @@ const UserStats = ({
   }, []);
 
   return (
-    <section className="secondSection">
-      <h3 className="secondSection--title">Stats</h3>
+    <section className="userstats">
+      <h3>Stats</h3>
       <label className="m-2">Skill points: {freeSkillPoints}</label>
 
-      <form className="secondSection--form">
-        <div className="secondSection--stats">
+      <form className="userstats--form">
+        <div className="userstats--stats">
           <label>Strength (STR): {strength}</label>
           <label>Dexterity (DEX): {dexterity}</label>
           <label>Vitality (VIT): {vitality}</label>
@@ -88,9 +88,9 @@ const UserStats = ({
         </div>
 
         {showAddStat && (
-          <div className="secondSection--add">
+          <div className="userstats--add">
             {data.map((zone) => (
-              <div key={zone.id} className="secondSection--add--form">
+              <div key={zone.id} className="userstats--add--form">
                 <input
                   type="number"
                   className="form-control"

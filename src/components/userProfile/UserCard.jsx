@@ -26,7 +26,7 @@ const UserCard = ({
 
   return (
     <div className="userCard--card">
-      <h4 className="p-1">{username}</h4>
+      <h3>{username}</h3>
       <img
         src={require("../img/class/" + aclass.name + ".jpg")}
         width="250px"
