@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from "react";
-
-import "../utilities.js";
+import React, { useState } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
 
 const UserInventory = ({ inventory, equipment }) => {
-  let [dataItem, setDataItem] = useState({});
+
+
+  console.log(equipment);
+  console.log(inventory);
+  const cookies = new Cookies();
+  const headers = {
+    "content-type": "application/json",
+    Authorization: "Bearer " + cookies.get("token"),
+  };
+  const [dataItem, setDataItem] = useState({});
+
   const invBox = document.getElementById("inventory--box");
   const itemSelect = document.getElementById(dataItem.id);
 
@@ -11,58 +21,75 @@ const UserInventory = ({ inventory, equipment }) => {
     e.preventDefault();
   };
 
-  const testing = () => {
-    const res = equipment.items;
-    for (let i = 0; i < res.length; i++) {
-      const divGeneric = document.getElementById(res[i].type);
+  const equipmentCreate = () => {
+    const equipedItem = equipment.items;
+    for (let i = 0; i < equipedItem.length; i++) {
+      const divGeneric = document.getElementById(equipedItem[i].type);
 
       if (!divGeneric.hasChildNodes()) {
         const divItemEquiped = document.createElement("div");
         const imgItemEquiped = document.createElement("img");
-        divItemEquiped.setAttribute("draggable", true);
-        divItemEquiped.setAttribute("id", res[i].id);
+        const pItemEquiped = document.createElement("p");
 
-        divItemEquiped.ondragstart = function dragItemEquiped() {
+        divItemEquiped.setAttribute("draggable", true);
+        divItemEquiped.setAttribute("id", equipedItem[i].id);
+        divItemEquiped.ondragstart = () => {
           setDataItem({
-            name: res[i].name,
-            id: res[i].id,
-            type: res[i].type,
+            name: equipedItem[i].name,
+            id: equipedItem[i].id,
+            type: equipedItem[i].type,
           });
         };
+        divItemEquiped.classList.add("divItems");
+        pItemEquiped.innerHTML = equipedItem[i].amount;
 
         imgItemEquiped.setAttribute(
           "src",
-          require(`../img/items/${res[i].type}.png`)
+          require(`../img/items/${equipedItem[i].type}.png`)
         );
         imgItemEquiped.classList.add("item");
 
         divItemEquiped.appendChild(imgItemEquiped);
+        divItemEquiped.appendChild(pItemEquiped);
         divGeneric.appendChild(divItemEquiped);
       }
     }
   };
 
-  // {
-  //   equipment && testing();
-  // }
+  async function handleItem(toEquip) {
+    let data = { id: dataItem.id };
+    let equip = toEquip === true ? "equip-item" : "unequip-item";
 
-  useEffect(() => {}, []);
+    await axios
+      .post("https://ao-web.herokuapp.com/api/v1/users/" + equip, data, {
+        headers,
+      })
+      .then(async (response) => {
+        if (response.status === 200) {
+          window.location.reload();
+        }
+      });
+  }
 
   const dropEquiped = () => {
-    const divGenericEquiped = document.getElementById(dataItem.type);
+    const divGeneric = document.getElementById(dataItem.type);
 
-    if (
-      divGenericEquiped.id === dataItem.type &&
-      !divGenericEquiped.hasChildNodes()
-    ) {
-      divGenericEquiped.appendChild(itemSelect);
+    if (divGeneric.id === dataItem.type && !divGeneric.hasChildNodes()) {
+      divGeneric.appendChild(itemSelect);
     }
+
+    handleItem(true);
   };
 
-  const dropBox = (e) => {
-    e.preventDefault();
+  const dropBox = () => {
     invBox.appendChild(itemSelect);
+
+    handleItem(false);
   };
+
+  {
+    equipment && equipmentCreate();
+  }
 
   return (
     <div className="inventory" id="inventory">
@@ -72,7 +99,6 @@ const UserInventory = ({ inventory, equipment }) => {
         id="inventory--equiped"
         onDragOver={dragOver}
         onDrop={dropEquiped}
-        onClick={testing}
       >
         <div id="ship"></div>
         <div id="helmet"></div>
@@ -96,6 +122,7 @@ const UserInventory = ({ inventory, equipment }) => {
               draggable="true"
               key={item.id}
               id={item.id}
+              className="divItems"
               onDragStart={() => {
                 setDataItem({
                   name: item.name,
@@ -109,6 +136,7 @@ const UserInventory = ({ inventory, equipment }) => {
                 className="item"
                 alt=""
               />
+              <p>{item.amount}</p>
             </div>
           ))}
       </div>
