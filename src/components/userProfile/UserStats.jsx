@@ -100,11 +100,8 @@ const UserStats = ({
                   max={freeSkillPoints}
                   pattern="^[0-9]+"
                 />
-                <button
-                  className="btn btn-danger"
-                  onClick={handleClickAddSkill}
-                >
-                  +
+                <button className="btn--stats" onClick={handleClickAddSkill}>
+                  ✙
                 </button>
               </div>
             ))}

@@ -8,7 +8,10 @@ const ProfileCard = ({ profile }) => {
   return (
     <div>
       <section className="userCard">
-        <UserInventory />
+        <UserInventory
+          inventory={profile.inventory}
+          equipment={profile.equipment}
+        />
 
         {profile.aclass && (
           <UserCard

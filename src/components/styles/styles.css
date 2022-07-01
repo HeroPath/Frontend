@@ -81,7 +81,7 @@
 .login--section {
   display: flex;
   flex-direction: column;
-  background-color: #fcdfb9;
+  background-color: #f9ebd9;
   justify-content: center;
 }
 
@@ -115,7 +115,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 350px;
+  min-width: 300px;
   background-color: grey;
   text-align: center;
 }
@@ -244,6 +244,12 @@
   justify-items: center;
 }
 
+.btn--stats {
+  padding: 5px 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
 .secondSection--add--form input {
   margin: 5px;
 }
@@ -294,8 +300,8 @@
 }
 
 .itemEquiped {
-  margin-top: 5px;
-  margin-left: 0px;
+  margin-top: 4px;
+  margin-left: 7px;
 }
 
 .itemBox {
@@ -306,6 +312,11 @@
 .item:hover {
   filter: brightness(1.8);
   cursor: pointer;
+}
+
+.divEquiped {
+  width: 32px;
+  height: 32px;
 }
 /* ---------------- //USERINVENTORY ----------------------*/
 
