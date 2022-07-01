@@ -294,11 +294,13 @@
 
 .divItems {
   display: flex;
+  max-width: 40px;
+  max-height: 40px;
 }
 
 .divItems p {
   color: white;
-  margin-left: -2px;
+  margin-left: -4px;
   margin-top: 1px;
   font-size: 9px;
 }

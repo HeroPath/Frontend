@@ -6,7 +6,7 @@ import UserInventory from "./UserInventory";
 
 const ProfileCard = ({ profile }) => {
   return (
-    <div>
+    <div id="profileCard">
       <section className="userCard">
         <UserInventory
           inventory={profile.inventory}

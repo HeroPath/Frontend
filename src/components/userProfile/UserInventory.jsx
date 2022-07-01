@@ -3,8 +3,6 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 
 const UserInventory = ({ inventory, equipment }) => {
-
-
   console.log(equipment);
   console.log(inventory);
   const cookies = new Cookies();
@@ -41,6 +39,7 @@ const UserInventory = ({ inventory, equipment }) => {
           });
         };
         divItemEquiped.classList.add("divItems");
+
         pItemEquiped.innerHTML = equipedItem[i].amount;
 
         imgItemEquiped.setAttribute(
@@ -64,8 +63,13 @@ const UserInventory = ({ inventory, equipment }) => {
       .post("https://ao-web.herokuapp.com/api/v1/users/" + equip, data, {
         headers,
       })
-      .then(async (response) => {
+      .then((response) => {
         if (response.status === 200) {
+          window.location.reload();
+        }
+      })
+      .catch((err) => {
+        if (err.request.status === 409) {
           window.location.reload();
         }
       });
@@ -74,16 +78,14 @@ const UserInventory = ({ inventory, equipment }) => {
   const dropEquiped = () => {
     const divGeneric = document.getElementById(dataItem.type);
 
-    if (divGeneric.id === dataItem.type && !divGeneric.hasChildNodes()) {
+    if (!divGeneric.hasChildNodes()) {
       divGeneric.appendChild(itemSelect);
     }
-
     handleItem(true);
   };
 
   const dropBox = () => {
     invBox.appendChild(itemSelect);
-
     handleItem(false);
   };
 
