@@ -35,12 +35,37 @@ const Profile = () => {
     <div className="profile">
       <div className="profileNavbar">
         <div className="profileNavbar--labels">
-          <label>☼{profile.gold}</label>
-          <label>♦{profile.diamond}</label>
+          <div>
+            <img
+              className="me-2"
+              src={require(`../img/utilities/gold.png`)}
+              alt=""
+            />
+            <label>{profile.gold}</label>
+          </div>
+          <div>
+            <img
+              className="me-2"
+              src={require(`../img/utilities/diamond.png`)}
+              alt=""
+            />
+            <label>{profile.diamond}</label>
+          </div>
           {profile.role && <label>Role: {profile.role.roleName}</label>}
         </div>
-        <div>SERVER STATUS</div>
-        <div>NEWS</div>
+        <div className="divsss">
+          <label style={{ height: "32px" }}>SERVER STATUS</label>
+          <img
+            className="ms-2 mb-1"
+            src={require(`../img/utilities/online.png`)}
+            height="16px"
+            width="16px"
+            alt=""
+          />
+        </div>
+        <div className="divsss">
+          <label>NEWS</label>
+        </div>
       </div>
       <h1 className="titleProfile">Character stats</h1>
       <ProfileCard profile={profile} />

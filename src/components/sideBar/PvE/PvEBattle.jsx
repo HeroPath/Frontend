@@ -47,8 +47,6 @@ const PvEBattle = () => {
     setBattleData(location.state.battleData);
   }, []);
 
-  console.log(winnerBattle);
-
   return (
     <div className="pvebattle">
       <div className="pvebattle--usercard">

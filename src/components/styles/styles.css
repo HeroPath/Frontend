@@ -23,12 +23,10 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   column-gap: 100px;
-
   height: 100vh;
   width: 100vw;
   align-items: center;
   text-align: center;
-
   margin: 0 100px;
 }
 
@@ -70,7 +68,6 @@
   grid-template-columns: 4fr 2fr;
   height: 100vh;
   width: 100vw;
-  border-radius: 10px;
   text-align: center;
 }
 
@@ -92,15 +89,13 @@
 }
 
 .login--form input {
-  width: 50%;
+  width: 60%;
 }
 
 .login--footer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
-  margin-top: 10px;
 }
 
 .login--footer p {
@@ -138,17 +133,22 @@
 }
 .profileNavbar {
   display: grid;
-  grid-template-columns: 3fr 1fr 2fr;
+  grid-template-columns: 4fr 2fr 2fr;
   background-color: #000;
   color: white;
   height: 80px;
   width: 100%;
+  align-items: center;
 }
 
 .profileNavbar--labels {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 5px;
+}
+
+.divsss {
+  height: 32px;
 }
 
 .titleProfile {
