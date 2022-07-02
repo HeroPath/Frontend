@@ -12,9 +12,7 @@ const UserCard = ({
 }) => {
   let barHealthWidth = (hp * 250) / maxHp;
   let barExpWidth = (experience * 250) / experienceToNextLevel;
-
   let hpComplete = `${hp}/${maxHp}`;
-
   let expComplete = `${experience} / ${experienceToNextLevel}`;
   let percentExp =
     level < 300

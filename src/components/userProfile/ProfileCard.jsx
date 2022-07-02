@@ -15,7 +15,6 @@ const ProfileCard = ({ profile }) => {
 
         {profile.aclass && (
           <UserCard
-            key={profile.aclass}
             username={profile.username}
             aclass={profile.aclass}
             hp={profile.hp}
@@ -26,7 +25,6 @@ const ProfileCard = ({ profile }) => {
           />
         )}
         <UserStats
-          key={profile.username}
           freeSkillPoints={profile.freeSkillPoints}
           strength={profile.strength}
           dexterity={profile.dexterity}

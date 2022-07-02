@@ -3,8 +3,6 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 
 const UserInventory = ({ inventory, equipment }) => {
-  console.log(equipment);
-  console.log(inventory);
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
@@ -20,9 +18,9 @@ const UserInventory = ({ inventory, equipment }) => {
   };
 
   const equipmentCreate = () => {
-    const equipedItem = equipment.items;
-    for (let i = 0; i < equipedItem.length; i++) {
-      const divGeneric = document.getElementById(equipedItem[i].type);
+    const eItem = equipment.items;
+    for (let i = 0; i < eItem.length; i++) {
+      const divGeneric = document.getElementById(eItem[i].type);
 
       if (!divGeneric.hasChildNodes()) {
         const divItemEquiped = document.createElement("div");
@@ -30,21 +28,21 @@ const UserInventory = ({ inventory, equipment }) => {
         const pItemEquiped = document.createElement("p");
 
         divItemEquiped.setAttribute("draggable", true);
-        divItemEquiped.setAttribute("id", equipedItem[i].id);
+        divItemEquiped.setAttribute("id", eItem[i].id);
         divItemEquiped.ondragstart = () => {
           setDataItem({
-            name: equipedItem[i].name,
-            id: equipedItem[i].id,
-            type: equipedItem[i].type,
+            name: eItem[i].name,
+            id: eItem[i].id,
+            type: eItem[i].type,
           });
         };
         divItemEquiped.classList.add("divItems");
 
-        pItemEquiped.innerHTML = equipedItem[i].amount;
+        pItemEquiped.innerHTML = eItem[i].amount;
 
         imgItemEquiped.setAttribute(
           "src",
-          require(`../img/items/${equipedItem[i].type}.png`)
+          require(`../img/items/Fire Sword.png`)
         );
         imgItemEquiped.classList.add("item");
 
@@ -82,6 +80,8 @@ const UserInventory = ({ inventory, equipment }) => {
       divGeneric.appendChild(itemSelect);
     }
     handleItem(true);
+
+    console.log(itemSelect);
   };
 
   const dropBox = () => {
@@ -134,7 +134,7 @@ const UserInventory = ({ inventory, equipment }) => {
               }}
             >
               <img
-                src={require(`../img/items/${item.type}.png`)}
+                src={require(`../img/items/Fire Sword.png`)}
                 className="item"
                 alt=""
               />

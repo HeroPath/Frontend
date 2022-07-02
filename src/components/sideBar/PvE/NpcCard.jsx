@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const NpcCard = () => {
-  const navigate = useNavigate();
   const location = useLocation();
   const npcName = location.state.battleData.nameData;
 

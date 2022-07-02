@@ -37,7 +37,7 @@ const PlayerVsPlayer = () => {
     <form onSubmit={handleSubmit} className="pvpbattle">
       <label>Usuario al que queres atacar</label>
       <input type="text" placeholder="Username" onChange={handleChange} />
-      <button type="submit">ATACAR</button>
+      <button type="submit">Attack</button>
     </form>
   );
 };

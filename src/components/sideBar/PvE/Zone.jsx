@@ -11,7 +11,6 @@ const Zone = () => {
     { name: "hell", rLvlMin: "85", rLvlMax: "100" },
   ];
 
-
   const navigate = useNavigate();
 
   return (
@@ -19,7 +18,6 @@ const Zone = () => {
       {zoneMap.map((zone) => (
         <form key={zone.name} className="zoneForm">
           <h4>{zone.name}</h4>
-
           <img
             src={require("../../img/zone/" + zone.name + ".jpg")}
             width="324px"
