@@ -33,18 +33,16 @@ const UserCard = ({
       />
 
       <div className="bar--background" style={{ width: "250px" }}>
+        <div className="bar--foreground">{hpComplete}</div>
         <div
           className="bar--foreground--health"
           style={{ width: barHealthWidth + "px" }}
-        >
-          {hpComplete}
-        </div>
+        ></div>
       </div>
 
       <div className="bar--background" style={{ width: "250px" }}>
         <div
-          className="bar--foreground--exp"
-          style={{ width: barExpWidth + "px" }}
+          className="bar--foreground"
           onClick={() => {
             setShowExpComplete(showExpComplete ? false : true);
             setShowPercentExp(showPercentExp ? false : true);
@@ -53,6 +51,10 @@ const UserCard = ({
           {showPercentExp && percentExp}
           {showExpComplete && expComplete}
         </div>
+        <div
+          className="bar--foreground--exp"
+          style={{ width: barExpWidth + "px" }}
+        ></div>
       </div>
 
       <label>Level: {level}</label>

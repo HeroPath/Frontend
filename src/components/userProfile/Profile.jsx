@@ -12,7 +12,6 @@ const Profile = () => {
   };
 
   const [profile, setProfile] = React.useState({});
-
   async function handleData() {
     await axios
       .get("https://ao-web.herokuapp.com/api/v1/users/profile", { headers })
@@ -41,7 +40,7 @@ const Profile = () => {
               src={require(`../img/utilities/gold.png`)}
               alt=""
             />
-            <label>{profile.gold}</label>
+            {profile.gold && <label>{profile.gold.toLocaleString()}</label>}
           </div>
           <div>
             <img
@@ -53,7 +52,7 @@ const Profile = () => {
           </div>
           {profile.role && <label>Role: {profile.role.roleName}</label>}
         </div>
-        <div className="divsss">
+        <div className="navBarDivs">
           <label style={{ height: "32px" }}>SERVER STATUS</label>
           <img
             className="ms-2 mb-1"
@@ -63,7 +62,7 @@ const Profile = () => {
             alt=""
           />
         </div>
-        <div className="divsss">
+        <div className="navBarDivs">
           <label>NEWS</label>
         </div>
       </div>
