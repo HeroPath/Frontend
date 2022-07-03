@@ -3,6 +3,8 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 
 const UserInventory = ({ inventory, equipment }) => {
+  console.log(inventory);
+
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
@@ -29,6 +31,17 @@ const UserInventory = ({ inventory, equipment }) => {
 
         divItemEquiped.setAttribute("draggable", true);
         divItemEquiped.setAttribute("id", eItem[i].id);
+        divItemEquiped.setAttribute(
+          "data-tooltip",
+          `Name: ${eItem[i].name}
+        Strength: ${eItem[i].strength}
+        Dexterity: ${eItem[i].dexterity}
+        Vitality: ${eItem[i].vitality}
+        Intelligence: ${eItem[i].intelligence}
+        Level Min: ${eItem[i].lvlMin}
+        `
+        );
+
         divItemEquiped.ondragstart = () => {
           setDataItem({
             name: eItem[i].name,
@@ -42,7 +55,7 @@ const UserInventory = ({ inventory, equipment }) => {
 
         imgItemEquiped.setAttribute(
           "src",
-          require(`../img/items/Fire Sword.png`)
+          require(`../img/${eItem[i].name}.png`)
         );
         imgItemEquiped.classList.add("item");
 
@@ -132,9 +145,16 @@ const UserInventory = ({ inventory, equipment }) => {
                   type: item.type,
                 });
               }}
+              data-tooltip={`Name: ${item.name}
+              Strength: ${item.strength}
+              Dexterity: ${item.dexterity}
+              Vitality: ${item.vitality}
+              Intelligence: ${item.intelligence}
+              Level Min: ${item.lvlMin}
+              `}
             >
               <img
-                src={require(`../img/items/Fire Sword.png`)}
+                src={require(`../img/${item.name}.png`)}
                 className="item"
                 alt=""
               />
