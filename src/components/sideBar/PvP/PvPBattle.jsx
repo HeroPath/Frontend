@@ -1,52 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Cookies from "universal-cookie";
-import { useLocation } from "react-router-dom";
-import UserCard from "../../userProfile/UserCard";
-import NpcCard from "./NpcCard";
+import React from "react";
 
-import "../../utilities.js";
-
-const PvEBattle = () => {
-  /* --------------- DECLARATION ----------------------*/
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
-  const location = useLocation();
-  const [profile, setProfile] = useState({});
-  const [battleData, setBattleData] = useState([]);
-  const [winnerBattle, setWinnerBattle] = useState({});
-  let i = 1;
-
-  const npcName = location.state.battleData.nameData.replace(
-    /(^\w{1})/g,
-    (letter) => letter.toUpperCase()
-  );
-
-  /* --------------- //DECLARATION ----------------------*/
-
-  async function handleData() {
-    await axios
-      .get("https://ao-web.herokuapp.com/api/v1/users/profile", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          response.data.username = response.data.username.replace(
-            /(^\w{1})/g,
-            (letter) => letter.toUpperCase()
-          );
-          setProfile(response.data);
-        }
-      });
-  }
-
-  useEffect(() => {
-    handleData();
-    setWinnerBattle(location.state.battleData.pop());
-    setBattleData(location.state.battleData);
-  }, []);
-
+const PvPBattle = () => {
   return (
     <div className="battle">
       <div className="battle--usercard">
@@ -63,9 +17,9 @@ const PvEBattle = () => {
           />
         )}
       </div>
-      <div className="battle--npccard">
+      {/* <div className="battle--usercard">
         <NpcCard />
-      </div>
+      </div> */}
 
       <div className="rounds--console">
         <div className="history-box">
@@ -114,4 +68,4 @@ const PvEBattle = () => {
   );
 };
 
-export default PvEBattle;
+export default PvPBattle;

@@ -147,7 +147,7 @@
   column-gap: 5px;
 }
 
-.divsss {
+.navBarDivs {
   height: 32px;
 }
 
@@ -178,6 +178,7 @@
 /* ---------------- BAR HEALTH AND EXP ----------------------*/
 
 .bar--background {
+  position: relative;
   height: 25px;
   text-align: center;
   background: -webkit-linear-gradient(to top, grey, clear);
@@ -185,7 +186,16 @@
   color: white;
 }
 
+.bar--foreground {
+  position: relative;
+  height: 25px;
+  margin: 0px 0px -25px 0px;
+  user-select: none;
+  z-index: 2;
+}
+
 .bar--foreground--health {
+  position: relative;
   height: 25px;
   background: -webkit-linear-gradient(to top, #d20000, #d90101);
   background: linear-gradient(to top, #ac0101, #d90101);
@@ -193,11 +203,11 @@
 }
 
 .bar--foreground--exp {
+  position: relative;
   height: 25px;
   background: -webkit-linear-gradient(to top, #0c0, #0f0);
   background: linear-gradient(to top, #090, #0f0);
   color: white;
-  cursor: pointer;
 }
 
 /* ---------------- //BAR HEALTH AND EXP ----------------------*/
@@ -359,7 +369,7 @@
 
 /* ---------------- PVEBATTLE ----------------------*/
 
-.pvebattle {
+.battle {
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -367,10 +377,10 @@
   grid-template-rows: 1fr 1fr;
 }
 
-.pvebattle--usercard {
+.battle--usercard {
   align-self: center;
 }
-.pvebattle--npccard {
+.battle--npccard {
   align-self: center;
 }
 
