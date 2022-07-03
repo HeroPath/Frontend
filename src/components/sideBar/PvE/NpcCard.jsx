@@ -6,7 +6,6 @@ import { useLocation } from "react-router-dom";
 const NpcCard = () => {
   const location = useLocation();
   const npcName = location.state.battleData.nameData;
-
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
