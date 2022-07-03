@@ -117,15 +117,15 @@ const UserInventory = ({ inventory, equipment }) => {
         onDragOver={dragOver}
         onDrop={dropEquiped}
       >
-        <div id="ship"></div>
-        <div id="helmet"></div>
-        <div id="wings"></div>
-        <div id="weapon"></div>
-        <div id="armor"></div>
-        <div id="shield"></div>
-        <div id="gloves"></div>
-        <div id="pants"></div>
-        <div id="boots"></div>
+        <div id="ship"/>
+        <div id="helmet"/>
+        <div id="wings"/>
+        <div id="weapon"/>
+        <div id="armor"/>
+        <div id="shield"/>
+        <div id="gloves"/>
+        <div id="pants"/>
+        <div id="boots"/>
       </div>
       <div
         className="inventory--box"

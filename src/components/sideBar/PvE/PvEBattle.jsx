@@ -78,7 +78,7 @@ const PvEBattle = () => {
                   damage. ({npcName} has {rounds.NpcLife} life)
                 </li>
                 <li>
-                  {npcName} has attacked {profile.username} for {rounds.npcDmg}
+                  {npcName} has attacked {profile.username} for {rounds.npcDmg}{" "}
                   damage. ({profile.username} has {rounds.userLife} life)
                 </li>
               </div>

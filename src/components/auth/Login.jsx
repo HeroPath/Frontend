@@ -46,7 +46,7 @@ const Login = () => {
 
   return (
     <div className="login" style={cardStyle}>
-      <div className="login--img"></div>
+      <div className="login--img"/>
       <section className="login--section">
         <h1>Sign In</h1>
         <form className="login--form" onSubmit={handleSubmit}>

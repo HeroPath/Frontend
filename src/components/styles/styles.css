@@ -72,7 +72,7 @@
 }
 
 .login--img {
-  background-image: url("../img/login.png");
+  background-image: url("../img/backgroundLogin.jpg");
 }
 
 .login--section {
@@ -272,7 +272,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
-  background-image: url("../img/items/inventoryEquiped.BMP");
+  background-image: url("../img/items/inventoryEquiped.jpg");
   width: 127px;
   height: 125px;
   padding: 3px;
@@ -282,7 +282,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  background-image: url("../img/items/inventoryBox.BMP");
+  background-image: url("../img/items/inventoryBox.jpg");
   width: 244px;
   height: 164px;
   padding: 3px;

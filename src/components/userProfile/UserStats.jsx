@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React, { useEffect } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
@@ -65,7 +66,7 @@ const UserStats = ({
 
   function showAddPoints() {
     if (freeSkillPoints > 0) {
-      setShowAddStat(showAddStat ? false : true);
+      setShowAddStat(!showAddStat);
     }
   }
 
@@ -87,7 +88,7 @@ const UserStats = ({
           <label>Critical Chance: {luck}%</label>
         </div>
 
-        {showAddStat && (
+        {!showAddStat && (
           <div className="userstats--add">
             {data.map((zone) => (
               <div key={zone.id} className="userstats--add--form">
@@ -119,4 +120,4 @@ const UserStats = ({
   );
 };
 
-export default UserStats;
+export default hot(UserStats);
