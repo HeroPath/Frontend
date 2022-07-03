@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 
 const UserInventory = ({ inventory, equipment }) => {
   console.log(inventory);
+  console.log(inventory);
 
   const cookies = new Cookies();
   const headers = {
@@ -39,6 +40,7 @@ const UserInventory = ({ inventory, equipment }) => {
         Vitality: ${eItem[i].vitality}
         Intelligence: ${eItem[i].intelligence}
         Level Min: ${eItem[i].lvlMin}
+        Class: ${eItem[i].classRequired}
         `
         );
 
@@ -55,7 +57,7 @@ const UserInventory = ({ inventory, equipment }) => {
 
         imgItemEquiped.setAttribute(
           "src",
-          require(`../img/${eItem[i].name}.png`)
+          require(`../img/items/${eItem[i].name}.png`)
         );
         imgItemEquiped.classList.add("item");
 
@@ -151,10 +153,10 @@ const UserInventory = ({ inventory, equipment }) => {
               Vitality: ${item.vitality}
               Intelligence: ${item.intelligence}
               Level Min: ${item.lvlMin}
-              `}
+              Class: ${item.classRequired}`}
             >
               <img
-                src={require(`../img/${item.name}.png`)}
+                src={require(`../img/items/${item.name}.png`)}
                 className="item"
                 alt=""
               />
