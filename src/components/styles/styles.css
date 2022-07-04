@@ -577,6 +577,64 @@
 /* ---------------- //RANKING ----------------------*/
 
 @media (max-width: 1000px) {
+  .login {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login--section {
+    background-image: url("../img/backgroundLoginResponsive.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+  }
+
+  .login--footer a {
+    background-color: #fff;
+    color: black;
+  }
+
+  .register--background {
+    background-image: url("../img/backgroundLoginResponsive.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+  }
+
+  .register {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 300px;
+    margin: 80px auto;
+    align-items: center;
+  }
+
+  .register--cards {
+    background-color: rgba(255, 255, 255, 0.848);
+    border-radius: 20px;
+    height: 100vh;
+    width: 300px;
+  }
+
+  .classSelected--stats {
+    font-size: 12px;
+    height: 150px;
+  }
+
+  .classSelected {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .classSelected--img img {
+    width: 120px;
+    height: 150px;
+  }
+
   .sidebar {
     width: 150px;
     height: 100vh;
@@ -604,7 +662,7 @@
     display: flex;
     flex-direction: column;
     width: 275px;
-    height: 680px;
+    height: 600px;
     overflow-y: scroll;
   }
 

@@ -89,112 +89,114 @@ const Register = () => {
   }
 
   return (
-    <div className="register">
-      <div className="register--cards">
-        <section className="register--cards__form">
-          <h1>Sign Up</h1>
-          <form onSubmit={handleSubmit}>
-            <label className="form-label mt-2">Username</label>
-            <input
-              type="text"
-              id="username"
-              className="form-control mt-2"
-              name="username"
-              value={values.username}
-              onChange={handleChange}
-            />
-            <label className="form-label mt-2">Email</label>
-            <input
-              type="email"
-              id="email"
-              className="form-control mt-2"
-              name="email"
-              value={values.email}
-              onChange={handleChange}
-            />
-            <label className="form-label mt-2">Password</label>
-            <input
-              type="password"
-              id="password"
-              className="form-control mt-2"
-              name="password"
-              value={values.password}
-              onChange={handleChange}
-            />
+    <div className="register--background">
+      <div className="register">
+        <div className="register--cards">
+          <section className="register--cards__form">
+            <h1>Sign Up</h1>
+            <form onSubmit={handleSubmit}>
+              <label className="form-label mt-2">Username</label>
+              <input
+                type="text"
+                id="username"
+                className="form-control mt-2"
+                name="username"
+                value={values.username}
+                onChange={handleChange}
+              />
+              <label className="form-label mt-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                className="form-control mt-2"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+              />
+              <label className="form-label mt-2">Password</label>
+              <input
+                type="password"
+                id="password"
+                className="form-control mt-2"
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+              />
 
-            <button className="button--links pe-5 ps-5 mt-4" type="submit">
-              Sign up
-            </button>
+              <button className="button--links pe-5 ps-5 mt-4" type="submit">
+                Sign up
+              </button>
 
-            <div className="login--footer">
-              <p>Are you already registered?</p>
-              <a href="/" className="button--links">
-                LOGIN
-              </a>
-            </div>
-          </form>
-        </section>
-      </div>
-      <div className="register--cards">
-        <section className="register--cards__form">
-          <h2>Class</h2>
-          <select
-            className="form-select"
-            name="classId"
-            value={values.classId}
-            onChange={handleChange}
-            onClick={handleClickClass}
-          >
-            <option value={["0", "default", "-", "-", "-", "-", "-"]}>
-              Select class
-            </option>
-
-            {classData?.map((cChar) => (
-              <option
-                key={cChar.id}
-                value={[
-                  cChar.id,
-                  cChar.name,
-                  cChar.strength,
-                  cChar.dexterity,
-                  cChar.intelligence,
-                  cChar.vitality,
-                  cChar.luck,
-                ]}
-              >
-                {cChar.name}
+              <div className="login--footer">
+                <p>Are you already registered?</p>
+                <a href="/" className="button--links">
+                  LOGIN
+                </a>
+              </div>
+            </form>
+          </section>
+        </div>
+        <div className="register--cards">
+          <section className="register--cards__form">
+            <h2>Class</h2>
+            <select
+              className="form-select"
+              name="classId"
+              value={values.classId}
+              onChange={handleChange}
+              onClick={handleClickClass}
+            >
+              <option value={["0", "default", "-", "-", "-", "-", "-"]}>
+                Select class
               </option>
-            ))}
-          </select>
 
-          {dataClassSelected && (
-            <div className="classSelected">
-              <div className="classSelected--img">
-                <img
-                  src={require("../img/class/" + dataClassSelected + ".jpg")}
-                  width="250px"
-                  height="315px"
-                  alt=""
-                />
+              {classData?.map((cChar) => (
+                <option
+                  key={cChar.id}
+                  value={[
+                    cChar.id,
+                    cChar.name,
+                    cChar.strength,
+                    cChar.dexterity,
+                    cChar.intelligence,
+                    cChar.vitality,
+                    cChar.luck,
+                  ]}
+                >
+                  {cChar.name}
+                </option>
+              ))}
+            </select>
+
+            {dataClassSelected && (
+              <div className="classSelected">
+                <div className="classSelected--img">
+                  <img
+                    src={require("../img/class/" + dataClassSelected + ".jpg")}
+                    width="250px"
+                    height="315px"
+                    alt=""
+                  />
+                </div>
+                <div className="classSelected--stats">
+                  <h2 className="classSelected--stats__head">
+                    {dataClassSelected}
+                  </h2>
+                  <label className="classSelected--stats__head">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
+                    laboriosam perferendis ex illum enim similique, fugit
+                    ratione nisi quasi ipsam?
+                  </label>
+                  <label>Strength: {classSelected.strength}</label>
+                  <label>Dexterity: {classSelected.dexterity}</label>
+                  <label>Intelligence: {classSelected.intelligence}</label>
+                  <label>Vitality: {classSelected.vitality}</label>
+                  <label>Luck: {classSelected.luck}</label>
+                </div>
               </div>
-              <div className="classSelected--stats">
-                <h2 className="classSelected--stats__head">
-                  {dataClassSelected}
-                </h2>
-                <label className="classSelected--stats__head">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                  laboriosam perferendis ex illum enim similique, fugit ratione
-                  nisi quasi ipsam?
-                </label>
-                <label>Strength: {classSelected.strength}</label>
-                <label>Dexterity: {classSelected.dexterity}</label>
-                <label>Intelligence: {classSelected.intelligence}</label>
-                <label>Vitality: {classSelected.vitality}</label>
-                <label>Luck: {classSelected.luck}</label>
-              </div>
-            </div>
-          )}
-        </section>
+            )}
+          </section>
+        </div>
       </div>
     </div>
   );
