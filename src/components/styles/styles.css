@@ -112,7 +112,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  min-width: 300px;
+  width: 300px;
   background-color: rgb(187, 187, 187);
   text-align: center;
 }
@@ -165,8 +165,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
-  min-width: 1000px;
-  min-height: 460px;
+  width: 1000px;
+  height: 460px;
 }
 
 .userCard--card {
@@ -220,7 +220,6 @@
   align-self: center;
   border: 2px solid;
   height: 100%;
-  margin-right: 30px;
 }
 
 .userstats--form {
@@ -262,7 +261,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 30px;
   border: 2px solid;
   color: black;
 }
@@ -513,6 +511,7 @@
 .shop--npc {
   text-align: center;
   border: 2px solid;
+  width: 340px;
 }
 
 .shop--npc--button {
@@ -531,14 +530,38 @@
   font-size: 15px;
 }
 
+.shop--npc--button button:first-child {
+  margin-left: 70px;
+}
+
+.shop--npc--button button:focus {
+  text-decoration: none;
+}
+
+.shop--npc--section {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+}
+
 .shop--npc--card {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  margin: 0px 10px 10px 10px;
+  margin-bottom: 10px;
   background-image: url("../img/items/shop.jpg");
   width: 244px;
   height: 322px;
+}
+
+.shop--npc--section button {
+  color: white;
+  background-image: url("../img/items/buttons.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 70px;
+  height: 35.77px;
+  margin-left: 10px;
+  font-size: 14px;
 }
 
 /* ---------------- //SHOP ----------------------*/
@@ -552,3 +575,107 @@
 }
 
 /* ---------------- //RANKING ----------------------*/
+
+@media (max-width: 1000px) {
+  .sidebar {
+    width: 150px;
+    height: 100vh;
+    font-size: 10px;
+    margin: 0;
+  }
+
+  .profileNavbar {
+    display: flex;
+    width: 280px;
+    font-size: 10px;
+    justify-content: center;
+  }
+
+  .profileNavbar--labels {
+    align-items: center;
+  }
+
+  .navBarDivs {
+    height: 47px;
+    font-size: 7px;
+  }
+
+  .userCard {
+    display: flex;
+    flex-direction: column;
+    width: 275px;
+    height: 680px;
+    overflow-y: scroll;
+  }
+
+  .zone,
+  .npcCards {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    overflow-y: scroll;
+  }
+  .zoneForm img {
+    width: 200px;
+    height: 124px;
+    margin: 0 10px;
+  }
+
+  .shop {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
+  .shop--npc {
+    width: 268px;
+    border-top: none;
+  }
+
+  .shop--npc--button button:first-child {
+    margin-left: 0px;
+  }
+  .shop--npc--section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+  .shop--item--type {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    width: 244px;
+    margin: 0 10px;
+  }
+  .shop--npc--section button {
+    background-image: url("../img/items/buttons.jpg");
+    width: 81.33px;
+    height: 32px;
+    margin: 0;
+  }
+
+  .battle {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    overflow-y: scroll;
+  }
+
+  .history-box {
+    width: 250px;
+  }
+
+  .round {
+    width: 225px;
+    padding: 0;
+    column-gap: 15px;
+    font-size: 10px;
+  }
+
+  .round h6 {
+    text-align: center;
+    font-size: 10px;
+  }
+}

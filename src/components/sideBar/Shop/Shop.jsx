@@ -93,54 +93,68 @@ const Shop = () => {
           </button>
         </div>
         <div
-          className="shop--npc--card"
+          className="shop--npc--section"
           id="shop--npc--card"
           onDragOver={dragOver}
         >
-          {itemsShop.map((item) => (
-            <div
-              draggable="true"
-              key={item.id}
-              id={item.id}
-              style={{
-                display: "flex",
-                maxWidth: "35px",
-                maxHeight: "35px",
-                marginTop: "4px",
-                marginLeft: "3px",
-                justifyContent: "center",
-              }}
-              className={
-                profile.aclass &&
-                item.classRequired !== profile.aclass.name &&
-                item.classRequired !== "none"
-                  ? "itemNoClass"
-                  : ""
-              }
-              onDragStart={() => {
-                setDataItem({
-                  name: item.name,
-                  id: item.id,
-                  type: item.type,
-                });
-              }}
-              data-tooltip={`Name: ${item.name}
-            Strength: ${item.strength}
-            Dexterity: ${item.dexterity}
-            Vitality: ${item.vitality}
-            Intelligence: ${item.intelligence}
-            Level Min: ${item.lvlMin}
-            Class: ${item.classRequired}
-            
-            Price: ${item.price}`}
-            >
-              <img
-                src={require(`../../img/items/${item.name}.png`)}
-                className="item"
-                alt=""
-              />
-            </div>
-          ))}
+          <div className="shop--item--type">
+            <button>Ship</button>
+            <button>Helmet</button>
+            <button>Wings</button>
+            <button>Weapon</button>
+            <button>Armor</button>
+            <button>Shield</button>
+            <button>Gloves</button>
+            <button>Pants</button>
+            <button>Boots</button>
+          </div>
+
+          <div className="shop--npc--card">
+            {itemsShop.map((item) => (
+              <div
+                draggable="true"
+                key={item.id}
+                id={item.id}
+                style={{
+                  display: "flex",
+                  maxWidth: "35px",
+                  maxHeight: "35px",
+                  marginTop: "2px",
+                  marginLeft: "3px",
+                  justifyContent: "center",
+                }}
+                className={
+                  profile.aclass &&
+                  item.classRequired !== profile.aclass.name &&
+                  item.classRequired !== "none"
+                    ? "itemNoClass"
+                    : ""
+                }
+                onDragStart={() => {
+                  setDataItem({
+                    name: item.name,
+                    id: item.id,
+                    type: item.type,
+                  });
+                }}
+                data-tooltip={`Name: ${item.name}
+                Strength: ${item.strength}
+                Dexterity: ${item.dexterity}
+                Vitality: ${item.vitality}
+                Intelligence: ${item.intelligence}
+                Level Min: ${item.lvlMin}
+                Class: ${item.classRequired}
+                
+                Price: ${item.price}`}
+              >
+                <img
+                  src={require(`../../img/items/${item.name}.png`)}
+                  className="item"
+                  alt=""
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
