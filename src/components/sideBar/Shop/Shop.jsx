@@ -32,8 +32,6 @@ const Shop = () => {
     e.preventDefault();
   };
 
-  const dropSell = (e) => {};
-
   return (
     <div className="shop">
       <div className="shop--inventory">
@@ -57,7 +55,6 @@ const Shop = () => {
           className="shop--npc--card"
           id="shop--npc--card"
           onDragOver={dragOver}
-          onDrop={dropSell}
         >
           {/* {inventory.items.map((item) => ( */}
           <div
