@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 
-const UserInventory = ({ inventory, equipment, aclass }) => {
+const UserInventory = ({
+  inventory,
+  equipment,
+  aclass,
+  itemBuy,
+  nameItemBuy,
+}) => {
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
@@ -85,6 +91,19 @@ const UserInventory = ({ inventory, equipment, aclass }) => {
       });
   }
 
+  async function handleItemBuy() {
+    const data = { name: nameItemBuy };
+    await axios
+      .post("https://ao-web.herokuapp.com/api/v1/users/buyitem/", data, {
+        headers,
+      })
+      .then(async (response) => {
+        if (response.status === 200) {
+          window.location.reload();
+        }
+      });
+  }
+
   const dropEquiped = () => {
     const divGeneric = document.getElementById(dataItem.type);
 
@@ -97,8 +116,13 @@ const UserInventory = ({ inventory, equipment, aclass }) => {
   };
 
   const dropBox = () => {
-    invBox.appendChild(itemSelect);
-    handleItem(false);
+    if (itemSelect !== null) {
+      invBox.appendChild(itemSelect);
+      handleItem(false);
+    } else if (itemBuy !== null) {
+      invBox.appendChild(itemBuy);
+      handleItemBuy();
+    }
   };
 
   {
@@ -139,8 +163,9 @@ const UserInventory = ({ inventory, equipment, aclass }) => {
               style={{ display: "flex", maxWidth: "40px", maxHeight: "40px" }}
               className={
                 item.classRequired !== aclass.name &&
-                item.classRequired !== "none" &&
-                "itemNoClass"
+                item.classRequired !== "none"
+                  ? "itemNoClass"
+                  : ""
               }
               onDragStart={() => {
                 setDataItem({

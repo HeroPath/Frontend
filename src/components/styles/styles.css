@@ -73,6 +73,8 @@
 
 .login--img {
   background-image: url("../img/backgroundLogin.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .login--section {

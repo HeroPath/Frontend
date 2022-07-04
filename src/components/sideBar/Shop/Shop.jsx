@@ -14,17 +14,6 @@ const Shop = () => {
 
   const itemBuy = document.getElementById(dataItem.id);
 
-  async function handleItemBuy() {
-    await axios
-      .post("https://ao-web.herokuapp.com/api/v1/users/buyitem/" + dataItem, {
-        headers,
-      })
-      .then(async (response) => {
-        if (response.status === 200) {
-        }
-      });
-  }
-
   async function handleData() {
     await axios
       .get("https://ao-web.herokuapp.com/api/v1/users/profile", { headers })
@@ -37,12 +26,13 @@ const Shop = () => {
 
   useEffect(() => {
     handleData();
-    // handleItemBuy();
   }, []);
 
   const dragOver = (e) => {
     e.preventDefault();
   };
+
+  const dropSell = (e) => {};
 
   return (
     <div className="shop">
@@ -52,6 +42,7 @@ const Shop = () => {
           equipment={profile.equipment}
           aclass={profile.aclass}
           itemBuy={itemBuy}
+          nameItemBuy={dataItem.name}
         />
       </div>
       <div className="shop--npc">
@@ -66,9 +57,12 @@ const Shop = () => {
           className="shop--npc--card"
           id="shop--npc--card"
           onDragOver={dragOver}
+          onDrop={dropSell}
         >
+          {/* {inventory.items.map((item) => ( */}
           <div
             draggable="true"
+            // key={item.id}
             id={1000}
             style={{
               display: "flex",
@@ -76,6 +70,12 @@ const Shop = () => {
               maxHeight: "40px",
               justifyContent: "center",
             }}
+            // className={
+            //   item.classRequired !== profile.aclass.name &&
+            //   item.classRequired !== "none"
+            //     ? "itemNoClass"
+            //     : ""
+            // }
             onDragStart={() => {
               setDataItem({
                 name: "legendary armor",
@@ -83,6 +83,13 @@ const Shop = () => {
                 type: "armor",
               });
             }}
+            // data-tooltip={`Name: ${item.name}
+            // Strength: ${item.strength}
+            // Dexterity: ${item.dexterity}
+            // Vitality: ${item.vitality}
+            // Intelligence: ${item.intelligence}
+            // Level Min: ${item.lvlMin}
+            // Class: ${item.classRequired}`}
           >
             <img
               src={require(`../../img/items/legendary armor.png`)}
@@ -90,6 +97,7 @@ const Shop = () => {
               alt=""
             />
           </div>
+          {/* ))} */}
         </div>
       </div>
     </div>
