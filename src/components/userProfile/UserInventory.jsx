@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 
-const UserInventory = ({ inventory, equipment }) => {
-  console.log(inventory);
-  console.log(inventory);
-
+const UserInventory = ({ inventory, equipment, aclass }) => {
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
@@ -117,15 +114,15 @@ const UserInventory = ({ inventory, equipment }) => {
         onDragOver={dragOver}
         onDrop={dropEquiped}
       >
-        <div id="ship"/>
-        <div id="helmet"/>
-        <div id="wings"/>
-        <div id="weapon"/>
-        <div id="armor"/>
-        <div id="shield"/>
-        <div id="gloves"/>
-        <div id="pants"/>
-        <div id="boots"/>
+        <div id="ship" />
+        <div id="helmet" />
+        <div id="wings" />
+        <div id="weapon" />
+        <div id="armor" />
+        <div id="shield" />
+        <div id="gloves" />
+        <div id="pants" />
+        <div id="boots" />
       </div>
       <div
         className="inventory--box"
@@ -139,7 +136,12 @@ const UserInventory = ({ inventory, equipment }) => {
               draggable="true"
               key={item.id}
               id={item.id}
-              className="divItems"
+              style={{ display: "flex", maxWidth: "40px", maxHeight: "40px" }}
+              className={
+                item.classRequired !== aclass.name &&
+                item.classRequired !== "none" &&
+                "itemNoClass"
+              }
               onDragStart={() => {
                 setDataItem({
                   name: item.name,
@@ -160,7 +162,16 @@ const UserInventory = ({ inventory, equipment }) => {
                 className="item"
                 alt=""
               />
-              <p>{item.amount}</p>
+              <p
+                style={{
+                  color: "white",
+                  fontSize: "9px",
+                  marginTop: "1px",
+                  marginLeft: "-2px",
+                }}
+              >
+                {item.amount}
+              </p>
             </div>
           ))}
       </div>

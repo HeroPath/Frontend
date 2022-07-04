@@ -315,6 +315,10 @@
   font-size: 9px;
 }
 
+.itemNoClass {
+  background-color: rgba(141, 17, 1, 0.5);
+}
+
 /* --------------------------- Tooltip --------------------------- */
 
 [data-tooltip] {
@@ -494,6 +498,50 @@
   height: 100vh;
 }
 /* ---------------- //PVP ----------------------*/
+
+/* ---------------- SHOP ----------------------*/
+
+.shop {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-items: center;
+}
+
+.shop--npc {
+  text-align: center;
+  border: 2px solid;
+}
+
+.shop--npc--button {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 244px;
+  height: 32px;
+  margin: 0px 10px;
+}
+.shop--npc--button button {
+  color: white;
+  background-image: url("../img/items/buttons.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 61px;
+  font-size: 15px;
+}
+
+.shop--npc--card {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  margin: 0px 10px 10px 10px;
+  background-image: url("../img/items/shop.jpg");
+  width: 244px;
+  height: 322px;
+}
+
+/* ---------------- //SHOP ----------------------*/
 
 /* ---------------- RANKING ----------------------*/
 

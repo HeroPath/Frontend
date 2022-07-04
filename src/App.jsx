@@ -27,6 +27,11 @@ import PvEBattle from "./components/sideBar/PvE/PvEBattle";
 import PlayerVsPlayer from "./components/sideBar/PvP/PlayerVsPlayer";
 
 /* -------------------------------- //ARENA --------------------------------------------*/
+/* -------------------------------- SHOP --------------------------------------------*/
+
+import Shop from "./components/sideBar/Shop/Shop";
+
+/* -------------------------------- //SHOP --------------------------------------------*/
 /* -------------------------------- RANKING --------------------------------------------*/
 
 import Ranking from "./components/sideBar/Ranking";
@@ -56,6 +61,7 @@ function App() {
             <Route path="/playervsnpc" element={<PlayerVsNPC />} />
             <Route path="/pvebattle" element={<PvEBattle />} />
             <Route path="/playervsplayer" element={<PlayerVsPlayer />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/ranking" element={<Ranking />} />
           </Routes>
         </BrowserRouter>

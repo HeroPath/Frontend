@@ -11,6 +11,7 @@ const ProfileCard = ({ profile }) => {
         <UserInventory
           inventory={profile.inventory}
           equipment={profile.equipment}
+          aclass={profile.aclass}
         />
 
         {profile.aclass && (
