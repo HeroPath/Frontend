@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 
-const UserInventory = ({ inventory, equipment, aclass }) => {
+const UserInventory = ({ inventory, equipment, aclass, itemBuy }) => {
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
@@ -97,7 +97,10 @@ const UserInventory = ({ inventory, equipment, aclass }) => {
   };
 
   const dropBox = () => {
-    invBox.appendChild(itemSelect);
+    if (itemSelect !== null) {
+      invBox.appendChild(itemSelect);
+    } else invBox.appendChild(itemBuy);
+
     handleItem(false);
   };
 
