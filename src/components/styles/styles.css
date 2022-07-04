@@ -261,9 +261,6 @@
 .inventory {
   display: flex;
   flex-direction: column;
-  /* background-image: url("../img/items/inventory.png");
-  background-repeat: no-repeat;
-  background-position: center; */
   align-items: center;
   margin-left: 30px;
   border: 2px solid;
@@ -318,6 +315,7 @@
 }
 
 .itemNoClass {
+  margin-top: 1px;
   background-color: rgba(141, 17, 1, 0.5);
 }
 

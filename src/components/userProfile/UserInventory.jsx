@@ -158,7 +158,12 @@ const UserInventory = ({
               draggable="true"
               key={item.id}
               id={item.id}
-              style={{ display: "flex", maxWidth: "40px", maxHeight: "40px" }}
+              style={{
+                display: "flex",
+                maxWidth: "35px",
+                maxHeight: "35px",
+                marginLeft: "1px",
+              }}
               className={
                 item.classRequired !== aclass.name &&
                 item.classRequired !== "none"

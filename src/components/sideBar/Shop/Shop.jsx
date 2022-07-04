@@ -11,8 +11,9 @@ const Shop = () => {
   };
   const [dataItem, setDataItem] = useState({});
   const [profile, setProfile] = React.useState({});
-
   const itemBuy = document.getElementById(dataItem.id);
+
+  const [itemsShop, setItemsShop] = useState([]);
 
   async function handleData() {
     await axios
@@ -23,9 +24,21 @@ const Shop = () => {
         }
       });
   }
+  async function handleItems(iClass) {
+    await axios
+      .get("https://ao-web.herokuapp.com/api/v1/items/shop/" + iClass, {
+        headers,
+      })
+      .then(async (response) => {
+        if (response.status === 200) {
+          setItemsShop(response.data);
+        }
+      });
+  }
 
   useEffect(() => {
     handleData();
+    handleItems("none");
   }, []);
 
   const dragOver = (e) => {
@@ -46,57 +59,88 @@ const Shop = () => {
       <div className="shop--npc">
         <h3>Shop</h3>
         <div className="shop--npc--button">
-          <button>All</button>
-          <button>Mage</button>
-          <button>Warrior</button>
-          <button>Archer</button>
+          <button
+            id="none"
+            onClick={() => {
+              handleItems("none");
+            }}
+          >
+            All
+          </button>
+          <button
+            id="mage"
+            onClick={() => {
+              handleItems("mage");
+            }}
+          >
+            Mage
+          </button>
+          <button
+            id="warrior"
+            onClick={() => {
+              handleItems("warrior");
+            }}
+          >
+            Warrior
+          </button>
+          <button
+            id="archer"
+            onClick={() => {
+              handleItems("archer");
+            }}
+          >
+            Archer
+          </button>
         </div>
         <div
           className="shop--npc--card"
           id="shop--npc--card"
           onDragOver={dragOver}
         >
-          {/* {inventory.items.map((item) => ( */}
-
-          
-          <div
-            draggable="true"
-            // key={item.id}
-            id={1000}
-            style={{
-              display: "flex",
-              maxWidth: "40px",
-              maxHeight: "40px",
-              justifyContent: "center",
-            }}
-            // className={
-            //   item.classRequired !== profile.aclass.name &&
-            //   item.classRequired !== "none"
-            //     ? "itemNoClass"
-            //     : ""
-            // }
-            onDragStart={() => {
-              setDataItem({
-                name: "legendary armor",
-                id: 1000,
-                type: "armor",
-              });
-            }}
-            // data-tooltip={`Name: ${item.name}
-            // Strength: ${item.strength}
-            // Dexterity: ${item.dexterity}
-            // Vitality: ${item.vitality}
-            // Intelligence: ${item.intelligence}
-            // Level Min: ${item.lvlMin}
-            // Class: ${item.classRequired}`}
-          >
-            <img
-              src={require(`../../img/items/legendary armor.png`)}
-              className="item"
-              alt=""
-            />
-          </div>
-          {/* ))} */}
+          {itemsShop.map((item) => (
+            <div
+              draggable="true"
+              key={item.id}
+              id={item.id}
+              style={{
+                display: "flex",
+                maxWidth: "35px",
+                maxHeight: "35px",
+                marginTop: "4px",
+                marginLeft: "3px",
+                justifyContent: "center",
+              }}
+              className={
+                profile.aclass &&
+                item.classRequired !== profile.aclass.name &&
+                item.classRequired !== "none"
+                  ? "itemNoClass"
+                  : ""
+              }
+              onDragStart={() => {
+                setDataItem({
+                  name: item.name,
+                  id: item.id,
+                  type: item.type,
+                });
+              }}
+              data-tooltip={`Name: ${item.name}
+            Strength: ${item.strength}
+            Dexterity: ${item.dexterity}
+            Vitality: ${item.vitality}
+            Intelligence: ${item.intelligence}
+            Level Min: ${item.lvlMin}
+            Class: ${item.classRequired}
+            
+            Price: ${item.price}`}
+            >
+              <img
+                src={require(`../../img/items/${item.name}.png`)}
+                className="item"
+                alt=""
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>
