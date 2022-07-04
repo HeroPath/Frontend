@@ -57,19 +57,25 @@ const Shop = () => {
       <div className="shop--npc">
         <h3>Shop</h3>
         <div className="shop--npc--button">
+          <button>All</button>
           <button>Mage</button>
           <button>Warrior</button>
           <button>Archer</button>
         </div>
         <div
           className="shop--npc--card"
-          id="inventory--box"
+          id="shop--npc--card"
           onDragOver={dragOver}
         >
           <div
             draggable="true"
-            style={{ display: "flex", maxWidth: "40px", maxHeight: "40px" }}
             id={1000}
+            style={{
+              display: "flex",
+              maxWidth: "40px",
+              maxHeight: "40px",
+              justifyContent: "center",
+            }}
             onDragStart={() => {
               setDataItem({
                 name: "legendary armor",
