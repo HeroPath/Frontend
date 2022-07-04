@@ -57,6 +57,8 @@ const Shop = () => {
           onDragOver={dragOver}
         >
           {/* {inventory.items.map((item) => ( */}
+
+          
           <div
             draggable="true"
             // key={item.id}
