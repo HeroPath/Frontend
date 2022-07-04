@@ -45,6 +45,7 @@ const PvEBattle = () => {
     handleData();
     setWinnerBattle(location.state.battleData.pop());
     setBattleData(location.state.battleData);
+    console.log(location.state.battleData);
   }, []);
 
   return (
@@ -78,7 +79,7 @@ const PvEBattle = () => {
                   damage. ({npcName} has {rounds.NpcLife} life)
                 </li>
                 <li>
-                  {npcName} has attacked {profile.username} for {rounds.npcDmg}{" "}
+                  {npcName} has attacked {profile.username} for {rounds.NpcDmg}{" "}
                   damage. ({profile.username} has {rounds.userLife} life)
                 </li>
               </div>
