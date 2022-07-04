@@ -1,4 +1,4 @@
-import { hot } from 'react-hot-loader/root';
+import { hot } from "react-hot-loader/root";
 import React, { useEffect } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
@@ -14,6 +14,9 @@ const UserStats = ({
   minDmg,
   maxDmg,
   npcKills,
+  defense,
+  evasion,
+  criticalChance,
 }) => {
   const cookies = new Cookies();
   const headers = {
@@ -85,7 +88,7 @@ const UserStats = ({
           <label>Dexterity (DEX): {dexterity}</label>
           <label>Vitality (VIT): {vitality}</label>
           <label>Intelligence (INT): {intelligence}</label>
-          <label>Critical Chance: {luck}%</label>
+          <label>Luck: {luck}</label>
         </div>
 
         {!showAddStat && (
@@ -111,11 +114,14 @@ const UserStats = ({
       </form>
 
       <div style={{ display: "flex", flexDirection: "column" }}>
+        <label>Defense: {defense}</label>
+        <label>Evasion: {evasion}</label>
+        <label>Critical Chance: {criticalChance}%</label>
         <label>
           Min/Max DMG: {minDmg}/{maxDmg}
         </label>
       </div>
-      <label className="mt-5">Npc killed: {npcKills}</label>
+      <label className="mt-3">Npc killed: {npcKills}</label>
     </section>
   );
 };
