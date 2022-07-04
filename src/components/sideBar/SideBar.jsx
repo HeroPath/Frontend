@@ -18,13 +18,13 @@ const SideBar = () => {
         Shop
       </a>
       <a href="#" className="button--links links m-3">
-        Quests
+        Quests (soon)
       </a>
       <a href="#" className="button--links links m-3">
-        Dungeon
+        Dungeon (soon)
       </a>
-      <a href="/profile" className="button--links links m-3">
-        Profile
+      <a href="#" className="button--links links m-3">
+        Profile (soon)
       </a>
       <a href="/ranking" className="button--links links m-3 mb-5">
         Ranking

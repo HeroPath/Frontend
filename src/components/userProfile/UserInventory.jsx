@@ -44,6 +44,8 @@ const UserInventory = ({
         Intelligence: ${eItem[i].intelligence}
         Level Min: ${eItem[i].lvlMin}
         Class: ${eItem[i].classRequired}
+              
+        Price: ${eItem[i].price / 2}
         `
         );
 
@@ -183,7 +185,9 @@ const UserInventory = ({
               Vitality: ${item.vitality}
               Intelligence: ${item.intelligence}
               Level Min: ${item.lvlMin}
-              Class: ${item.classRequired}`}
+              Class: ${item.classRequired}
+              
+              Price: ${item.price / 2}`}
             >
               <img
                 src={require(`../img/items/${item.name}.png`)}
