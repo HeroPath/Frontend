@@ -111,8 +111,6 @@ const UserInventory = ({
       divGeneric.appendChild(itemSelect);
     }
     handleItem(true);
-
-    console.log(itemSelect);
   };
 
   const dropBox = () => {
