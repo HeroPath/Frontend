@@ -18,6 +18,10 @@
 /* ---------------- //UTILIDAD ----------------------*/
 
 /* ---------------- REGISTER ----------------------*/
+.register--background {
+  width: 100vw;
+  height: 100vh;
+}
 
 .register {
   display: grid;
@@ -27,7 +31,6 @@
   width: 100vw;
   align-items: center;
   text-align: center;
-  margin: 0 100px;
 }
 
 .register--cards {
@@ -38,8 +41,15 @@
   align-items: center;
 }
 
+.register--cards:first-child {
+  margin-left: 100px;
+}
+.register--cards:last-child {
+  margin-right: 100px;
+}
+
 .register--cards__form {
-  width: 80%;
+  width: 85%;
 }
 
 .classSelected {
@@ -618,6 +628,13 @@
     border-radius: 20px;
     height: 100vh;
     width: 300px;
+  }
+
+  .register--cards:first-child {
+    margin-left: 0px;
+  }
+  .register--cards:last-child {
+    margin-right: 0px;
   }
 
   .classSelected--stats {
