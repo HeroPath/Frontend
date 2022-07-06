@@ -8,6 +8,7 @@ const UserInventory = ({
   aclass,
   itemBuy,
   nameItemBuy,
+  level,
 }) => {
   const cookies = new Cookies();
   const headers = {
@@ -31,7 +32,6 @@ const UserInventory = ({
       if (!divGeneric.hasChildNodes()) {
         const divItemEquiped = document.createElement("div");
         const imgItemEquiped = document.createElement("img");
-        const pItemEquiped = document.createElement("p");
 
         divItemEquiped.setAttribute("draggable", true);
         divItemEquiped.setAttribute("id", eItem[i].id);
@@ -58,8 +58,6 @@ const UserInventory = ({
         };
         divItemEquiped.classList.add("divItems");
 
-        pItemEquiped.innerHTML = eItem[i].amount;
-
         imgItemEquiped.setAttribute(
           "src",
           require(`../img/items/${eItem[i].name}.png`)
@@ -67,7 +65,6 @@ const UserInventory = ({
         imgItemEquiped.classList.add("item");
 
         divItemEquiped.appendChild(imgItemEquiped);
-        divItemEquiped.appendChild(pItemEquiped);
         divGeneric.appendChild(divItemEquiped);
       }
     }
@@ -170,6 +167,8 @@ const UserInventory = ({
                 item.classRequired !== aclass.name &&
                 item.classRequired !== "none"
                   ? "itemNoClass"
+                  : item.lvlMin > level
+                  ? "itemNoLevel"
                   : ""
               }
               onDragStart={() => {

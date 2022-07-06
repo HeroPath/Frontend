@@ -12,6 +12,7 @@ const ProfileCard = ({ profile }) => {
           inventory={profile.inventory}
           equipment={profile.equipment}
           aclass={profile.aclass}
+          level={profile.level}
         />
 
         {profile.aclass && (
