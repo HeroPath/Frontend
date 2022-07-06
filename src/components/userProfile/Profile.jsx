@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 import "../styles/styles.css";
 import ProfileCard from "./ProfileCard";
+import Navbar from "./Navbar";
 
 const Profile = () => {
   const cookies = new Cookies();
@@ -32,40 +33,11 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <div className="profileNavbar">
-        <div className="profileNavbar--labels">
-          <div>
-            <img
-              className="me-2"
-              src={require(`../img/utilities/gold.png`)}
-              alt=""
-            />
-            {profile.gold && <label>{profile.gold.toLocaleString()}</label>}
-          </div>
-          <div>
-            <img
-              className="me-2"
-              src={require(`../img/utilities/diamond.png`)}
-              alt=""
-            />
-            <label>{profile.diamond}</label>
-          </div>
-          {profile.role && <label>Role: {profile.role.roleName}</label>}
-        </div>
-        <div className="navBarDivs">
-          <label style={{ height: "32px" }}>SERVER STATUS</label>
-          <img
-            className="ms-2 mb-1"
-            src={require(`../img/utilities/online.png`)}
-            height="16px"
-            width="16px"
-            alt=""
-          />
-        </div>
-        <div className="navBarDivs">
-          <label>NEWS</label>
-        </div>
-      </div>
+      <Navbar
+        gold={profile.gold}
+        diamond={profile.diamond}
+        role={profile.role}
+      />
       <h1 className="titleProfile">Character stats</h1>
       <ProfileCard profile={profile} />
     </div>
