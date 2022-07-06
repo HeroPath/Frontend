@@ -54,6 +54,7 @@ const Shop = () => {
           aclass={profile.aclass}
           itemBuy={itemBuy}
           nameItemBuy={dataItem.name}
+          level={profile.level}
         />
       </div>
       <div className="shop--npc">
@@ -128,6 +129,8 @@ const Shop = () => {
                   item.classRequired !== profile.aclass.name &&
                   item.classRequired !== "none"
                     ? "itemNoClass"
+                    : item.lvlMin > profile.level
+                    ? "itemNoLevel"
                     : ""
                 }
                 onDragStart={() => {

@@ -327,6 +327,11 @@
   background-color: rgba(141, 17, 1, 0.5);
 }
 
+.itemNoLevel {
+  margin-top: 1px;
+  background-color: rgba(137, 128, 1, 0.5);
+}
+
 /* --------------------------- Tooltip --------------------------- */
 
 [data-tooltip] {
