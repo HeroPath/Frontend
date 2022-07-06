@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const UserInventory = ({
   inventory,
   equipment,
@@ -85,7 +88,10 @@ const UserInventory = ({
       })
       .catch((err) => {
         if (err.request.status === 409) {
-          window.location.reload();
+          notify(err.response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, [2500]);
         }
       });
   }
@@ -125,6 +131,18 @@ const UserInventory = ({
   {
     equipment && equipmentCreate();
   }
+
+  const notify = (alert) => {
+    toast.error(alert, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   return (
     <div className="inventory" id="inventory">
@@ -206,6 +224,18 @@ const UserInventory = ({
             </div>
           ))}
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

@@ -3,6 +3,9 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const PlayerVsNPC = () => {
   const cookies = new Cookies();
   const headers = {
@@ -31,6 +34,18 @@ const PlayerVsNPC = () => {
   useEffect(() => {
     handleData();
   }, []);
+
+  const notify = (alert) => {
+    toast.error(alert, {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   return (
     <div className="npcCards">
@@ -69,11 +84,27 @@ const PlayerVsNPC = () => {
                       state: { battleData: response.data },
                     });
                   }
+                })
+                .catch((err) => {
+                  if (err.request.status === 409) {
+                    notify(err.response.data.message);
+                  }
                 });
             }}
           >
             Fight
           </button>
+          <ToastContainer
+            position="top-right"
+            autoClose={4000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <h6>
             Recommended level: {npc.level}-{npc.level + 3}
           </h6>
