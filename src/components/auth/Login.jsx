@@ -4,6 +4,9 @@ import Cookies from "universal-cookie";
 import "../styles/styles.css";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
   const [dataLogin, setDataLogin] = React.useState({
     username: "",
@@ -28,6 +31,14 @@ const Login = () => {
             navigate("/profile", { replace: true });
             window.location.reload();
           }
+        })
+        .catch((err) => {
+          if (err.request.status !== 0) {
+            notify(err.response.data.message);
+            setTimeout(() => {
+              window.location.reload();
+            }, [2500]);
+          }
         });
     }
   }
@@ -44,9 +55,21 @@ const Login = () => {
     setDataLogin(newValues);
   }
 
+  const notify = (alert) => {
+    toast.error(alert, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <div className="login" style={cardStyle}>
-      <div className="login--img"/>
+      <div className="login--img" />
       <section className="login--section">
         <h1>Sign In</h1>
         <form className="login--form" onSubmit={handleSubmit}>
@@ -80,6 +103,17 @@ const Login = () => {
             FORGOT PASSWORD
           </a>
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </section>
     </div>
   );

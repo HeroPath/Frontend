@@ -106,6 +106,14 @@ const UserInventory = ({
         if (response.status === 200) {
           window.location.reload();
         }
+      })
+      .catch((err) => {
+        if (err.request.status === 409) {
+          notify(err.response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, [2500]);
+        }
       });
   }
 
