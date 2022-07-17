@@ -3,6 +3,9 @@ import axios from "axios";
 import "../styles/styles.css";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Register = () => {
   const [values, setValues] = React.useState({
     username: "",
@@ -30,7 +33,14 @@ const Register = () => {
             navigate("/");
           }
         })
-        .catch((err) => alert(err));
+        .catch((err) => {
+          if (err.request.status !== 0) {
+            notify(err.response.data.message);
+            setTimeout(() => {
+              window.location.reload();
+            }, [2500]);
+          }
+        });
     }
   }
 
@@ -87,6 +97,18 @@ const Register = () => {
       luck: resSplited[6],
     });
   }
+
+  const notify = (alert) => {
+    toast.error(alert, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   return (
     <div className="register--background">
@@ -198,6 +220,18 @@ const Register = () => {
           </section>
         </div>
       </div>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

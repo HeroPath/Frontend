@@ -117,7 +117,11 @@ const Shop = () => {
               <button>Boots</button>
             </div>
 
-            <div className="shop--npc--card">
+            <div
+              className="shop--npc--card"
+              // onDragOver={dragOver}
+              // onDrop={dropBox}
+            >
               {itemsShop.map((item) => (
                 <div
                   draggable="true"

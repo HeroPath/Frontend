@@ -122,7 +122,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 250px;
   background-color: rgb(187, 187, 187);
   text-align: center;
 }
@@ -697,6 +697,15 @@
     overflow-y: scroll;
   }
 
+  [data-tooltip]:before {
+    margin-left: -40px;
+    font-size: 10px;
+  }
+
+  [data-tooltip]:after {
+    margin-left: -15px;
+  }
+
   .zone,
   .npcCards {
     display: flex;
@@ -712,9 +721,14 @@
   }
 
   .shop {
+    width: 100%;
+  }
+
+  .shop--items {
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
+    width: 268px;
   }
 
   .shop--npc {
