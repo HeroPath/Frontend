@@ -21,7 +21,7 @@ const PlayerVsPlayer = () => {
 
     await axios
       .post(
-        "https://ao-web.herokuapp.com/api/v1/users/attack-user",
+        "http://localhost:8000/api/v1/users/attack-user",
         { name: userAttack },
         { headers }
       )

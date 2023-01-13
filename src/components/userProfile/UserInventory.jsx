@@ -78,7 +78,7 @@ const UserInventory = ({
     let equip = toEquip === true ? "equip-item" : "unequip-item";
 
     await axios
-      .post("https://ao-web.herokuapp.com/api/v1/users/" + equip, data, {
+      .post("http://localhost:8000/api/v1/users/" + equip, data, {
         headers,
       })
       .then((response) => {
@@ -99,7 +99,7 @@ const UserInventory = ({
   async function handleItemBuy() {
     const data = { name: nameItemBuy };
     await axios
-      .post("https://ao-web.herokuapp.com/api/v1/users/buyitem/", data, {
+      .post("http://localhost:8000/api/v1/users/buyitem/", data, {
         headers,
       })
       .then(async (response) => {

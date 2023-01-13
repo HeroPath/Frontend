@@ -18,7 +18,7 @@ const Shop = () => {
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/users/profile", { headers })
+      .get("http://localhost:8000/api/v1/users/profile", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           setProfile(response.data);
@@ -27,7 +27,7 @@ const Shop = () => {
   }
   async function handleItems(iClass) {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/items/shop/" + iClass, {
+      .get("http://localhost:8000/api/v1/items/shop/" + iClass, {
         headers,
       })
       .then(async (response) => {

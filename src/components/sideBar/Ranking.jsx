@@ -17,7 +17,7 @@ const Ranking = () => {
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/users/ranking", { headers })
+      .get("http://localhost:8000/api/v1/users/ranking", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           setRanking(response.data);

@@ -15,7 +15,7 @@ const Profile = () => {
   const [profile, setProfile] = React.useState({});
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/users/profile", { headers })
+      .get("http://localhost:8000/api/v1/users/profile", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           response.data.username = response.data.username.replace(

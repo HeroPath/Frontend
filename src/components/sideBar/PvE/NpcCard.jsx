@@ -16,7 +16,7 @@ const NpcCard = () => {
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/npcs/" + npcName, { headers })
+      .get("http://localhost:8000/api/v1/npcs/" + npcName, { headers })
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);

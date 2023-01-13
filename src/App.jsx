@@ -37,6 +37,11 @@ import Shop from "./components/sideBar/Shop/Shop";
 import Ranking from "./components/sideBar/Ranking";
 
 /* -------------------------------- //RANKING --------------------------------------------*/
+/* -------------------------------- QUEST --------------------------------------------*/
+
+import Quests from "./components/sideBar/Quests/Quests";
+
+/* -------------------------------- //QUEST --------------------------------------------*/
 
 /* -------------------------------- //SIDEBAR --------------------------------------------*/
 
@@ -63,6 +68,7 @@ function App() {
             <Route path="/playervsplayer" element={<PlayerVsPlayer />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/ranking" element={<Ranking />} />
+            <Route path="/quest" element={<Quests />} />
           </Routes>
         </BrowserRouter>
       </div>

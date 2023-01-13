@@ -40,7 +40,7 @@ const UserStats = ({
   async function handleClickAddSkill() {
     await axios
       .post(
-        " https://ao-web.herokuapp.com/api/v1/users/add-skill-points",
+        " http://localhost:8000/api/v1/users/add-skill-points",
         { skillPointName: clickAddSkill.stat, amount: clickAddSkill.amount },
         { headers }
       )

@@ -27,7 +27,7 @@ const Register = () => {
     ) {
       values.classId = parseInt(values.classId);
       await axios
-        .post("https://ao-web.herokuapp.com/api/v1/auth/register", values)
+        .post("http://localhost:8000/api/v1/auth/register", values)
         .then((response) => {
           if (response.status === 200) {
             navigate("/");
@@ -60,7 +60,7 @@ const Register = () => {
 
   async function handleData() {
     await axios
-      .get("https://ao-web.herokuapp.com/api/v1/classes")
+      .get("http://localhost:8000/api/v1/classes")
       .then((response) => {
         if (response.status === 200) {
           setClassData(response.data);

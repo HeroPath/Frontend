@@ -21,7 +21,7 @@ const PlayerVsNPC = () => {
   async function handleData() {
     await axios
       .get(
-        "https://ao-web.herokuapp.com/api/v1/npcs/zone/" + location.state.name,
+        "http://localhost:8000/api/v1/npcs/zone/" + location.state.name,
         { headers }
       )
       .then((response) => {
@@ -69,7 +69,7 @@ const PlayerVsNPC = () => {
               e.preventDefault();
               await axios
                 .post(
-                  "https://ao-web.herokuapp.com/api/v1/users/attack-npc",
+                  "http://localhost:8000/api/v1/users/attack-npc",
                   { name: npc.name },
                   {
                     headers,
