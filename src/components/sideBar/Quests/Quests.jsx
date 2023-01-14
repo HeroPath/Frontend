@@ -22,6 +22,7 @@ const Quests = () => {
       .then(async (response) => {
         if (response.status === 200) {
           setQuests(response.data);
+          console.log(response.data);
         }
       });
   }
@@ -32,6 +33,7 @@ const Quests = () => {
       .then(async (response) => {
         if (response.status === 200) {
           setAcceptedQuests(response.data.quests);
+          console.log(response.data.quests);
         }
       });
   }
@@ -50,16 +52,20 @@ const Quests = () => {
             <th>#</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Name Npc Kill</th>
-            <th>Amount Npc Kill</th>
-            <th>Give Exp</th>
-            <th>Give Gold</th>
+            <th>Npc Kill</th>
+            <th>Npc Kills</th>
+            <th>User Kills</th>
+            <th>Exp</th>
+            <th>Gold</th>
+            <th>Diamonds</th>
             <th>Action</th>
           </tr>
         </thead>
         {acceptedQuests.length === 0 && (
           <tbody key="none">
             <tr>
+              <td>none</td>
+              <td>none</td>
               <td>none</td>
               <td>none</td>
               <td>none</td>
@@ -79,8 +85,10 @@ const Quests = () => {
               <td>{acceptedQuest.description}</td>
               <td>{acceptedQuest.nameNpcKill}</td>
               <td>{acceptedQuest.npcKillAmount} / {acceptedQuest.npcKillAmountNeeded}</td>
+              <td>{acceptedQuest.userKillAmount} / {acceptedQuest.userKillAmountNeeded}</td>
               <td>{acceptedQuest.giveExp}</td>
               <td>{acceptedQuest.giveGold}</td>
+              <td>{acceptedQuest.giveDiamonds}</td>
               <td>
                 <button
                   type="button"
@@ -112,10 +120,12 @@ const Quests = () => {
             <th>#</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Name Npc Kill</th>
-            <th>Required Amount Kills</th>
-            <th>Give Exp</th>
-            <th>Give Gold</th>
+            <th>Npc Kill</th>
+            <th>Amount NPC</th>
+            <th>Amount USER</th>
+            <th>Exp</th>
+            <th>Gold</th>
+            <th>Diamonds</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -127,8 +137,10 @@ const Quests = () => {
               <td>{quest.description}</td>
               <td>{quest.nameNpcKill}</td>
               <td>{quest.npcKillAmountNeeded}</td>
+              <td>{quest.userKillAmountNeeded}</td>
               <td>{quest.giveExp}</td>
               <td>{quest.giveGold}</td>
+              <td>{quest.giveDiamonds}</td>
               <td>
                 <button
                   type="button"
