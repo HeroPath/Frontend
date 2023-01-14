@@ -27,8 +27,7 @@ const PlayerVsPlayer = () => {
       )
       .then((response) => {
         if (response.status === 200) {
-          // navigate("/profile");
-          console.log(response.data);
+          window.location.reload();
         }
       });
   }

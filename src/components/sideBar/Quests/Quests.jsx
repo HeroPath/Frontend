@@ -22,6 +22,7 @@ const Quests = () => {
       .then(async (response) => {
         if (response.status === 200) {
           setQuests(response.data);
+          console.log(response.data);
         }
       });
   }
@@ -32,6 +33,7 @@ const Quests = () => {
       .then(async (response) => {
         if (response.status === 200) {
           setAcceptedQuests(response.data.quests);
+          console.log(response.data.quests);
         }
       });
   }
@@ -50,15 +52,21 @@ const Quests = () => {
             <th>#</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Name Npc Kill</th>
-            <th>Amount Npc Kill</th>
-            <th>Give Exp</th>
-            <th>Give Gold</th>
+            <th>Npc Kill</th>
+            <th>Npc Kills</th>
+            <th>User Kills</th>
+            <th>Exp</th>
+            <th>Gold</th>
+            <th>Diamonds</th>
+            <th>Action</th>
           </tr>
         </thead>
         {acceptedQuests.length === 0 && (
           <tbody key="none">
             <tr>
+              <td>none</td>
+              <td>none</td>
+              <td>none</td>
               <td>none</td>
               <td>none</td>
               <td>none</td>
@@ -76,14 +84,35 @@ const Quests = () => {
               <td>{acceptedQuest.name}</td>
               <td>{acceptedQuest.description}</td>
               <td>{acceptedQuest.nameNpcKill}</td>
-              <td>{acceptedQuest.npcKillAmount}</td>
+              <td>{acceptedQuest.npcKillAmount} / {acceptedQuest.npcKillAmountNeeded}</td>
+              <td>{acceptedQuest.userKillAmount} / {acceptedQuest.userKillAmountNeeded}</td>
               <td>{acceptedQuest.giveExp}</td>
               <td>{acceptedQuest.giveGold}</td>
+              <td>{acceptedQuest.giveDiamonds}</td>
+              <td>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => {
+                    axios
+                      .post(
+                        "http://localhost:8000/api/v1/users/cancel-quest",
+                        { name: acceptedQuest.name },
+                        { headers }
+                      )
+                      .then((response) => {
+                        if (response.status === 200) window.location.reload();
+                      });
+                  }}
+                >
+                  Cancel
+                </button>
+              </td>
             </tr>
           </tbody>
         ))}
       </Table>
-      
+
       <h1>Quests</h1>
       <Table striped bordered hover>
         <thead>
@@ -91,10 +120,13 @@ const Quests = () => {
             <th>#</th>
             <th>Name</th>
             <th>Description</th>
-            <th>Name Npc Kill</th>
-            <th>Amount Npc Kill</th>
-            <th>Give Exp</th>
-            <th>Give Gold</th>
+            <th>Npc Kill</th>
+            <th>Amount NPC</th>
+            <th>Amount USER</th>
+            <th>Exp</th>
+            <th>Gold</th>
+            <th>Diamonds</th>
+            <th>Action</th>
           </tr>
         </thead>
         {quests?.map((quest) => (
@@ -104,9 +136,30 @@ const Quests = () => {
               <td>{quest.name}</td>
               <td>{quest.description}</td>
               <td>{quest.nameNpcKill}</td>
-              <td>{quest.npcKillAmount}</td>
+              <td>{quest.npcKillAmountNeeded}</td>
+              <td>{quest.userKillAmountNeeded}</td>
               <td>{quest.giveExp}</td>
               <td>{quest.giveGold}</td>
+              <td>{quest.giveDiamonds}</td>
+              <td>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {
+                    axios
+                      .post(
+                        "http://localhost:8000/api/v1/users/accept-quest",
+                        { name: quest.name },
+                        { headers }
+                      )
+                      .then((response) => {
+                        if (response.status === 200) window.location.reload();
+                      });
+                  }}
+                >
+                  Accept
+                </button>
+              </td>
             </tr>
           </tbody>
         ))}
