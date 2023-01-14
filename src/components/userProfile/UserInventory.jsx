@@ -119,9 +119,10 @@ const UserInventory = ({
 
   const dropEquiped = () => {
     const divGeneric = document.getElementById(dataItem.type);
-
-    if (!divGeneric.hasChildNodes()) {
-      divGeneric.appendChild(itemSelect);
+    if (dataItem.type !== "potion") {
+      if (!divGeneric.hasChildNodes()) {
+        divGeneric.appendChild(itemSelect);
+      }
     }
     handleItem(true);
   };
