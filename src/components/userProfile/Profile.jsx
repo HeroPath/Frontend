@@ -29,6 +29,7 @@ const Profile = () => {
 
   useEffect(() => {
     handleData();
+    
   }, []);
 
   return (
