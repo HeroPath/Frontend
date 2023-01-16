@@ -75,10 +75,10 @@ const UserInventory = ({
 
   async function handleItem(toEquip) {
     let data = { id: dataItem.id };
-    let equip = toEquip === true ? "equip-item" : "unequip-item";
+    let equip = toEquip === true ? "equip" : "unequip";
 
     await axios
-      .post("http://localhost:8000/api/v1/users/" + equip, data, {
+      .post("http://localhost:8000/api/v1/items/" + equip, data, {
         headers,
       })
       .then((response) => {
@@ -99,7 +99,7 @@ const UserInventory = ({
   async function handleItemBuy() {
     const data = { name: nameItemBuy };
     await axios
-      .post("http://localhost:8000/api/v1/users/buyitem/", data, {
+      .post("http://localhost:8000/api/v1/items/buy", data, {
         headers,
       })
       .then(async (response) => {

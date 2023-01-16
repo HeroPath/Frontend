@@ -96,7 +96,7 @@ const Quests = () => {
                   onClick={() => {
                     axios
                       .post(
-                        "http://localhost:8000/api/v1/users/cancel-quest",
+                        "http://localhost:8000/api/v1/quests/cancel",
                         { name: acceptedQuest.name },
                         { headers }
                       )
@@ -148,7 +148,7 @@ const Quests = () => {
                   onClick={() => {
                     axios
                       .post(
-                        "http://localhost:8000/api/v1/users/accept-quest",
+                        "http://localhost:8000/api/v1/quests/accept",
                         { name: quest.name },
                         { headers }
                       )
