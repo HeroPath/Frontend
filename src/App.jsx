@@ -43,6 +43,12 @@ import Quests from "./components/sideBar/Quests/Quests";
 
 /* -------------------------------- //QUEST --------------------------------------------*/
 
+/* -------------------------------- QUEST --------------------------------------------*/
+
+import Guild from "./components/sideBar/guild/Guild";
+
+/* -------------------------------- //QUEST --------------------------------------------*/
+
 /* -------------------------------- //SIDEBAR --------------------------------------------*/
 
 function App() {
@@ -69,6 +75,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/quest" element={<Quests />} />
+            <Route path="/guild" element={<Guild />} />
           </Routes>
         </BrowserRouter>
       </div>

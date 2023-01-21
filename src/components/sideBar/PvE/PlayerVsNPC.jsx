@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import env from "react-dotenv";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,10 +20,9 @@ const PlayerVsNPC = () => {
 
   async function handleData() {
     await axios
-      .get(
-        "http://localhost:8000/api/v1/npcs/zone/" + location.state.name,
-        { headers }
-      )
+      .get(env.API_URL + "/api/v1/npcs/zone/" + location.state.name, {
+        headers,
+      })
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);
@@ -69,7 +68,7 @@ const PlayerVsNPC = () => {
               e.preventDefault();
               await axios
                 .post(
-                  "http://localhost:8000/api/v1/users/attack-npc",
+                  env.API_URL + "/api/v1/users/attack-npc",
                   { name: npc.name },
                   {
                     headers,

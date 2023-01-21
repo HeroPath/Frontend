@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { Table } from "react-bootstrap";
+import env from "react-dotenv";
 
 const Quests = () => {
   const cookies = new Cookies();
@@ -18,7 +19,7 @@ const Quests = () => {
 
   async function handleQuests() {
     await axios
-      .get("http://localhost:8000/api/v1/quests", { headers })
+      .get(env.API_URL + "/api/v1/quests", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           setQuests(response.data);
@@ -29,7 +30,7 @@ const Quests = () => {
 
   async function handleQuestAccepted() {
     await axios
-      .get("http://localhost:8000/api/v1/users/profile", { headers })
+      .get(env.API_URL + "/api/v1/users/profile", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           setAcceptedQuests(response.data.quests);
@@ -96,7 +97,7 @@ const Quests = () => {
                   onClick={() => {
                     axios
                       .post(
-                        "http://localhost:8000/api/v1/quests/cancel",
+                        env.API_URL + "/api/v1/quests/cancel",
                         { name: acceptedQuest.name },
                         { headers }
                       )
@@ -148,7 +149,7 @@ const Quests = () => {
                   onClick={() => {
                     axios
                       .post(
-                        "http://localhost:8000/api/v1/quests/accept",
+                        env.API_URL + "/api/v1/quests/accept",
                         { name: quest.name },
                         { headers }
                       )

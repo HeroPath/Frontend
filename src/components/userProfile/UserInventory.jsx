@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import env from "react-dotenv";
 
 const UserInventory = ({
   inventory,
@@ -78,7 +79,7 @@ const UserInventory = ({
     let equip = toEquip === true ? "equip" : "unequip";
 
     await axios
-      .post("http://localhost:8000/api/v1/items/" + equip, data, {
+      .post(env.API_URL + "/api/v1/items/" + equip, data, {
         headers,
       })
       .then((response) => {
@@ -99,7 +100,7 @@ const UserInventory = ({
   async function handleItemBuy() {
     const data = { name: nameItemBuy };
     await axios
-      .post("http://localhost:8000/api/v1/items/buy", data, {
+      .post(env.API_URL + "/api/v1/items/buy", data, {
         headers,
       })
       .then(async (response) => {

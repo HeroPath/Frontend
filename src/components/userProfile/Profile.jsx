@@ -4,6 +4,7 @@ import axios from "axios";
 import "../styles/styles.css";
 import ProfileCard from "./ProfileCard";
 import Navbar from "./Navbar";
+import env from "react-dotenv";
 
 const Profile = () => {
   const cookies = new Cookies();
@@ -15,7 +16,7 @@ const Profile = () => {
   const [profile, setProfile] = React.useState({});
   async function handleData() {
     await axios
-      .get("http://localhost:8000/api/v1/users/profile", { headers })
+      .get(env.API_URL + "/api/v1/users/profile", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           response.data.username = response.data.username.replace(
@@ -23,6 +24,7 @@ const Profile = () => {
             (letter) => letter.toUpperCase()
           );
           setProfile(response.data);
+          cookies.set("guildName", response.data.guildName);
         }
       });
   }

@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import "../styles/styles.css";
+import env from "react-dotenv";
 
 const UserStats = ({
   freeSkillPoints,
@@ -40,7 +41,7 @@ const UserStats = ({
   async function handleClickAddSkill() {
     await axios
       .post(
-        " http://localhost:8000/api/v1/users/add-skill-points",
+        env.API_URL + "/api/v1/users/add-skill-points",
         { skillPointName: clickAddSkill.stat, amount: clickAddSkill.amount },
         { headers }
       )
@@ -120,10 +121,8 @@ const UserStats = ({
         <label>
           Min/Max DMG: {minDmg}/{maxDmg}
         </label>
-        
-
       </div>
- 
+
       <label className="mt-3">Npc killed: {npcKills}</label>
     </section>
   );
