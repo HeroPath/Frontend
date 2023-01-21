@@ -23,8 +23,8 @@ const SideBar = () => {
       <a href="#" className="button--links links m-3">
         Dungeon (soon)
       </a>
-      <a href="#" className="button--links links m-3">
-        Profile (soon)
+      <a href="/guild" className="button--links links m-3">
+        Guild
       </a>
       <a href="/ranking" className="button--links links m-3 mb-5">
         Ranking

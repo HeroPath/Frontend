@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import env from "react-dotenv";
 
 const NpcCard = () => {
   const location = useLocation();
@@ -16,7 +17,7 @@ const NpcCard = () => {
 
   async function handleData() {
     await axios
-      .get("http://localhost:8000/api/v1/npcs/" + npcName, { headers })
+      .get(env.API_URL + "/api/v1/npcs/" + npcName, { headers })
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);

@@ -1,6 +1,7 @@
 import React from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
+import env from "react-dotenv";
 
 const PlayerVsPlayer = () => {
   const cookies = new Cookies();
@@ -21,7 +22,7 @@ const PlayerVsPlayer = () => {
 
     await axios
       .post(
-        "http://localhost:8000/api/v1/users/attack-user",
+        env.API_URL + "/api/v1/users/attack-user",
         { name: userAttack },
         { headers }
       )

@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 import UserInventory from "../../userProfile/UserInventory";
 import Navbar from "../../userProfile/Navbar";
+import env from "react-dotenv";
 
 const Shop = () => {
   const cookies = new Cookies();
@@ -18,7 +19,7 @@ const Shop = () => {
 
   async function handleData() {
     await axios
-      .get("http://localhost:8000/api/v1/users/profile", { headers })
+      .get(env.API_URL + "/api/v1/users/profile", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           setProfile(response.data);
@@ -27,7 +28,7 @@ const Shop = () => {
   }
   async function handleItems(iClass) {
     await axios
-      .get("http://localhost:8000/api/v1/items/shop/" + iClass, {
+      .get(env.API_URL + "/api/v1/items/shop/" + iClass, {
         headers,
       })
       .then(async (response) => {

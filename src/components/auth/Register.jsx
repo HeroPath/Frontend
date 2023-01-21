@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import "../styles/styles.css";
 import { useNavigate } from "react-router-dom";
+import env from "react-dotenv";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,7 +28,7 @@ const Register = () => {
     ) {
       values.classId = parseInt(values.classId);
       await axios
-        .post("http://localhost:8000/api/v1/auth/register", values)
+        .post(env.API_URL + "/api/v1/auth/register", values)
         .then((response) => {
           if (response.status === 200) {
             navigate("/");
@@ -60,7 +61,7 @@ const Register = () => {
 
   async function handleData() {
     await axios
-      .get("http://localhost:8000/api/v1/classes")
+      .get(env.API_URL + "/api/v1/classes")
       .then((response) => {
         if (response.status === 200) {
           setClassData(response.data);

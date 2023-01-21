@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 import "../styles/styles.css";
 import { Table } from "react-bootstrap";
+import env from "react-dotenv";
 
 const Ranking = () => {
   const cookies = new Cookies();
@@ -17,7 +18,7 @@ const Ranking = () => {
 
   async function handleData() {
     await axios
-      .get("http://localhost:8000/api/v1/users/ranking", { headers })
+      .get(env.API_URL + "/api/v1/users/ranking", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           setRanking(response.data);

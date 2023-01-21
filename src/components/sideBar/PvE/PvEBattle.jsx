@@ -4,6 +4,7 @@ import Cookies from "universal-cookie";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
+import env from "react-dotenv";
 
 import "../../utilities.js";
 
@@ -29,7 +30,7 @@ const PvEBattle = () => {
 
   async function handleData() {
     await axios
-      .get("http://localhost:8000/api/v1/users/profile", { headers })
+      .get(env.API_URL + "/api/v1/users/profile", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           response.data.username = response.data.username.replace(

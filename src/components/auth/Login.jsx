@@ -3,6 +3,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import "../styles/styles.css";
 import { useNavigate } from "react-router-dom";
+import env from "react-dotenv";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,17 +16,20 @@ const Login = () => {
 
   const navigate = useNavigate();
   const cookies = new Cookies();
+
   cookies.remove("token");
   cookies.remove("username");
+  cookies.remove("guildName");
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     if (!(dataLogin.username === "") && !(dataLogin.password === "")) {
       await axios
-        .post("http://localhost:8000/api/v1/auth/login", dataLogin)
+        .post(env.API_URL + "/api/v1/auth/login", dataLogin)
         .then((response) => {
           if (response.status === 200) {
+            console.log(dataLogin)
             cookies.set("token", response.data.token);
             cookies.set("username", dataLogin.username);
             navigate("/profile", { replace: true });
