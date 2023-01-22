@@ -24,7 +24,6 @@ const Profile = () => {
             (letter) => letter.toUpperCase()
           );
           setProfile(response.data);
-          cookies.set("guildName", response.data.guildName);
         }
       });
   }

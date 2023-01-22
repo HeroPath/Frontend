@@ -11,84 +11,63 @@ const Guild = () => {
     Authorization: "Bearer " + cookies.get("token"),
   };
 
-  let i = 1;
+  const [userGuild, setUserGuild] = React.useState({});
+  let memberCounter = 1;
 
-  const [guilds, setGuilds] = React.useState([]);
-
-  async function handleData() {
+  async function handleDataCheckUserInGuild() {
     await axios
-      .get(env.API_URL + "/api/v1/guilds/" + cookies.get("guildName"), {
-        headers,
-      })
+      .get(env.API_URL + "/api/v1/guilds/in-guild", { headers })
       .then(async (response) => {
         if (response.status === 200) {
           console.log(response.data);
-        }
-      });
-
-    await axios
-      .get(env.API_URL + "/api/v1/guilds", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          setGuilds(response.data);
-          console.log(response.data);
+          if (response.data.userInGuild) setUserGuild(response.data);
         }
       });
   }
 
   useEffect(() => {
-    handleData();
+    handleDataCheckUserInGuild();
   }, []);
 
   return (
     <div className="ranking">
-      <h1>Guilds</h1>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>TAG</th>
-            <th>Description</th>
-            <th>Leader</th>
-            <th>Sub Leader</th>
-            <th>Members</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        {guilds?.map((guild) => (
-          <tbody key={guild.name}>
-            <tr>
-              <td>{i++}</td>
-              <td>{guild.name}</td>
-              <td>{guild.tag}</td>
-              <td>{guild.description}</td>
-              <td>{guild.leader}</td>
-              <td>{guild.subLeader}</td>
-              <td>{guild.members}</td>
-              <td>
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  onClick={() => {
-                    axios
-                      .post(
-                        env.API_URL + "/api/v1/guilds/add",
-                        { name: guild.name },
-                        { headers }
-                      )
-                      .then((response) => {
-                        if (response.status === 200) window.location.reload();
-                      });
-                  }}
-                >
-                  Apply
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        ))}
-      </Table>
+    
+      {userGuild.userInGuild ? (
+        <div>
+          <h1>{userGuild.name} - {userGuild.tag}</h1>
+          <h3>Description: {userGuild.description}</h3>
+          <h3>Leader: {userGuild.leader}</h3>
+          <h3>Sub-Leader: {userGuild.subLeader}</h3>
+          <h3>Members Amount: {userGuild.memberAmount}</h3>
+          <h1>Members</h1>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Class</th>
+                <th>Level</th>
+                <th>Title</th>
+                <th>Title Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {userGuild.members.map((member) => (
+                <tr>
+                  <td>{memberCounter++}</td>
+                  <td>{member.username}</td>
+                  <td>{member.className}</td>
+                  <td>{member.level}</td>
+                  <td>{member.titleName}</td>
+                  <td>{member.titlePoints}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      ) : (
+        <h1>You are not in a guild</h1>
+      )}
     </div>
   );
 };

@@ -597,6 +597,10 @@
   text-align: center;
 }
 
+.ranking--tableUsers {
+  margin-bottom: 60px;
+}
+
 /* ---------------- //RANKING ----------------------*/
 
 @media (max-width: 700px) {
