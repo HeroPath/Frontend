@@ -4,8 +4,10 @@ import axios from "axios";
 import "../styles/styles.css";
 import { Table } from "react-bootstrap";
 import env from "react-dotenv";
+import { useNavigate } from "react-router-dom";
 
 const Ranking = () => {
+  const navigate = useNavigate();
   const cookies = new Cookies();
   const headers = {
     "content-type": "application/json",
@@ -131,7 +133,8 @@ const Ranking = () => {
                           )
                           .then((response) => {
                             if (response.status === 200)
-                              window.location.reload();
+                            navigate("/guild", { replace: true });
+                            window.location.reload();
                           });
                       }}
                     >
