@@ -77,8 +77,8 @@ const CreateNewGuild = () => {
         <h1>Create a new guild</h1>
         <h2>Requirements:</h2>
         <h3>Level: 100</h3>
-        <h3>Gold: 100.000</h3>
-        <h3>Diamonds: 50</h3>
+        <h3>Gold: 500.000</h3>
+        <h3>Diamonds: 100</h3>
         <form onSubmit={handleSubmit}>
           <label className="form-label mt-3">Name</label>
           <input

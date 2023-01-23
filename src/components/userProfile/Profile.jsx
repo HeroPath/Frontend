@@ -24,6 +24,7 @@ const Profile = () => {
             (letter) => letter.toUpperCase()
           );
           setProfile(response.data);
+          console.log(response.data);
         }
       });
   }

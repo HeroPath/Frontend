@@ -6,6 +6,9 @@ import { Table } from "react-bootstrap";
 import env from "react-dotenv";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Ranking = () => {
   const navigate = useNavigate();
   const cookies = new Cookies();
@@ -27,6 +30,14 @@ const Ranking = () => {
         if (response.status === 200) {
           setRanking(response.data);
         }
+      })
+      .catch((err) => {
+        if (err.request.status !== 0) {
+          notify(err.response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, [2500]);
+        }
       });
   }
 
@@ -37,6 +48,14 @@ const Ranking = () => {
         if (response.status === 200) {
           setGuilds(response.data);
         }
+      })
+      .catch((err) => {
+        if (err.request.status !== 0) {
+          notify(err.response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, [2500]);
+        }
       });
   }
 
@@ -44,6 +63,18 @@ const Ranking = () => {
     handleDataUsers();
     handleDataGuilds();
   }, []);
+
+  const notify = (alert) => {
+    toast.error(alert, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   return (
     <div className="ranking">
@@ -127,14 +158,22 @@ const Ranking = () => {
                       onClick={() => {
                         axios
                           .post(
-                            env.API_URL + "/api/v1/guilds/add",
+                            env.API_URL + "/api/v1/guilds/request",
                             { name: guild.name },
                             { headers }
                           )
                           .then((response) => {
                             if (response.status === 200)
-                            navigate("/guild", { replace: true });
+                              navigate("/profile", { replace: true });
                             window.location.reload();
+                          })
+                          .catch((err) => {
+                            if (err.request.status !== 0) {
+                              notify(err.response.data.message);
+                              setTimeout(() => {
+                                window.location.reload();
+                              }, [2500]);
+                            }
                           });
                       }}
                     >
@@ -147,6 +186,17 @@ const Ranking = () => {
           </Table>
         </div>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

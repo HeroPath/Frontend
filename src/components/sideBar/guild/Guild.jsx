@@ -17,6 +17,7 @@ const Guild = () => {
 
   const [userGuild, setUserGuild] = React.useState({});
   let memberCounter = 1;
+  let memberRequestCounter = 1;
 
   async function handleDataCheckUserInGuild() {
     await axios
@@ -180,6 +181,64 @@ const Guild = () => {
                         </button>
                       </td>
                     )}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Username</th>
+                  <th>Class</th>
+                  <th>Level</th>
+                  <th>Title</th>
+                  <th>Title Points</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {userGuild.requests.map((memberRequest) => (
+                  <tr key={memberRequest.username}>
+                    <td>{memberRequestCounter++}</td>
+                    <td>{memberRequest.username}</td>
+                    <td>{memberRequest.className}</td>
+                    <td>{memberRequest.level}</td>
+                    <td>{memberRequest.titleName}</td>
+                    <td>{memberRequest.titlePoints}</td>
+
+                    <td>
+                      <button
+                        type="button"
+                        className="btn btn-primary"
+                        size="lg"
+                        onClick={() => {
+                          axios
+                            .get(
+                              env.API_URL +
+                                "/api/v1/guilds/accept/" +
+                                memberRequest.username,
+                              { headers }
+                            )
+                            .then((response) => {
+                              if (response.status === 200)
+                                window.location.reload();
+                            })
+                            .catch((err) => {
+                              if (err.request.status !== 0) {
+                                notify(err.response.data.message);
+                                setTimeout(() => {
+                                  window.location.reload();
+                                }, [2500]);
+                              }
+                            });
+                        }}
+                      >
+                        Accept
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
