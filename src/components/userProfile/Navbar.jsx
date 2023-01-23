@@ -18,7 +18,7 @@ const Navbar = ({ gold, diamond, role }) => {
             src={require(`../img/utilities/diamond.png`)}
             alt=""
           />
-          <label>{diamond}</label>
+          {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
         {role && <label>Role: {role.roleName}</label>}
       </div>
