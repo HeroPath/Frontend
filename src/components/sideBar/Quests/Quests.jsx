@@ -26,7 +26,6 @@ const Quests = () => {
       .then(async (response) => {
         if (response.status === 200) {
           setQuests(response.data);
-          console.log(response.data);
         }
       })
       .catch((err) => {
@@ -45,7 +44,6 @@ const Quests = () => {
       .then(async (response) => {
         if (response.status === 200) {
           setAcceptedQuests(response.data.quests);
-          console.log(response.data.quests);
         }
       })
       .catch((err) => {

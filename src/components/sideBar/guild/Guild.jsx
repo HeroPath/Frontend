@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { Table } from "react-bootstrap";
@@ -15,29 +15,10 @@ const Guild = () => {
     Authorization: "Bearer " + cookies.get("token"),
   };
 
-  const [userGuild, setUserGuild] = React.useState({});
+  const [userGuild, setUserGuild] = useState({});
 
   let memberCounter = 1;
   let memberRequestCounter = 1;
-
-  async function handleDataCheckUserInGuild() {
-    await axios
-      .get(env.API_URL + "/api/v1/guilds/in-guild", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-          if (response.data.userInGuild) setUserGuild(response.data);
-        }
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
-  }
 
   async function handleRemovePromoteOrAcceptUserGuild(
     urlAction,
@@ -61,6 +42,24 @@ const Guild = () => {
   }
 
   useEffect(() => {
+    async function handleDataCheckUserInGuild() {
+      await axios
+        .get(env.API_URL + "/api/v1/guilds/in-guild", { headers })
+        .then(async (response) => {
+          if (response.status === 200) {
+            if (response.data.userInGuild) setUserGuild(response.data);
+          }
+        })
+        .catch((err) => {
+          if (err.request.status !== 0) {
+            notify(err.response.data.message);
+            setTimeout(() => {
+              window.location.reload();
+            }, [2500]);
+          }
+        });
+    }
+
     handleDataCheckUserInGuild();
   }, []);
 
@@ -77,13 +76,13 @@ const Guild = () => {
   };
 
   return (
-    <div className="ranking">
+    <div className="guild">
       <div>
         {userGuild.userInGuild ? (
           <div>
             <div>
               <h1>Guild Stats</h1>
-              <Table striped bordered hover>
+              <Table striped bordered hover className="guild--stats">
                 <thead>
                   <tr>
                     <th>Name</th>
@@ -102,14 +101,20 @@ const Guild = () => {
                     <td>{userGuild.name}</td>
                     <td>{userGuild.tag}</td>
                     <td>{userGuild.description}</td>
-                    <td>{userGuild.leader}</td>
-                    {userGuild.subLeader != "" ? (
-                      <td>{userGuild.subLeader}</td>
+                    <td style={{ backgroundColor: "#CFD601" }}>
+                      {userGuild.leader}
+                    </td>
+                    {userGuild.subLeader !== "" ? (
+                      <td style={{ backgroundColor: "#8CD601" }}>
+                        {userGuild.subLeader}
+                      </td>
                     ) : (
-                      <td>---</td>
+                      <td style={{ backgroundColor: "#fff" }}>---</td>
                     )}
                     <td>{userGuild.titlePoints}</td>
-                    <td>{userGuild.memberAmount} / {userGuild.maxMembers}</td>
+                    <td>
+                      {userGuild.memberAmount} / {userGuild.maxMembers}
+                    </td>
                     <td>{userGuild.level}</td>
                     <td>{userGuild.diamonds}</td>
                   </tr>
@@ -117,9 +122,9 @@ const Guild = () => {
               </Table>
             </div>
 
-            <div style={{ marginTop: "50px" }}>
+            <div>
               <h1>Members</h1>
-              <Table striped bordered hover>
+              <Table striped bordered hover className="guild--members">
                 <thead>
                   <tr>
                     <th>#</th>
@@ -134,7 +139,16 @@ const Guild = () => {
 
                 <tbody>
                   {userGuild.members.map((member) => (
-                    <tr key={member.username}>
+                    <tr
+                      key={member.username}
+                      style={
+                        userGuild.leader === member.username
+                          ? { backgroundColor: "#CFD601", fontSize: "22px" }
+                          : userGuild.subLeader === member.username
+                          ? { backgroundColor: "#8CD601", fontSize: "19px" }
+                          : { backgroundColor: "white" }
+                      }
+                    >
                       <td>{memberCounter++}</td>
                       <td>{member.username}</td>
                       <td>{member.className}</td>
@@ -147,7 +161,6 @@ const Guild = () => {
                           <button
                             type="button"
                             className="btn btn-danger"
-                            size="lg"
                             onClick={() => {
                               handleRemovePromoteOrAcceptUserGuild(
                                 "remove/",
@@ -160,7 +173,6 @@ const Guild = () => {
                           <button
                             type="button"
                             className="btn btn-success"
-                            size="lg"
                             onClick={() => {
                               handleRemovePromoteOrAcceptUserGuild(
                                 "make-subleader/",
@@ -176,7 +188,6 @@ const Guild = () => {
                           <button
                             type="button"
                             className="btn btn-danger"
-                            size="lg"
                             onClick={() => {
                               handleRemovePromoteOrAcceptUserGuild(
                                 "remove/",
@@ -195,9 +206,9 @@ const Guild = () => {
             </div>
             {userGuild.requests.length > 0 &&
               userGuild.username === userGuild.leader && (
-                <div style={{ marginTop: "50px" }}>
+                <div>
                   <h1>Requests</h1>
-                  <Table striped bordered hover>
+                  <Table striped bordered hover className="guild--requests">
                     <thead>
                       <tr>
                         <th>#</th>

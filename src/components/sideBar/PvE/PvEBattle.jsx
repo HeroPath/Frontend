@@ -46,7 +46,6 @@ const PvEBattle = () => {
     handleData();
     setWinnerBattle(location.state.battleData.pop());
     setBattleData(location.state.battleData);
-    console.log(location.state.battleData);
   }, []);
 
   return (

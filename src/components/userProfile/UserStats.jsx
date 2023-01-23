@@ -117,7 +117,7 @@ const UserStats = ({
       <div style={{ display: "flex", flexDirection: "column" }}>
         <label>Defense: {defense}</label>
         <label>Evasion: {evasion}</label>
-        <label>Critical Chance: {criticalChance}%</label>
+        <label>Critical Chance: {Math.round(criticalChance * 10) / 10}%</label>
         <label>
           Min/Max DMG: {minDmg}/{maxDmg}
         </label>
