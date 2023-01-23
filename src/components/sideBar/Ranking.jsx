@@ -135,6 +135,7 @@ const Ranking = () => {
                 <th>Name</th>
                 <th>TAG</th>
                 <th>Description</th>
+                <th>Title Points</th>
                 <th>Leader</th>
                 <th>Sub Leader</th>
                 <th>Members</th>
@@ -148,9 +149,14 @@ const Ranking = () => {
                   <td>{guild.name}</td>
                   <td>{guild.tag}</td>
                   <td>{guild.description}</td>
+                  <td>{guild.titlePoints}</td>
                   <td>{guild.leader}</td>
-                  <td>{guild.subLeader}</td>
-                  <td>{guild.memberAmount}</td>
+                  {guild.subLeader != "" ? (
+                    <td>{guild.subLeader}</td>
+                  ) : (
+                    <td>---</td>
+                  )}
+                  <td>{guild.memberAmount} / {guild.maxMembers}</td>
                   <td>
                     <button
                       type="button"
