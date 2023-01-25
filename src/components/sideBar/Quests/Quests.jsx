@@ -26,6 +26,7 @@ const Quests = () => {
       .then(async (response) => {
         if (response.status === 200) {
           setQuests(response.data);
+          console.log(response.data);
         }
       })
       .catch((err) => {
@@ -40,10 +41,11 @@ const Quests = () => {
 
   async function handleQuestAccepted() {
     await axios
-      .get(env.API_URL + "/api/v1/users/profile", { headers })
+      .get(env.API_URL + "/api/v1/quests/accepted", { headers })
       .then(async (response) => {
         if (response.status === 200) {
-          setAcceptedQuests(response.data.quests);
+          setAcceptedQuests(response.data);
+          //console.log(response.data);
         }
       })
       .catch((err) => {
@@ -94,55 +96,89 @@ const Quests = () => {
               </tr>
             </thead>
 
-            {acceptedQuests?.map((acceptedQuest) => (
-              <tbody key={acceptedQuest.name}>
-                <tr>
-                  <td>{acceptedQuestNumber++}</td>
-                  <td>{acceptedQuest.name}</td>
-                  <td>{acceptedQuest.description}</td>
-                  <td>{acceptedQuest.nameNpcKill}</td>
-                  <td>
-                    {acceptedQuest.npcKillAmount} /{" "}
-                    {acceptedQuest.npcKillAmountNeeded}
-                  </td>
-                  <td>
-                    {acceptedQuest.userKillAmount} /{" "}
-                    {acceptedQuest.userKillAmountNeeded}
-                  </td>
-                  <td>{acceptedQuest.giveExp}</td>
-                  <td>{acceptedQuest.giveGold}</td>
-                  <td>{acceptedQuest.giveDiamonds}</td>
-                  <td>
-                    <button
-                      type="button"
-                      className="btn btn-danger"
-                      onClick={() => {
-                        axios
-                          .post(
-                            env.API_URL + "/api/v1/quests/cancel",
-                            { name: acceptedQuest.name },
-                            { headers }
-                          )
-                          .then((response) => {
-                            if (response.status === 200)
-                              window.location.reload();
-                          })
-                          .catch((err) => {
-                            if (err.request.status !== 0) {
-                              notify(err.response.data.message);
-                              setTimeout(() => {
-                                window.location.reload();
-                              }, [2500]);
-                            }
-                          });
-                      }}
-                    >
-                      Cancel
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            ))}
+            {acceptedQuests &&
+              acceptedQuests?.length >= 1 &&
+              acceptedQuests?.map((acceptedQuest) => (
+                <tbody key={acceptedQuest.quest.name}>
+                  <tr>
+                    <td>{acceptedQuestNumber++}</td>
+                    <td>{acceptedQuest.quest.name}</td>
+                    <td>{acceptedQuest.quest.description}</td>
+                    <td>{acceptedQuest.quest.nameNpcKill}</td>
+                    <td>
+                      {acceptedQuest.npcKillAmount} /{" "}
+                      {acceptedQuest.quest.npcKillAmountNeeded}
+                    </td>
+                    <td>
+                      {acceptedQuest.userKillAmount} /{" "}
+                      {acceptedQuest.quest.userKillAmountNeeded}
+                    </td>
+                    <td>{acceptedQuest.quest.giveExp}</td>
+                    <td>{acceptedQuest.quest.giveGold}</td>
+                    <td>{acceptedQuest.quest.giveDiamonds}</td>
+                    {acceptedQuest.npcKillAmount >=
+                    acceptedQuest.quest.npcKillAmountNeeded ? (
+                      <td>
+                        <button
+                          type="button"
+                          className="btn btn-success"
+                          onClick={() => {
+                            axios
+                              .post(
+                                env.API_URL + "/api/v1/quests/complete",
+                                { name: acceptedQuest.quest.name },
+                                { headers }
+                              )
+                              .then((response) => {
+                                if (response.status === 200)
+                                  window.location.reload();
+                              })
+                              .catch((err) => {
+                                if (err.request.status !== 0) {
+                                  notify(err.response.data.message);
+                                  setTimeout(() => {
+                                    window.location.reload();
+                                  }, [2500]);
+                                }
+                              });
+                          }}
+                        >
+                          Complete
+                        </button>
+                      </td>
+                    ) : (
+                      <td>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          onClick={() => {
+                            axios
+                              .post(
+                                env.API_URL + "/api/v1/quests/cancel",
+                                { name: acceptedQuest.quest.name },
+                                { headers }
+                              )
+                              .then((response) => {
+                                if (response.status === 200)
+                                  window.location.reload();
+                              })
+                              .catch((err) => {
+                                if (err.request.status !== 0) {
+                                  notify(err.response.data.message);
+                                  setTimeout(() => {
+                                    window.location.reload();
+                                  }, [2500]);
+                                }
+                              });
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </td>
+                    )}
+                  </tr>
+                </tbody>
+              ))}
           </Table>
         </div>
       )}
