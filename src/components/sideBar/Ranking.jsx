@@ -85,6 +85,7 @@ const Ranking = () => {
             <tr>
               <th>#</th>
               <th>Username</th>
+              <th>Guild</th>
               <th>Class</th>
               <th>Level</th>
               <th>Title</th>
@@ -113,6 +114,7 @@ const Ranking = () => {
               >
                 <td>{usersCounter++}</td>
                 <td>{users.username}</td>
+                {users.guildName ? <td>{users.guildName}</td> : <td>---</td>}
                 {users.aclass && <td>{users.aclass.name}</td>}
                 <td>{users.level}</td>
                 <td>{users.title.name}</td>
@@ -154,8 +156,10 @@ const Ranking = () => {
                       ? { backgroundColor: "#FFC300", fontSize: "22px" }
                       : guildsCounter === 2
                       ? { backgroundColor: "#CDFD75", fontSize: "20px" }
-                      : guildsCounter === 3
-                      && ({ backgroundColor: "#DAF7A6", fontSize: "18px" })
+                      : guildsCounter === 3 && {
+                          backgroundColor: "#DAF7A6",
+                          fontSize: "18px",
+                        }
                   }
                 >
                   <td>{guildsCounter++}</td>

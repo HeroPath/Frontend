@@ -505,8 +505,13 @@
 
 /* ---------------- PVP ----------------------*/
 .pvpbattle {
-  width: 100vw;
-  height: 100vh;
+
+  padding-top: 250px;
+  padding-left: 425px;
+  padding-right: 425px;
+  font-size: 25px;
+  font-weight: bold;
+
 }
 /* ---------------- //PVP ----------------------*/
 
@@ -593,14 +598,14 @@
 .ranking {
   width: 100vw;
   height: 100vh;
-  margin: 50px;
+  padding: 50px;
   text-align: center;
   font-size: 15px;
   font-weight: bold;
 }
 
 .ranking--tableUsers {
-  margin-bottom: 60px;
+  padding-bottom: 60px;
 }
 
 /* ---------------- //RANKING ----------------------*/
@@ -614,9 +619,9 @@
   font-size: 15px;
   font-weight: bold;
 
-  margin-top: 10px;
-  margin-left: 40px;
-  margin-right: 40px;
+  padding-top: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
   text-align: center;
 }
 

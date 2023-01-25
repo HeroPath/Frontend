@@ -85,8 +85,11 @@ const PlayerVsNPC = () => {
                   }
                 })
                 .catch((err) => {
-                  if (err.request.status === 409) {
+                  if (err.request.status !== 0) {
                     notify(err.response.data.message);
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, [2500]);
                   }
                 });
             }}
