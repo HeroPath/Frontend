@@ -117,7 +117,9 @@ const Quests = () => {
                     <td>{acceptedQuest.quest.giveGold}</td>
                     <td>{acceptedQuest.quest.giveDiamonds}</td>
                     {acceptedQuest.npcKillAmount >=
-                    acceptedQuest.quest.npcKillAmountNeeded ? (
+                    acceptedQuest.quest.npcKillAmountNeeded && 
+                    acceptedQuest.userKillAmount >= 
+                    acceptedQuest.quest.userKillAmountNeeded ? (
                       <td>
                         <button
                           type="button"
