@@ -4,6 +4,9 @@ import axios from "axios";
 import { Table } from "react-bootstrap";
 import env from "react-dotenv";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Quests = () => {
   const cookies = new Cookies();
   const headers = {
@@ -25,16 +28,32 @@ const Quests = () => {
           setQuests(response.data);
           console.log(response.data);
         }
+      })
+      .catch((err) => {
+        if (err.request.status !== 0) {
+          notify(err.response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, [2500]);
+        }
       });
   }
 
   async function handleQuestAccepted() {
     await axios
-      .get(env.API_URL + "/api/v1/users/profile", { headers })
+      .get(env.API_URL + "/api/v1/quests/accepted", { headers })
       .then(async (response) => {
         if (response.status === 200) {
-          setAcceptedQuests(response.data.quests);
-          console.log(response.data.quests);
+          setAcceptedQuests(response.data);
+          //console.log(response.data);
+        }
+      })
+      .catch((err) => {
+        if (err.request.status !== 0) {
+          notify(err.response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, [2500]);
         }
       });
   }
@@ -44,75 +63,127 @@ const Quests = () => {
     handleQuestAccepted();
   }, []);
 
+  const notify = (alert) => {
+    toast.error(alert, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <div className="ranking">
-      <h1>Quests Acepted</h1>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Npc Kill</th>
-            <th>Npc Kills</th>
-            <th>User Kills</th>
-            <th>Exp</th>
-            <th>Gold</th>
-            <th>Diamonds</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        {acceptedQuests.length === 0 && (
-          <tbody key="none">
-            <tr>
-              <td>none</td>
-              <td>none</td>
-              <td>none</td>
-              <td>none</td>
-              <td>none</td>
-              <td>none</td>
-              <td>none</td>
-              <td>none</td>
-              <td>none</td>
-              <td>none</td>
-            </tr>
-          </tbody>
-        )}
-        {acceptedQuests?.map((acceptedQuest) => (
-          <tbody key={acceptedQuest.name}>
-            <tr>
-              <td>{acceptedQuestNumber++}</td>
-              <td>{acceptedQuest.name}</td>
-              <td>{acceptedQuest.description}</td>
-              <td>{acceptedQuest.nameNpcKill}</td>
-              <td>{acceptedQuest.npcKillAmount} / {acceptedQuest.npcKillAmountNeeded}</td>
-              <td>{acceptedQuest.userKillAmount} / {acceptedQuest.userKillAmountNeeded}</td>
-              <td>{acceptedQuest.giveExp}</td>
-              <td>{acceptedQuest.giveGold}</td>
-              <td>{acceptedQuest.giveDiamonds}</td>
-              <td>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => {
-                    axios
-                      .post(
-                        env.API_URL + "/api/v1/quests/cancel",
-                        { name: acceptedQuest.name },
-                        { headers }
-                      )
-                      .then((response) => {
-                        if (response.status === 200) window.location.reload();
-                      });
-                  }}
-                >
-                  Cancel
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        ))}
-      </Table>
+      {acceptedQuests.length >= 1 && (
+        <div>
+          <h1>Quests Acepted</h1>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Npc Kill</th>
+                <th>Npc Kills</th>
+                <th>User Kills</th>
+                <th>Exp</th>
+                <th>Gold</th>
+                <th>Diamonds</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            {acceptedQuests &&
+              acceptedQuests?.length >= 1 &&
+              acceptedQuests?.map((acceptedQuest) => (
+                <tbody key={acceptedQuest.quest.name}>
+                  <tr>
+                    <td>{acceptedQuestNumber++}</td>
+                    <td>{acceptedQuest.quest.name}</td>
+                    <td>{acceptedQuest.quest.description}</td>
+                    <td>{acceptedQuest.quest.nameNpcKill}</td>
+                    <td>
+                      {acceptedQuest.npcKillAmount} /{" "}
+                      {acceptedQuest.quest.npcKillAmountNeeded}
+                    </td>
+                    <td>
+                      {acceptedQuest.userKillAmount} /{" "}
+                      {acceptedQuest.quest.userKillAmountNeeded}
+                    </td>
+                    <td>{acceptedQuest.quest.giveExp}</td>
+                    <td>{acceptedQuest.quest.giveGold}</td>
+                    <td>{acceptedQuest.quest.giveDiamonds}</td>
+                    {acceptedQuest.npcKillAmount >=
+                    acceptedQuest.quest.npcKillAmountNeeded && 
+                    acceptedQuest.userKillAmount >= 
+                    acceptedQuest.quest.userKillAmountNeeded ? (
+                      <td>
+                        <button
+                          type="button"
+                          className="btn btn-success"
+                          onClick={() => {
+                            axios
+                              .post(
+                                env.API_URL + "/api/v1/quests/complete",
+                                { name: acceptedQuest.quest.name },
+                                { headers }
+                              )
+                              .then((response) => {
+                                if (response.status === 200)
+                                  window.location.reload();
+                              })
+                              .catch((err) => {
+                                if (err.request.status !== 0) {
+                                  notify(err.response.data.message);
+                                  setTimeout(() => {
+                                    window.location.reload();
+                                  }, [2500]);
+                                }
+                              });
+                          }}
+                        >
+                          Complete
+                        </button>
+                      </td>
+                    ) : (
+                      <td>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          onClick={() => {
+                            axios
+                              .post(
+                                env.API_URL + "/api/v1/quests/cancel",
+                                { name: acceptedQuest.quest.name },
+                                { headers }
+                              )
+                              .then((response) => {
+                                if (response.status === 200)
+                                  window.location.reload();
+                              })
+                              .catch((err) => {
+                                if (err.request.status !== 0) {
+                                  notify(err.response.data.message);
+                                  setTimeout(() => {
+                                    window.location.reload();
+                                  }, [2500]);
+                                }
+                              });
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </td>
+                    )}
+                  </tr>
+                </tbody>
+              ))}
+          </Table>
+        </div>
+      )}
 
       <h1>Quests</h1>
       <Table striped bordered hover>
@@ -155,6 +226,14 @@ const Quests = () => {
                       )
                       .then((response) => {
                         if (response.status === 200) window.location.reload();
+                      })
+                      .catch((err) => {
+                        if (err.request.status !== 0) {
+                          notify(err.response.data.message);
+                          setTimeout(() => {
+                            window.location.reload();
+                          }, [2500]);
+                        }
                       });
                   }}
                 >
@@ -165,6 +244,18 @@ const Quests = () => {
           </tbody>
         ))}
       </Table>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

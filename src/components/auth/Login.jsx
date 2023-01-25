@@ -29,7 +29,6 @@ const Login = () => {
         .post(env.API_URL + "/api/v1/auth/login", dataLogin)
         .then((response) => {
           if (response.status === 200) {
-            console.log(dataLogin)
             cookies.set("token", response.data.token);
             cookies.set("username", dataLogin.username);
             navigate("/profile", { replace: true });

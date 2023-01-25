@@ -88,22 +88,29 @@ const Ranking = () => {
               <th>Class</th>
               <th>Level</th>
               <th>Title</th>
-              <th>Title Points</th>
+              <th>Title Pts</th>
               <th>Strength</th>
               <th>Dexterity</th>
               <th>Vitality</th>
               <th>Intelligence</th>
               <th>Luck</th>
-              <th>Critical Chance</th>
-              <th>Defense</th>
-              <th>Evasion</th>
               <th>PvP Win</th>
               <th>PvP Loss</th>
             </tr>
           </thead>
           {ranking?.map((users) => (
             <tbody key={users.username}>
-              <tr>
+              <tr
+                style={
+                  usersCounter === 1
+                    ? { backgroundColor: "#FFC300", fontSize: "22px" }
+                    : usersCounter === 2
+                    ? { backgroundColor: "#CDFD75", fontSize: "20px" }
+                    : usersCounter === 3
+                    ? { backgroundColor: "#DAF7A6", fontSize: "18px" }
+                    : { backgroundColor: "#DEDEDE" }
+                }
+              >
                 <td>{usersCounter++}</td>
                 <td>{users.username}</td>
                 {users.aclass && <td>{users.aclass.name}</td>}
@@ -115,9 +122,6 @@ const Ranking = () => {
                 <td>{users.vitality}</td>
                 <td>{users.intelligence}</td>
                 <td>{users.luck}</td>
-                <td>{users.criticalChance}%</td>
-                <td>{users.defense}</td>
-                <td>{users.evasion}%</td>
                 <td>{users.pvpWins}</td>
                 <td>{users.pvpLosses}</td>
               </tr>
@@ -135,6 +139,7 @@ const Ranking = () => {
                 <th>Name</th>
                 <th>TAG</th>
                 <th>Description</th>
+                <th>Title Points</th>
                 <th>Leader</th>
                 <th>Sub Leader</th>
                 <th>Members</th>
@@ -143,14 +148,30 @@ const Ranking = () => {
             </thead>
             {guilds?.map((guild) => (
               <tbody key={guild.name}>
-                <tr>
+                <tr
+                  style={
+                    guildsCounter === 1
+                      ? { backgroundColor: "#FFC300", fontSize: "22px" }
+                      : guildsCounter === 2
+                      ? { backgroundColor: "#CDFD75", fontSize: "20px" }
+                      : guildsCounter === 3
+                      && ({ backgroundColor: "#DAF7A6", fontSize: "18px" })
+                  }
+                >
                   <td>{guildsCounter++}</td>
                   <td>{guild.name}</td>
                   <td>{guild.tag}</td>
                   <td>{guild.description}</td>
+                  <td>{guild.titlePoints}</td>
                   <td>{guild.leader}</td>
-                  <td>{guild.subLeader}</td>
-                  <td>{guild.memberAmount}</td>
+                  {guild.subLeader !== "" ? (
+                    <td>{guild.subLeader}</td>
+                  ) : (
+                    <td>---</td>
+                  )}
+                  <td>
+                    {guild.memberAmount} / {guild.maxMembers}
+                  </td>
                   <td>
                     <button
                       type="button"
