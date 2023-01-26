@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { Table } from "react-bootstrap";
@@ -14,53 +14,33 @@ const Quests = () => {
     Authorization: "Bearer " + cookies.get("token"),
   };
 
-  let questNumber = 1;
+  let nonAcceptedQuestsNumber = 1;
   let acceptedQuestNumber = 1;
 
-  const [quests, setQuests] = React.useState([]);
-  const [acceptedQuests, setAcceptedQuests] = React.useState([]);
-
-  async function handleQuests() {
-    await axios
-      .get(env.API_URL + "/api/v1/quests", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          setQuests(response.data);
-          console.log(response.data);
-        }
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
-  }
-
-  async function handleQuestAccepted() {
-    await axios
-      .get(env.API_URL + "/api/v1/quests/accepted", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          setAcceptedQuests(response.data);
-          //console.log(response.data);
-        }
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
-  }
+  const [nonAcceptedQuests, setNonAcceptedQuests] = useState([]);
+  const [acceptedQuests, setAcceptedQuests] = useState([]);
 
   useEffect(() => {
-    handleQuests();
-    handleQuestAccepted();
+    axios
+      .get(env.API_URL + "/api/v1/quests", { headers })
+      .then((response) => {
+        if (response.status === 200) {
+          setAcceptedQuests(
+            response.data.filter((quest) => quest.npcKillAmount !== undefined)
+          );
+          setNonAcceptedQuests(
+            response.data.filter((quest) => quest.npcKillAmount === undefined)
+          );
+        }
+      })
+      .catch((err) => {
+        if (err.request.status !== 0) {
+          notify(err.response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, [2500]);
+        }
+      });
   }, []);
 
   const notify = (alert) => {
@@ -98,8 +78,8 @@ const Quests = () => {
 
             {acceptedQuests &&
               acceptedQuests?.length >= 1 &&
-              acceptedQuests?.map((acceptedQuest) => (
-                <tbody key={acceptedQuest.quest.name}>
+              acceptedQuests?.map((acceptedQuest, index) => (
+                <tbody key={index}>
                   <tr>
                     <td>{acceptedQuestNumber++}</td>
                     <td>{acceptedQuest.quest.name}</td>
@@ -117,9 +97,9 @@ const Quests = () => {
                     <td>{acceptedQuest.quest.giveGold}</td>
                     <td>{acceptedQuest.quest.giveDiamonds}</td>
                     {acceptedQuest.npcKillAmount >=
-                    acceptedQuest.quest.npcKillAmountNeeded && 
-                    acceptedQuest.userKillAmount >= 
-                    acceptedQuest.quest.userKillAmountNeeded ? (
+                      acceptedQuest.quest.npcKillAmountNeeded &&
+                    acceptedQuest.userKillAmount >=
+                      acceptedQuest.quest.userKillAmountNeeded ? (
                       <td>
                         <button
                           type="button"
@@ -184,66 +164,70 @@ const Quests = () => {
           </Table>
         </div>
       )}
-
-      <h1>Quests</h1>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Npc Kill</th>
-            <th>Amount NPC</th>
-            <th>Amount USER</th>
-            <th>Exp</th>
-            <th>Gold</th>
-            <th>Diamonds</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        {quests?.map((quest) => (
-          <tbody key={quest.name}>
-            <tr>
-              <td>{questNumber++}</td>
-              <td>{quest.name}</td>
-              <td>{quest.description}</td>
-              <td>{quest.nameNpcKill}</td>
-              <td>{quest.npcKillAmountNeeded}</td>
-              <td>{quest.userKillAmountNeeded}</td>
-              <td>{quest.giveExp}</td>
-              <td>{quest.giveGold}</td>
-              <td>{quest.giveDiamonds}</td>
-              <td>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => {
-                    axios
-                      .post(
-                        env.API_URL + "/api/v1/quests/accept",
-                        { name: quest.name },
-                        { headers }
-                      )
-                      .then((response) => {
-                        if (response.status === 200) window.location.reload();
-                      })
-                      .catch((err) => {
-                        if (err.request.status !== 0) {
-                          notify(err.response.data.message);
-                          setTimeout(() => {
-                            window.location.reload();
-                          }, [2500]);
-                        }
-                      });
-                  }}
-                >
-                  Accept
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        ))}
-      </Table>
+      {nonAcceptedQuests.length >= 1 && (
+        <div>
+          <h1>Quests</h1>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Npc Kill</th>
+                <th>Amount NPC</th>
+                <th>Amount USER</th>
+                <th>Exp</th>
+                <th>Gold</th>
+                <th>Diamonds</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            {nonAcceptedQuests?.map((nonAcceptedQuest, index) => (
+              <tbody key={index}>
+                <tr>
+                  <td>{nonAcceptedQuestsNumber++}</td>
+                  <td>{nonAcceptedQuest.quest.name}</td>
+                  <td>{nonAcceptedQuest.quest.description}</td>
+                  <td>{nonAcceptedQuest.quest.nameNpcKill}</td>
+                  <td>{nonAcceptedQuest.quest.npcKillAmountNeeded}</td>
+                  <td>{nonAcceptedQuest.quest.userKillAmountNeeded}</td>
+                  <td>{nonAcceptedQuest.quest.giveExp}</td>
+                  <td>{nonAcceptedQuest.quest.giveGold}</td>
+                  <td>{nonAcceptedQuest.quest.giveDiamonds}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => {
+                        axios
+                          .post(
+                            env.API_URL + "/api/v1/quests/accept",
+                            { name: nonAcceptedQuest.quest.name },
+                            { headers }
+                          )
+                          .then((response) => {
+                            if (response.status === 200)
+                              window.location.reload();
+                          })
+                          .catch((err) => {
+                            if (err.request.status !== 0) {
+                              notify(err.response.data.message);
+                              setTimeout(() => {
+                                window.location.reload();
+                              }, [2500]);
+                            }
+                          });
+                      }}
+                    >
+                      Accept
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            ))}
+          </Table>
+        </div>
+      )}
 
       <ToastContainer
         position="top-right"
