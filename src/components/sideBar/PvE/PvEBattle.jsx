@@ -38,7 +38,6 @@ const PvEBattle = () => {
             (letter) => letter.toUpperCase()
           );
           setProfile(response.data);
-          
         }
       });
   }
@@ -77,8 +76,9 @@ const PvEBattle = () => {
               <h6>Round: {rounds.round}</h6>
               <div>
                 <li>
-                  {profile.username} has attacked {npcName} for {rounds.attackerDmg}{" "}
-                  damage. ({npcName} has {rounds.NpcLife} life)
+                  {profile.username} has attacked {npcName} for{" "}
+                  {rounds.attackerDmg} damage. ({npcName} has {rounds.NpcLife}{" "}
+                  life)
                 </li>
                 <li>
                   {npcName} has attacked {profile.username} for {rounds.NpcDmg}{" "}
@@ -94,9 +94,17 @@ const PvEBattle = () => {
                 <li>Winner: {winnerBattle.win}</li>
                 <li>Loser: {winnerBattle.lose}</li>
                 {winnerBattle.userExperienceGain && (
-                  <li>Experience gained: {winnerBattle.userExperienceGain}</li>
+                  <li>
+                    Experience gained:{" "}
+                    {winnerBattle.userExperienceGain.toLocaleString()}
+                  </li>
                 )}
-                <li>Gold won: {winnerBattle.goldAmountWin}</li>
+                {winnerBattle.goldAmountWin && (
+                  <li>
+                    Gold won: {winnerBattle.goldAmountWin.toLocaleString()}
+                  </li>
+                )}
+
                 {winnerBattle.diamondsAmonutWin && (
                   <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>
                 )}
