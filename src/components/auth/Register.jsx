@@ -4,6 +4,8 @@ import "../styles/styles.css";
 import { useNavigate } from "react-router-dom";
 import env from "react-dotenv";
 
+import {capitalizeFirstLetter} from "../utilities";
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -186,7 +188,7 @@ const Register = () => {
                     cChar.luck,
                   ]}
                 >
-                  {cChar.name}
+                  {capitalizeFirstLetter(cChar.name)}
                 </option>
               ))}
             </select>
@@ -203,7 +205,7 @@ const Register = () => {
                 </div>
                 <div className="classSelected--stats">
                   <h2 className="classSelected--stats__head">
-                    {dataClassSelected}
+                    {capitalizeFirstLetter(dataClassSelected)}
                   </h2>
                   <label className="classSelected--stats__head">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad

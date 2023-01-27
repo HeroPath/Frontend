@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {capitalizeFirstLetter} from "../../utilities";
 
 const Zone = () => {
   const zoneMap = [
@@ -15,11 +16,11 @@ const Zone = () => {
 
   return (
     <div className="zone">
-      {zoneMap.map((zone) => (
-        <form key={zone.name} className="zoneForm">
-          <h4>{zone.name}</h4>
+      {zoneMap.map((zone, index) => (
+        <form key={index} className="zoneForm">
+          <h4>{capitalizeFirstLetter(zone.name)}</h4>
           <img
-            src={require("../../img/zone/" + zone.name + ".jpg")}
+            src={require("../../img/zone/" + zone.name + ".webp")}
             width="324px"
             height="206px"
             alt=""

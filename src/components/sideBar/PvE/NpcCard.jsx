@@ -39,10 +39,9 @@ const NpcCard = () => {
         </h4>
         <div>
           <img
-            src={require("../../img/npc/squirtle.jpg")}
+            src={require("../../img/npc/" + npcName + ".webp")}
             width="250px"
             height="315px"
-            alt=""
           />
         </div>
 

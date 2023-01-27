@@ -121,9 +121,10 @@ const UserStats = ({
         <label>
           Min/Max DMG: {minDmg}/{maxDmg}
         </label>
+        <label>Npc killed: {npcKills}</label>
       </div>
 
-      <label className="mt-3">Npc killed: {npcKills}</label>
+      
     </section>
   );
 };

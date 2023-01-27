@@ -1,9 +1,18 @@
 import React from "react";
 
+import "../styles/styles.css"
+
 const SideBar = () => {
   return (
     <div className="sidebar">
-      <div className="sidebar--logo">IMG</div>
+      <div className="sidebar--logo">
+        <img
+          src={require("../img/logo.webp")}
+          width="125px"
+          height="90px"
+          style={{padding: "5px"}}
+        />
+      </div>
 
       <a href="/profile" className="button--links links m-3">
         Home
@@ -20,16 +29,15 @@ const SideBar = () => {
       <a href="/quest" className="button--links links m-3">
         Quests
       </a>
-      <a href="#" className="button--links links m-3">
-        Dungeon (soon)
-      </a>
       <a href="/guild" className="button--links links m-3">
         Guild
       </a>
-      <a href="/ranking" className="button--links links m-3 mb-5">
+      <a href="/ranking" className="button--links links m-3">
         Ranking
       </a>
-
+      <a href="#" className="button--links links m-3 mb-5">
+        Dungeon (soon)
+      </a>
       <a href="/" className="button--links links btn btn-danger m-3">
         Log Out
       </a>

@@ -46,6 +46,7 @@ const PvEBattle = () => {
     handleData();
     setWinnerBattle(location.state.battleData.pop());
     setBattleData(location.state.battleData);
+    console.log(location.state.battleData);
   }, []);
 
   return (
@@ -75,12 +76,13 @@ const PvEBattle = () => {
               <h6>Round: {rounds.round}</h6>
               <div>
                 <li>
-                  {profile.username} has attacked {npcName} for {rounds.userDmg}{" "}
-                  damage. ({npcName} has {rounds.NpcLife} life)
+                  {profile.username} has attacked {npcName} for{" "}
+                  {rounds.attackerDmg} damage. ({npcName} has {rounds.NpcLife}{" "}
+                  life)
                 </li>
                 <li>
                   {npcName} has attacked {profile.username} for {rounds.NpcDmg}{" "}
-                  damage. ({profile.username} has {rounds.userLife} life)
+                  damage. ({profile.username} has {rounds.attackerLife} life)
                 </li>
               </div>
             </ul>
@@ -92,9 +94,17 @@ const PvEBattle = () => {
                 <li>Winner: {winnerBattle.win}</li>
                 <li>Loser: {winnerBattle.lose}</li>
                 {winnerBattle.userExperienceGain && (
-                  <li>Experience gained: {winnerBattle.userExperienceGain}</li>
+                  <li>
+                    Experience gained:{" "}
+                    {winnerBattle.userExperienceGain.toLocaleString()}
+                  </li>
                 )}
-                <li>Gold won: {winnerBattle.goldAmountWin}</li>
+                {winnerBattle.goldAmountWin && (
+                  <li>
+                    Gold won: {winnerBattle.goldAmountWin.toLocaleString()}
+                  </li>
+                )}
+
                 {winnerBattle.diamondsAmonutWin && (
                   <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>
                 )}
@@ -107,7 +117,11 @@ const PvEBattle = () => {
             </ul>
           )}
         </div>
-        <a href="/profile" className="button--links links m-2 pe-5 ps-5">
+        <a
+          href="/profile"
+          className="button--links links m-2 pe-5 ps-5"
+          style={{ backgroundColor: "lightBlue" }}
+        >
           Profile
         </a>
       </div>

@@ -9,11 +9,16 @@
 
 .button--links,
 .button--links:hover {
-  text-decoration: none;
+  background-image: url("../img/utilities/button.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: white;
+  font-weight: bold;
   padding: 5px 10px;
-  color: black;
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 /* ---------------- //UTILIDAD ----------------------*/
 
@@ -82,7 +87,7 @@
 }
 
 .login--img {
-  background-image: url("../img/backgroundLogin.jpg");
+  background-image: url("../img/backgroundLogin.webp");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -123,7 +128,9 @@
   display: flex;
   flex-direction: column;
   width: 250px;
-  background-color: rgb(187, 187, 187);
+  background-color: rgb(53, 53, 53);
+  border: 2px solid;
+  color: rgb(55, 255, 222);
   text-align: center;
 }
 
@@ -131,23 +138,29 @@
   height: 80px;
 }
 
+
 /* ---------------- //SIDEBAR ----------------------*/
 
 /* ---------------- PROFILE ----------------------*/
 
 .profile {
+  background-image: url("../img/bg-userStats.webp");
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100vh;
   text-align: center;
   align-items: center;
+  background-color: black;
 }
 .profileNavbar {
   display: grid;
   grid-template-columns: 4fr 2fr 2fr;
-  background-color: #000;
-  color: white;
+  background-color: rgb(53, 53, 53);
+  border-top: 2px solid;
+  border-right: 2px solid;
+  border-bottom: 2px solid;
+  color: rgb(55, 255, 222);
   height: 80px;
   width: 100%;
   align-items: center;
@@ -163,20 +176,25 @@
   height: 32px;
 }
 
-.titleProfile {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  margin: 20px;
-}
-
 /* ---------------- USERCARD ----------------------*/
 
 .userCard {
+  background-image: url("../img/userStatsBox.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  object-fit: fill;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  opacity: 0.85;
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
+  font-weight: bold;
   width: 1000px;
   height: 460px;
+  margin: 130px;
 }
 
 .userCard--card {
@@ -227,8 +245,8 @@
 /* ---------------- USERSTATS ----------------------*/
 
 .userstats {
+  border-radius: 0 15px 15px 0;
   align-self: center;
-  border: 2px solid;
   height: 100%;
 }
 
@@ -268,10 +286,11 @@
 /* ----------------- USERINVENTORY -----------------------*/
 
 .inventory {
+  
+  border-radius: 15px 0 0 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid;
   color: black;
 }
 
@@ -279,7 +298,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
-  background-image: url("../img/items/inventoryEquiped.jpg");
+  background-image: url("../img/items/inventoryEquiped.webp");
   width: 127px;
   height: 125px;
   padding: 3px;
@@ -289,7 +308,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  background-image: url("../img/items/inventoryBox.jpg");
+  background-image: url("../img/items/inventoryBox.webp");
   width: 244px;
   height: 164px;
   padding: 3px;
@@ -426,20 +445,35 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   width: 100vw;
-  column-gap: 20px;
-  row-gap: 20px;
-  margin: 10px;
   justify-items: center;
+  background-image: url("../img/zone/bg-forest.webp");
+  background-Size: "cover";
+  background-repeat: "no-repeat";
+  background-Position: "center";
+  height: "100vh",
 }
 
 .npcCards--form {
   display: flex;
   flex-direction: column;
-  text-align: center;
+  width: 255px;
   height: auto;
-  padding: 5px;
-  border: 2px solid;
-  align-self: center;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-image: url("../img/zone/bg-cardNpc.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+}
+.npcCards--form button {
+  background-image: url("../img/utilities/button.png");
+  background-size: contain;
+  color: white;
+  width: 100px;
+  margin: 5px;
 }
 
 /* ---------------- //NPC ----------------------*/
@@ -449,16 +483,36 @@
 .battle {
   width: 100vw;
   height: 100vh;
+  background-image: url("../img/zone/bg-forest.webp");
+  background-Size: cover;
+  background-Repeat: no-repeat;
+  background-Position: center;
+  opacity: 10000;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  align-items: center;
 }
 
 .battle--usercard {
+  background-image: url("../img/bg-card.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50px;
   align-self: center;
+  background-position: center center;
+  position: relative;
+  color: white;
 }
 .battle--npccard {
+  background-image: url("../img/bg-card.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 50px;
   align-self: center;
+  background-position: center center;
+  position: relative;
+  color: white;
 }
 
 .rounds--console {
@@ -467,29 +521,33 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: bold;
+  
 }
 
 .history-box {
   width: 700px;
   height: 190px;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.3);
   margin-top: 20px;
   padding: 10px;
   border-radius: 5px;
   border: 2px solid #646464;
   overflow-y: scroll;
+  
 }
 
 .round {
   display: grid;
   grid-template-columns: 2fr 10fr;
-  background-color: rgb(251, 223, 164);
+  background-color: rgb(255, 183, 28);
   border: 1px solid #000;
   align-items: center;
+  
 }
 
 .winner {
-  background-color: rgb(248, 203, 255);
+  background-color: rgb(242, 160, 255);
 }
 
 /* ---------------- //PVEBATTLE ----------------------*/
@@ -505,8 +563,11 @@
 
 /* ---------------- PVP ----------------------*/
 .pvpbattle {
-  width: 100vw;
-  height: 100vh;
+  padding-top: 250px;
+  padding-left: 425px;
+  padding-right: 425px;
+  font-size: 25px;
+  font-weight: bold;
 }
 /* ---------------- //PVP ----------------------*/
 
@@ -570,7 +631,7 @@
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(8, 1fr);
   margin-bottom: 10px;
-  background-image: url("../img/items/shop.jpg");
+  background-image: url("../img/items/shop.webp");
   width: 244px;
   height: 322px;
 }
@@ -593,14 +654,14 @@
 .ranking {
   width: 100vw;
   height: 100vh;
-  margin: 50px;
+  padding: 50px;
   text-align: center;
   font-size: 15px;
   font-weight: bold;
 }
 
 .ranking--tableUsers {
-  margin-bottom: 60px;
+  padding-bottom: 10px;
 }
 
 /* ---------------- //RANKING ----------------------*/
@@ -614,9 +675,9 @@
   font-size: 15px;
   font-weight: bold;
 
-  margin-top: 10px;
-  margin-left: 40px;
-  margin-right: 40px;
+  padding-top: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
   text-align: center;
 }
 
