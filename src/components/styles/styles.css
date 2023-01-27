@@ -144,7 +144,7 @@
 /* ---------------- PROFILE ----------------------*/
 
 .profile {
-  background-image: url("../img/test2.png");
+  background-image: url("../img/bg-userStats.webp");
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -179,7 +179,7 @@
 /* ---------------- USERCARD ----------------------*/
 
 .userCard {
-  background-image: url("../img/recuadro5.png");
+  background-image: url("../img/userStatsBox.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
