@@ -23,9 +23,9 @@ const Navbar = ({ gold, diamond, role }) => {
         {role && <label>Role: {role.roleName}</label>}
       </div>
       <div className="navBarDivs">
-        <label style={{ height: "32px" }}>SERVER STATUS</label>
+        <label>SERVER STATUS</label>
         <img
-          className="ms-2 mb-1"
+          className="ms-2"
           src={require(`../img/utilities/online.png`)}
           height="16px"
           width="16px"

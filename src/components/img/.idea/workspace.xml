@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bf0691c4-be7f-48e1-819b-37095c124544" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bg-inventory-shop.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bg-shop.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/asesino.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/aullador de la mina.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/búho de arena.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/cacto parlante.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/cazador de sombras.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/devorador de almas.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/devorador de luz.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/dragón del sol.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/escorpión gigante.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/espectro de la cueva.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/espectro de la mina.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/espectro del oasis.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/espíritu de la tempestad de arena.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/esqueleto de jinete.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/esqueleto de minero.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/fantasma del desierto.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/gárgola de roca.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/gárgola del viento.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/gólem de piedra.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/gólem de sal.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/huesos de dinosaurio.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/mummy bandido.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/murciélago de colmillos afilados.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/naga de cueva.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/oso cavernícola.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/rata gigante del túnel.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/sabueso del desierto.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/serpiente alada del desierto.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/serpiente de arena.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/npc/sirena de las cuevas.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/zone/bg-caves.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logo.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/araña gigante.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/araña gigante.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/bandido.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/bandido.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/escorpion.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/escorpion.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/esqueleto.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/esqueleto.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/gallo salvaje.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/gallo salvaje.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/goblin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/goblin.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/goblin.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/jefe orco.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/jefe orco.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/lobo.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/lobo.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/lord zombie.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/lord zombie.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/murcielago.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/murcielago.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/orco guerrero.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/orco guerrero.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/orco.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/orco.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/pequeño dragon rojo.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/pequeño dragon rojo.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/serpiente.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/serpiente.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/npc/zombie.webp" beforeDir="false" afterPath="$PROJECT_DIR$/npc/zombie.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/userStatsBox.webp" beforeDir="false" afterPath="$PROJECT_DIR$/userStatsBox.webp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sideBar/PvE/NpcCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../sideBar/PvE/NpcCard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sideBar/PvE/PlayerVsNPC.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../sideBar/PvE/PlayerVsNPC.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sideBar/PvE/Zone.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../sideBar/PvE/Zone.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sideBar/PvP/PlayerVsPlayer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../sideBar/PvP/PlayerVsPlayer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sideBar/Shop/Shop.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../sideBar/Shop/Shop.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sideBar/SideBar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../sideBar/SideBar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../userProfile/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../userProfile/Navbar.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2KvXWlz06RPu9rYw0mTUBXLPqGi" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Gianca/Desktop/aoweb-frontend/src/components/img"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bf0691c4-be7f-48e1-819b-37095c124544" name="Changes" comment="" />
+      <created>1674856063411</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674856063411</updated>
+      <workItem from="1674856064796" duration="9000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -61,8 +61,8 @@ const PlayerVsPlayer = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="pvpbattle">
+    <div className="pvpbattle">
+      <form onSubmit={handleSubmit} >
         <Card className="text-center">
           <Card.Header>Pvp User Vs User</Card.Header>
           <Card.Body>

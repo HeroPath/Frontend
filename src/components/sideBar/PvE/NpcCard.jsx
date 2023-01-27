@@ -21,6 +21,7 @@ const NpcCard = () => {
       .then((response) => {
         if (response.status === 200) {
           setNpcData(response.data);
+          console.log(response.data);
         }
       });
   }
@@ -34,9 +35,9 @@ const NpcCard = () => {
   return (
     <div className="pvebattle--npccard">
       <form className="pvebattle--npccard--form">
-        <h4>
+        <h3>
           {npcName.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}
-        </h4>
+        </h3>
         <div>
           <img
             src={require("../../img/npc/" + npcName + ".webp")}

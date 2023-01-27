@@ -106,17 +106,7 @@ const Shop = () => {
             id="shop--npc--card"
             onDragOver={dragOver}
           >
-            <div className="shop--item--type">
-              <button>Ship</button>
-              <button>Helmet</button>
-              <button>Wings</button>
-              <button>Weapon</button>
-              <button>Armor</button>
-              <button>Shield</button>
-              <button>Gloves</button>
-              <button>Pants</button>
-              <button>Boots</button>
-            </div>
+            
 
             <div
               className="shop--npc--card"

@@ -56,8 +56,8 @@ const PlayerVsNPC = () => {
           <div>
             <img
               src={require(`../../img/npc/${npc.name}.webp`)}
-              width="100px"
-              height="100px"
+              width="120px"
+              height="120px"
               style={{ borderRadius: "5px" }}
             />
           </div>
@@ -107,7 +107,7 @@ const PlayerVsNPC = () => {
             pauseOnHover
           />
           <h6>
-            Recommended level: {npc.level}-{npc.level + 3}
+            Rec. lvl: {npc.level}-{npc.level + 3}
           </h6>
         </form>
       ))}

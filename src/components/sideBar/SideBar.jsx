@@ -1,17 +1,12 @@
 import React from "react";
 
-import "../styles/styles.css"
+import "../styles/styles.css";
 
 const SideBar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar--logo">
-        <img
-          src={require("../img/logo.webp")}
-          width="125px"
-          height="90px"
-          style={{padding: "5px"}}
-        />
+        <img src={require("../img/logo.png")} width="75px" height="75px" />
       </div>
 
       <a href="/profile" className="button--links links m-3">
@@ -20,7 +15,7 @@ const SideBar = () => {
       <a href="/zone" className="button--links links m-3">
         Maps
       </a>
-      <a href="/playervsplayer" className="button--links links m-3" disabled>
+      <a href="/playervsplayer" className="button--links links m-3">
         Arena
       </a>
       <a href="/shop" className="button--links links m-3">
