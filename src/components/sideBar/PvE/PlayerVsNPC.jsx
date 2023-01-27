@@ -55,14 +55,13 @@ const PlayerVsNPC = () => {
           </h5>
           <div>
             <img
-              src={require("../../img/npc/squirtle.jpg")}
-              width="200px"
-              height="206px"
-              alt=""
+              src={require(`../../img/npc/${npc.name}.webp`)}
+              width="100px"
+              height="100px"
+              style={{ borderRadius: "5px" }}
             />
           </div>
           <button
-            className="btn btn-dark m-2 p-2"
             type="submit"
             onClick={async (e) => {
               e.preventDefault();

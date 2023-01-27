@@ -19,12 +19,7 @@ const Profile = () => {
       .get(env.API_URL + "/api/v1/users/profile", { headers })
       .then(async (response) => {
         if (response.status === 200) {
-          response.data.username = response.data.username.replace(
-            /(^\w{1})/g,
-            (letter) => letter.toUpperCase()
-          );
           setProfile(response.data);
-          console.log(response.data);
         }
       });
   }
@@ -41,7 +36,7 @@ const Profile = () => {
         diamond={profile.diamond}
         role={profile.role}
       />
-      <h1 className="titleProfile">Character stats</h1>
+      
       <ProfileCard profile={profile} />
     </div>
   );

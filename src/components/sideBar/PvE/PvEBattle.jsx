@@ -117,7 +117,11 @@ const PvEBattle = () => {
             </ul>
           )}
         </div>
-        <a href="/profile" className="button--links links m-2 pe-5 ps-5">
+        <a
+          href="/profile"
+          className="button--links links m-2 pe-5 ps-5"
+          style={{ backgroundColor: "lightBlue" }}
+        >
           Profile
         </a>
       </div>
