@@ -7,7 +7,7 @@ const Navbar = ({ gold, diamond, role }) => {
         <div>
           <img
             className="me-2"
-            src={require(`../img/utilities/gold.png`)}
+            src={require(`../img/utilities/gold.webp`)}
             alt=""
           />
           {gold && <label>{gold.toLocaleString()}</label>}
@@ -15,7 +15,7 @@ const Navbar = ({ gold, diamond, role }) => {
         <div>
           <img
             className="me-2"
-            src={require(`../img/utilities/diamond.png`)}
+            src={require(`../img/utilities/diamond.webp`)}
             alt=""
           />
           {diamond && <label>{diamond.toLocaleString()}</label>}
@@ -26,7 +26,7 @@ const Navbar = ({ gold, diamond, role }) => {
         <label>SERVER STATUS</label>
         <img
           className="ms-2"
-          src={require(`../img/utilities/online.png`)}
+          src={require(`../img/utilities/online.webp`)}
           height="16px"
           width="16px"
           alt=""

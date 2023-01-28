@@ -24,8 +24,14 @@ const PlayerVsNPC = () => {
         headers,
       })
       .then((response) => {
-        if (response.status === 200) {
-          setNpcData(response.data);
+        if (response.status === 200) setNpcData(response.data);
+      })
+      .catch((err) => {
+        if (err.request.status !== 0) {
+          notify(err.response.data.message);
+          setTimeout(() => {
+            navigate("/zone");
+          }, [2500]);
         }
       });
   }
@@ -37,7 +43,7 @@ const PlayerVsNPC = () => {
   const notify = (alert) => {
     toast.error(alert, {
       position: "top-right",
-      autoClose: 4000,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -105,22 +111,23 @@ const PlayerVsNPC = () => {
           >
             Fight
           </button>
-          <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
+
           <h6>
             Rec. lvl: {npc.level}-{npc.level + 3}
           </h6>
         </form>
       ))}
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

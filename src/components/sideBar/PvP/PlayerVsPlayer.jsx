@@ -34,8 +34,7 @@ const PlayerVsPlayer = () => {
       )
       .then((response) => {
         if (response.status === 200) {
-          //window.location.reload();
-          console.log(response.data);
+          window.location.reload();
         }
       })
       .catch((err) => {

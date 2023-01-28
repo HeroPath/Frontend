@@ -4,12 +4,12 @@ import { capitalizeFirstLetter } from "../../utilities";
 
 const Zone = () => {
   const zoneMap = [
-    { name: "forest", rLvlMin: "1", rLvlMax: "30" },
-    { name: "caves", rLvlMin: "30", rLvlMax: "50" },
-    { name: "desert", rLvlMin: "50", rLvlMax: "60" },
-    { name: "sea", rLvlMin: "60", rLvlMax: "70" },
-    { name: "mountain", rLvlMin: "70", rLvlMax: "85" },
-    { name: "hell", rLvlMin: "85", rLvlMax: "100" },
+    { name: "forest", rLvlMin: "1", rLvlMax: "45" },
+    { name: "caves", rLvlMin: "46", rLvlMax: "90" },
+    { name: "desert", rLvlMin: "91", rLvlMax: "135" },
+    { name: "sea", rLvlMin: "136", rLvlMax: "180" },
+    { name: "mountain", rLvlMin: "181", rLvlMax: "225" },
+    { name: "hell", rLvlMin: "226", rLvlMax: "300" },
   ];
 
   const navigate = useNavigate();

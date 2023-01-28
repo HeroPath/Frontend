@@ -57,9 +57,7 @@ const UserStats = ({
       .catch((err) => {
         if (err.request.status !== 0) {
           notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
+          setTimeout(() => {}, [2500]);
         }
       });
   }
@@ -86,6 +84,10 @@ const UserStats = ({
       setShowAddStat(!showAddStat);
     }
   }
+
+  const handleKeyPress = (event) => {
+    if (event.keyCode === 13) handleClickAddSkill();
+  };
 
   useEffect(() => {
     showAddPoints();
@@ -126,6 +128,7 @@ const UserStats = ({
                     type="text"
                     className="form-control"
                     onChange={handleChangeAmount}
+                    onKeyDown={handleKeyPress}
                     id={zone.skill}
                     min="1"
                     max={freeSkillPoints}
