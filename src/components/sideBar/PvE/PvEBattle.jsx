@@ -77,12 +77,12 @@ const PvEBattle = () => {
               <div>
                 <li>
                   {profile.username} has attacked {npcName} for{" "}
-                  {rounds.attackerDmg} damage. ({npcName} has {rounds.NpcLife}{" "}
+                  {rounds.attackerDmg.toLocaleString()} damage. ({npcName} has {rounds.NpcLife.toLocaleString()}{" "}
                   life)
                 </li>
                 <li>
-                  {npcName} has attacked {profile.username} for {rounds.NpcDmg}{" "}
-                  damage. ({profile.username} has {rounds.attackerLife} life)
+                  {npcName} has attacked {profile.username} for {rounds.NpcDmg.toLocaleString()}{" "}
+                  damage. ({profile.username} has {rounds.attackerLife.toLocaleString()} life)
                 </li>
               </div>
             </ul>
