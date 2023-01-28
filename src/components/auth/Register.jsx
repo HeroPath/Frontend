@@ -197,7 +197,7 @@ const Register = () => {
               <div className="classSelected">
                 <div className="classSelected--img">
                   <img
-                    src={require("../img/class/" + dataClassSelected + ".jpg")}
+                    src={require("../img/class/" + dataClassSelected + ".webp")}
                     width="250px"
                     height="315px"
                     alt=""

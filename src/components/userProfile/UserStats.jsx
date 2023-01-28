@@ -5,6 +5,10 @@ import Cookies from "universal-cookie";
 import "../styles/styles.css";
 import env from "react-dotenv";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { fontSize, fontWeight } from "@mui/system";
+
 const UserStats = ({
   freeSkillPoints,
   strength,
@@ -47,6 +51,15 @@ const UserStats = ({
       )
       .then(async (response) => {
         if (response.status === 200) {
+          window.location.reload();
+        }
+      })
+      .catch((err) => {
+        if (err.request.status !== 0) {
+          notify(err.response.data.message);
+          setTimeout(() => {
+            window.location.reload();
+          }, [2500]);
         }
       });
   }
@@ -78,54 +91,88 @@ const UserStats = ({
     showAddPoints();
   }, []);
 
+  const notify = (alert) => {
+    toast.error(alert, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
-    <section className="userstats">
-      <h3>Stats</h3>
-      <label className="m-2">Skill points: {freeSkillPoints}</label>
+    <div>
+      <section className="userstats">
+        <h3>Stats</h3>
+        <label className="m-2">Skill points: {freeSkillPoints}</label>
 
-      <form className="userstats--form">
-        <div className="userstats--stats">
-          <label>Strength (STR): {strength}</label>
-          <label>Dexterity (DEX): {dexterity}</label>
-          <label>Vitality (VIT): {vitality}</label>
-          <label>Intelligence (INT): {intelligence}</label>
-          <label>Luck: {luck}</label>
-        </div>
-
-        {!showAddStat && (
-          <div className="userstats--add">
-            {data.map((zone) => (
-              <div key={zone.id} className="userstats--add--form">
-                <input
-                  type="number"
-                  className="form-control"
-                  onChange={handleChangeAmount}
-                  id={zone.skill}
-                  min="1"
-                  max={freeSkillPoints}
-                  pattern="^[0-9]+"
-                />
-                <button className="btn--stats" onClick={handleClickAddSkill}>
-                  ✙
-                </button>
-              </div>
-            ))}
+        <form className="userstats--form">
+          <div className="userstats--stats">
+            <label>Strength: {strength}</label>
+            <label>Dexterity: {dexterity}</label>
+            <label>Vitality: {vitality}</label>
+            <label>Intelligence: {intelligence}</label>
+            <label>Luck: {luck}</label>
           </div>
-        )}
-      </form>
 
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <label>Defense: {defense}</label>
-        <label>Evasion: {evasion}</label>
-        <label>Critical Chance: {Math.round(criticalChance * 10) / 10}%</label>
-        <label>
-          Min/Max DMG: {minDmg}/{maxDmg}
-        </label>
-        <label>Npc killed: {npcKills}</label>
-      </div>
+          {!showAddStat && (
+            <div className="userstats--add">
+              {data.map((zone) => (
+                <div key={zone.id} className="userstats--add--form">
+                  <input
+                    type="text"
+                    className="form-control"
+                    onChange={handleChangeAmount}
+                    id={zone.skill}
+                    min="1"
+                    max={freeSkillPoints}
+                    pattern="^[0-9]+"
+                    style={{
+                      backgroundColor: "rgba(253, 168, 46, 0.15)",
+                      textAlign: "center",
+                      boxShadow: "none",
+                      fontWeight: "bold",
+                      fontSize: "18px",
+                    }}
+                  />
+                  <img
+                    onClick={handleClickAddSkill}
+                    src={require("../img/utilities/addStats.webp")}
+                    style={{ cursor: "pointer" }}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </form>
 
-      
-    </section>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label>Defense: {defense}</label>
+          <label>Evasion: {evasion}</label>
+          <label>
+            Critical Chance: {Math.round(criticalChance * 10) / 10}%
+          </label>
+          <label>
+            Min/Max DMG: {minDmg}/{maxDmg}
+          </label>
+          <label>Npc killed: {npcKills}</label>
+        </div>
+      </section>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </div>
   );
 };
 

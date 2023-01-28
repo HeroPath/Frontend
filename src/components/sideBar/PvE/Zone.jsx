@@ -70,7 +70,7 @@ const Zone = () => {
               Travel
             </a>
           </form>
-          <p style={{ color: "black", fontWeight: "bold", fontSize: "20px" }}>
+          <p style={{ fontWeight: "bold", fontSize: "20px" }}>
             Recommended lvl: {zone.rLvlMin} / {zone.rLvlMax}
           </p>
         </div>

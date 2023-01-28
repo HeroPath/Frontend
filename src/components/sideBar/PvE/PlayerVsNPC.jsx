@@ -47,7 +47,17 @@ const PlayerVsNPC = () => {
   };
 
   return (
-    <div className="npcCards">
+    <div
+      className="npcCards"
+      style={{
+        backgroundImage: `url(${require("../../img/zone/bg-" +
+          location.state.name +
+          ".webp")})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }}
+    >
       {npcData?.map((npc) => (
         <form key={npc.id} className="npcCards--form">
           <h5>

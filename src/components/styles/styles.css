@@ -255,6 +255,7 @@
 }
 
 .userstats--form {
+  
   display: grid;
   grid-template-columns: 3fr 2fr;
   align-items: center;
@@ -263,6 +264,7 @@
 .userstats--stats {
   height: 100%;
   min-height: 200px;
+  font-size: 18px;
 }
 .userstats--stats label {
   padding: 12px;
@@ -301,9 +303,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
-  background-image: url("../img/items/inventoryEquiped.webp");
-  width: 127px;
-  height: 125px;
+  background-image: url("../img/items/inventoryequiped.webp");
+  width: 124px;
+  height: 124px;
   padding: 3px;
   margin: 30px;
 }
@@ -311,9 +313,9 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  background-image: url("../img/items/inventoryBox.webp");
-  width: 244px;
-  height: 164px;
+  background-image: url("../img/items/inventorybox.webp");
+  width: 247px;
+  height: 165px;
   padding: 3px;
   margin: 10px;
 }
@@ -423,10 +425,20 @@
 /* ---------------- ZONE ----------------------*/
 
 .zone {
+  background-image: url("../img/zone/bg-zone.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  object-fit: fill;
+
+
+  color: rgb(255, 255, 255);
+  
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100vw;
-  margin: 10px;
+
   text-align: center;
   align-items: center;
 }
@@ -437,7 +449,6 @@
   text-align: center;
   align-items: center;
   margin: 10px;
-  border: 2px solid;
 }
 
 /* ---------------- //ZONE ----------------------*/
@@ -449,10 +460,6 @@
   grid-template-columns: repeat(5, 1fr);
   width: 100vw;
   justify-items: center;
-  background-image: url("../img/zone/bg-forest.webp");
-  background-size: "cover";
-  background-repeat: "no-repeat";
-  background-position: "center";
   height: "100vh";
 }
 
@@ -603,13 +610,11 @@
   grid-template-columns: 1fr 1fr;
   width: 80%;
   height: 100vh;
-  align-items: center;
-  justify-items: center;
+  
 }
 
 .shop--inventory {
   background-image: url("../img/bg-inventory-shop.webp");
-  
   background-repeat: no-repeat;
   align-self: center;
   background-position: center;
@@ -625,21 +630,18 @@
   align-self: center;
   background-position: center;
   position: relative;
-  text-align: center;
-  
-  width: 100%;
   height: 100%;
-  padding-top: 150px;
-  padding-left: 80px;  
+  width: 100%;
+  padding-top: 150px;   
 }
 
 .shop--npc--button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  width: 244px;
+  width: 248px;
   height: 32px;
-  margin: 0px 10px;
 }
+
 .shop--npc--button button {
   color: white;
   background-image: url("../img/items/buttons.jpg");
@@ -649,9 +651,6 @@
   font-size: 15px;
 }
 
-.shop--npc--button button:first-child {
-  margin-left: 70px;
-}
 
 .shop--npc--button button:focus {
   text-decoration: none;
@@ -660,7 +659,7 @@
 .shop--npc--section {
   display: grid;
   grid-template-columns: 1fr 9fr;
-  padding-left: 80px;
+  
 }
 
 .shop--npc--card {
@@ -669,8 +668,8 @@
   grid-template-rows: repeat(8, 1fr);
   margin-bottom: 10px;
   background-image: url("../img/items/shop.webp");
-  width: 244px;
-  height: 322px;
+  width: 247px;
+  height: 329px;
   text-align: center;
 }
 

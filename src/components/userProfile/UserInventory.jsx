@@ -187,9 +187,10 @@ const UserInventory = ({
               id={item.id}
               style={{
                 display: "flex",
-                maxWidth: "35px",
-                maxHeight: "35px",
-                marginLeft: "1px",
+                maxWidth: "36px",
+                maxHeight: "36px",
+                marginLeft: "3px",
+                marginTop: "2px",
               }}
               className={
                 item.classRequired !== aclass.name &&
