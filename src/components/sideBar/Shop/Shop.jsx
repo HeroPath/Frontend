@@ -38,6 +38,16 @@ const Shop = () => {
       });
   }
 
+  async function handleISelltems(name) {
+    await axios
+    .post(env.API_URL + "/api/v1/items/sell", {name: name}, { headers })
+      .then(async (response) => {
+        if (response.status === 200) {
+          window.location.reload();
+        }
+      });
+  }
+
   useEffect(() => {
     handleData();
     handleItems("none");
@@ -107,11 +117,17 @@ const Shop = () => {
               id="shop--npc--card"
               onDragOver={dragOver}
             >
-              <div className="shop--npc--card">
-                {itemsShop.map((item) => (
+              <div
+                className="shop--npc--card"
+                id="shopNpcSellBuy"
+                onDrop={(event) => {
+                  handleISelltems(event.dataTransfer.getData("nameItemSell"));
+                }}
+              >
+                {itemsShop.map((item, index) => (
                   <div
                     draggable="true"
-                    key={item.id}
+                    key={index}
                     id={item.id}
                     style={{
                       display: "flex",

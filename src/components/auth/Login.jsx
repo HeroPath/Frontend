@@ -72,52 +72,52 @@ const Login = () => {
 
   return (
     <div className="login" style={cardStyle}>
-      <div className="login--img" />
-      <section className="login--section">
-        <h1>Sign In</h1>
-        <form className="login--form" onSubmit={handleSubmit}>
-          <label className="form-label">Username</label>
-          <input
-            type="text"
-            id="username"
-            className="form-control"
-            name="username"
-            value={dataLogin.username}
-            onChange={handleChange}
+      <div className="login--banner">
+        <section className="login--section">
+          <form className="login--form" onSubmit={handleSubmit}>
+            <h2>Username</h2>
+            <input
+              type="text"
+              id="username"
+              className="form-control"
+              name="username"
+              value={dataLogin.username}
+              onChange={handleChange}
+            />
+            <h2>Password</h2>
+            <input
+              type="password"
+              id="password"
+              className="form-control"
+              name="password"
+              value={dataLogin.password}
+              onChange={handleChange}
+            />
+            <button className="button--links mt-2 ps-5 pe-5" type="submit">
+              Sign in
+            </button>
+          </form>
+          <div className="login--footer mt-4">
+            <a href="/register" className="button--links links p-2 ps-5 pe-5">
+              Register
+            </a>
+            <a href="" className="button--links links p-2 ps-5 pe-5">
+              Forgot password?
+            </a>
+          </div>
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
           />
-          <label className="form-label">Password</label>
-          <input
-            type="password"
-            id="password"
-            className="form-control"
-            name="password"
-            value={dataLogin.password}
-            onChange={handleChange}
-          />
-          <button className="button--links mt-2 ps-5 pe-5" type="submit">
-            Sign in
-          </button>
-        </form>
-        <div className="login--footer mt-4">
-          <a href="/register" className="button--links">
-            REGISTER
-          </a>
-          <a href="" className="button--links">
-            FORGOT PASSWORD
-          </a>
-        </div>
-        <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-      </section>
+        </section>
+      </div>
     </div>
   );
 };

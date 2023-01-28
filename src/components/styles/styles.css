@@ -1,5 +1,14 @@
+body {
+  font-family: "Kingthings Calligraphica Light", sans-serif;
+  font-family: "Kingthings Calligraphica Italic", sans-serif;
+  font-family: "Kingthings Calligraphica", sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
 /* ---------------- UTILIDAD ----------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+@import url("https://fonts.cdnfonts.com/css/kingthings-calligraphica");
 
 .links,
 .links:hover {
@@ -9,12 +18,11 @@
 
 .button--links,
 .button--links:hover {
-  background-image: url("../img/utilities/button.webp");
+  background-image: url("../img/utilities/fondoname.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: 100% 100%;
   color: white;
-  font-weight: bold;
   padding: 5px 10px;
   border: 1px solid #000;
   border-radius: 10px;
@@ -78,34 +86,62 @@
 /* ---------------- LOGIN ----------------------*/
 
 .login {
-  display: grid;
-  grid-template-columns: 4fr 2fr;
-  height: 100vh;
-  width: 100vw;
-  text-align: center;
-}
-
-.login--img {
+  display: flex;
   background-image: url("../img/backgroundLogin.webp");
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login h2 {
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.login--banner {
+  background-image: url("../img/test.webp");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 65%;
+  width: 40%;
+  margin-left: 5%;
 }
 
 .login--section {
   display: flex;
   flex-direction: column;
-  background-color: #f9ebd9;
-  justify-content: center;
+  text-align: center;
+  margin-top: 375px;
 }
 
 .login--form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 25px;
+}
+
+.login--form button {
+  background-color: unset;
+}
+
+.login--form button,
+.login--footer a {
+  letter-spacing: 2px;
+  font-size: 25px;
+  border: none;
+}
+
+.login--form button:hover,
+.login--footer a:hover {
+  border: none;
+  filter: brightness(1.7);
 }
 
 .login--form input {
-  width: 60%;
+  letter-spacing: 2px;
+  width: 50%;
 }
 
 .login--footer {
@@ -123,9 +159,9 @@
 /* ---------------- SIDEBAR ----------------------*/
 
 .sidebar {
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100vh;
   width: 230px;
   background-color: rgb(53, 53, 53);
   border: 2px solid;
@@ -166,7 +202,6 @@
   border-bottom: 2px solid;
   color: rgb(55, 255, 222);
   width: 100%;
-  
 }
 
 .profileNavbar--labels {
@@ -189,12 +224,11 @@
 
 .userCard {
   background-image: url("../img/userStatsBox.webp");
-  background-repeat: no-repeat;
+  background-size: 100% 100%;
   background-position: center;
-  background-size: contain;
+  background-repeat: no-repeat;
   object-fit: fill;
   opacity: 0.9;
-  background-size: 100% 100%;
   padding-top: 35px;
   padding-left: 120px;
   padding-right: 120px;
@@ -206,6 +240,19 @@
   width: 1200px;
   height: 520px;
   margin: 90px;
+}
+
+.userCard--card--bgName {
+  display: flex;
+  justify-content: center;
+  background-image: url("../img/fondoname.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: fill;
+  opacity: 0.9;
+  background-size: 100% 100%;
+  width: 250px;
+  color: white;
 }
 
 /* ---------------- //USERCARD ----------------------*/
@@ -255,36 +302,46 @@
 }
 
 .userstats--form {
-  
   display: grid;
   grid-template-columns: 3fr 2fr;
   align-items: center;
   width: 100%;
 }
-.userstats--stats {
-  height: 100%;
+.userstats--stats,
+.userstats--add {
+  display: flex;
+  flex-direction: column;
   min-height: 200px;
   font-size: 18px;
 }
 .userstats--stats label {
-  padding: 12px;
+  height: 30px;
 }
+
 .userstats--add--form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100%;
   align-items: center;
-  justify-items: center;
-}
-
-.btn--stats {
-  padding: 5px 10px;
-  border: 1px solid #000;
-  border-radius: 5px;
+  justify-content: center;
+  column-gap: 15px;
 }
 
 .userstats--add--form input {
+  height: 20px;
+
   margin: 5px;
+}
+
+.userstats--add--form img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.userstats--info {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------------- //USERSTATS ----------------------*/
@@ -343,7 +400,7 @@
   color: white;
   margin-left: -4px;
   margin-top: 1px;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .itemNoClass {
@@ -354,6 +411,16 @@
 .itemNoLevel {
   margin-top: 1px;
   background-color: rgba(137, 128, 1, 0.5);
+}
+
+.form-control,
+.form-control:focus {
+  background-color: rgba(253, 168, 46, 0.25);
+  text-align: center;
+  box-shadow: none;
+  font-size: 25px;
+  height: 35px;
+  border: 1px solid;
 }
 
 /* --------------------------- Tooltip --------------------------- */
@@ -431,9 +498,7 @@
   background-size: 100% 100%;
   object-fit: fill;
 
-
   color: rgb(255, 255, 255);
-  
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -605,12 +670,17 @@
   align-items: center;
 }
 
+.shop--npc--div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .shop--items {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 80%;
   height: 100vh;
-  
 }
 
 .shop--inventory {
@@ -632,7 +702,7 @@
   position: relative;
   height: 100%;
   width: 100%;
-  padding-top: 150px;   
+  padding-top: 150px;
 }
 
 .shop--npc--button {
@@ -647,19 +717,12 @@
   background-image: url("../img/items/buttons.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 61px;
+  width: 62px;
   font-size: 15px;
 }
 
-
 .shop--npc--button button:focus {
   text-decoration: none;
-}
-
-.shop--npc--section {
-  display: grid;
-  grid-template-columns: 1fr 9fr;
-  
 }
 
 .shop--npc--card {
@@ -668,7 +731,7 @@
   grid-template-rows: repeat(8, 1fr);
   margin-bottom: 10px;
   background-image: url("../img/items/shop.webp");
-  width: 247px;
+  width: 248px;
   height: 329px;
   text-align: center;
 }
@@ -731,186 +794,3 @@
 }
 
 /* ---------------- //GUILD ----------------------*/
-
-@media (max-width: 700px) {
-  .login {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .login--section {
-    background-image: url("../img/backgroundloginresponsive.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    color: white;
-  }
-
-  .login--footer a {
-    background-color: #fff;
-    color: black;
-  }
-
-  .register--background {
-    background-image: url("../img/backgroundloginresponsive.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
-    overflow-y: scroll;
-  }
-
-  .register {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    width: 300px;
-    margin: 80px auto;
-    align-items: center;
-  }
-
-  .register--cards {
-    background-color: rgba(255, 255, 255, 0.848);
-    border-radius: 20px;
-    height: 100vh;
-    width: 300px;
-  }
-
-  .register--cards:first-child {
-    margin-left: 0px;
-  }
-  .register--cards:last-child {
-    margin-right: 0px;
-  }
-
-  .classSelected--stats {
-    font-size: 12px;
-    height: 150px;
-  }
-
-  .classSelected {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .classSelected--img img {
-    width: 120px;
-    height: 150px;
-  }
-
-  .sidebar {
-    width: 150px;
-    height: 100vh;
-    font-size: 10px;
-    margin: 0;
-  }
-
-  .profileNavbar {
-    display: flex;
-    width: 280px;
-    font-size: 10px;
-    justify-content: center;
-  }
-
-  .profileNavbar--labels {
-    align-items: center;
-  }
-
-  .navBarDivs {
-    height: 47px;
-    font-size: 7px;
-  }
-
-  .userCard {
-    display: flex;
-    flex-direction: column;
-    width: 275px;
-    height: 600px;
-    overflow-y: scroll;
-  }
-
-  [data-tooltip]:before {
-    margin-left: -40px;
-    font-size: 10px;
-  }
-
-  [data-tooltip]:after {
-    margin-left: -15px;
-  }
-
-  .zone,
-  .npcCards {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    overflow-y: scroll;
-  }
-  .zoneForm img {
-    width: 200px;
-    height: 124px;
-    margin: 0 10px;
-  }
-
-  .shop {
-    width: 100%;
-  }
-
-  .shop--items {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    width: 268px;
-  }
-
-  .shop--npc {
-    width: 268px;
-    border-top: none;
-  }
-
-  .shop--npc--button button:first-child {
-    margin-left: 0px;
-  }
-  .shop--npc--section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-  }
-  .shop--item--type {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    width: 244px;
-    margin: 0 10px;
-  }
-  .shop--npc--section button {
-    background-image: url("../img/items/buttons.jpg");
-    width: 81.33px;
-    height: 32px;
-    margin: 0;
-  }
-
-  .battle {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    overflow-y: scroll;
-  }
-
-  .history-box {
-    width: 250px;
-  }
-
-  .round {
-    width: 225px;
-    padding: 0;
-    column-gap: 15px;
-    font-size: 10px;
-  }
-
-  .round h6 {
-    text-align: center;
-    font-size: 10px;
-  }
-}

@@ -133,18 +133,10 @@ const UserStats = ({
                     min="1"
                     max={freeSkillPoints}
                     pattern="^[0-9]+"
-                    style={{
-                      backgroundColor: "rgba(253, 168, 46, 0.15)",
-                      textAlign: "center",
-                      boxShadow: "none",
-                      fontWeight: "bold",
-                      fontSize: "18px",
-                    }}
                   />
                   <img
                     onClick={handleClickAddSkill}
                     src={require("../img/utilities/addStats.webp")}
-                    style={{ cursor: "pointer" }}
                   />
                 </div>
               ))}
@@ -152,7 +144,7 @@ const UserStats = ({
           )}
         </form>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div className="userstats--info">
           <label>Defense: {defense}</label>
           <label>Evasion: {evasion}</label>
           <label>

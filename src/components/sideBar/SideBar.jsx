@@ -33,7 +33,7 @@ const SideBar = () => {
       <a href="#" className="button--links links m-3 mb-5">
         Dungeon (soon)
       </a>
-      <a href="/" className="button--links links btn btn-danger m-3">
+      <a href="/" className="button--links links btn m-3">
         Log Out
       </a>
     </div>

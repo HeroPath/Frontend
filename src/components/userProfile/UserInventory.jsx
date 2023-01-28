@@ -20,8 +20,8 @@ const UserInventory = ({
     Authorization: "Bearer " + cookies.get("token"),
   };
   const [dataItem, setDataItem] = useState({});
+  const [equipDrag, setEquipDrag] = useState(false);
 
-  const invBox = document.getElementById("inventory--box");
   const itemSelect = document.getElementById(dataItem.id);
 
   const dragOver = (e) => {
@@ -54,6 +54,7 @@ const UserInventory = ({
         );
 
         divItemEquiped.ondragstart = () => {
+          setEquipDrag(true);
           setDataItem({
             name: eItem[i].name,
             id: eItem[i].id,
@@ -119,21 +120,14 @@ const UserInventory = ({
   }
 
   const dropEquiped = () => {
-    const divGeneric = document.getElementById(dataItem.type);
-    if (dataItem.type !== "potion") {
-      if (!divGeneric.hasChildNodes()) {
-        divGeneric.appendChild(itemSelect);
-      }
-    }
     handleItem(true);
   };
 
   const dropBox = () => {
-    if (itemSelect !== null) {
-      invBox.appendChild(itemSelect);
+    if (equipDrag === true) {
       handleItem(false);
-    } else if (itemBuy !== null) {
-      invBox.appendChild(itemBuy);
+    }
+    if (itemBuy !== null) {
       handleItemBuy();
     }
   };
@@ -180,10 +174,10 @@ const UserInventory = ({
         onDrop={dropBox}
       >
         {inventory &&
-          inventory.items.map((item) => (
+          inventory.items.map((item, index) => (
             <div
               draggable="true"
-              key={item.id}
+              key={index}
               id={item.id}
               style={{
                 display: "flex",
@@ -200,7 +194,8 @@ const UserInventory = ({
                   ? "itemNoLevel"
                   : ""
               }
-              onDragStart={() => {
+              onDragStart={(event) => {
+                event.dataTransfer.setData("nameItemSell", item.name);
                 setDataItem({
                   name: item.name,
                   id: item.id,
@@ -222,16 +217,6 @@ const UserInventory = ({
                 className="item"
                 alt=""
               />
-              <p
-                style={{
-                  color: "white",
-                  fontSize: "9px",
-                  marginTop: "1px",
-                  marginLeft: "-2px",
-                }}
-              >
-                {item.amount}
-              </p>
             </div>
           ))}
       </div>
