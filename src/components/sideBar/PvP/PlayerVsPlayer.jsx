@@ -1,67 +1,34 @@
 import React from "react";
-import Cookies from "universal-cookie";
-import axios from "axios";
-import env from "react-dotenv";
-
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const PlayerVsPlayer = () => {
-  const cookies = new Cookies();
-  const headers = {
-    Authorization: "Bearer " + cookies.get("token"),
-  };
+import { headers } from "../../../functions/utilities";
+import { get, post } from "../../../functions/requestsApi";
 
+const PlayerVsPlayer = () => {
   const [userAttack, setUserAttack] = React.useState("");
 
   function handleChange(e) {
     const userName = e.target.value;
-
     setUserAttack(userName);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    await axios
-      .post(
-        env.API_URL + "/api/v1/users/attack-user",
-        { name: userAttack },
-        { headers }
-      )
-      .then((response) => {
-        if (response.status === 200) {
-          window.location.reload();
-        }
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
+    const response = await post(
+      "/api/v1/users/attack-user",
+      { name: userAttack },
+      headers
+    );
+    if (response.status === 200) window.location.reload();
   }
-
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   return (
     <div className="pvpbattle">
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={handleSubmit}>
         <Card className="text-center">
           <Card.Header>Pvp User Vs User</Card.Header>
           <Card.Body>
@@ -72,7 +39,7 @@ const PlayerVsPlayer = () => {
               <input
                 type="text"
                 placeholder="Username"
-                style={{textAlign: "center"}}
+                style={{ textAlign: "center" }}
                 onChange={handleChange}
               />
             </Card.Text>

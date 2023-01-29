@@ -1,6 +1,5 @@
 import React from "react";
-import "../utilities.js";
-import { capitalizeFirstLetter } from "../utilities.js";
+import { capitalizeFirstLetter } from "../../functions/utilities";
 
 const UserCard = ({
   username,

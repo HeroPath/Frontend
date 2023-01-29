@@ -22,7 +22,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
-  color: white;
+  color: #f5f5dc;
   padding: 5px 10px;
   border: 1px solid #000;
   border-radius: 10px;
@@ -327,9 +327,9 @@ body {
   column-gap: 15px;
 }
 
-.userstats--add--form input {
+.userstats--add--form input,
+.userstats--add--form input:focus {
   height: 20px;
-
   margin: 5px;
 }
 

@@ -1,13 +1,12 @@
 import { hot } from "react-hot-loader/root";
 import React, { useEffect } from "react";
-import axios from "axios";
-import Cookies from "universal-cookie";
 import "../styles/styles.css";
-import env from "react-dotenv";
 
-import { ToastContainer, toast } from "react-toastify";
+import { post } from "../../functions/requestsApi";
+import { headers } from "../../functions/utilities";
+
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fontSize, fontWeight } from "@mui/system";
 
 const UserStats = ({
   freeSkillPoints,
@@ -23,12 +22,6 @@ const UserStats = ({
   evasion,
   criticalChance,
 }) => {
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
-
   const data = [
     { id: 1, skill: "strength" },
     { id: 2, skill: "dexterity" },
@@ -42,24 +35,14 @@ const UserStats = ({
     amount: 0,
   });
 
-  async function handleClickAddSkill() {
-    await axios
-      .post(
-        env.API_URL + "/api/v1/users/add-skill-points",
-        { skillPointName: clickAddSkill.stat, amount: clickAddSkill.amount },
-        { headers }
-      )
-      .then(async (response) => {
-        if (response.status === 200) {
-          window.location.reload();
-        }
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {}, [2500]);
-        }
-      });
+  async function handleClickAddSkill(e) {
+    e.preventDefault();
+    const response = await post(
+      "/api/v1/users/add-skill-points",
+      { skillPointName: clickAddSkill.stat, amount: clickAddSkill.amount },
+      headers
+    );
+    if (response.status === 200) window.location.reload();
   }
 
   function handleChangeAmount(e) {
@@ -92,18 +75,6 @@ const UserStats = ({
   useEffect(() => {
     showAddPoints();
   }, []);
-
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   return (
     <div>

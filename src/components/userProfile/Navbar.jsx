@@ -23,7 +23,7 @@ const Navbar = ({ gold, diamond, role }) => {
         {role && <label>Role: {role.roleName}</label>}
       </div>
       <div className="navBarDivs">
-        <label>SERVER STATUS</label>
+        <label>Server Status</label>
         <img
           className="ms-2"
           src={require(`../img/utilities/online.webp`)}
@@ -33,7 +33,7 @@ const Navbar = ({ gold, diamond, role }) => {
         />
       </div>
       <div className="navBarDivs">
-        <label>NEWS</label>
+        <label>News</label>
       </div>
     </div>
   );

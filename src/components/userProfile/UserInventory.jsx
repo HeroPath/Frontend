@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
-import Cookies from "universal-cookie";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import env from "react-dotenv";
+
+import { post } from "../../functions/requestsApi";
+import { headers } from "../../functions/utilities";
 
 const UserInventory = ({
   inventory,
@@ -14,15 +14,8 @@ const UserInventory = ({
   nameItemBuy,
   level,
 }) => {
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
   const [dataItem, setDataItem] = useState({});
   const [equipDrag, setEquipDrag] = useState(false);
-
-  const itemSelect = document.getElementById(dataItem.id);
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -79,44 +72,15 @@ const UserInventory = ({
     let data = { id: dataItem.id };
     let equip = toEquip === true ? "equip" : "unequip";
 
-    await axios
-      .post(env.API_URL + "/api/v1/items/" + equip, data, {
-        headers,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          window.location.reload();
-        }
-      })
-      .catch((err) => {
-        if (err.request.status === 409) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
+    const response = await post("/api/v1/items/" + equip, data, headers);
+    if (response.status === 200) window.location.reload();
   }
 
   async function handleItemBuy() {
     const data = { name: nameItemBuy };
-    await axios
-      .post(env.API_URL + "/api/v1/items/buy", data, {
-        headers,
-      })
-      .then(async (response) => {
-        if (response.status === 200) {
-          window.location.reload();
-        }
-      })
-      .catch((err) => {
-        if (err.request.status === 409) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
+
+    const response = await post("/api/v1/items/buy", data, headers);
+    if (response.status === 200) window.location.reload();
   }
 
   const dropEquiped = () => {
@@ -135,18 +99,6 @@ const UserInventory = ({
   {
     equipment && equipmentCreate();
   }
-
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   return (
     <div className="inventory" id="inventory">

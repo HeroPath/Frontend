@@ -3,78 +3,36 @@ import Cookies from "universal-cookie";
 import axios from "axios";
 import "../styles/styles.css";
 import { Table } from "react-bootstrap";
-import env from "react-dotenv";
-import { useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Ranking = () => {
-  const navigate = useNavigate();
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
+import { headers } from "../../functions/utilities";
+import { get, post } from "../../functions/requestsApi";
 
+const Ranking = () => {
   let usersCounter = 1;
   let guildsCounter = 1;
 
   const [ranking, setRanking] = React.useState([]);
   const [guilds, setGuilds] = React.useState([]);
 
-  async function handleDataUsers() {
-    await axios
-      .get(env.API_URL + "/api/v1/users/ranking", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          setRanking(response.data);
-        }
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
+  async function getRankings() {
+    const responseRanking = await get("/api/v1/users/ranking", headers);
+    if (responseRanking.status === 200) setRanking(responseRanking.data);
+
+    const responseGuilds = await get("/api/v1/guilds", headers);
+    if (responseGuilds.status === 200) setGuilds(responseGuilds.data);
   }
 
-  async function handleDataGuilds() {
-    await axios
-      .get(env.API_URL + "/api/v1/guilds", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          setGuilds(response.data);
-        }
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
+  async function handleGuildRequest(data) {
+    const response = await post("/api/v1/guilds/request", data, headers);
+    if (response.status === 200) window.location.href = "/profile";
   }
 
   useEffect(() => {
-    handleDataUsers();
-    handleDataGuilds();
+    getRankings();
   }, []);
-
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   return (
     <div className="ranking">
@@ -181,25 +139,7 @@ const Ranking = () => {
                       type="button"
                       className="btn btn-success"
                       onClick={() => {
-                        axios
-                          .post(
-                            env.API_URL + "/api/v1/guilds/request",
-                            { name: guild.name },
-                            { headers }
-                          )
-                          .then((response) => {
-                            if (response.status === 200)
-                              navigate("/profile", { replace: true });
-                            window.location.reload();
-                          })
-                          .catch((err) => {
-                            if (err.request.status !== 0) {
-                              notify(err.response.data.message);
-                              setTimeout(() => {
-                                window.location.reload();
-                              }, [2500]);
-                            }
-                          });
+                        handleGuildRequest({ name: guild.name });
                       }}
                     >
                       Apply

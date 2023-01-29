@@ -1,32 +1,21 @@
 import React, { useEffect } from "react";
-import Cookies from "universal-cookie";
-import axios from "axios";
 import "../styles/styles.css";
 import ProfileCard from "./ProfileCard";
 import Navbar from "./Navbar";
-import env from "react-dotenv";
+
+import { get } from "../../functions/requestsApi";
+import { headers } from "../../functions/utilities";
 
 const Profile = () => {
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
-
   const [profile, setProfile] = React.useState({});
-  async function handleData() {
-    await axios
-      .get(env.API_URL + "/api/v1/users/profile", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          setProfile(response.data);
-        }
-      });
+
+  async function getProfile() {
+    const response = await get("/api/v1/users/profile", headers);
+    if (response.status === 200) setProfile(response.data);
   }
 
   useEffect(() => {
-    handleData();
-    
+    getProfile();
   }, []);
 
   return (
@@ -36,7 +25,6 @@ const Profile = () => {
         diamond={profile.diamond}
         role={profile.role}
       />
-      
       <ProfileCard profile={profile} />
     </div>
   );

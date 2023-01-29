@@ -1,20 +1,12 @@
 import React from "react";
-import Cookies from "universal-cookie";
-import axios from "axios";
-import env from "react-dotenv";
-import { useNavigate } from "react-router-dom";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+import { headers } from "../../../functions/utilities";
+import { post } from "../../../functions/requestsApi";
+
 const CreateNewGuild = () => {
-  const cookies = new Cookies();
-
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
-
   const [values, setValues] = React.useState({
     name: "",
     description: "",
@@ -24,26 +16,9 @@ const CreateNewGuild = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (
-      !(values.name === "") &&
-      !(values.description === "") &&
-      !(values.tag === "")
-    ) {
-      await axios
-        .post(env.API_URL + "/api/v1/guilds", values, { headers })
-        .then((response) => {
-          if (response.status === 200) {
-            window.location.reload();
-          }
-        })
-        .catch((err) => {
-          if (err.request.status !== 0) {
-            notify(err.response.data.message);
-            setTimeout(() => {
-              window.location.reload();
-            }, [2500]);
-          }
-        });
+    if (values.name && values.description && values.tag) {
+      const response = await post("/api/v1/guilds", values, headers);
+      if (response.status === 200) window.location.reload();
     }
   }
 
@@ -58,18 +33,6 @@ const CreateNewGuild = () => {
 
     setValues(newValues);
   }
-
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   return (
     <div>

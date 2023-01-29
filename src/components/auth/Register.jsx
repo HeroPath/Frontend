@@ -1,51 +1,32 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import "../styles/styles.css";
-import { useNavigate } from "react-router-dom";
-import env from "react-dotenv";
 
-import {capitalizeFirstLetter} from "../utilities";
+import { capitalizeFirstLetter } from "../../functions/utilities";
+import { get, post } from "../../functions/requestsApi";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
+  const [classData, setClassData] = React.useState([]);
+
+  async function getClasses() {
+    const response = await get("/api/v1/classes");
+    if (response.status === 200) {
+      setClassData(response.data);
+    }
+  }
+
+  useEffect(() => {
+    getClasses();
+  }, []);
+
   const [values, setValues] = React.useState({
     username: "",
     email: "",
     password: "",
     classId: "",
   });
-
-  const navigate = useNavigate();
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-
-    if (
-      !(values.username === "") &&
-      !(values.email === "") &&
-      !(values.classId === "" || values.classId === "0") &&
-      !(values.password === "")
-    ) {
-      values.classId = parseInt(values.classId);
-      await axios
-        .post(env.API_URL + "/api/v1/auth/register", values)
-        .then((response) => {
-          if (response.status === 200) {
-            navigate("/");
-          }
-        })
-        .catch((err) => {
-          if (err.request.status !== 0) {
-            notify(err.response.data.message);
-            setTimeout(() => {
-              window.location.reload();
-            }, [2500]);
-          }
-        });
-    }
-  }
 
   function handleChange(e) {
     const { target } = e;
@@ -59,21 +40,15 @@ const Register = () => {
     setValues(newValues);
   }
 
-  const [classData, setClassData] = React.useState([]);
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-  async function handleData() {
-    await axios
-      .get(env.API_URL + "/api/v1/classes")
-      .then((response) => {
-        if (response.status === 200) {
-          setClassData(response.data);
-        }
-      });
+    if (!Object.values(values).every(Boolean)) return;
+
+    values.classId = parseInt(values.classId);
+    const response = await post("/api/v1/auth/register", values);
+    if (response.status === 200) window.location.href = "/";
   }
-
-  useEffect(() => {
-    handleData();
-  }, []);
 
   const [dataClassSelected, setDataClassSelected] = React.useState("default");
   const [classSelected, setClassSelected] = React.useState({
@@ -87,31 +62,18 @@ const Register = () => {
   function handleClickClass(e) {
     e.preventDefault();
 
-    const res = e.target.value;
-    const resSplited = res.split(",");
-
-    setDataClassSelected(resSplited[1].toLowerCase());
+    const [, className, strength, dexterity, intelligence, vitality, luck] =
+      e.target.value.split(",");
+    setDataClassSelected(className.toLowerCase());
     setClassSelected({
       class: dataClassSelected,
-      strength: resSplited[2],
-      dexterity: resSplited[3],
-      intelligence: resSplited[4],
-      vitality: resSplited[5],
-      luck: resSplited[6],
+      strength,
+      dexterity,
+      intelligence,
+      vitality,
+      luck,
     });
   }
-
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   return (
     <div className="register--background">
@@ -154,7 +116,7 @@ const Register = () => {
 
               <div className="login--footer">
                 <p>Are you already registered?</p>
-                <a href="/" className="button--links">
+                <a href="/" className="button--links links">
                   LOGIN
                 </a>
               </div>

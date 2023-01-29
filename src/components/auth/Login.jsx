@@ -1,12 +1,11 @@
 import React from "react";
-import axios from "axios";
-import Cookies from "universal-cookie";
 import "../styles/styles.css";
-import { useNavigate } from "react-router-dom";
-import env from "react-dotenv";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { post } from "../../functions/requestsApi";
+import { cookies } from "../../functions/utilities";
 
 const Login = () => {
   const [dataLogin, setDataLogin] = React.useState({
@@ -14,35 +13,21 @@ const Login = () => {
     password: "",
   });
 
-  const navigate = useNavigate();
-  const cookies = new Cookies();
-
-  cookies.remove("token");
-  cookies.remove("username");
-  cookies.remove("guildName");
+  ["token", "username", "guildName"].forEach((cookie) =>
+    cookies.remove(cookie)
+  );
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!(dataLogin.username === "") && !(dataLogin.password === "")) {
-      await axios
-        .post(env.API_URL + "/api/v1/auth/login", dataLogin)
-        .then((response) => {
-          if (response.status === 200) {
-            cookies.set("token", response.data.token);
-            cookies.set("username", dataLogin.username);
-            navigate("/profile", { replace: true });
-            window.location.reload();
-          }
-        })
-        .catch((err) => {
-          if (err.request.status !== 0) {
-            notify(err.response.data.message);
-            setTimeout(() => {
-              window.location.reload();
-            }, [2500]);
-          }
-        });
+    if (dataLogin.username === "" || dataLogin.password === "") return;
+
+    const response = await post("/api/v1/auth/login", dataLogin);
+
+    if (response.status === 200) {
+      cookies.set("token", response.data.token, { path: "/" });
+      cookies.set("username", dataLogin.username, { path: "/" });
+      window.location.href = "/profile";
     }
   }
 
@@ -57,18 +42,6 @@ const Login = () => {
 
     setDataLogin(newValues);
   }
-
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   return (
     <div className="login" style={cardStyle}>

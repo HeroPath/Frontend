@@ -1,32 +1,21 @@
 import React, { useEffect } from "react";
-import Cookies from "universal-cookie";
-import axios from "axios";
 import { useLocation } from "react-router-dom";
-import env from "react-dotenv";
+
+import { headers } from "../../../functions/utilities";
+import { get } from "../../../functions/requestsApi";
 
 const NpcCard = () => {
   const location = useLocation();
   const npcName = location.state.battleData.nameData;
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
-
   const [npcData, setNpcData] = React.useState([]);
 
-  async function handleData() {
-    await axios
-      .get(env.API_URL + "/api/v1/npcs/" + npcName, { headers })
-      .then((response) => {
-        if (response.status === 200) {
-          setNpcData(response.data);
-        }
-      });
+  async function getNpcData() {
+    const response = await get("/api/v1/npcs/" + npcName, headers);
+    if (response.status === 200) setNpcData(response.data);
   }
 
   useEffect(() => {
-    handleData();
+    getNpcData();
   }, []);
 
   let barHealthWidth = (npcData.hp * 250) / npcData.maxHp;

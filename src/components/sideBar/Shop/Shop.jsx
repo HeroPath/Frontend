@@ -1,55 +1,34 @@
 import React, { useEffect, useState } from "react";
-import Cookies from "universal-cookie";
-import axios from "axios";
 import UserInventory from "../../userProfile/UserInventory";
 import Navbar from "../../userProfile/Navbar";
-import env from "react-dotenv";
+
+import { headers } from "../../../functions/utilities";
+import { get, post } from "../../../functions/requestsApi";
 
 const Shop = () => {
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
   const [dataItem, setDataItem] = useState({});
   const [profile, setProfile] = React.useState({});
   const itemBuy = document.getElementById(dataItem.id);
 
   const [itemsShop, setItemsShop] = useState([]);
 
-  async function handleData() {
-    await axios
-      .get(env.API_URL + "/api/v1/users/profile", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          setProfile(response.data);
-        }
-      });
-  }
-  async function handleItems(iClass) {
-    await axios
-      .get(env.API_URL + "/api/v1/items/shop/" + iClass, {
-        headers,
-      })
-      .then(async (response) => {
-        if (response.status === 200) {
-          setItemsShop(response.data);
-        }
-      });
+  async function getProfile() {
+    const response = await get("/api/v1/users/profile", headers);
+    if (response.status === 200) setProfile(response.data);
   }
 
-  async function handleISelltems(name) {
-    await axios
-    .post(env.API_URL + "/api/v1/items/sell", {name: name}, { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          window.location.reload();
-        }
-      });
+  async function handleItems(iClass) {
+    const response = await get("/api/v1/items/shop/" + iClass, headers);
+    if (response.status === 200) setItemsShop(response.data);
+  }
+
+  async function handleISelltems(values) {
+    const response = await post("/api/v1/items/sell", values, headers);
+    if (response.status === 200) window.location.reload();
   }
 
   useEffect(() => {
-    handleData();
+    getProfile();
     handleItems("none");
   }, []);
 
@@ -121,7 +100,9 @@ const Shop = () => {
                 className="shop--npc--card"
                 id="shopNpcSellBuy"
                 onDrop={(event) => {
-                  handleISelltems(event.dataTransfer.getData("nameItemSell"));
+                  handleISelltems({
+                    name: event.dataTransfer.getData("nameItemSell"),
+                  });
                 }}
               >
                 {itemsShop.map((item, index) => (

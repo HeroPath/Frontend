@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { capitalizeFirstLetter } from "../../utilities";
+import { capitalizeFirstLetter } from "../../../functions/utilities";
 
 const Zone = () => {
   const zoneMap = [
