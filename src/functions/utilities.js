@@ -23,3 +23,39 @@ export const notify = (alert) => {
     progress: undefined,
   });
 };
+
+export const notifySuccess = (
+  redirectTo,
+  header,
+  body1,
+  body2,
+  ...otherBodies
+) => {
+  toast.success(
+    <>
+      <strong>{header}</strong>
+      <br />
+      {body1}
+      <br />
+      {body2}
+      {otherBodies.map((body) => (
+        <>
+          <br />
+          {body}
+        </>
+      ))}
+    </>,
+    {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      closeButton: false,
+      onClose: () => window.location.replace(redirectTo),
+      className: "custom-success-toast",
+    }
+  );
+};

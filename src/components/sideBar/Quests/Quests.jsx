@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers } from "../../../functions/utilities";
+import { headers, notifySuccess } from "../../../functions/utilities";
 import { get, post } from "../../../functions/requestsApi";
 
 const Quests = () => {
@@ -15,7 +15,18 @@ const Quests = () => {
 
   async function handleQuests(actionUrl, values) {
     const response = await post("/api/v1/quests/" + actionUrl, values, headers);
-    if (response.status === 200) window.location.reload();
+    if (response.status === 200 && actionUrl !== "complete")
+      window.location.reload();
+
+    if (response.status === 200){
+      notifySuccess(
+        "/quest",
+        response.data.name + "- Completed!",
+        "Experience: " + response.data.giveExp,
+        "Gold: " + response.data.giveGold,
+        "Diamonds: " + response.data.giveDiamonds
+      );
+    }
   }
 
   async function getQuests() {
@@ -35,7 +46,7 @@ const Quests = () => {
   }, []);
 
   return (
-    <div className="ranking">
+    <div className="quest">
       {acceptedQuests.length >= 1 && (
         <div>
           <h1>Quests Acepted</h1>

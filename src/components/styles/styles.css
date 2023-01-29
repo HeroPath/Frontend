@@ -756,7 +756,7 @@ body {
   height: 100vh;
   padding: 50px;
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -772,7 +772,7 @@ body {
   width: 100vw;
   height: 100vh;
 
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
 
   padding-top: 10px;
@@ -794,3 +794,22 @@ body {
 }
 
 /* ---------------- //GUILD ----------------------*/
+
+/* ---------------- QUESTS ----------------------*/
+
+.quest {
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ---------------- //QUESTS ----------------------*/
+
+/* ---------------- TOAST ----------------------*/
+.custom-success-toast {
+  font-size: 15px;
+}
+/* ---------------- //TOAST ----------------------*/

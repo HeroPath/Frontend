@@ -3,6 +3,7 @@ import "../styles/styles.css";
 
 import { capitalizeFirstLetter } from "../../functions/utilities";
 import { get, post } from "../../functions/requestsApi";
+import { notifySuccess } from "../../functions/utilities";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -47,7 +48,13 @@ const Register = () => {
 
     values.classId = parseInt(values.classId);
     const response = await post("/api/v1/auth/register", values);
-    if (response.status === 200) window.location.href = "/";
+    if (response.status === 200) {
+      notifySuccess(
+        "/",
+        "User created successfully!",
+        "Username: " + values.username
+      );
+    }
   }
 
   const [dataClassSelected, setDataClassSelected] = React.useState("default");

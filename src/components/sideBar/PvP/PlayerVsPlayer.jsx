@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { headers } from "../../../functions/utilities";
-import { get, post } from "../../../functions/requestsApi";
+import { post } from "../../../functions/requestsApi";
 
 const PlayerVsPlayer = () => {
   const [userAttack, setUserAttack] = React.useState("");

@@ -3,7 +3,7 @@ import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers } from "../../../functions/utilities";
+import { headers, notifySuccess } from "../../../functions/utilities";
 import { post } from "../../../functions/requestsApi";
 
 const CreateNewGuild = () => {
@@ -18,7 +18,14 @@ const CreateNewGuild = () => {
 
     if (values.name && values.description && values.tag) {
       const response = await post("/api/v1/guilds", values, headers);
-      if (response.status === 200) window.location.reload();
+      if (response.status === 200) {
+        notifySuccess(
+          "/guild",
+          "Guild created successfully!",
+          "Name: " + values.name,
+          "Tag: " + values.tag
+        );
+      }
     }
   }
 
