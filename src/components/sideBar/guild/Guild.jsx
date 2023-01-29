@@ -17,7 +17,10 @@ const Guild = () => {
   async function checkUserInGuild() {
     const response = await get("/api/v1/guilds/in-guild", headers);
     if (response.status === 200) {
-      if (response.data.userInGuild) setUserGuild(response.data);
+      if (response.data.userInGuild) {
+        console.log(response.data);
+        setUserGuild(response.data);
+      }
     }
   }
 
@@ -94,7 +97,10 @@ const Guild = () => {
                     <th>Level</th>
                     <th>Title</th>
                     <th>Title Points</th>
-                    <th>Actions</th>
+                    {(userGuild.username === userGuild.subLeader ||
+                      userGuild.username === userGuild.leader) && (
+                      <th>Actions</th>
+                    )}
                   </tr>
                 </thead>
 
@@ -117,7 +123,8 @@ const Guild = () => {
                       <td>{member.titleName}</td>
                       <td>{member.titlePoints}</td>
 
-                      {userGuild.username === userGuild.leader ? (
+                      {(userGuild.username === userGuild.subLeader ||
+                        userGuild.username === userGuild.leader) && (
                         <td>
                           <button
                             type="button"
@@ -131,33 +138,20 @@ const Guild = () => {
                           >
                             Remove
                           </button>
-                          <button
-                            type="button"
-                            className="btn btn-success"
-                            onClick={() => {
-                              handleRemovePromoteOrAcceptUserGuild(
-                                "make-subleader/",
-                                member.username
-                              );
-                            }}
-                          >
-                            Make Sub-Leader
-                          </button>
-                        </td>
-                      ) : (
-                        <td>
-                          <button
-                            type="button"
-                            className="btn btn-danger"
-                            onClick={() => {
-                              handleRemovePromoteOrAcceptUserGuild(
-                                "remove/",
-                                member.username
-                              );
-                            }}
-                          >
-                            Remove
-                          </button>
+                          {userGuild.username === userGuild.leader && (
+                            <button
+                              type="button"
+                              className="btn btn-success"
+                              onClick={() => {
+                                handleRemovePromoteOrAcceptUserGuild(
+                                  "make-subleader/",
+                                  member.username
+                                );
+                              }}
+                            >
+                              Make Sub-Leader
+                            </button>
+                          )}
                         </td>
                       )}
                     </tr>
