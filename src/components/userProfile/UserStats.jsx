@@ -1,5 +1,5 @@
 import { hot } from "react-hot-loader/root";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/styles.css";
 
 import { post } from "../../functions/requestsApi";
@@ -35,6 +35,20 @@ const UserStats = ({
     amount: 0,
   });
 
+  const [stats, setStats] = useState({
+    freeSkillPoints,
+    strength,
+    dexterity,
+    vitality,
+    intelligence,
+    luck,
+    minDmg,
+    maxDmg,
+    defense,
+    evasion,
+    criticalChance,
+  });
+
   async function handleClickAddSkill(e) {
     e.preventDefault();
     const response = await post(
@@ -42,7 +56,22 @@ const UserStats = ({
       { skillPointName: clickAddSkill.stat, amount: clickAddSkill.amount },
       headers
     );
-    if (response.status === 200) window.location.reload();
+
+    if (response.status === 200) {
+      setStats({
+        freeSkillPoints: response.data.freeSkillPoints,
+        strength: response.data.strength,
+        dexterity: response.data.dexterity,
+        vitality: response.data.vitality,
+        intelligence: response.data.intelligence,
+        luck: response.data.luck,
+        minDmg: response.data.minDmg,
+        maxDmg: response.data.maxDmg,
+        defense: response.data.defense,
+        evasion: response.data.evasion,
+        criticalChance: response.data.criticalChance,
+      });
+    }
   }
 
   function handleChangeAmount(e) {
@@ -60,69 +89,55 @@ const UserStats = ({
     setClickAddSkill(newValues);
   }
 
-  const [showAddStat, setShowAddStat] = React.useState(false);
-
-  function showAddPoints() {
-    if (freeSkillPoints > 0) {
-      setShowAddStat(!showAddStat);
-    }
-  }
-
   const handleKeyPress = (event) => {
     if (event.keyCode === 13) handleClickAddSkill();
   };
-
-  useEffect(() => {
-    showAddPoints();
-  }, []);
 
   return (
     <div>
       <section className="userstats">
         <h3>Stats</h3>
-        <label className="m-2">Skill points: {freeSkillPoints}</label>
+        <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
 
         <form className="userstats--form">
           <div className="userstats--stats">
-            <label>Strength: {strength}</label>
-            <label>Dexterity: {dexterity}</label>
-            <label>Vitality: {vitality}</label>
-            <label>Intelligence: {intelligence}</label>
-            <label>Luck: {luck}</label>
+            <label>Strength: {stats.strength}</label>
+            <label>Dexterity: {stats.dexterity}</label>
+            <label>Vitality: {stats.vitality}</label>
+            <label>Intelligence: {stats.intelligence}</label>
+            <label>Luck: {stats.luck}</label>
           </div>
 
-          {!showAddStat && (
-            <div className="userstats--add">
-              {data.map((zone) => (
-                <div key={zone.id} className="userstats--add--form">
-                  <input
-                    type="text"
-                    className="form-control"
-                    onChange={handleChangeAmount}
-                    onKeyDown={handleKeyPress}
-                    id={zone.skill}
-                    min="1"
-                    max={freeSkillPoints}
-                    pattern="^[0-9]+"
-                  />
-                  <img
-                    onClick={handleClickAddSkill}
-                    src={require("../img/utilities/addStats.webp")}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="userstats--add">
+            {data.map((zone) => (
+              <div key={zone.id} className="userstats--add--form">
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={handleChangeAmount}
+                  onKeyDown={handleKeyPress}
+                  id={zone.skill}
+                  min="1"
+                  max={stats.freeSkillPoints}
+                  pattern="^[0-9]+"
+                />
+                <img
+                  onClick={handleClickAddSkill}
+                  src={require("../img/utilities/addStats.webp")}
+                />
+              </div>
+            ))}
+          </div>
         </form>
 
         <div className="userstats--info">
-          <label>Defense: {defense}</label>
-          <label>Evasion: {evasion}</label>
+          <label>Defense: {stats.defense}</label>
+          <label>Evasion: {stats.evasion}</label>
           <label>
-            Critical Chance: {Math.round(criticalChance * 10) / 10}%
+            Critical Chance: {Math.round(stats.criticalChance * 10) / 10}%
           </label>
           <label>
-            Min/Max DMG: {minDmg}/{maxDmg}
+            Min/Max DMG: {stats.minDmg}/{stats.maxDmg}
           </label>
           <label>Npc killed: {npcKills}</label>
         </div>

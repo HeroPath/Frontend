@@ -38,7 +38,7 @@ const ProfileCard = ({ profile }) => {
           level={level}
         />
 
-        {aclass && (
+        {aclass && hp && maxDmg && (
           <UserCard
             username={username}
             aclass={aclass}
@@ -49,20 +49,32 @@ const ProfileCard = ({ profile }) => {
             level={level}
           />
         )}
-        <UserStats
-          freeSkillPoints={freeSkillPoints}
-          strength={strength}
-          dexterity={dexterity}
-          vitality={vitality}
-          intelligence={intelligence}
-          luck={luck}
-          minDmg={minDmg}
-          maxDmg={maxDmg}
-          npcKills={npcKills}
-          defense={defense}
-          evasion={evasion}
-          criticalChance={criticalChance}
-        />
+        {strength &&
+          dexterity &&
+          vitality &&
+          intelligence &&
+          luck &&
+          freeSkillPoints !== undefined &&
+          minDmg &&
+          maxDmg &&
+          defense &&
+          evasion &&
+          criticalChance && (
+            <UserStats
+              freeSkillPoints={freeSkillPoints}
+              strength={strength}
+              dexterity={dexterity}
+              vitality={vitality}
+              intelligence={intelligence}
+              luck={luck}
+              minDmg={minDmg}
+              maxDmg={maxDmg}
+              npcKills={npcKills}
+              defense={defense}
+              evasion={evasion}
+              criticalChance={criticalChance}
+            />
+          )}
       </section>
     </div>
   );

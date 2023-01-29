@@ -14,6 +14,12 @@ const UserInventory = ({
   nameItemBuy,
   level,
 }) => {
+  
+  const [equipAndInvent, setEquipAndInvent] = useState({
+    inventory,
+    equipment,
+  });
+
   const [dataItem, setDataItem] = useState({});
   const [equipDrag, setEquipDrag] = useState(false);
 
@@ -73,14 +79,18 @@ const UserInventory = ({
     let equip = toEquip === true ? "equip" : "unequip";
 
     const response = await post("/api/v1/items/" + equip, data, headers);
-    if (response.status === 200) window.location.reload();
+    if (response.status === 200) {
+      //EQUIPAR
+    }
   }
 
   async function handleItemBuy() {
     const data = { name: nameItemBuy };
 
     const response = await post("/api/v1/items/buy", data, headers);
-    if (response.status === 200) window.location.reload();
+    if (response.status === 200) {
+      //VENDER
+    }
   }
 
   const dropEquiped = () => {
