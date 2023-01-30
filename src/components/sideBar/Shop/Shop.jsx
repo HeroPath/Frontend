@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserInventory from "../../userProfile/UserInventory";
 import Navbar from "../../userProfile/Navbar";
 
-import { headers } from "../../../functions/utilities";
+import { headers, dataTooltip } from "../../../functions/utilities";
 import { get, post } from "../../../functions/requestsApi";
 
 const Shop = () => {
@@ -135,15 +135,9 @@ const Shop = () => {
                       setDataItem("");
                       setItemDragBuy("");
                     }}
-                    data-tooltip={`Name: ${item.name}
-                Strength: ${item.strength}
-                Dexterity: ${item.dexterity}
-                Vitality: ${item.vitality}
-                Intelligence: ${item.intelligence}
-                Level Min: ${item.lvlMin}
-                Class: ${item.classRequired}
-                
-                Price: ${item.price}`}
+                    onLoad={() => {
+                      dataTooltip(item.id, item);
+                    }}
                   >
                     <img
                       src={require(`../../img/items/${item.name}.png`)}

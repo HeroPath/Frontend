@@ -59,3 +59,18 @@ export const notifySuccess = (
     }
   );
 };
+
+export function dataTooltip(id, item) {
+  let div = document.getElementById(id);
+  let tooltip = `Name: ${item.name}
+  Strength: ${item.strength}
+  Dexterity: ${item.dexterity}
+  Vitality: ${item.vitality}
+  Intelligence: ${item.intelligence}
+  Level Min: ${item.lvlMin}
+  Class: ${item.classRequired}
+  
+  Price: ${item.price / 2}`;
+
+  div.setAttribute("data-tooltip", tooltip);
+}

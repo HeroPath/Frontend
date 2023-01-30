@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { post } from "../../functions/requestsApi";
-import { headers } from "../../functions/utilities";
+import { headers, dataTooltip } from "../../functions/utilities";
 
 const UserInventory = ({
   inventory,
@@ -16,7 +16,7 @@ const UserInventory = ({
 }) => {
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
-  const [LETRADRAG, setLETRADRAG] = useState("");
+  const [letterDrag, setLetterDrag] = useState("");
   const [dataItem, setDataItem] = useState(0);
 
   function orderedObject(equipUser) {
@@ -94,7 +94,7 @@ const UserInventory = ({
         id="inventory--equiped"
         onDragOver={dragOver}
         onDrop={() => {
-          if (LETRADRAG === "I") dropEquiped();
+          if (letterDrag === "I") dropEquiped();
         }}
       >
         {equipmentUser &&
@@ -110,26 +110,19 @@ const UserInventory = ({
                   style={ItemStyle}
                   onDragStart={(event) => {
                     setDataItem(item.id);
-                    setLETRADRAG("E");
+                    setLetterDrag("E");
                     event.dataTransfer.setData("ETransfer", "E");
                   }}
                   onDragEnd={() => {
-                    setLETRADRAG("");
+                    setLetterDrag("");
                   }}
-                  data-tooltip={`Name: ${item.name}
-                  Strength: ${item.strength}
-                  Dexterity: ${item.dexterity}
-                  Vitality: ${item.vitality}
-                  Intelligence: ${item.intelligence}
-                  Level Min: ${item.lvlMin}
-                  Class: ${item.classRequired}
-                  
-                  Price: ${item.price / 2}`}
+                  onLoad={() => {
+                    dataTooltip(index, item);
+                  }}
                 >
                   <img
                     src={require(`../img/items/${item.name}.png`)}
                     className="item"
-                    alt=""
                   />
                 </div>
               );
@@ -141,7 +134,7 @@ const UserInventory = ({
         id="inventory--box"
         onDragOver={dragOver}
         onDrop={() => {
-          if (LETRADRAG === "E" || itemDragBuy === "S") dropBox();
+          if (letterDrag === "E" || itemDragBuy === "S") dropBox();
         }}
       >
         {inventoryUser &&
@@ -162,20 +155,14 @@ const UserInventory = ({
               onDragStart={(event) => {
                 event.dataTransfer.setData("nameItemSell", item.name);
                 setDataItem(item.id);
-                setLETRADRAG("I");
+                setLetterDrag("I");
               }}
               onDragEnd={() => {
-                setLETRADRAG("");
+                setLetterDrag("");
               }}
-              data-tooltip={`Name: ${item.name}
-              Strength: ${item.strength}
-              Dexterity: ${item.dexterity}
-              Vitality: ${item.vitality}
-              Intelligence: ${item.intelligence}
-              Level Min: ${item.lvlMin}
-              Class: ${item.classRequired}
-              
-              Price: ${item.price / 2}`}
+              onLoad={() => {
+                dataTooltip(item.id, item);
+              }}
             >
               <img
                 src={require(`../img/items/${item.name}.png`)}
