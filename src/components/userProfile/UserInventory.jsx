@@ -69,6 +69,7 @@ const UserInventory = ({
 
   async function handleItemBuy(itemToBuy) {
     const data = { name: itemToBuy };
+
     const response = await post("/api/v1/items/buy", data, headers);
     if (response.status === 200) {
       setInventoryUser(response.data);
@@ -81,9 +82,9 @@ const UserInventory = ({
   };
 
   function dropBox() {
-    if (itemBuy !== "" && itemBuy !== undefined) {
+    if (itemBuy && itemBuy !== undefined) {
       handleItemBuy(itemBuy);
-    } else if (itemBuy === "" || itemBuy === undefined) {
+    } else {
       handleItem(false);
     }
   }

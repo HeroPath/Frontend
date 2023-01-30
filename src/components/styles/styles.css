@@ -1,3 +1,7 @@
+:root {
+  --button--textColor: #f5f5dc;
+}
+
 body {
   font-family: "Kingthings Calligraphica Light", sans-serif;
   font-family: "Kingthings Calligraphica Italic", sans-serif;
@@ -14,6 +18,7 @@ body {
 .links:hover {
   text-decoration: none;
   color: #fff;
+  border: none;
 }
 
 .button--links,
@@ -22,10 +27,15 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
-  color: #f5f5dc;
+  color: var(--button--textColor);
   padding: 5px 10px;
-  border: 1px solid #000;
-  border-radius: 10px;
+  letter-spacing: 2px;
+  border: none;
+}
+
+.button--links:hover {
+  border: none;
+  filter: brightness(1.4);
 }
 /* ---------------- //UTILIDAD ----------------------*/
 
@@ -128,15 +138,7 @@ body {
 
 .login--form button,
 .login--footer a {
-  letter-spacing: 2px;
   font-size: 25px;
-  border: none;
-}
-
-.login--form button:hover,
-.login--footer a:hover {
-  border: none;
-  filter: brightness(1.7);
 }
 
 .login--form input {
@@ -172,6 +174,15 @@ body {
 .sidebar--logo {
   height: 100px;
   padding-top: 15px;
+}
+
+.button--sidebar {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.button--sidebar:last-child {
+  margin-top: 80px;
 }
 
 /* ---------------- //SIDEBAR ----------------------*/
@@ -516,6 +527,16 @@ body {
   margin: 10px;
 }
 
+.buttons-zone,
+.buttons-zone:hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  height: 50px;
+  width: 100%;
+}
+
 /* ---------------- //ZONE ----------------------*/
 
 /* ---------------- NPC ----------------------*/
@@ -547,7 +568,7 @@ body {
   background-image: url("../img/utilities/button.webp");
   background-size: 120px;
   background-position: center;
-  color: white;
+  color: var(--button--textColor);
   width: 120px;
   margin: 5px;
 }
@@ -717,12 +738,11 @@ body {
 }
 
 .shop--npc--button button {
-  color: white;
+  color: var(--button--textColor);
   background-image: url("../img/items/buttons.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 62px;
-  font-size: 15px;
 }
 
 .shop--npc--button button:focus {
@@ -738,17 +758,6 @@ body {
   width: 248px;
   height: 329px;
   text-align: center;
-}
-
-.shop--npc--section button {
-  color: white;
-  background-image: url("../img/items/buttons.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 70px;
-  height: 35.77px;
-  margin-left: 10px;
-  font-size: 14px;
 }
 
 /* ---------------- //SHOP ----------------------*/

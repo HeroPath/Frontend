@@ -46,21 +46,8 @@ const Zone = () => {
             }}
           >
             <a
-              className="button--links links"
+              className="button--links links buttons-zone"
               type="submit"
-              style={{
-                display: "flex",
-                color: "white",
-                fontWeight: "bold",
-                fontSize: "25px",
-                height: "40px",
-                width: "100%",
-                alignItems: "center",
-                flexDirection: "column",
-                justifyContent: "center",
-                borderRadius: "0px",
-                padding: "0px",
-              }}
               onClick={() => {
                 navigate("/playervsnpc", {
                   state: { id: zone.name, name: zone.name },
