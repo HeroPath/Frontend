@@ -7,7 +7,7 @@ import { get, post } from "../../../functions/requestsApi";
 
 const Shop = () => {
   const [dataItem, setDataItem] = useState({});
-  const [profile, setProfile] = React.useState({});
+  const [profile, setProfile] = useState({});
   const itemBuy = document.getElementById(dataItem.id);
 
   const [itemsShop, setItemsShop] = useState([]);

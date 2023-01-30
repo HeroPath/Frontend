@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -14,11 +14,13 @@ const UserInventory = ({
   nameItemBuy,
   level,
 }) => {
-  
-  const [equipAndInvent, setEquipAndInvent] = useState({
-    inventory,
-    equipment,
-  });
+  // const [inventoryUser, setInventoryUser] = useState(inventory);
+  // const [equipmentUser, setEquipmentUser] = useState(equipment);
+
+  // useEffect(() => {
+  //   setInventoryUser(inventory);
+  //   setEquipmentUser(equipment);
+  // }, [inventory, equipment]);
 
   const [dataItem, setDataItem] = useState({});
   const [equipDrag, setEquipDrag] = useState(false);
@@ -73,6 +75,15 @@ const UserInventory = ({
       }
     }
   };
+  // const equipmentDelete = () => {
+  //   const eItem = equipmentUser.items;
+  //   for (let i = 0; i < eItem.length; i++) {
+  //     const divGeneric = document.getElementById(eItem[i].type);
+  //     if (divGeneric.hasChildNodes()) {
+  //       divGeneric.removeChild(divGeneric.firstChild);
+  //     }
+  //   }
+  // };
 
   async function handleItem(toEquip) {
     let data = { id: dataItem.id };
@@ -80,7 +91,10 @@ const UserInventory = ({
 
     const response = await post("/api/v1/items/" + equip, data, headers);
     if (response.status === 200) {
-      //EQUIPAR
+      window.location.reload();
+      // setInventoryUser(response.data.inventory);
+      // setEquipmentUser(response.data.equipment);
+      // equipmentDelete();
     }
   }
 
@@ -89,7 +103,8 @@ const UserInventory = ({
 
     const response = await post("/api/v1/items/buy", data, headers);
     if (response.status === 200) {
-      //VENDER
+      window.location.reload();
+      // setInventoryUser(response.data.inventory);
     }
   }
 
