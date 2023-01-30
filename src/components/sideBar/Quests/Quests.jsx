@@ -1,62 +1,52 @@
 import React, { useEffect, useState } from "react";
-import Cookies from "universal-cookie";
-import axios from "axios";
 import { Table } from "react-bootstrap";
-import env from "react-dotenv";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Quests = () => {
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
+import { headers, notifySuccess } from "../../../functions/utilities";
+import { get, post } from "../../../functions/requestsApi";
 
+const Quests = () => {
   let nonAcceptedQuestsNumber = 1;
   let acceptedQuestNumber = 1;
-
   const [nonAcceptedQuests, setNonAcceptedQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
 
+  async function handleQuests(actionUrl, values) {
+    const response = await post("/api/v1/quests/" + actionUrl, values, headers);
+    if (response.status === 200 && actionUrl !== "complete")
+      window.location.reload();
+
+    if (response.status === 200){
+      notifySuccess(
+        "/quest",
+        response.data.name + "- Completed!",
+        "Experience: " + response.data.giveExp,
+        "Gold: " + response.data.giveGold,
+        "Diamonds: " + response.data.giveDiamonds
+      );
+    }
+  }
+
+  async function getQuests() {
+    const response = await get("/api/v1/quests", headers);
+    if (response.status === 200) {
+      setAcceptedQuests(
+        response.data.filter((quest) => quest.npcKillAmount !== undefined)
+      );
+      setNonAcceptedQuests(
+        response.data.filter((quest) => quest.npcKillAmount === undefined)
+      );
+    }
+  }
+
   useEffect(() => {
-    axios
-      .get(env.API_URL + "/api/v1/quests", { headers })
-      .then((response) => {
-        if (response.status === 200) {
-          setAcceptedQuests(
-            response.data.filter((quest) => quest.npcKillAmount !== undefined)
-          );
-          setNonAcceptedQuests(
-            response.data.filter((quest) => quest.npcKillAmount === undefined)
-          );
-        }
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
+    getQuests();
   }, []);
 
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
-
   return (
-    <div className="ranking">
+    <div className="quest">
       {acceptedQuests.length >= 1 && (
         <div>
           <h1>Quests Acepted</h1>
@@ -105,24 +95,9 @@ const Quests = () => {
                           type="button"
                           className="btn btn-success"
                           onClick={() => {
-                            axios
-                              .post(
-                                env.API_URL + "/api/v1/quests/complete",
-                                { name: acceptedQuest.quest.name },
-                                { headers }
-                              )
-                              .then((response) => {
-                                if (response.status === 200)
-                                  window.location.reload();
-                              })
-                              .catch((err) => {
-                                if (err.request.status !== 0) {
-                                  notify(err.response.data.message);
-                                  setTimeout(() => {
-                                    window.location.reload();
-                                  }, [2500]);
-                                }
-                              });
+                            handleQuests("complete", {
+                              name: acceptedQuest.quest.name,
+                            });
                           }}
                         >
                           Complete
@@ -134,24 +109,9 @@ const Quests = () => {
                           type="button"
                           className="btn btn-danger"
                           onClick={() => {
-                            axios
-                              .post(
-                                env.API_URL + "/api/v1/quests/cancel",
-                                { name: acceptedQuest.quest.name },
-                                { headers }
-                              )
-                              .then((response) => {
-                                if (response.status === 200)
-                                  window.location.reload();
-                              })
-                              .catch((err) => {
-                                if (err.request.status !== 0) {
-                                  notify(err.response.data.message);
-                                  setTimeout(() => {
-                                    window.location.reload();
-                                  }, [2500]);
-                                }
-                              });
+                            handleQuests("cancel", {
+                              name: acceptedQuest.quest.name,
+                            });
                           }}
                         >
                           Cancel
@@ -199,24 +159,9 @@ const Quests = () => {
                       type="button"
                       className="btn btn-primary"
                       onClick={() => {
-                        axios
-                          .post(
-                            env.API_URL + "/api/v1/quests/accept",
-                            { name: nonAcceptedQuest.quest.name },
-                            { headers }
-                          )
-                          .then((response) => {
-                            if (response.status === 200)
-                              window.location.reload();
-                          })
-                          .catch((err) => {
-                            if (err.request.status !== 0) {
-                              notify(err.response.data.message);
-                              setTimeout(() => {
-                                window.location.reload();
-                              }, [2500]);
-                            }
-                          });
+                        handleQuests("accept", {
+                          name: nonAcceptedQuest.quest.name,
+                        });
                       }}
                     >
                       Accept

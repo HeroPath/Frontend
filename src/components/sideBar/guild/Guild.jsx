@@ -1,79 +1,42 @@
 import React, { useEffect, useState } from "react";
-import Cookies from "universal-cookie";
-import axios from "axios";
 import { Table } from "react-bootstrap";
-import env from "react-dotenv";
 import CreateNewGuild from "./CreateNewGuild";
 
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Guild = () => {
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
+import { headers } from "../../../functions/utilities";
+import { get } from "../../../functions/requestsApi";
 
+const Guild = () => {
   const [userGuild, setUserGuild] = useState({});
 
   let memberCounter = 1;
   let memberRequestCounter = 1;
 
+  async function checkUserInGuild() {
+    const response = await get("/api/v1/guilds/in-guild", headers);
+    if (response.status === 200) {
+      if (response.data.userInGuild) {
+        setUserGuild(response.data);
+      }
+    }
+  }
+
   async function handleRemovePromoteOrAcceptUserGuild(
     urlAction,
     memberUsername
   ) {
-    await axios
-      .get(env.API_URL + "/api/v1/guilds/" + urlAction + memberUsername, {
-        headers,
-      })
-      .then((response) => {
-        if (response.status === 200) window.location.reload();
-      })
-      .catch((err) => {
-        if (err.request.status !== 0) {
-          notify(err.response.data.message);
-          setTimeout(() => {
-            window.location.reload();
-          }, [2500]);
-        }
-      });
+    const response = await get(
+      "/api/v1/guilds/" + urlAction + memberUsername,
+      headers
+    );
+    if (response.status === 200) window.location.reload();
   }
 
   useEffect(() => {
-    async function handleDataCheckUserInGuild() {
-      await axios
-        .get(env.API_URL + "/api/v1/guilds/in-guild", { headers })
-        .then(async (response) => {
-          if (response.status === 200) {
-            if (response.data.userInGuild) setUserGuild(response.data);
-          }
-        })
-        .catch((err) => {
-          if (err.request.status !== 0) {
-            notify(err.response.data.message);
-            setTimeout(() => {
-              window.location.reload();
-            }, [2500]);
-          }
-        });
-    }
-
-    handleDataCheckUserInGuild();
+    checkUserInGuild();
   }, []);
-
-  const notify = (alert) => {
-    toast.error(alert, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
 
   return (
     <div className="guild">
@@ -133,7 +96,10 @@ const Guild = () => {
                     <th>Level</th>
                     <th>Title</th>
                     <th>Title Points</th>
-                    <th>Actions</th>
+                    {(userGuild.username === userGuild.subLeader ||
+                      userGuild.username === userGuild.leader) && (
+                      <th>Actions</th>
+                    )}
                   </tr>
                 </thead>
 
@@ -156,7 +122,8 @@ const Guild = () => {
                       <td>{member.titleName}</td>
                       <td>{member.titlePoints}</td>
 
-                      {userGuild.username === userGuild.leader ? (
+                      {(userGuild.username === userGuild.subLeader ||
+                        userGuild.username === userGuild.leader) && (
                         <td>
                           <button
                             type="button"
@@ -170,33 +137,20 @@ const Guild = () => {
                           >
                             Remove
                           </button>
-                          <button
-                            type="button"
-                            className="btn btn-success"
-                            onClick={() => {
-                              handleRemovePromoteOrAcceptUserGuild(
-                                "make-subleader/",
-                                member.username
-                              );
-                            }}
-                          >
-                            Make Sub-Leader
-                          </button>
-                        </td>
-                      ) : (
-                        <td>
-                          <button
-                            type="button"
-                            className="btn btn-danger"
-                            onClick={() => {
-                              handleRemovePromoteOrAcceptUserGuild(
-                                "remove/",
-                                member.username
-                              );
-                            }}
-                          >
-                            Remove
-                          </button>
+                          {userGuild.username === userGuild.leader && (
+                            <button
+                              type="button"
+                              className="btn btn-success"
+                              onClick={() => {
+                                handleRemovePromoteOrAcceptUserGuild(
+                                  "make-subleader/",
+                                  member.username
+                                );
+                              }}
+                            >
+                              Make Sub-Leader
+                            </button>
+                          )}
                         </td>
                       )}
                     </tr>

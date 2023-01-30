@@ -1,44 +1,46 @@
 import React from "react";
 
-import "../styles/styles.css"
+import "../styles/styles.css";
 
 const SideBar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar--logo">
-        <img
-          src={require("../img/logo.webp")}
-          width="125px"
-          height="90px"
-          style={{padding: "5px"}}
-        />
+        <img src={require("../img/logo.webp")} width="75px" height="75px" />
       </div>
 
-      <a href="/profile" className="button--links links m-3">
+      <a href="/profile" className="button--links links button--sidebar">
         Home
       </a>
-      <a href="/zone" className="button--links links m-3">
+      <a href="/zone" className="button--links links button--sidebar">
         Maps
       </a>
-      <a href="/playervsplayer" className="button--links links m-3" disabled>
+      <a href="/playervsplayer" className="button--links links button--sidebar">
         Arena
       </a>
-      <a href="/shop" className="button--links links m-3">
+      <a href="/shop" className="button--links links button--sidebar">
         Shop
       </a>
-      <a href="/quest" className="button--links links m-3">
+      <a href="/quest" className="button--links links button--sidebar">
         Quests
       </a>
-      <a href="/guild" className="button--links links m-3">
+      <a href="/guild" className="button--links links button--sidebar">
         Guild
       </a>
-      <a href="/ranking" className="button--links links m-3">
+      <a href="/ranking" className="button--links links button--sidebar">
         Ranking
       </a>
-      <a href="#" className="button--links links m-3 mb-5">
-        Dungeon (soon)
+      <a href="#" className="button--links links button--sidebar">
+        (Coming soon)
       </a>
-      <a href="/" className="button--links links btn btn-danger m-3">
+      <a href="#" className="button--links links button--sidebar">
+        (Coming soon)
+      </a>
+      <a href="#" className="button--links links button--sidebar">
+        (Coming soon)
+      </a>
+
+      <a href="/" className="button--links links button--sidebar">
         Log Out
       </a>
     </div>

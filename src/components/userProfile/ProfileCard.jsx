@@ -5,41 +5,77 @@ import UserStats from "./UserStats";
 import UserInventory from "./UserInventory";
 
 const ProfileCard = ({ profile }) => {
+  const {
+    inventory,
+    equipment,
+    aclass,
+    level,
+    username,
+    hp,
+    maxHp,
+    experience,
+    experienceToNextLevel,
+    freeSkillPoints,
+    strength,
+    dexterity,
+    vitality,
+    intelligence,
+    luck,
+    minDmg,
+    maxDmg,
+    npcKills,
+    defense,
+    evasion,
+    criticalChance,
+  } = profile;
   return (
     <div id="profileCard">
       <section className="userCard">
-        <UserInventory
-          inventory={profile.inventory}
-          equipment={profile.equipment}
-          aclass={profile.aclass}
-          level={profile.level}
-        />
-
-        {profile.aclass && (
-          <UserCard
-            username={profile.username}
-            aclass={profile.aclass}
-            hp={profile.hp}
-            maxHp={profile.maxHp}
-            experience={profile.experience}
-            experienceToNextLevel={profile.experienceToNextLevel}
-            level={profile.level}
+        {inventory && equipment && (
+          <UserInventory
+            inventory={inventory}
+            equipment={equipment}
+            aclass={aclass}
+            level={level}
           />
         )}
-        <UserStats
-          freeSkillPoints={profile.freeSkillPoints}
-          strength={profile.strength}
-          dexterity={profile.dexterity}
-          vitality={profile.vitality}
-          intelligence={profile.intelligence}
-          luck={profile.luck}
-          minDmg={profile.minDmg}
-          maxDmg={profile.maxDmg}
-          npcKills={profile.npcKills}
-          defense={profile.defense}
-          evasion={profile.evasion}
-          criticalChance={profile.criticalChance}
-        />
+        {aclass && hp && maxDmg && (
+          <UserCard
+            username={username}
+            aclass={aclass}
+            hp={hp}
+            maxHp={maxHp}
+            experience={experience}
+            experienceToNextLevel={experienceToNextLevel}
+            level={level}
+          />
+        )}
+        {strength &&
+          dexterity &&
+          vitality &&
+          intelligence &&
+          luck &&
+          freeSkillPoints !== undefined &&
+          minDmg &&
+          maxDmg &&
+          defense &&
+          evasion &&
+          criticalChance && (
+            <UserStats
+              freeSkillPoints={freeSkillPoints}
+              strength={strength}
+              dexterity={dexterity}
+              vitality={vitality}
+              intelligence={intelligence}
+              luck={luck}
+              minDmg={minDmg}
+              maxDmg={maxDmg}
+              npcKills={npcKills}
+              defense={defense}
+              evasion={evasion}
+              criticalChance={criticalChance}
+            />
+          )}
       </section>
     </div>
   );

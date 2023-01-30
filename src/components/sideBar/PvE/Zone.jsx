@@ -1,15 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {capitalizeFirstLetter} from "../../utilities";
+import { capitalizeFirstLetter } from "../../../functions/utilities";
 
 const Zone = () => {
   const zoneMap = [
-    { name: "forest", rLvlMin: "1", rLvlMax: "30" },
-    { name: "caves", rLvlMin: "30", rLvlMax: "50" },
-    { name: "desert", rLvlMin: "50", rLvlMax: "60" },
-    { name: "sea", rLvlMin: "60", rLvlMax: "70" },
-    { name: "mountain", rLvlMin: "70", rLvlMax: "85" },
-    { name: "hell", rLvlMin: "85", rLvlMax: "100" },
+    { name: "forest", rLvlMin: "1", rLvlMax: "45" },
+    { name: "caves", rLvlMin: "46", rLvlMax: "90" },
+    { name: "desert", rLvlMin: "91", rLvlMax: "135" },
+    { name: "sea", rLvlMin: "136", rLvlMax: "180" },
+    { name: "mountain", rLvlMin: "181", rLvlMax: "225" },
+    { name: "hell", rLvlMin: "226", rLvlMax: "300" },
   ];
 
   const navigate = useNavigate();
@@ -17,30 +17,50 @@ const Zone = () => {
   return (
     <div className="zone">
       {zoneMap.map((zone, index) => (
-        <form key={index} className="zoneForm">
+        <div
+          style={{
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+          key={index}
+        >
           <h4>{capitalizeFirstLetter(zone.name)}</h4>
-          <img
-            src={require("../../img/zone/" + zone.name + ".webp")}
-            width="324px"
-            height="206px"
-            alt=""
-          />
-
-          <a
-            className="button--links links mt-1"
-            type="submit"
-            onClick={() => {
-              navigate("/playervsnpc", {
-                state: { id: zone.name, name: zone.name },
-              });
+          <form
+            key={index}
+            className="zoneForm"
+            style={{
+              backgroundImage: `url(${require("../../img/zone/" +
+                zone.name +
+                ".webp")})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              height: "250px",
+              width: "405px",
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
             }}
           >
-            Travel
-          </a>
-          <p>
+            <a
+              className="button--links links buttons-zone"
+              type="submit"
+              onClick={() => {
+                navigate("/playervsnpc", {
+                  state: { id: zone.name, name: zone.name },
+                });
+              }}
+            >
+              Travel
+            </a>
+          </form>
+          <p style={{ fontWeight: "bold", fontSize: "20px" }}>
             Recommended lvl: {zone.rLvlMin} / {zone.rLvlMax}
           </p>
-        </form>
+        </div>
       ))}
     </div>
   );

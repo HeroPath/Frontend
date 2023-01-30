@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-import Cookies from "universal-cookie";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
-import env from "react-dotenv";
 
-import "../../utilities.js";
+import { headers } from "../../../functions/utilities";
+import { get } from "../../../functions/requestsApi";
 
 const PvEBattle = () => {
-  /* --------------- DECLARATION ----------------------*/
-  const cookies = new Cookies();
-  const headers = {
-    "content-type": "application/json",
-    Authorization: "Bearer " + cookies.get("token"),
-  };
   const location = useLocation();
   const [profile, setProfile] = useState({});
   const [battleData, setBattleData] = useState([]);
@@ -26,27 +18,21 @@ const PvEBattle = () => {
     (letter) => letter.toUpperCase()
   );
 
-  /* --------------- //DECLARATION ----------------------*/
-
-  async function handleData() {
-    await axios
-      .get(env.API_URL + "/api/v1/users/profile", { headers })
-      .then(async (response) => {
-        if (response.status === 200) {
-          response.data.username = response.data.username.replace(
-            /(^\w{1})/g,
-            (letter) => letter.toUpperCase()
-          );
-          setProfile(response.data);
-        }
-      });
+  async function getPveBattle() {
+    const response = await get("/api/v1/users/profile", headers);
+    if (response.status === 200) {
+      response.data.username = response.data.username.replace(
+        /(^\w{1})/g,
+        (letter) => letter.toUpperCase()
+      );
+      setProfile(response.data);
+    }
+    setWinnerBattle(location.state.battleData.pop());
+    setBattleData(location.state.battleData);
   }
 
   useEffect(() => {
-    handleData();
-    setWinnerBattle(location.state.battleData.pop());
-    setBattleData(location.state.battleData);
-    console.log(location.state.battleData);
+    getPveBattle();
   }, []);
 
   return (
@@ -77,12 +63,13 @@ const PvEBattle = () => {
               <div>
                 <li>
                   {profile.username} has attacked {npcName} for{" "}
-                  {rounds.attackerDmg} damage. ({npcName} has {rounds.NpcLife}{" "}
-                  life)
+                  {rounds.attackerDmg.toLocaleString()} damage. ({npcName} has{" "}
+                  {rounds.NpcLife.toLocaleString()} life)
                 </li>
                 <li>
-                  {npcName} has attacked {profile.username} for {rounds.NpcDmg}{" "}
-                  damage. ({profile.username} has {rounds.attackerLife} life)
+                  {npcName} has attacked {profile.username} for{" "}
+                  {rounds.NpcDmg.toLocaleString()} damage. ({profile.username}{" "}
+                  has {rounds.attackerLife.toLocaleString()} life)
                 </li>
               </div>
             </ul>

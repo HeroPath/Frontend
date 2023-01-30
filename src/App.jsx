@@ -61,7 +61,11 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "flex",
+        }}
+      >
         {cookiesToken && <SideBar />}
         <BrowserRouter>
           <Routes>

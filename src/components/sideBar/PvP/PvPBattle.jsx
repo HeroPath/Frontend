@@ -17,9 +17,6 @@ const PvPBattle = () => {
           />
         )}
       </div>
-      {/* <div className="battle--usercard">
-        <NpcCard />
-      </div> */}
 
       <div className="rounds--console">
         <div className="history-box">

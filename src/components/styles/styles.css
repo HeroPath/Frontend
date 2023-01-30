@@ -1,24 +1,41 @@
+:root {
+  --button--textColor: #f5f5dc;
+}
+
+body {
+  font-family: "Kingthings Calligraphica Light", sans-serif;
+  font-family: "Kingthings Calligraphica Italic", sans-serif;
+  font-family: "Kingthings Calligraphica", sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
 /* ---------------- UTILIDAD ----------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+@import url("https://fonts.cdnfonts.com/css/kingthings-calligraphica");
 
 .links,
 .links:hover {
   text-decoration: none;
   color: #fff;
+  border: none;
 }
 
 .button--links,
 .button--links:hover {
-  background-image: url("../img/utilities/button.png");
-  background-size: contain;
+  background-image: url("../img/utilities/fondoname.png");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  color: white;
-  font-weight: bold;
+  background-size: 100% 100%;
+  color: var(--button--textColor);
   padding: 5px 10px;
-  border: 1px solid #000;
-  border-radius: 10px;
+  letter-spacing: 2px;
+  border: none;
+}
+
+.button--links:hover {
+  border: none;
+  filter: brightness(1.4);
 }
 /* ---------------- //UTILIDAD ----------------------*/
 
@@ -79,34 +96,54 @@
 /* ---------------- LOGIN ----------------------*/
 
 .login {
-  display: grid;
-  grid-template-columns: 4fr 2fr;
-  height: 100vh;
-  width: 100vw;
-  text-align: center;
-}
-
-.login--img {
+  display: flex;
   background-image: url("../img/backgroundLogin.webp");
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login h2 {
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.login--banner {
+  background-image: url("../img/test.webp");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 65%;
+  width: 40%;
+  margin-left: 5%;
 }
 
 .login--section {
   display: flex;
   flex-direction: column;
-  background-color: #f9ebd9;
-  justify-content: center;
+  text-align: center;
+  margin-top: 375px;
 }
 
 .login--form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 25px;
+}
+
+.login--form button {
+  background-color: unset;
+}
+
+.login--form button,
+.login--footer a {
+  font-size: 25px;
 }
 
 .login--form input {
-  width: 60%;
+  letter-spacing: 2px;
+  width: 50%;
 }
 
 .login--footer {
@@ -124,10 +161,10 @@
 /* ---------------- SIDEBAR ----------------------*/
 
 .sidebar {
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  width: 250px;
+  height: 100vh;
+  width: 230px;
   background-color: rgb(53, 53, 53);
   border: 2px solid;
   color: rgb(55, 255, 222);
@@ -135,9 +172,18 @@
 }
 
 .sidebar--logo {
-  height: 80px;
+  height: 100px;
+  padding-top: 15px;
 }
 
+.button--sidebar {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.button--sidebar:last-child {
+  margin-top: 80px;
+}
 
 /* ---------------- //SIDEBAR ----------------------*/
 
@@ -145,6 +191,11 @@
 
 .profile {
   background-image: url("../img/bg-userStats.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  object-fit: fill;
+
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -161,18 +212,22 @@
   border-right: 2px solid;
   border-bottom: 2px solid;
   color: rgb(55, 255, 222);
-  height: 80px;
   width: 100%;
-  align-items: center;
 }
 
 .profileNavbar--labels {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 5px;
 }
 
 .navBarDivs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 32px;
 }
 
@@ -180,29 +235,37 @@
 
 .userCard {
   background-image: url("../img/userStatsBox.webp");
-  background-repeat: no-repeat;
+  background-size: 100% 100%;
   background-position: center;
-  background-size: contain;
-  object-fit: fill;
   background-repeat: no-repeat;
-  border-radius: 15px;
-  opacity: 0.85;
+  object-fit: fill;
+  opacity: 0.9;
+  padding-top: 35px;
+  padding-left: 120px;
+  padding-right: 120px;
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   font-weight: bold;
-  width: 1000px;
-  height: 460px;
-  margin: 130px;
+  width: 1200px;
+  height: 520px;
+  margin: 90px;
 }
 
-.userCard--card {
+.userCard--card--bgName {
   display: flex;
-  text-align: center;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  background-image: url("../img/fondoname.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: fill;
+  opacity: 0.9;
+  background-size: 100% 100%;
+  width: 250px;
+  color: white;
 }
+
 /* ---------------- //USERCARD ----------------------*/
 
 /* ---------------- BAR HEALTH AND EXP ----------------------*/
@@ -245,7 +308,6 @@
 /* ---------------- USERSTATS ----------------------*/
 
 .userstats {
-  border-radius: 0 15px 15px 0;
   align-self: center;
   height: 100%;
 }
@@ -256,29 +318,41 @@
   align-items: center;
   width: 100%;
 }
-.userstats--stats {
-  height: 100%;
+.userstats--stats,
+.userstats--add {
+  display: flex;
+  flex-direction: column;
   min-height: 200px;
+  font-size: 18px;
 }
 .userstats--stats label {
-  padding: 12px;
+  height: 30px;
 }
+
 .userstats--add--form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 100%;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
+  column-gap: 15px;
 }
 
-.btn--stats {
-  padding: 5px 10px;
-  border: 1px solid #000;
-  border-radius: 5px;
-}
-
-.userstats--add--form input {
+.userstats--add--form input,
+.userstats--add--form input:focus {
+  height: 20px;
   margin: 5px;
+}
+
+.userstats--add--form img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.userstats--info {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------------- //USERSTATS ----------------------*/
@@ -286,7 +360,6 @@
 /* ----------------- USERINVENTORY -----------------------*/
 
 .inventory {
-  
   border-radius: 15px 0 0 15px;
   display: flex;
   flex-direction: column;
@@ -298,19 +371,19 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
-  background-image: url("../img/items/inventoryEquiped.webp");
-  width: 127px;
-  height: 125px;
+  background-image: url("../img/items/inventoryequiped.webp");
+  width: 124px;
+  height: 124px;
   padding: 3px;
-  margin: 10px;
+  margin: 30px;
 }
 .inventory--box {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  background-image: url("../img/items/inventoryBox.webp");
-  width: 244px;
-  height: 164px;
+  background-image: url("../img/items/inventorybox.webp");
+  width: 247px;
+  height: 165px;
   padding: 3px;
   margin: 10px;
 }
@@ -338,7 +411,7 @@
   color: white;
   margin-left: -4px;
   margin-top: 1px;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .itemNoClass {
@@ -349,6 +422,16 @@
 .itemNoLevel {
   margin-top: 1px;
   background-color: rgba(137, 128, 1, 0.5);
+}
+
+.form-control,
+.form-control:focus {
+  background-color: rgba(253, 168, 46, 0.25);
+  text-align: center;
+  box-shadow: none;
+  font-size: 25px;
+  height: 35px;
+  border: 1px solid;
 }
 
 /* --------------------------- Tooltip --------------------------- */
@@ -420,10 +503,18 @@
 /* ---------------- ZONE ----------------------*/
 
 .zone {
+  background-image: url("../img/zone/bg-zone.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  object-fit: fill;
+
+  color: rgb(255, 255, 255);
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   width: 100vw;
-  margin: 10px;
+
   text-align: center;
   align-items: center;
 }
@@ -434,7 +525,16 @@
   text-align: center;
   align-items: center;
   margin: 10px;
-  border: 2px solid;
+}
+
+.buttons-zone,
+.buttons-zone:hover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  height: 50px;
+  width: 100%;
 }
 
 /* ---------------- //ZONE ----------------------*/
@@ -446,17 +546,13 @@
   grid-template-columns: repeat(5, 1fr);
   width: 100vw;
   justify-items: center;
-  background-image: url("../img/zone/bg-forest.webp");
-  background-Size: "cover";
-  background-repeat: "no-repeat";
-  background-Position: "center";
-  height: "100vh",
+  height: "100vh";
 }
 
 .npcCards--form {
   display: flex;
   flex-direction: column;
-  width: 255px;
+  width: 270px;
   height: auto;
   color: white;
   justify-content: center;
@@ -469,10 +565,11 @@
   border-radius: 50px;
 }
 .npcCards--form button {
-  background-image: url("../img/utilities/button.png");
-  background-size: contain;
-  color: white;
-  width: 100px;
+  background-image: url("../img/utilities/button.webp");
+  background-size: 120px;
+  background-position: center;
+  color: var(--button--textColor);
+  width: 120px;
   margin: 5px;
 }
 
@@ -484,9 +581,8 @@
   width: 100vw;
   height: 100vh;
   background-image: url("../img/zone/bg-forest.webp");
-  background-Size: cover;
-  background-Repeat: no-repeat;
-  background-Position: center;
+  background-size: cover;
+  background-position: center;
   opacity: 10000;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -522,7 +618,6 @@
   flex-direction: column;
   align-items: center;
   font-weight: bold;
-  
 }
 
 .history-box {
@@ -534,7 +629,6 @@
   border-radius: 5px;
   border: 2px solid #646464;
   overflow-y: scroll;
-  
 }
 
 .round {
@@ -543,7 +637,6 @@
   background-color: rgb(255, 183, 28);
   border: 1px solid #000;
   align-items: center;
-  
 }
 
 .winner {
@@ -553,7 +646,8 @@
 /* ---------------- //PVEBATTLE ----------------------*/
 
 /* ---------------- NPCCARD ----------------------*/
-.pvebattle--npccard--form {
+.pvebattle--npccard--form,
+.userCard--card {
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -563,9 +657,17 @@
 
 /* ---------------- PVP ----------------------*/
 .pvpbattle {
-  padding-top: 250px;
-  padding-left: 425px;
-  padding-right: 425px;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+
+  padding-top: 200px;
+  padding-left: 100px;
+  padding-right: 100px;
+  width: 100vw;
+  height: 100vh;
+
   font-size: 25px;
   font-weight: bold;
 }
@@ -574,6 +676,13 @@
 /* ---------------- SHOP ----------------------*/
 
 .shop {
+  background-image: url("../img/bg-shop.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-self: center;
+  background-position: center;
+  position: relative;
+
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -582,48 +691,62 @@
   align-items: center;
 }
 
+.shop--npc--div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .shop--items {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 100%;
+  width: 80%;
   height: 100vh;
-  align-items: center;
-  justify-items: center;
+}
+
+.shop--inventory {
+  background-image: url("../img/bg-inventory-shop.webp");
+  background-repeat: no-repeat;
+  align-self: center;
+  background-position: center;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding-top: 150px;
 }
 
 .shop--npc {
-  text-align: center;
-  border: 2px solid;
-  width: 340px;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/bg-inventory-shop.webp");
+  background-repeat: no-repeat;
+  align-self: center;
+  background-position: center;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding-top: 150px;
+
+  align-items: center;
 }
 
 .shop--npc--button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  width: 244px;
+  width: 248px;
   height: 32px;
-  margin: 0px 10px;
 }
+
 .shop--npc--button button {
-  color: white;
+  color: var(--button--textColor);
   background-image: url("../img/items/buttons.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 61px;
-  font-size: 15px;
-}
-
-.shop--npc--button button:first-child {
-  margin-left: 70px;
+  width: 62px;
 }
 
 .shop--npc--button button:focus {
   text-decoration: none;
-}
-
-.shop--npc--section {
-  display: grid;
-  grid-template-columns: 1fr 9fr;
 }
 
 .shop--npc--card {
@@ -632,19 +755,9 @@
   grid-template-rows: repeat(8, 1fr);
   margin-bottom: 10px;
   background-image: url("../img/items/shop.webp");
-  width: 244px;
-  height: 322px;
-}
-
-.shop--npc--section button {
-  color: white;
-  background-image: url("../img/items/buttons.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 70px;
-  height: 35.77px;
-  margin-left: 10px;
-  font-size: 14px;
+  width: 248px;
+  height: 329px;
+  text-align: center;
 }
 
 /* ---------------- //SHOP ----------------------*/
@@ -656,7 +769,7 @@
   height: 100vh;
   padding: 50px;
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -672,7 +785,7 @@
   width: 100vw;
   height: 100vh;
 
-  font-size: 15px;
+  font-size: 20px;
   font-weight: bold;
 
   padding-top: 10px;
@@ -695,185 +808,21 @@
 
 /* ---------------- //GUILD ----------------------*/
 
-@media (max-width: 700px) {
-  .login {
-    display: flex;
-    flex-direction: column;
-  }
+/* ---------------- QUESTS ----------------------*/
 
-  .login--section {
-    background-image: url("../img/backgroundLoginResponsive.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    color: white;
-  }
-
-  .login--footer a {
-    background-color: #fff;
-    color: black;
-  }
-
-  .register--background {
-    background-image: url("../img/backgroundLoginResponsive.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
-    overflow-y: scroll;
-  }
-
-  .register {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-    width: 300px;
-    margin: 80px auto;
-    align-items: center;
-  }
-
-  .register--cards {
-    background-color: rgba(255, 255, 255, 0.848);
-    border-radius: 20px;
-    height: 100vh;
-    width: 300px;
-  }
-
-  .register--cards:first-child {
-    margin-left: 0px;
-  }
-  .register--cards:last-child {
-    margin-right: 0px;
-  }
-
-  .classSelected--stats {
-    font-size: 12px;
-    height: 150px;
-  }
-
-  .classSelected {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .classSelected--img img {
-    width: 120px;
-    height: 150px;
-  }
-
-  .sidebar {
-    width: 150px;
-    height: 100vh;
-    font-size: 10px;
-    margin: 0;
-  }
-
-  .profileNavbar {
-    display: flex;
-    width: 280px;
-    font-size: 10px;
-    justify-content: center;
-  }
-
-  .profileNavbar--labels {
-    align-items: center;
-  }
-
-  .navBarDivs {
-    height: 47px;
-    font-size: 7px;
-  }
-
-  .userCard {
-    display: flex;
-    flex-direction: column;
-    width: 275px;
-    height: 600px;
-    overflow-y: scroll;
-  }
-
-  [data-tooltip]:before {
-    margin-left: -40px;
-    font-size: 10px;
-  }
-
-  [data-tooltip]:after {
-    margin-left: -15px;
-  }
-
-  .zone,
-  .npcCards {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0;
-    overflow-y: scroll;
-  }
-  .zoneForm img {
-    width: 200px;
-    height: 124px;
-    margin: 0 10px;
-  }
-
-  .shop {
-    width: 100%;
-  }
-
-  .shop--items {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    width: 268px;
-  }
-
-  .shop--npc {
-    width: 268px;
-    border-top: none;
-  }
-
-  .shop--npc--button button:first-child {
-    margin-left: 0px;
-  }
-  .shop--npc--section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0;
-  }
-  .shop--item--type {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    width: 244px;
-    margin: 0 10px;
-  }
-  .shop--npc--section button {
-    background-image: url("../img/items/buttons.jpg");
-    width: 81.33px;
-    height: 32px;
-    margin: 0;
-  }
-
-  .battle {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    overflow-y: scroll;
-  }
-
-  .history-box {
-    width: 250px;
-  }
-
-  .round {
-    width: 225px;
-    padding: 0;
-    column-gap: 15px;
-    font-size: 10px;
-  }
-
-  .round h6 {
-    text-align: center;
-    font-size: 10px;
-  }
+.quest {
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
 }
+
+/* ---------------- //QUESTS ----------------------*/
+
+/* ---------------- TOAST ----------------------*/
+.custom-success-toast {
+  font-size: 15px;
+}
+/* ---------------- //TOAST ----------------------*/

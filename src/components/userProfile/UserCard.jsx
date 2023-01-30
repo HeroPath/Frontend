@@ -1,6 +1,5 @@
 import React from "react";
-import "../utilities.js";
-import { capitalizeFirstLetter } from "../utilities.js";
+import { capitalizeFirstLetter } from "../../functions/utilities";
 
 const UserCard = ({
   username,
@@ -25,7 +24,9 @@ const UserCard = ({
 
   return (
     <div className="userCard--card">
-      <h3>{capitalizeFirstLetter(username)}</h3>
+      <div className="userCard--card--bgName">
+        <h3>{capitalizeFirstLetter(username)}</h3>
+      </div>
       <img
         src={require("../img/class/" + aclass.name + ".webp")}
         width="250px"
