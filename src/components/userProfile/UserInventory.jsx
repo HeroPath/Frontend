@@ -11,11 +11,13 @@ const UserInventory = ({
   equipment,
   aclass,
   nameItemBuy,
+  itemDragBuy,
   level,
 }) => {
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
-  const [itemBuy, setItemBuy] = useState(nameItemBuy);
+  const [LETRADRAG, setLETRADRAG] = useState("");
+  const [dataItem, setDataItem] = useState(0);
 
   function orderedObject(equipUser) {
     const objectEmpty = { type: "empty" };
@@ -34,9 +36,7 @@ const UserInventory = ({
     let sortedItems = [];
     for (const itemType of order) {
       let item = equipUser.items.find((item) => item.type === itemType);
-      if (!item) {
-        item = objectEmpty;
-      }
+      if (!item) item = objectEmpty;
       sortedItems.push(item);
     }
     equipUser.items = sortedItems;
@@ -47,17 +47,16 @@ const UserInventory = ({
   useEffect(() => {
     setInventoryUser(inventoryUser);
     setEquipmentUser(equipmentUser);
-    setItemBuy(nameItemBuy);
-  }, [inventory, equipment, nameItemBuy]);
-
-  const [dataItem, setDataItem] = useState({});
+  }, [inventory, equipment]);
 
   const dragOver = (e) => {
     e.preventDefault();
   };
 
   async function handleItem(equipping) {
-    let data = { id: dataItem.id };
+    if (dataItem === 0) return;
+
+    let data = { id: dataItem };
     let equip = equipping === true ? "equip" : "unequip";
 
     const response = await post("/api/v1/items/" + equip, data, headers);
@@ -69,11 +68,9 @@ const UserInventory = ({
 
   async function handleItemBuy(itemToBuy) {
     const data = { name: itemToBuy };
-
     const response = await post("/api/v1/items/buy", data, headers);
     if (response.status === 200) {
       setInventoryUser(response.data);
-      setItemBuy("");
     }
   }
 
@@ -82,8 +79,8 @@ const UserInventory = ({
   };
 
   function dropBox() {
-    if (itemBuy && itemBuy !== undefined) {
-      handleItemBuy(itemBuy);
+    if (itemDragBuy === "S") {
+      handleItemBuy(nameItemBuy);
     } else {
       handleItem(false);
     }
@@ -96,42 +93,28 @@ const UserInventory = ({
         className="inventory--equiped"
         id="inventory--equiped"
         onDragOver={dragOver}
-        onDrop={dropEquiped}
+        onDrop={() => {
+          if (LETRADRAG === "I") dropEquiped();
+        }}
       >
         {equipmentUser &&
           equipmentUser.items.map((item, index) => {
             if (item.type === "empty") {
-              return (
-                <div
-                  key={index}
-                  style={{
-                    display: "flex",
-                    maxWidth: "36px",
-                    maxHeight: "36px",
-                    marginLeft: "3px",
-                    marginTop: "2px",
-                  }}
-                ></div>
-              );
+              return <div key={index} style={ItemStyle}></div>;
             } else {
               return (
                 <div
                   draggable="true"
                   key={index}
                   id={index}
-                  style={{
-                    display: "flex",
-                    maxWidth: "36px",
-                    maxHeight: "36px",
-                    marginLeft: "3px",
-                    marginTop: "2px",
+                  style={ItemStyle}
+                  onDragStart={(event) => {
+                    setDataItem(item.id);
+                    setLETRADRAG("E");
+                    event.dataTransfer.setData("ETransfer", "E");
                   }}
-                  onDragStart={() => {
-                    setDataItem({
-                      name: item.name,
-                      id: item.id,
-                      type: item.type,
-                    });
+                  onDragEnd={() => {
+                    setLETRADRAG("");
                   }}
                   data-tooltip={`Name: ${item.name}
                   Strength: ${item.strength}
@@ -157,21 +140,17 @@ const UserInventory = ({
         className="inventory--box"
         id="inventory--box"
         onDragOver={dragOver}
-        onDrop={dropBox}
+        onDrop={() => {
+          if (LETRADRAG === "E" || itemDragBuy === "S") dropBox();
+        }}
       >
         {inventoryUser &&
           inventoryUser.items.map((item, index) => (
             <div
               draggable="true"
               key={index}
-              id={index}
-              style={{
-                display: "flex",
-                maxWidth: "36px",
-                maxHeight: "36px",
-                marginLeft: "3px",
-                marginTop: "2px",
-              }}
+              id={item.id}
+              style={ItemStyle}
               className={
                 item.classRequired !== aclass.name &&
                 item.classRequired !== "none"
@@ -182,11 +161,11 @@ const UserInventory = ({
               }
               onDragStart={(event) => {
                 event.dataTransfer.setData("nameItemSell", item.name);
-                setDataItem({
-                  name: item.name,
-                  id: item.id,
-                  type: item.type,
-                });
+                setDataItem(item.id);
+                setLETRADRAG("I");
+              }}
+              onDragEnd={() => {
+                setLETRADRAG("");
               }}
               data-tooltip={`Name: ${item.name}
               Strength: ${item.strength}
@@ -223,3 +202,11 @@ const UserInventory = ({
 };
 
 export default UserInventory;
+
+const ItemStyle = {
+  display: "flex",
+  maxWidth: "36px",
+  maxHeight: "36px",
+  marginLeft: "3px",
+  marginTop: "2px",
+};

@@ -164,7 +164,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 230px;
+  width: 15%;
   background-color: rgb(53, 53, 53);
   border: 2px solid;
   color: rgb(55, 255, 222);
@@ -201,8 +201,6 @@ body {
   width: 100vw;
   height: 100vh;
   text-align: center;
-  align-items: center;
-  background-color: black;
 }
 .profileNavbar {
   display: grid;
@@ -236,20 +234,19 @@ body {
 .userCard {
   background-image: url("../img/userStatsBox.webp");
   background-size: 100% 100%;
-  background-position: center;
   background-repeat: no-repeat;
   object-fit: fill;
   opacity: 0.9;
   padding-top: 35px;
-  padding-left: 120px;
-  padding-right: 120px;
+  padding-left: 130px;
+  padding-right: 130px;
 
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   font-weight: bold;
-  width: 1200px;
-  height: 520px;
+  width: 85%;
+  height: 85%;
   margin: 90px;
 }
 
@@ -308,15 +305,15 @@ body {
 /* ---------------- USERSTATS ----------------------*/
 
 .userstats {
-  align-self: center;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .userstats--form {
   display: grid;
   grid-template-columns: 3fr 2fr;
   align-items: center;
-  width: 100%;
+  column-gap: 0;
 }
 .userstats--stats,
 .userstats--add {
@@ -332,7 +329,6 @@ body {
 .userstats--add--form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 100%;
   align-items: center;
   justify-content: center;
   column-gap: 15px;
@@ -360,11 +356,10 @@ body {
 /* ----------------- USERINVENTORY -----------------------*/
 
 .inventory {
-  border-radius: 15px 0 0 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: black;
+  width: 100%;
 }
 
 .inventory--equiped {
@@ -374,7 +369,7 @@ body {
   background-image: url("../img/items/inventoryEquiped.webp");
   width: 124px;
   height: 124px;
-  padding: 3px;
+  /* padding: 3px; */
   margin: 30px;
 }
 .inventory--box {
@@ -621,8 +616,8 @@ body {
 }
 
 .history-box {
-  width: 700px;
-  height: 190px;
+  width: 70%;
+  height: 200px;
   background-color: rgba(255, 255, 255, 0.3);
   margin-top: 20px;
   padding: 10px;
