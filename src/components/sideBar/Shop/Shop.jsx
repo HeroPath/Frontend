@@ -13,7 +13,9 @@ const Shop = () => {
 
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
-    if (response.status === 200) setProfile(response.data);
+    if (response.status === 200) {
+      setProfile(response.data);
+    }
   }
 
   async function handleItems(iClass) {
@@ -136,7 +138,7 @@ const Shop = () => {
                       setItemDragBuy("");
                     }}
                     onLoad={() => {
-                      dataTooltip(item.id, item);
+                      dataTooltip(item.id, item, 1);
                     }}
                   >
                     <img

@@ -17,7 +17,7 @@ const PlayerVsNPC = () => {
       headers
     );
     if (response.status === 200) setNpcData(response.data);
-    // else if (response.status === 404) window.location.href = "/zone";
+    //else if (response.status === 404) window.location.href = "/zone";
   }
 
   useEffect(() => {
@@ -38,15 +38,21 @@ const PlayerVsNPC = () => {
     >
       {npcData?.map((npc) => (
         <form key={npc.id} className="npcCards--form">
-          <h5>
-            {npc.name.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}
-          </h5>
-          <div>
+          <div className="npcName">
+            <h4>
+              {npc.name.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}
+            </h4>
+            {npc.level < 6 ? (
+              <h6>Min Level: 1</h6>
+            ) : (
+              <h6>Min Level: {npc.level}</h6>
+            )}
+          </div>
+          <div className="npcImg">
             <img
               src={require(`../../img/npc/${npc.name}.webp`)}
-              width="120px"
-              height="120px"
-              style={{ borderRadius: "5px" }}
+              width="195px"
+              height="195px"
             />
           </div>
           <button
@@ -82,9 +88,6 @@ const PlayerVsNPC = () => {
             draggable
             pauseOnHover
           />
-          <h6>
-            Rec. lvl: {npc.level}-{npc.level + 3}
-          </h6>
         </form>
       ))}
     </div>

@@ -60,7 +60,7 @@ export const notifySuccess = (
   );
 };
 
-export function dataTooltip(id, item) {
+export function dataTooltip(id, item, divide) {
   let div = document.getElementById(id);
   let tooltip = `Name: ${item.name}
   Strength: ${item.strength}
@@ -70,7 +70,7 @@ export function dataTooltip(id, item) {
   Level Min: ${item.lvlMin}
   Class: ${item.classRequired}
   
-  Price: ${item.price / 2}`;
+  Price: ${item.price / divide}`;
 
   div.setAttribute("data-tooltip", tooltip);
 }

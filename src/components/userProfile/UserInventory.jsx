@@ -18,6 +18,7 @@ const UserInventory = ({
   const [equipmentUser, setEquipmentUser] = useState(equipment);
   const [letterDrag, setLetterDrag] = useState("");
   const [dataItem, setDataItem] = useState(0);
+  
 
   function orderedObject(equipUser) {
     const objectEmpty = { type: "empty" };
@@ -117,7 +118,7 @@ const UserInventory = ({
                     setLetterDrag("");
                   }}
                   onLoad={() => {
-                    dataTooltip(index, item);
+                    dataTooltip(index, item, 2);
                   }}
                 >
                   <img
@@ -161,7 +162,7 @@ const UserInventory = ({
                 setLetterDrag("");
               }}
               onLoad={() => {
-                dataTooltip(item.id, item);
+                dataTooltip(item.id, item, 2);
               }}
             >
               <img

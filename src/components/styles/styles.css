@@ -526,6 +526,7 @@ body {
 
 .buttons-zone,
 .buttons-zone:hover {
+  background-image: url("../img/utilities/buttonFight.png");
   display: flex;
   align-items: center;
   justify-content: center;
@@ -542,32 +543,61 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   width: 100vw;
+  height: 100vh;
   justify-items: center;
-  height: "100vh";
+  align-items: center;
+  
 }
 
 .npcCards--form {
   display: flex;
   flex-direction: column;
-  width: 270px;
-  height: auto;
-  color: white;
+  width: 280px;
+  height: 330px;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+
+  background-image: url("../img/test.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(1.2);
+}
+
+.npcName {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-
-  background-image: url("../img/zone/bg-cardNpc.webp");
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-radius: 50px;
-}
-.npcCards--form button {
-  background-image: url("../img/utilities/button.webp");
-  background-size: 120px;
+  background-image: url("../img/fondoname.jpg");
+  background-size: 100% 100%;
   background-position: center;
   color: var(--button--textColor);
-  width: 120px;
-  margin: 5px;
+  margin: 0;
+  height: 70px;
+  width: 195px;
+}
+
+.npcName h4 {
+  font-size: 20px;
+}
+
+.npcName h6 {
+  font-size: 15px;
+}
+
+.npcCards--form button {
+  background-image: url("../img/utilities/button.webp");
+  background-position: center;
+  color: var(--button--textColor);
+  width: 195px;
+}
+
+.npcCards--form button:hover {
+  filter: brightness(1.4);
 }
 
 /* ---------------- //NPC ----------------------*/
