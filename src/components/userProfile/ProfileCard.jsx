@@ -31,14 +31,14 @@ const ProfileCard = ({ profile }) => {
   return (
     <div id="profileCard">
       <section className="userCard">
-        {/* {inventory && equipment && ( */}
+        {inventory && equipment && (
           <UserInventory
             inventory={inventory}
             equipment={equipment}
             aclass={aclass}
             level={level}
           />
-        {/* )} */}
+        )}
         {aclass && hp && maxDmg && (
           <UserCard
             username={username}

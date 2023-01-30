@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/styles.css";
 import ProfileCard from "./ProfileCard";
 import Navbar from "./Navbar";
@@ -7,11 +7,13 @@ import { get } from "../../functions/requestsApi";
 import { headers } from "../../functions/utilities";
 
 const Profile = () => {
-  const [profile, setProfile] = React.useState({});
+  const [profile, setProfile] = useState({});
 
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
-    if (response.status === 200) setProfile(response.data);
+    if (response.status === 200) {
+      setProfile(response.data);
+    }
   }
 
   useEffect(() => {

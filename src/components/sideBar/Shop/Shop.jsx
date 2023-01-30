@@ -6,9 +6,8 @@ import { headers } from "../../../functions/utilities";
 import { get, post } from "../../../functions/requestsApi";
 
 const Shop = () => {
-  const [dataItem, setDataItem] = useState({});
+  const [dataItem, setDataItem] = useState("");
   const [profile, setProfile] = useState({});
-  const itemBuy = document.getElementById(dataItem.id);
 
   const [itemsShop, setItemsShop] = useState([]);
 
@@ -45,18 +44,19 @@ const Shop = () => {
       />
       <div className="shop--items">
         <div className="shop--inventory">
-          <UserInventory
-            inventory={profile.inventory}
-            equipment={profile.equipment}
-            aclass={profile.aclass}
-            itemBuy={itemBuy}
-            nameItemBuy={dataItem.name}
-            level={profile.level}
-          />
+          {profile.equipment && (
+            <UserInventory
+              inventory={profile.inventory}
+              equipment={profile.equipment}
+              aclass={profile.aclass}
+              nameItemBuy={dataItem}
+              level={profile.level}
+            />
+          )}
         </div>
         <div className="shop--npc">
           <h3>Shop</h3>
-          <div style={{ paddingLeft: "160px" }}>
+          <div>
             <div className="shop--npc--button">
               <button
                 id="none"
@@ -128,11 +128,7 @@ const Shop = () => {
                         : ""
                     }
                     onDragStart={() => {
-                      setDataItem({
-                        name: item.name,
-                        id: item.id,
-                        type: item.type,
-                      });
+                      setDataItem(item.name);
                     }}
                     data-tooltip={`Name: ${item.name}
                 Strength: ${item.strength}

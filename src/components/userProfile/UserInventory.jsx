@@ -10,101 +10,69 @@ const UserInventory = ({
   inventory,
   equipment,
   aclass,
-  itemBuy,
   nameItemBuy,
   level,
 }) => {
-  // const [inventoryUser, setInventoryUser] = useState(inventory);
-  // const [equipmentUser, setEquipmentUser] = useState(equipment);
+  const [inventoryUser, setInventoryUser] = useState(inventory);
+  const [equipmentUser, setEquipmentUser] = useState(equipment);
+  const [itemBuy, setItemBuy] = useState(nameItemBuy);
 
-  // useEffect(() => {
-  //   setInventoryUser(inventory);
-  //   setEquipmentUser(equipment);
-  // }, [inventory, equipment]);
+  function orderedObject(equipUser) {
+    const objectEmpty = { type: "empty" };
+    const order = [
+      "ship",
+      "helmet",
+      "wings",
+      "weapon",
+      "armor",
+      "shield",
+      "gloves",
+      "pants",
+      "boots",
+    ];
+
+    let sortedItems = [];
+    for (const itemType of order) {
+      let item = equipUser.items.find((item) => item.type === itemType);
+      if (!item) {
+        item = objectEmpty;
+      }
+      sortedItems.push(item);
+    }
+    equipUser.items = sortedItems;
+    return equipUser;
+  }
+  orderedObject(equipmentUser);
+
+  useEffect(() => {
+    setInventoryUser(inventoryUser);
+    setEquipmentUser(equipmentUser);
+    setItemBuy(nameItemBuy);
+  }, [inventory, equipment, nameItemBuy]);
 
   const [dataItem, setDataItem] = useState({});
-  const [equipDrag, setEquipDrag] = useState(false);
 
   const dragOver = (e) => {
     e.preventDefault();
   };
 
-  const equipmentCreate = () => {
-    const eItem = equipment.items;
-    for (let i = 0; i < eItem.length; i++) {
-      const divGeneric = document.getElementById(eItem[i].type);
-
-      if (!divGeneric.hasChildNodes()) {
-        const divItemEquiped = document.createElement("div");
-        const imgItemEquiped = document.createElement("img");
-
-        divItemEquiped.setAttribute("draggable", true);
-        divItemEquiped.setAttribute("id", eItem[i].id);
-        divItemEquiped.setAttribute(
-          "data-tooltip",
-          `Name: ${eItem[i].name}
-        Strength: ${eItem[i].strength}
-        Dexterity: ${eItem[i].dexterity}
-        Vitality: ${eItem[i].vitality}
-        Intelligence: ${eItem[i].intelligence}
-        Level Min: ${eItem[i].lvlMin}
-        Class: ${eItem[i].classRequired}
-              
-        Price: ${eItem[i].price / 2}
-        `
-        );
-
-        divItemEquiped.ondragstart = () => {
-          setEquipDrag(true);
-          setDataItem({
-            name: eItem[i].name,
-            id: eItem[i].id,
-            type: eItem[i].type,
-          });
-        };
-        divItemEquiped.classList.add("divItems");
-
-        imgItemEquiped.setAttribute(
-          "src",
-          require(`../img/items/${eItem[i].name}.png`)
-        );
-        imgItemEquiped.classList.add("item");
-
-        divItemEquiped.appendChild(imgItemEquiped);
-        divGeneric.appendChild(divItemEquiped);
-      }
-    }
-  };
-  // const equipmentDelete = () => {
-  //   const eItem = equipmentUser.items;
-  //   for (let i = 0; i < eItem.length; i++) {
-  //     const divGeneric = document.getElementById(eItem[i].type);
-  //     if (divGeneric.hasChildNodes()) {
-  //       divGeneric.removeChild(divGeneric.firstChild);
-  //     }
-  //   }
-  // };
-
-  async function handleItem(toEquip) {
+  async function handleItem(equipping) {
     let data = { id: dataItem.id };
-    let equip = toEquip === true ? "equip" : "unequip";
+    let equip = equipping === true ? "equip" : "unequip";
 
     const response = await post("/api/v1/items/" + equip, data, headers);
     if (response.status === 200) {
-      window.location.reload();
-      // setInventoryUser(response.data.inventory);
-      // setEquipmentUser(response.data.equipment);
-      // equipmentDelete();
+      setInventoryUser(response.data.inventory);
+      setEquipmentUser(response.data.equipment);
     }
   }
 
-  async function handleItemBuy() {
-    const data = { name: nameItemBuy };
-
+  async function handleItemBuy(itemToBuy) {
+    const data = { name: itemToBuy };
     const response = await post("/api/v1/items/buy", data, headers);
     if (response.status === 200) {
-      window.location.reload();
-      // setInventoryUser(response.data.inventory);
+      setInventoryUser(response.data);
+      setItemBuy("");
     }
   }
 
@@ -112,17 +80,12 @@ const UserInventory = ({
     handleItem(true);
   };
 
-  const dropBox = () => {
-    if (equipDrag === true) {
+  function dropBox() {
+    if (itemBuy !== "" && itemBuy !== undefined) {
+      handleItemBuy(itemBuy);
+    } else if (itemBuy === "" || itemBuy === undefined) {
       handleItem(false);
     }
-    if (itemBuy !== null) {
-      handleItemBuy();
-    }
-  };
-
-  {
-    equipment && equipmentCreate();
   }
 
   return (
@@ -134,15 +97,60 @@ const UserInventory = ({
         onDragOver={dragOver}
         onDrop={dropEquiped}
       >
-        <div id="ship" />
-        <div id="helmet" />
-        <div id="wings" />
-        <div id="weapon" />
-        <div id="armor" />
-        <div id="shield" />
-        <div id="gloves" />
-        <div id="pants" />
-        <div id="boots" />
+        {equipmentUser &&
+          equipmentUser.items.map((item, index) => {
+            if (item.type === "empty") {
+              return (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    maxWidth: "36px",
+                    maxHeight: "36px",
+                    marginLeft: "3px",
+                    marginTop: "2px",
+                  }}
+                ></div>
+              );
+            } else {
+              return (
+                <div
+                  draggable="true"
+                  key={index}
+                  id={index}
+                  style={{
+                    display: "flex",
+                    maxWidth: "36px",
+                    maxHeight: "36px",
+                    marginLeft: "3px",
+                    marginTop: "2px",
+                  }}
+                  onDragStart={() => {
+                    setDataItem({
+                      name: item.name,
+                      id: item.id,
+                      type: item.type,
+                    });
+                  }}
+                  data-tooltip={`Name: ${item.name}
+                  Strength: ${item.strength}
+                  Dexterity: ${item.dexterity}
+                  Vitality: ${item.vitality}
+                  Intelligence: ${item.intelligence}
+                  Level Min: ${item.lvlMin}
+                  Class: ${item.classRequired}
+                  
+                  Price: ${item.price / 2}`}
+                >
+                  <img
+                    src={require(`../img/items/${item.name}.png`)}
+                    className="item"
+                    alt=""
+                  />
+                </div>
+              );
+            }
+          })}
       </div>
       <div
         className="inventory--box"
@@ -150,12 +158,12 @@ const UserInventory = ({
         onDragOver={dragOver}
         onDrop={dropBox}
       >
-        {inventory &&
-          inventory.items.map((item, index) => (
+        {inventoryUser &&
+          inventoryUser.items.map((item, index) => (
             <div
               draggable="true"
               key={index}
-              id={item.id}
+              id={index}
               style={{
                 display: "flex",
                 maxWidth: "36px",

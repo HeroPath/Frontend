@@ -695,6 +695,8 @@ body {
 }
 
 .shop--npc {
+  display: flex;
+  flex-direction: column;
   background-image: url("../img/bg-inventory-shop.webp");
   background-repeat: no-repeat;
   align-self: center;
@@ -703,6 +705,8 @@ body {
   height: 100%;
   width: 100%;
   padding-top: 150px;
+
+  align-items: center;
 }
 
 .shop--npc--button {
