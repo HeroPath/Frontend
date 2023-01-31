@@ -1,26 +1,30 @@
-import React, { useEffect } from "react";
-import Cookies from "universal-cookie";
-import axios from "axios";
-import "../styles/styles.css";
+import React, { useEffect, useState } from "react";
+import "../../styles/styles.css";
 import { Table } from "react-bootstrap";
+import Pagination from "../Pagination";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers } from "../../functions/utilities";
-import { get, post } from "../../functions/requestsApi";
+import { headers } from "../../../functions/utilities";
+import { get, post } from "../../../functions/requestsApi";
 
 const Ranking = () => {
-  let usersCounter = 1;
   let guildsCounter = 1;
 
-  const [ranking, setRanking] = React.useState([]);
-  const [guilds, setGuilds] = React.useState([]);
+  const [ranking, setRanking] = useState([]);
+  const [guilds, setGuilds] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  async function getRankings() {
-    const responseRanking = await get("/api/v1/users/ranking", headers);
+  async function getRankingUsers() {
+    const responseRanking = await get(
+      `/api/v1/users/ranking?page=${currentPage}`,
+      headers
+    );
     if (responseRanking.status === 200) setRanking(responseRanking.data);
+  }
 
+  async function getRankingGuilds() {
     const responseGuilds = await get("/api/v1/guilds", headers);
     if (responseGuilds.status === 200) setGuilds(responseGuilds.data);
   }
@@ -31,8 +35,13 @@ const Ranking = () => {
   }
 
   useEffect(() => {
-    getRankings();
+    getRankingUsers();
+  }, [currentPage]);
+
+  useEffect(() => {
+    getRankingGuilds();
   }, []);
+  
 
   return (
     <div className="ranking">
@@ -61,16 +70,16 @@ const Ranking = () => {
             <tbody key={users.username}>
               <tr
                 style={
-                  usersCounter === 1
+                  users.rankPosition === 1
                     ? { backgroundColor: "#FFC300", fontSize: "22px" }
-                    : usersCounter === 2
+                    : users.rankPosition === 2
                     ? { backgroundColor: "#CDFD75", fontSize: "20px" }
-                    : usersCounter === 3
+                    : users.rankPosition === 3
                     ? { backgroundColor: "#DAF7A6", fontSize: "18px" }
                     : { backgroundColor: "#DEDEDE" }
                 }
               >
-                <td>{usersCounter++}</td>
+                <td>{users.rankPosition}</td>
                 <td>{users.username}</td>
                 {users.guildName ? <td>{users.guildName}</td> : <td>---</td>}
                 {users.aclassName && <td>{users.aclassName}</td>}
@@ -88,6 +97,11 @@ const Ranking = () => {
             </tbody>
           ))}
         </Table>
+        <Pagination
+          totalPages={5}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+        />
       </div>
       {guilds.length >= 1 && (
         <div>
