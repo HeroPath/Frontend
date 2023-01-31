@@ -88,6 +88,10 @@ const UserInventory = ({
     }
   }
 
+  /* ------------------- TEST -------------------*/
+  const [draggedItem, setDraggedItem] = useState({});
+  /* ------------------- TEST -------------------*/
+
   return (
     <div className="inventory" id="inventory">
       <h2>Inventory</h2>

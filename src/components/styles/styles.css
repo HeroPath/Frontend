@@ -828,3 +828,11 @@ body {
   font-size: 15px;
 }
 /* ---------------- //TOAST ----------------------*/
+
+#draggable {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  cursor: grab;
+}
