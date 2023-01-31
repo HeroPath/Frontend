@@ -11,6 +11,22 @@ const PlayerVsNPC = () => {
   const navigate = useNavigate();
   const [npcData, setNpcData] = React.useState([]);
 
+  async function attackNpc(npcName) {
+    const response = await post(
+      "/api/v1/users/attack-npc",
+      { name: npcName },
+      headers
+    );
+    if (response.status === 200) {
+      response.data = Object.assign(response.data, {
+        nameData: npcName,
+      });
+      navigate("/pvebattle", {
+        state: { battleData: response.data },
+      });
+    }
+  }
+
   async function handleData() {
     const response = await get(
       "/api/v1/npcs/zone/" + location.state.name,
@@ -53,39 +69,26 @@ const PlayerVsNPC = () => {
           </div>
           <button
             type="submit"
-            onClick={async (e) => {
+            onClick={(e) => {
               e.preventDefault();
-
-              const response = await post(
-                "/api/v1/users/attack-npc",
-                { name: npc.name },
-                headers
-              );
-              if (response.status === 200) {
-                response.data = Object.assign(response.data, {
-                  nameData: npc.name,
-                });
-                navigate("/pvebattle", {
-                  state: { battleData: response.data },
-                });
-              }
+              attackNpc(npc.name);
             }}
           >
             Fight
           </button>
-          <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
         </form>
       ))}
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
