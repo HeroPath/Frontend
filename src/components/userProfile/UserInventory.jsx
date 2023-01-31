@@ -89,7 +89,7 @@ const UserInventory = ({
 
   return (
     <div className="inventory" id="inventory">
-      <h3>Inventory</h3>
+      <h2>Inventory</h2>
       <div
         className="inventory--equiped"
         id="inventory--equiped"

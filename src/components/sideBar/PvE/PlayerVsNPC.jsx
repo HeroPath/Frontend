@@ -31,9 +31,7 @@ const PlayerVsNPC = () => {
         backgroundImage: `url(${require("../../img/zone/bg-" +
           location.state.name +
           ".webp")})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
+        backgroundSize: "100% 100%",
       }}
     >
       {npcData?.map((npc) => (

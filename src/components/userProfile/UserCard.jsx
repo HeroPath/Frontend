@@ -31,7 +31,6 @@ const UserCard = ({
         src={require("../img/class/" + aclass.name + ".webp")}
         width="250px"
         height="315px"
-        alt=""
       />
 
       <div className="bar--background" style={{ width: "250px" }}>

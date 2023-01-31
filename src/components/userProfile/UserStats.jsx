@@ -96,7 +96,7 @@ const UserStats = ({
   return (
     <div>
       <section className="userstats">
-        <h3>Stats</h3>
+        <h2>Stats</h2>
         <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
 
         <form className="userstats--form">
