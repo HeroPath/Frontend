@@ -16,7 +16,7 @@ body {
 
 .button--links,
 .button--links:hover {
-  background-image: url("../img/utilities/fondoname.png");
+  background-image: url("../img/utilities/btn-menu.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -62,7 +62,7 @@ body {
   align-items: center;
   height: 95%;
   width: 100%;
-  background-image: url("../img/test.webp");
+  background-image: url("../img/bg-form-register-login.webp");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -127,7 +127,7 @@ body {
 }
 
 .login--banner {
-  background-image: url("../img/test.webp");
+  background-image: url("../img/bg-form-register-login.webp");
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: 100% 65%;
@@ -208,7 +208,7 @@ body {
 /* ---------------- PROFILE ----------------------*/
 
 .profile {
-  background-image: url("../img/bg-userStats.webp");
+  background-image: url("../img/bg-profile.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -259,7 +259,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
-  background-image: url("../img/userStatsBox.webp");
+  background-image: url("../img/bg-user-stats.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   object-fit: fill;
@@ -280,7 +280,7 @@ body {
 .userCard--card--bgName {
   display: flex;
   justify-content: center;
-  background-image: url("../img/fondoname.jpg");
+  background-image: url("../img/utilities/fondoname.webp");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -547,7 +547,7 @@ body {
 
 .buttons-zone,
 .buttons-zone:hover {
-  background-image: url("../img/utilities/buttonFight.png");
+  background-image: url("../img/utilities/btn-zone-card.webp");
   display: flex;
   align-items: center;
   justify-content: center;
@@ -581,7 +581,7 @@ body {
   font-size: 22px;
   /* padding: 15px 0; */
   padding: 5.5% 0;
-  background-image: url("../img/test.png");
+  background-image: url("../img/utilities/framework-card.webp");
   background-size: 83% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -595,7 +595,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-image: url("../img/fondoname.jpg");
+  background-image: url("../img/utilities/fondoname.webp");
   background-size: 100% 100%;
   background-position: center;
   color: var(--button--textColor);
@@ -609,7 +609,7 @@ body {
 }
 
 .npcCards--form button {
-  background-image: url("../img/utilities/button.webp");
+  background-image: url("../img/utilities/btn-npc-card.webp");
   background-position: center;
   color: var(--button--textColor);
   width: 190px;
@@ -636,7 +636,7 @@ body {
 
 .battle--usercard,
 .battle--npccard {
-  background-image: url("../img/test.png");
+  background-image: url("../img/utilities/framework-card.webp");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

@@ -11,6 +11,8 @@ const Shop = () => {
   const [itemDragBuy, setItemDragBuy] = useState("");
   const [itemsShop, setItemsShop] = useState([]);
 
+  const [showTooltip, setShowTooltip] = useState(true);
+
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
@@ -130,16 +132,18 @@ const Shop = () => {
                         : ""
                     }
                     onDragStart={() => {
+                      setShowTooltip(false);
                       setDataItem(item.name);
                       setItemDragBuy("S");
                     }}
                     onDragEnd={() => {
+                      setShowTooltip(true);
                       setDataItem("");
                       setItemDragBuy("");
                     }}
-                    onLoad={() => {
-                      dataTooltip(item.id, item, 1);
-                    }}
+                    {...(showTooltip && {
+                      "data-tooltip": dataTooltip(item, 1),
+                    })}
                   >
                     <img
                       src={require(`../../img/items/${item.name}.png`)}

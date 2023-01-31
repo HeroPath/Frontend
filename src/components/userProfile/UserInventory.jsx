@@ -18,7 +18,8 @@ const UserInventory = ({
   const [equipmentUser, setEquipmentUser] = useState(equipment);
   const [letterDrag, setLetterDrag] = useState("");
   const [dataItem, setDataItem] = useState(0);
-  
+
+  const [showTooltip, setShowTooltip] = useState(true);
 
   function orderedObject(equipUser) {
     const objectEmpty = { type: "empty" };
@@ -110,16 +111,16 @@ const UserInventory = ({
                   id={index}
                   style={ItemStyle}
                   onDragStart={(event) => {
+                    setShowTooltip(false);
                     setDataItem(item.id);
                     setLetterDrag("E");
                     event.dataTransfer.setData("ETransfer", "E");
                   }}
                   onDragEnd={() => {
+                    setShowTooltip(true);
                     setLetterDrag("");
                   }}
-                  onLoad={() => {
-                    dataTooltip(index, item, 2);
-                  }}
+                  {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
                 >
                   <img
                     src={require(`../img/items/${item.name}.png`)}
@@ -154,16 +155,16 @@ const UserInventory = ({
                   : ""
               }
               onDragStart={(event) => {
+                setShowTooltip(false);
                 event.dataTransfer.setData("nameItemSell", item.name);
                 setDataItem(item.id);
                 setLetterDrag("I");
               }}
               onDragEnd={() => {
+                setShowTooltip(true);
                 setLetterDrag("");
               }}
-              onLoad={() => {
-                dataTooltip(item.id, item, 2);
-              }}
+              {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
             >
               <img
                 src={require(`../img/items/${item.name}.png`)}
