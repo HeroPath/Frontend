@@ -60,7 +60,7 @@ export const notifySuccess = (
   );
 };
 
-export function  dataTooltip(item, divide) {
+export function dataTooltip(item, divide) {
   return `Name: ${item.name}
   Strength: ${item.strength}
   Dexterity: ${item.dexterity}
@@ -70,4 +70,9 @@ export function  dataTooltip(item, divide) {
   Class: ${item.classRequired}
 
   Price: ${item.price / divide}`;
-};
+}
+
+export function sounds(sound) {
+  const playSound = new Audio(require(`../components/sounds/${sound}.wav`));
+  return playSound.play();
+}

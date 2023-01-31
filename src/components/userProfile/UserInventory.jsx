@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { post } from "../../functions/requestsApi";
-import { headers, dataTooltip } from "../../functions/utilities";
+import { headers, dataTooltip, sounds } from "../../functions/utilities";
 
 const UserInventory = ({
   inventory,
@@ -17,7 +17,7 @@ const UserInventory = ({
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
   const [letterDrag, setLetterDrag] = useState("");
-  const [dataItem, setDataItem] = useState(0);
+  const [dataItem, setDataItem] = useState({});
 
   const [showTooltip, setShowTooltip] = useState(true);
 
@@ -56,15 +56,18 @@ const UserInventory = ({
   };
 
   async function handleItem(equipping) {
-    if (dataItem === 0) return;
+    if (dataItem === {}) return;
 
-    let data = { id: dataItem };
+    let data = { id: dataItem.id };
     let equip = equipping === true ? "equip" : "unequip";
 
     const response = await post("/api/v1/items/" + equip, data, headers);
     if (response.status === 200) {
       setInventoryUser(response.data.inventory);
       setEquipmentUser(response.data.equipment);
+      {
+        dataItem.name === "potion" ? sounds("potion") : sounds("equip");
+      }
     }
   }
 
@@ -73,6 +76,7 @@ const UserInventory = ({
     const response = await post("/api/v1/items/buy", data, headers);
     if (response.status === 200) {
       setInventoryUser(response.data);
+      sounds("buySell");
     }
   }
 
@@ -88,16 +92,6 @@ const UserInventory = ({
     }
   }
 
-  /* ------------------- TEST -------------------*/
-  const audioRef = useRef(null);
-
-  function handleClick() {
-    if (audioRef.current.readyState === 4) {
-      audioRef.current.play();
-    }
-  }
-  /* ------------------- TEST -------------------*/
-
   return (
     <div className="inventory" id="inventory">
       <h2>Inventory</h2>
@@ -106,7 +100,9 @@ const UserInventory = ({
         id="inventory--equiped"
         onDragOver={dragOver}
         onDrop={() => {
-          if (letterDrag === "I") dropEquiped();
+          if (letterDrag === "I") {
+            dropEquiped();
+          }
         }}
       >
         {equipmentUser &&
@@ -122,14 +118,13 @@ const UserInventory = ({
                   style={ItemStyle}
                   onDragStart={(event) => {
                     setShowTooltip(false);
-                    setDataItem(item.id);
+                    setDataItem({ id: item.id, name: item.name });
                     setLetterDrag("E");
                     event.dataTransfer.setData("ETransfer", "E");
                   }}
                   onDragEnd={() => {
                     setShowTooltip(true);
                     setLetterDrag("");
-                    handleClick();
                   }}
                   {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
                 >
@@ -147,7 +142,9 @@ const UserInventory = ({
         id="inventory--box"
         onDragOver={dragOver}
         onDrop={() => {
-          if (letterDrag === "E" || itemDragBuy === "S") dropBox();
+          if (letterDrag === "E" || itemDragBuy === "S") {
+            dropBox();
+          }
         }}
       >
         {inventoryUser &&
@@ -168,12 +165,13 @@ const UserInventory = ({
               onDragStart={(event) => {
                 setShowTooltip(false);
                 event.dataTransfer.setData("nameItemSell", item.name);
-                setDataItem(item.id);
+                setDataItem({ id: item.id, name: item.name });
                 setLetterDrag("I");
               }}
-              onDragEnd={() => {
+              onDragEnd={(event) => {
                 setShowTooltip(true);
                 setLetterDrag("");
+                event.dataTransfer.setData("nameItemSell", "");
               }}
               {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
             >
@@ -184,7 +182,6 @@ const UserInventory = ({
               />
             </div>
           ))}
-        <audio ref={audioRef} src="../sounds/equip.wav" />
       </div>
 
       <ToastContainer

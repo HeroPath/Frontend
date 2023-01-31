@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserInventory from "../../userProfile/UserInventory";
 import Navbar from "../../userProfile/Navbar";
 
-import { headers, dataTooltip } from "../../../functions/utilities";
+import { headers, dataTooltip, sounds } from "../../../functions/utilities";
 import { get, post } from "../../../functions/requestsApi";
 
 const Shop = () => {
@@ -27,7 +27,10 @@ const Shop = () => {
 
   async function handleISelltems(values) {
     const response = await post("/api/v1/items/sell", values, headers);
-    if (response.status === 200) window.location.reload();
+    if (response.status === 200) {
+      sounds("buySell");
+      window.location.reload();
+    }
   }
 
   useEffect(() => {
