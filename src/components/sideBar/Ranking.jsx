@@ -73,9 +73,9 @@ const Ranking = () => {
                 <td>{usersCounter++}</td>
                 <td>{users.username}</td>
                 {users.guildName ? <td>{users.guildName}</td> : <td>---</td>}
-                {users.aclass && <td>{users.aclass.name}</td>}
+                {users.aclassName && <td>{users.aclassName}</td>}
                 <td>{users.level}</td>
-                <td>{users.title.name}</td>
+                <td>{users.titleName}</td>
                 <td>{users.titlePoints}</td>
                 <td>{users.strength}</td>
                 <td>{users.dexterity}</td>

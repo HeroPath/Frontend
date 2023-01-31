@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -89,7 +89,13 @@ const UserInventory = ({
   }
 
   /* ------------------- TEST -------------------*/
-  const [draggedItem, setDraggedItem] = useState({});
+  const audioRef = useRef(null);
+
+  function handleClick() {
+    if (audioRef.current.readyState === 4) {
+      audioRef.current.play();
+    }
+  }
   /* ------------------- TEST -------------------*/
 
   return (
@@ -123,6 +129,7 @@ const UserInventory = ({
                   onDragEnd={() => {
                     setShowTooltip(true);
                     setLetterDrag("");
+                    handleClick();
                   }}
                   {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
                 >
@@ -177,6 +184,7 @@ const UserInventory = ({
               />
             </div>
           ))}
+        <audio ref={audioRef} src="../sounds/equip.wav" />
       </div>
 
       <ToastContainer
