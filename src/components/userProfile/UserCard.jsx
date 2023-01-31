@@ -10,8 +10,8 @@ const UserCard = ({
   experienceToNextLevel,
   level,
 }) => {
-  let barHealthWidth = (hp * 250) / maxHp;
-  let barExpWidth = (experience * 250) / experienceToNextLevel;
+  let barHealthWidth = (hp * 270) / maxHp;
+  let barExpWidth = (experience * 270) / experienceToNextLevel;
   let hpComplete = `${hp}/${maxHp}`;
   let expComplete = `${experience} / ${experienceToNextLevel}`;
   let percentExp =
@@ -29,11 +29,11 @@ const UserCard = ({
       </div>
       <img
         src={require("../img/class/" + aclass.name + ".webp")}
-        width="250px"
-        height="315px"
+        width="270px"
+        height="270px"
       />
 
-      <div className="bar--background" style={{ width: "250px" }}>
+      <div className="bar--background" style={{ width: "270px" }}>
         <div className="bar--foreground">{hpComplete}</div>
         <div
           className="bar--foreground--health"
@@ -41,7 +41,7 @@ const UserCard = ({
         />
       </div>
 
-      <div className="bar--background" style={{ width: "250px" }}>
+      <div className="bar--background" style={{ width: "270px" }}>
         <div
           className="bar--foreground"
           onClick={() => {

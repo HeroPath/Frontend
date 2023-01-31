@@ -62,14 +62,14 @@ const PvEBattle = () => {
               <h6>Round: {rounds.round}</h6>
               <div>
                 <li>
-                  {profile.username} has attacked {npcName} for{" "}
-                  {rounds.attackerDmg.toLocaleString()} damage. ({npcName} has{" "}
-                  {rounds.NpcLife.toLocaleString()} life)
+                  {profile.username} attacked {npcName} for{" "}
+                  {rounds.attackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
+                  {rounds.NpcLife.toLocaleString()})
                 </li>
                 <li>
-                  {npcName} has attacked {profile.username} for{" "}
-                  {rounds.NpcDmg.toLocaleString()} damage. ({profile.username}{" "}
-                  has {rounds.attackerLife.toLocaleString()} life)
+                  {npcName} attacked {profile.username} for{" "}
+                  {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
+                  life: {rounds.attackerLife.toLocaleString()})
                 </li>
               </div>
             </ul>
@@ -104,9 +104,14 @@ const PvEBattle = () => {
             </ul>
           )}
         </div>
-        <a href="/profile" className="button--links links m-2 pe-5 ps-5">
-          Profile
-        </a>
+        <div className="rounds--console--buttons">
+          <a href="/profile" className="button--links links">
+            Profile
+          </a>
+          <a href="/zone" className="button--links links">
+            Zone
+          </a>
+        </div>
       </div>
     </div>
   );

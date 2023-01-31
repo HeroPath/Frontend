@@ -31,7 +31,6 @@ const PlayerVsNPC = () => {
         backgroundImage: `url(${require("../../img/zone/bg-" +
           location.state.name +
           ".webp")})`,
-        backgroundSize: "100% 100%",
       }}
     >
       {npcData?.map((npc) => (
@@ -43,14 +42,14 @@ const PlayerVsNPC = () => {
             {npc.level < 6 ? (
               <h6>Min Level: 1</h6>
             ) : (
-              <h6>Min Level: {npc.level}</h6>
+              <h6>Min Level: {npc.level - 5}</h6>
             )}
           </div>
           <div className="npcImg">
             <img
               src={require(`../../img/npc/${npc.name}.webp`)}
-              width="195px"
-              height="195px"
+              width="190px"
+              height="190px"
             />
           </div>
           <button

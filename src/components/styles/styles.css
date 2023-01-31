@@ -270,7 +270,7 @@ body {
   background-repeat: no-repeat;
   object-fit: fill;
   opacity: 0.9;
-  width: 250px;
+  width: 270px;
   color: var(--button--textColor);
 }
 
@@ -321,6 +321,7 @@ body {
 .userstats {
   display: flex;
   flex-direction: column;
+  padding-top: 3%;
 }
 
 .userstats--form {
@@ -381,6 +382,7 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding-top: 3%;
 }
 
 .inventory--equiped {
@@ -390,7 +392,7 @@ body {
   background-image: url("../img/items/inventoryEquiped.webp");
   width: 124px;
   height: 124px;
-  margin: 20px;
+  margin: 6%;
 }
 .inventory--box {
   display: grid;
@@ -399,8 +401,10 @@ body {
   background-image: url("../img/items/inventoryBox.webp");
   width: 247px;
   height: 165px;
-  padding: 3px;
-  margin: 10px;
+  /* padding: 3px; */
+  /* margin: 10px; */
+  padding: 1%;
+  margin: 3%;
 }
 
 .item {
@@ -414,19 +418,6 @@ body {
 .item:hover {
   filter: brightness(1.8);
   cursor: pointer;
-}
-
-.divItems {
-  display: flex;
-  max-width: 40px;
-  max-height: 40px;
-}
-
-.divItems p {
-  color: white;
-  margin-left: -4px;
-  margin-top: 1px;
-  font-size: 10px;
 }
 
 .itemNoClass {
@@ -445,7 +436,6 @@ body {
   text-align: center;
   box-shadow: none;
   font-size: 25px;
-  height: 35px;
   border: 1px solid;
 }
 
@@ -519,20 +509,17 @@ body {
 /* ---------------- ZONE ----------------------*/
 
 .zone {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  align-items: center;
   background-image: url("../img/zone/bg-zone.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   object-fit: fill;
-
-  color: rgb(255, 255, 255);
-
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  color: #fff;
   width: 100vw;
-
-  text-align: center;
-  align-items: center;
 }
 
 .zoneForm {
@@ -540,7 +527,6 @@ body {
   flex-direction: column;
   text-align: center;
   align-items: center;
-  margin: 10px;
 }
 
 .buttons-zone,
@@ -550,7 +536,8 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 25px;
-  height: 50px;
+  /* height: 50px; */
+  height: 20%;
   width: 100%;
 }
 
@@ -561,29 +548,32 @@ body {
 .npcCards {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  height: 100vh;
-  justify-items: center;
   align-items: center;
+  justify-items: center;
+  background-size: 100% 100%;
+  width: 100%;
 }
 
 .npcCards--form {
   display: flex;
   flex-direction: column;
-  width: 280px;
-  height: 330px;
-  color: black;
+  width: 260px;
+  /* width: 280px;
+  height: 330px; */
   justify-content: center;
   align-items: center;
   font-size: 22px;
-
+  /* padding: 15px 0; */
+  padding: 5.5% 0;
   background-image: url("../img/test.png");
-  background-size: contain;
+  background-size: 83% 100%;
   background-position: center;
   background-repeat: no-repeat;
   filter: brightness(1.2);
 }
 
-.npcName {
+.npcName,
+.npcBattleName {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -594,8 +584,8 @@ body {
   background-position: center;
   color: var(--button--textColor);
   margin: 0;
-  height: 70px;
-  width: 195px;
+  padding: 2px;
+  width: 190px;
 }
 
 .npcName h6 {
@@ -606,7 +596,7 @@ body {
   background-image: url("../img/utilities/button.webp");
   background-position: center;
   color: var(--button--textColor);
-  width: 195px;
+  width: 190px;
 }
 
 .npcCards--form button:hover {
@@ -618,57 +608,68 @@ body {
 /* ---------------- PVEBATTLE ----------------------*/
 
 .battle {
-  width: 100vw;
-  height: 100vh;
-  background-image: url("../img/zone/bg-forest.webp");
-  background-size: cover;
-  background-position: center;
-  opacity: 10000;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../img/zone/bg-forest.webp");
+  background-size: 100% 100%;
+  padding: 10px;
 }
 
-.battle--usercard {
-  background-image: url("../img/bg-card.webp");
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-radius: 50px;
-  align-self: center;
-  background-position: center center;
-  position: relative;
-  color: white;
-}
+.battle--usercard,
 .battle--npccard {
-  background-image: url("../img/bg-card.webp");
+  background-image: url("../img/test.png");
   background-size: contain;
   background-repeat: no-repeat;
-  border-radius: 50px;
-  align-self: center;
-  background-position: center center;
-  position: relative;
+  background-position: center;
   color: white;
+  height: 460px;
+}
+
+.battle label {
+  width: 270px;
+  background-color: #646464;
+}
+
+.npcBattleName {
+  width: 270px;
 }
 
 .rounds--console {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  width: 100%;
   grid-column-start: 1;
   grid-column-end: 3;
-  display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-items: center;
   font-weight: bold;
 }
 
 .history-box {
-  width: 70%;
+  width: 80%;
   height: 200px;
   background-color: rgba(255, 255, 255, 0.3);
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 10px;
   border-radius: 5px;
   border: 2px solid #646464;
   overflow-y: scroll;
+  font-size: 18px;
+}
+
+.rounds--console--buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+}
+.rounds--console--buttons a,
+.rounds--console--buttons a:hover {
+  font-size: 25px;
+  padding: 10px 100px;
 }
 
 .round {
@@ -692,22 +693,20 @@ body {
   text-align: center;
   flex-direction: column;
   align-items: center;
+  padding-top: 3%;
 }
+
 /* ---------------- //NPCCARD ----------------------*/
 
 /* ---------------- PVP ----------------------*/
 .pvpbattle {
   display: flex;
-  text-align: center;
   flex-direction: column;
+  text-align: center;
   align-items: center;
-
-  padding-top: 200px;
-  padding-left: 100px;
-  padding-right: 100px;
+  justify-content: center;
   width: 100vw;
   height: 100vh;
-
   font-size: 25px;
   font-weight: bold;
 }
@@ -716,31 +715,21 @@ body {
 /* ---------------- SHOP ----------------------*/
 
 .shop {
-  background-image: url("../img/bg-shop.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  align-self: center;
-  background-position: center;
-  position: relative;
-
   display: flex;
   flex-direction: column;
+  background-image: url("../img/bg-shop.webp");
+  background-size: cover;
+  background-position: center;
   width: 100vw;
   height: 100vh;
   text-align: center;
   align-items: center;
 }
 
-.shop--npc--div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .shop--items {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 80%;
+  width: 75%;
   height: 100vh;
 }
 
@@ -754,10 +743,7 @@ body {
   background-repeat: no-repeat;
   align-self: center;
   align-items: center;
-
-  height: auto;
-  width: 100%;
-  padding: 50px;
+  padding: 10%;
 }
 
 .shop--npc--button {
@@ -768,26 +754,17 @@ body {
 }
 
 .shop--npc--button button {
-  color: var(--button--textColor);
   background-image: url("../img/items/buttons.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 62px;
-}
-
-.shop--npc--button button:focus {
-  text-decoration: none;
+  color: var(--button--textColor);
 }
 
 .shop--npc--card {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  margin-bottom: 10px;
   background-image: url("../img/items/shop.webp");
   width: 248px;
   height: 329px;
-  text-align: center;
 }
 
 /* ---------------- //SHOP ----------------------*/
@@ -802,26 +779,18 @@ body {
   font-weight: bold;
 }
 
-.ranking--tableUsers {
-  padding-bottom: 10px;
-}
-
 /* ---------------- //RANKING ----------------------*/
 
 /* ---------------- GUILD ----------------------*/
 
 .guild {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   font-weight: bold;
-  padding: 10px 40px 0 40px;
   text-align: center;
-}
-
-.guild--stats,
-.guild--requests,
-.guild--members {
-  border: black;
 }
 
 /* ---------------- //GUILD ----------------------*/
