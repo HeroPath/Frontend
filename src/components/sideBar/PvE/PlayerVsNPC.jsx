@@ -17,7 +17,6 @@ const PlayerVsNPC = () => {
       headers
     );
     if (response.status === 200) setNpcData(response.data);
-    //else if (response.status === 404) window.location.href = "/zone";
   }
 
   useEffect(() => {
