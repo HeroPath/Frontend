@@ -222,7 +222,7 @@ body {
 }
 .profileNavbar {
   display: grid;
-  grid-template-columns: 4fr 2fr 2fr;
+  grid-template-columns: 2fr 1fr 1fr;
   background-color: rgb(53, 53, 53);
   border-top: 2px solid;
   border-right: 2px solid;

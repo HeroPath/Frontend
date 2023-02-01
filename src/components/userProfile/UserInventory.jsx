@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +13,7 @@ const UserInventory = ({
   nameItemBuy,
   itemDragBuy,
   level,
+  itemDragSell,
 }) => {
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
@@ -47,9 +48,18 @@ const UserInventory = ({
   orderedObject(equipmentUser);
 
   useEffect(() => {
+    if (itemDragSell !== null && itemDragSell !== inventory)
+      setInventoryUser(itemDragSell);
+  }, [itemDragSell, inventory]);
+
+  /*------------------------------------- NO HACE FALTA -------------------------------------*/
+
+  useEffect(() => {
     setInventoryUser(inventoryUser);
-    setEquipmentUser(equipmentUser);
-  }, [inventory, equipment]);
+    // setEquipmentUser(equipmentUser);
+  }, [inventory /*equipment*/]);
+
+  /*------------------------------------- NO HACE FALTA -------------------------------------*/
 
   const dragOver = (e) => {
     e.preventDefault();

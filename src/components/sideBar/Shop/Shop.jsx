@@ -10,8 +10,9 @@ const Shop = () => {
   const [profile, setProfile] = useState({});
   const [itemDragBuy, setItemDragBuy] = useState("");
   const [itemsShop, setItemsShop] = useState([]);
-
   const [showTooltip, setShowTooltip] = useState(true);
+
+  const [itemDragSell, setItemDragSell] = useState(null);
 
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
@@ -28,8 +29,8 @@ const Shop = () => {
   async function handleISelltems(values) {
     const response = await post("/api/v1/items/sell", values, headers);
     if (response.status === 200) {
+      setItemDragSell(response.data.inventory);
       sounds("buySell");
-      window.location.reload();
     }
   }
 
@@ -59,6 +60,7 @@ const Shop = () => {
               nameItemBuy={dataItem}
               itemDragBuy={itemDragBuy}
               level={profile.level}
+              itemDragSell={itemDragSell}
             />
           )}
         </div>
@@ -117,6 +119,7 @@ const Shop = () => {
                   handleISelltems({
                     name: event.dataTransfer.getData("nameItemSell"),
                   });
+                  setItemDragSell(null);
                 }}
               >
                 {itemsShop.map((item, index) => (

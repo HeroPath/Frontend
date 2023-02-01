@@ -69,7 +69,7 @@ export function dataTooltip(item, divide) {
   Level Min: ${item.lvlMin}
   Class: ${item.classRequired}
 
-  Price: ${item.price / divide}`;
+  Price: ${(item.price / divide).toLocaleString()}`;
 }
 
 export function sounds(sound) {

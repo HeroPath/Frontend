@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
 
-import { headers } from "../../../functions/utilities";
+import { headers, sounds } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
 
 const PvEBattle = () => {
@@ -96,7 +96,7 @@ const PvEBattle = () => {
                   <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>
                 )}
                 {winnerBattle.levelUp === true && (
-                  <li>
+                  <li onLoad={sounds("levelUp")}>
                     Congratulations, you have reached level {profile.level}
                   </li>
                 )}
