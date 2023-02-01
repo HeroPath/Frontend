@@ -59,3 +59,20 @@ export const notifySuccess = (
     }
   );
 };
+
+export function dataTooltip(item, divide) {
+  return `Name: ${item.name}
+  Strength: ${item.strength}
+  Dexterity: ${item.dexterity}
+  Vitality: ${item.vitality}
+  Intelligence: ${item.intelligence}
+  Level Min: ${item.lvlMin}
+  Class: ${item.classRequired}
+
+  Price: ${(item.price / divide).toLocaleString()}`;
+}
+
+export function sounds(sound) {
+  const playSound = new Audio(require(`../components/sounds/${sound}.wav`));
+  return playSound.play();
+}

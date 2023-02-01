@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
 
-import { headers } from "../../../functions/utilities";
+import { headers, sounds } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
 
 const PvEBattle = () => {
@@ -62,14 +62,14 @@ const PvEBattle = () => {
               <h6>Round: {rounds.round}</h6>
               <div>
                 <li>
-                  {profile.username} has attacked {npcName} for{" "}
-                  {rounds.attackerDmg.toLocaleString()} damage. ({npcName} has{" "}
-                  {rounds.NpcLife.toLocaleString()} life)
+                  {profile.username} attacked {npcName} for{" "}
+                  {rounds.attackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
+                  {rounds.NpcLife.toLocaleString()})
                 </li>
                 <li>
-                  {npcName} has attacked {profile.username} for{" "}
-                  {rounds.NpcDmg.toLocaleString()} damage. ({profile.username}{" "}
-                  has {rounds.attackerLife.toLocaleString()} life)
+                  {npcName} attacked {profile.username} for{" "}
+                  {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
+                  life: {rounds.attackerLife.toLocaleString()})
                 </li>
               </div>
             </ul>
@@ -96,7 +96,7 @@ const PvEBattle = () => {
                   <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>
                 )}
                 {winnerBattle.levelUp === true && (
-                  <li>
+                  <li onLoad={sounds("levelUp")}>
                     Congratulations, you have reached level {profile.level}
                   </li>
                 )}
@@ -104,13 +104,14 @@ const PvEBattle = () => {
             </ul>
           )}
         </div>
-        <a
-          href="/profile"
-          className="button--links links m-2 pe-5 ps-5"
-          style={{ backgroundColor: "lightBlue" }}
-        >
-          Profile
-        </a>
+        <div className="rounds--console--buttons">
+          <a href="/profile" className="button--links links">
+            Profile
+          </a>
+          <a href="/zone" className="button--links links">
+            Zone
+          </a>
+        </div>
       </div>
     </div>
   );

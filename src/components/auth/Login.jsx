@@ -44,7 +44,7 @@ const Login = () => {
   }
 
   return (
-    <div className="login" style={cardStyle}>
+    <div className="login">
       <div className="login--banner">
         <section className="login--section">
           <form className="login--form" onSubmit={handleSubmit}>
@@ -96,5 +96,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const cardStyle = {};

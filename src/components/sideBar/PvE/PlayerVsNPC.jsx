@@ -11,13 +11,28 @@ const PlayerVsNPC = () => {
   const navigate = useNavigate();
   const [npcData, setNpcData] = React.useState([]);
 
+  async function attackNpc(npcName) {
+    const response = await post(
+      "/api/v1/users/attack-npc",
+      { name: npcName },
+      headers
+    );
+    if (response.status === 200) {
+      response.data = Object.assign(response.data, {
+        nameData: npcName,
+      });
+      navigate("/pvebattle", {
+        state: { battleData: response.data },
+      });
+    }
+  }
+
   async function handleData() {
     const response = await get(
       "/api/v1/npcs/zone/" + location.state.name,
       headers
     );
     if (response.status === 200) setNpcData(response.data);
-    // else if (response.status === 404) window.location.href = "/zone";
   }
 
   useEffect(() => {
@@ -31,62 +46,49 @@ const PlayerVsNPC = () => {
         backgroundImage: `url(${require("../../img/zone/bg-" +
           location.state.name +
           ".webp")})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
       }}
     >
       {npcData?.map((npc) => (
         <form key={npc.id} className="npcCards--form">
-          <h5>
-            {npc.name.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}
-          </h5>
-          <div>
+          <div className="npcName">
+            <h4>
+              {npc.name.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}
+            </h4>
+            {npc.level < 6 ? (
+              <h6>Min Level: 1</h6>
+            ) : (
+              <h6>Min Level: {npc.level - 5}</h6>
+            )}
+          </div>
+          <div className="npcImg">
             <img
               src={require(`../../img/npc/${npc.name}.webp`)}
-              width="120px"
-              height="120px"
-              style={{ borderRadius: "5px" }}
+              width="190px"
+              height="190px"
             />
           </div>
           <button
             type="submit"
-            onClick={async (e) => {
+            onClick={(e) => {
               e.preventDefault();
-
-              const response = await post(
-                "/api/v1/users/attack-npc",
-                { name: npc.name },
-                headers
-              );
-              if (response.status === 200) {
-                response.data = Object.assign(response.data, {
-                  nameData: npc.name,
-                });
-                navigate("/pvebattle", {
-                  state: { battleData: response.data },
-                });
-              }
+              attackNpc(npc.name);
             }}
           >
             Fight
           </button>
-          <ToastContainer
-            position="top-right"
-            autoClose={4000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          <h6>
-            Rec. lvl: {npc.level}-{npc.level + 3}
-          </h6>
         </form>
       ))}
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

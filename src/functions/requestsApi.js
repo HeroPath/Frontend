@@ -13,9 +13,6 @@ export async function post(route, objectData, headers) {
   } catch (err) {
     if (err.request.status !== 0) {
       notify(err.response.data.message);
-      setTimeout(() => {
-        window.location.reload();
-      }, 2500);
     }
   }
 }
@@ -29,9 +26,6 @@ export async function get(route, headers) {
   } catch (err) {
     if (err.request.status !== 0) {
       notify(err.response.data.message);
-      setTimeout(() => {
-        window.location.reload();
-      }, 2500);
     }
   }
 }

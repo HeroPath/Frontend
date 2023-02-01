@@ -39,7 +39,7 @@ const ProfileCard = ({ profile }) => {
             level={level}
           />
         )}
-        {aclass && hp && maxDmg && (
+        {aclass && maxDmg && (
           <UserCard
             username={username}
             aclass={aclass}

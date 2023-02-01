@@ -2,18 +2,23 @@ import React, { useEffect, useState } from "react";
 import UserInventory from "../../userProfile/UserInventory";
 import Navbar from "../../userProfile/Navbar";
 
-import { headers } from "../../../functions/utilities";
+import { headers, dataTooltip, sounds } from "../../../functions/utilities";
 import { get, post } from "../../../functions/requestsApi";
 
 const Shop = () => {
   const [dataItem, setDataItem] = useState("");
   const [profile, setProfile] = useState({});
-
+  const [itemDragBuy, setItemDragBuy] = useState("");
   const [itemsShop, setItemsShop] = useState([]);
+  const [showTooltip, setShowTooltip] = useState(true);
+
+  const [itemDragSell, setItemDragSell] = useState(null);
 
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
-    if (response.status === 200) setProfile(response.data);
+    if (response.status === 200) {
+      setProfile(response.data);
+    }
   }
 
   async function handleItems(iClass) {
@@ -23,7 +28,11 @@ const Shop = () => {
 
   async function handleISelltems(values) {
     const response = await post("/api/v1/items/sell", values, headers);
-    if (response.status === 200) window.location.reload();
+    if (response.status === 200) {
+      setItemDragSell(response.data.inventory);
+      profile.gold = response.data.gold;
+      sounds("buySell");
+    }
   }
 
   useEffect(() => {
@@ -41,6 +50,7 @@ const Shop = () => {
         gold={profile.gold}
         diamond={profile.diamond}
         role={profile.role}
+        itemDragSell={itemDragSell}
       />
       <div className="shop--items">
         <div className="shop--inventory">
@@ -50,7 +60,9 @@ const Shop = () => {
               equipment={profile.equipment}
               aclass={profile.aclass}
               nameItemBuy={dataItem}
+              itemDragBuy={itemDragBuy}
               level={profile.level}
+              itemDragSell={itemDragSell}
             />
           )}
         </div>
@@ -100,9 +112,16 @@ const Shop = () => {
                 className="shop--npc--card"
                 id="shopNpcSellBuy"
                 onDrop={(event) => {
+                  if (
+                    itemDragBuy === "S" ||
+                    event.dataTransfer.getData("ETransfer") === "E"
+                  ) {
+                    return;
+                  }
                   handleISelltems({
                     name: event.dataTransfer.getData("nameItemSell"),
                   });
+                  setItemDragSell(null);
                 }}
               >
                 {itemsShop.map((item, index) => (
@@ -110,14 +129,7 @@ const Shop = () => {
                     draggable="true"
                     key={index}
                     id={item.id}
-                    style={{
-                      display: "flex",
-                      maxWidth: "36px",
-                      maxHeight: "36px",
-                      marginTop: "2px",
-                      marginLeft: "3px",
-                      justifyContent: "center",
-                    }}
+                    style={ItemStyle}
                     className={
                       profile.aclass &&
                       item.classRequired !== profile.aclass.name &&
@@ -128,22 +140,22 @@ const Shop = () => {
                         : ""
                     }
                     onDragStart={() => {
+                      setShowTooltip(false);
                       setDataItem(item.name);
+                      setItemDragBuy("S");
                     }}
-                    data-tooltip={`Name: ${item.name}
-                Strength: ${item.strength}
-                Dexterity: ${item.dexterity}
-                Vitality: ${item.vitality}
-                Intelligence: ${item.intelligence}
-                Level Min: ${item.lvlMin}
-                Class: ${item.classRequired}
-                
-                Price: ${item.price}`}
+                    onDragEnd={() => {
+                      setShowTooltip(true);
+                      setDataItem("");
+                      setItemDragBuy("");
+                    }}
+                    {...(showTooltip && {
+                      "data-tooltip": dataTooltip(item, 1),
+                    })}
                   >
                     <img
                       src={require(`../../img/items/${item.name}.png`)}
                       className="item"
-                      alt=""
                     />
                   </div>
                 ))}
@@ -157,3 +169,11 @@ const Shop = () => {
 };
 
 export default Shop;
+
+const ItemStyle = {
+  display: "flex",
+  maxWidth: "36px",
+  maxHeight: "36px",
+  marginLeft: "3px",
+  marginTop: "2px",
+};

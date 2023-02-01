@@ -18,23 +18,23 @@ const NpcCard = () => {
     getNpcData();
   }, []);
 
-  let barHealthWidth = (npcData.hp * 250) / npcData.maxHp;
+  let barHealthWidth = (npcData.hp * 270) / npcData.maxHp;
 
   return (
     <div className="pvebattle--npccard">
       <form className="pvebattle--npccard--form">
-        <h3>
+        <h3 className="npcBattleName">
           {npcName.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}
         </h3>
         <div>
           <img
             src={require("../../img/npc/" + npcName + ".webp")}
-            width="250px"
-            height="315px"
+            width="270px"
+            height="270px"
           />
         </div>
 
-        <div className="bar--background" style={{ width: "250px" }}>
+        <div className="bar--background" style={{ width: "270px" }}>
           <div
             className="bar--foreground--health"
             style={{ width: barHealthWidth + "px" }}

@@ -89,42 +89,42 @@ const Register = () => {
           <section className="register--cards__form">
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
-              <label className="form-label mt-2">Username</label>
+              <h2 className="mt-4">Username</h2>
               <input
                 type="text"
                 id="username"
-                className="form-control mt-2"
+                className="form-control mt-1"
                 name="username"
                 value={values.username}
                 onChange={handleChange}
               />
-              <label className="form-label mt-2">Email</label>
+              <h2 className="mt-2">Email</h2>
               <input
                 type="email"
                 id="email"
-                className="form-control mt-2"
+                className="form-control mt-1"
                 name="email"
                 value={values.email}
                 onChange={handleChange}
               />
-              <label className="form-label mt-2">Password</label>
+              <h2 className="mt-2">Password</h2>
               <input
                 type="password"
                 id="password"
-                className="form-control mt-2"
+                className="form-control mt-1"
                 name="password"
                 value={values.password}
                 onChange={handleChange}
               />
 
-              <button className="button--links pe-5 ps-5 mt-4" type="submit">
+              <button className="button--links mt-2 ps-5 pe-5" type="submit">
                 Sign up
               </button>
 
               <div className="login--footer">
                 <p>Are you already registered?</p>
                 <a href="/" className="button--links links">
-                  LOGIN
+                  Login
                 </a>
               </div>
             </form>
@@ -132,9 +132,9 @@ const Register = () => {
         </div>
         <div className="register--cards">
           <section className="register--cards__form">
-            <h2>Class</h2>
+            <h1>Class</h1>
             <select
-              className="form-select"
+              className="form-select mt-4"
               name="classId"
               value={values.classId}
               onChange={handleChange}

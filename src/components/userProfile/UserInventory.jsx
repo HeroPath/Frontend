@@ -4,18 +4,23 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { post } from "../../functions/requestsApi";
-import { headers } from "../../functions/utilities";
+import { headers, dataTooltip, sounds } from "../../functions/utilities";
 
 const UserInventory = ({
   inventory,
   equipment,
   aclass,
   nameItemBuy,
+  itemDragBuy,
   level,
+  itemDragSell,
 }) => {
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
-  const [itemBuy, setItemBuy] = useState(nameItemBuy);
+  const [letterDrag, setLetterDrag] = useState("");
+  const [dataItem, setDataItem] = useState({});
+
+  const [showTooltip, setShowTooltip] = useState(true);
 
   function orderedObject(equipUser) {
     const objectEmpty = { type: "empty" };
@@ -34,9 +39,7 @@ const UserInventory = ({
     let sortedItems = [];
     for (const itemType of order) {
       let item = equipUser.items.find((item) => item.type === itemType);
-      if (!item) {
-        item = objectEmpty;
-      }
+      if (!item) item = objectEmpty;
       sortedItems.push(item);
     }
     equipUser.items = sortedItems;
@@ -45,18 +48,20 @@ const UserInventory = ({
   orderedObject(equipmentUser);
 
   useEffect(() => {
-    setInventoryUser(inventoryUser);
-    setEquipmentUser(equipmentUser);
-    setItemBuy(nameItemBuy);
-  }, [inventory, equipment, nameItemBuy]);
+    if (itemDragSell !== null) setInventoryUser(itemDragSell);
+  }, [itemDragSell, inventory]);
 
-  const [dataItem, setDataItem] = useState({});
+  useEffect(() => {
+    setInventoryUser(inventoryUser);
+  }, [inventory]);
 
   const dragOver = (e) => {
     e.preventDefault();
   };
 
   async function handleItem(equipping) {
+    if (dataItem === {}) return;
+
     let data = { id: dataItem.id };
     let equip = equipping === true ? "equip" : "unequip";
 
@@ -64,16 +69,18 @@ const UserInventory = ({
     if (response.status === 200) {
       setInventoryUser(response.data.inventory);
       setEquipmentUser(response.data.equipment);
+      {
+        dataItem.name === "potion" ? sounds("potion") : sounds("equip");
+      }
     }
   }
 
   async function handleItemBuy(itemToBuy) {
     const data = { name: itemToBuy };
-
     const response = await post("/api/v1/items/buy", data, headers);
     if (response.status === 200) {
       setInventoryUser(response.data);
-      setItemBuy("");
+      sounds("buySell");
     }
   }
 
@@ -82,8 +89,8 @@ const UserInventory = ({
   };
 
   function dropBox() {
-    if (itemBuy && itemBuy !== undefined) {
-      handleItemBuy(itemBuy);
+    if (itemDragBuy === "S") {
+      handleItemBuy(nameItemBuy);
     } else {
       handleItem(false);
     }
@@ -91,62 +98,43 @@ const UserInventory = ({
 
   return (
     <div className="inventory" id="inventory">
-      <h3>Inventory</h3>
+      <h2>Inventory</h2>
       <div
         className="inventory--equiped"
         id="inventory--equiped"
         onDragOver={dragOver}
-        onDrop={dropEquiped}
+        onDrop={() => {
+          if (letterDrag === "I") {
+            dropEquiped();
+          }
+        }}
       >
         {equipmentUser &&
           equipmentUser.items.map((item, index) => {
             if (item.type === "empty") {
-              return (
-                <div
-                  key={index}
-                  style={{
-                    display: "flex",
-                    maxWidth: "36px",
-                    maxHeight: "36px",
-                    marginLeft: "3px",
-                    marginTop: "2px",
-                  }}
-                ></div>
-              );
+              return <div key={index} style={ItemStyle}></div>;
             } else {
               return (
                 <div
                   draggable="true"
                   key={index}
                   id={index}
-                  style={{
-                    display: "flex",
-                    maxWidth: "36px",
-                    maxHeight: "36px",
-                    marginLeft: "3px",
-                    marginTop: "2px",
+                  style={ItemStyle}
+                  onDragStart={(event) => {
+                    setShowTooltip(false);
+                    setDataItem({ id: item.id, name: item.name });
+                    setLetterDrag("E");
+                    event.dataTransfer.setData("ETransfer", "E");
                   }}
-                  onDragStart={() => {
-                    setDataItem({
-                      name: item.name,
-                      id: item.id,
-                      type: item.type,
-                    });
+                  onDragEnd={() => {
+                    setShowTooltip(true);
+                    setLetterDrag("");
                   }}
-                  data-tooltip={`Name: ${item.name}
-                  Strength: ${item.strength}
-                  Dexterity: ${item.dexterity}
-                  Vitality: ${item.vitality}
-                  Intelligence: ${item.intelligence}
-                  Level Min: ${item.lvlMin}
-                  Class: ${item.classRequired}
-                  
-                  Price: ${item.price / 2}`}
+                  {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
                 >
                   <img
                     src={require(`../img/items/${item.name}.png`)}
                     className="item"
-                    alt=""
                   />
                 </div>
               );
@@ -157,21 +145,19 @@ const UserInventory = ({
         className="inventory--box"
         id="inventory--box"
         onDragOver={dragOver}
-        onDrop={dropBox}
+        onDrop={() => {
+          if (letterDrag === "E" || itemDragBuy === "S") {
+            dropBox();
+          }
+        }}
       >
         {inventoryUser &&
           inventoryUser.items.map((item, index) => (
             <div
               draggable="true"
               key={index}
-              id={index}
-              style={{
-                display: "flex",
-                maxWidth: "36px",
-                maxHeight: "36px",
-                marginLeft: "3px",
-                marginTop: "2px",
-              }}
+              id={item.id}
+              style={ItemStyle}
               className={
                 item.classRequired !== aclass.name &&
                 item.classRequired !== "none"
@@ -181,22 +167,17 @@ const UserInventory = ({
                   : ""
               }
               onDragStart={(event) => {
+                setShowTooltip(false);
                 event.dataTransfer.setData("nameItemSell", item.name);
-                setDataItem({
-                  name: item.name,
-                  id: item.id,
-                  type: item.type,
-                });
+                setDataItem({ id: item.id, name: item.name });
+                setLetterDrag("I");
               }}
-              data-tooltip={`Name: ${item.name}
-              Strength: ${item.strength}
-              Dexterity: ${item.dexterity}
-              Vitality: ${item.vitality}
-              Intelligence: ${item.intelligence}
-              Level Min: ${item.lvlMin}
-              Class: ${item.classRequired}
-              
-              Price: ${item.price / 2}`}
+              onDragEnd={(event) => {
+                setShowTooltip(true);
+                setLetterDrag("");
+                event.dataTransfer.setData("nameItemSell", "");
+              }}
+              {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
             >
               <img
                 src={require(`../img/items/${item.name}.png`)}
@@ -223,3 +204,11 @@ const UserInventory = ({
 };
 
 export default UserInventory;
+
+const ItemStyle = {
+  display: "flex",
+  maxWidth: "36px",
+  maxHeight: "36px",
+  marginLeft: "3px",
+  marginTop: "2px",
+};
