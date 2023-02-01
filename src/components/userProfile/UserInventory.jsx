@@ -48,18 +48,12 @@ const UserInventory = ({
   orderedObject(equipmentUser);
 
   useEffect(() => {
-    if (itemDragSell !== null && itemDragSell !== inventory)
-      setInventoryUser(itemDragSell);
+    if (itemDragSell !== null) setInventoryUser(itemDragSell);
   }, [itemDragSell, inventory]);
-
-  /*------------------------------------- NO HACE FALTA -------------------------------------*/
 
   useEffect(() => {
     setInventoryUser(inventoryUser);
-    // setEquipmentUser(equipmentUser);
-  }, [inventory /*equipment*/]);
-
-  /*------------------------------------- NO HACE FALTA -------------------------------------*/
+  }, [inventory]);
 
   const dragOver = (e) => {
     e.preventDefault();

@@ -30,6 +30,7 @@ const Shop = () => {
     const response = await post("/api/v1/items/sell", values, headers);
     if (response.status === 200) {
       setItemDragSell(response.data.inventory);
+      profile.gold = response.data.gold;
       sounds("buySell");
     }
   }
@@ -49,6 +50,7 @@ const Shop = () => {
         gold={profile.gold}
         diamond={profile.diamond}
         role={profile.role}
+        itemDragSell={itemDragSell}
       />
       <div className="shop--items">
         <div className="shop--inventory">
