@@ -540,6 +540,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 260px;
+  height: auto;
   justify-content: center;
   align-items: center;
   font-size: 20px;
@@ -562,13 +563,18 @@ body {
   background-size: 100% 100%;
   background-position: center;
   color: var(--button--textColor);
-  margin: 0;
   padding: 2px;
   width: 190px;
 }
 
+.npcName h4 {
+  margin-top: 5%;
+  font-size: 18px;
+}
+
 .npcName h6 {
-  font-size: 15px;
+  font-size: 11px;
+  bottom: 0;
 }
 
 .npcCards--form button {
