@@ -22,6 +22,7 @@ const UserStats = ({
   evasion,
   criticalChance,
   userStats,
+  statVitality,
 }) => {
   const data = [
     { id: 1, skill: "strength" },
@@ -80,6 +81,11 @@ const UserStats = ({
         criticalChance: response.data.criticalChance,
       });
     }
+    if (statVitality !== undefined)
+      statVitality({
+        hp: response.data.hp,
+        maxHp: response.data.maxHp,
+      });
   }
 
   return (

@@ -51,6 +51,13 @@ function ProfileCard({ profile }) {
     });
   };
 
+  const statVitality = (data) => {
+    setUserCard({
+      newHp: data.hp,
+      newMaxHp: data.maxHp,
+    });
+  };
+
   return (
     <div id="profileCard">
       <section className="userCard">
@@ -99,6 +106,7 @@ function ProfileCard({ profile }) {
               defense={defense}
               evasion={evasion}
               criticalChance={criticalChance}
+              statVitality={statVitality}
               userStats={userStats}
             />
           )}

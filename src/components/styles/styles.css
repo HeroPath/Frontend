@@ -277,6 +277,7 @@ body {
   background: -webkit-linear-gradient(to top, grey, clear);
   background: linear-gradient(to top, #888, #aaa);
   color: var(--button--textColor);
+  font-size: 15px;
 }
 
 .bar--foreground {
@@ -314,6 +315,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: 3%;
+  font-size: 15px;
 }
 
 .userstats--form {
