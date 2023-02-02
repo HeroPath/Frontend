@@ -10,11 +10,11 @@ const UserInventory = ({
   inventory,
   equipment,
   aclass,
-  nameItemBuy,
   itemDragBuy,
   level,
-  itemDragSell,
+  itemDragShop,
   updateStats,
+  handleItemBuy,
 }) => {
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
@@ -48,8 +48,8 @@ const UserInventory = ({
   orderedObject(equipmentUser);
 
   useEffect(() => {
-    if (itemDragSell !== null) setInventoryUser(itemDragSell);
-  }, [itemDragSell, inventory]);
+    if (itemDragShop !== null) setInventoryUser(itemDragShop);
+  }, [itemDragShop, inventory]);
 
   useEffect(() => {
     setInventoryUser(inventoryUser);
@@ -78,27 +78,6 @@ const UserInventory = ({
     }
   }
 
-  async function handleItemBuy(itemToBuy) {
-    const data = { name: itemToBuy };
-    const response = await post("/api/v1/items/buy", data, headers);
-    if (response.status === 200) {
-      setInventoryUser(response.data);
-      sounds("buySell");
-    }
-  }
-
-  const dropEquiped = () => {
-    handleItem(true);
-  };
-
-  function dropBox() {
-    if (itemDragBuy === "S") {
-      handleItemBuy(nameItemBuy);
-    } else {
-      handleItem(false);
-    }
-  }
-
   return (
     <div className="inventory" id="inventory">
       <h2>Inventory</h2>
@@ -106,9 +85,9 @@ const UserInventory = ({
         className="inventory--equiped"
         id="inventory--equiped"
         onDragOver={dragOver}
-        onDrop={(e) => {
+        onDrop={() => {
           if (letterDrag === "I") {
-            dropEquiped();
+            handleItem(true);
           }
         }}
       >
@@ -149,10 +128,11 @@ const UserInventory = ({
         className="inventory--box"
         id="inventory--box"
         onDragOver={dragOver}
-        onDrop={() => {
-          if (letterDrag === "E" || itemDragBuy === "S") {
-            dropBox();
-          }
+        onDrop={(e) => {
+          if (letterDrag === "E") handleItem(false);
+
+          if (itemDragBuy === "S")
+            handleItemBuy(e.dataTransfer.getData("itemBuy"));
         }}
       >
         {inventoryUser &&

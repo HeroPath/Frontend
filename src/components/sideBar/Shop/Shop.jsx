@@ -6,13 +6,12 @@ import { headers, dataTooltip, sounds } from "../../../functions/utilities";
 import { get, post } from "../../../functions/requestsApi";
 
 const Shop = () => {
-  const [dataItem, setDataItem] = useState("");
   const [profile, setProfile] = useState({});
   const [itemDragBuy, setItemDragBuy] = useState("");
   const [itemsShop, setItemsShop] = useState([]);
   const [showTooltip, setShowTooltip] = useState(true);
 
-  const [itemDragSell, setItemDragSell] = useState(null);
+  const [itemDragShop, setItemDragShop] = useState(null);
 
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
@@ -29,8 +28,18 @@ const Shop = () => {
   async function handleISelltems(values) {
     const response = await post("/api/v1/items/sell", values, headers);
     if (response.status === 200) {
-      setItemDragSell(response.data.inventory);
+      setItemDragShop(response.data.inventory);
       profile.gold = response.data.gold;
+      sounds("buySell");
+    }
+  }
+
+  async function handleItemBuy(itemToBuy) {
+    const data = { name: itemToBuy };
+    const response = await post("/api/v1/items/buy", data, headers);
+    if (response.status === 200) {
+      setItemDragShop(response.data);
+      /* actualizar oro aca */
       sounds("buySell");
     }
   }
@@ -50,7 +59,7 @@ const Shop = () => {
         gold={profile.gold}
         diamond={profile.diamond}
         role={profile.role}
-        itemDragSell={itemDragSell}
+        itemDragShop={itemDragShop}
       />
       <div className="shop--items">
         <div className="shop--inventory">
@@ -59,10 +68,10 @@ const Shop = () => {
               inventory={profile.inventory}
               equipment={profile.equipment}
               aclass={profile.aclass}
-              nameItemBuy={dataItem}
               itemDragBuy={itemDragBuy}
               level={profile.level}
-              itemDragSell={itemDragSell}
+              itemDragShop={itemDragShop}
+              handleItemBuy={handleItemBuy}
             />
           )}
         </div>
@@ -121,7 +130,7 @@ const Shop = () => {
                   handleISelltems({
                     name: event.dataTransfer.getData("nameItemSell"),
                   });
-                  setItemDragSell(null);
+                  setItemDragShop(null);
                 }}
               >
                 {itemsShop.map((item, index) => (
@@ -139,14 +148,13 @@ const Shop = () => {
                         ? "itemNoLevel"
                         : ""
                     }
-                    onDragStart={() => {
+                    onDragStart={(event) => {
                       setShowTooltip(false);
-                      setDataItem(item.name);
                       setItemDragBuy("S");
+                      event.dataTransfer.setData("itemBuy", item.name);
                     }}
                     onDragEnd={() => {
                       setShowTooltip(true);
-                      setDataItem("");
                       setItemDragBuy("");
                     }}
                     {...(showTooltip && {
