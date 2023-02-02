@@ -9,7 +9,17 @@ const UserCard = ({
   experience,
   experienceToNextLevel,
   level,
+  userCard,
 }) => {
+  /* --------- TEST ---------- */
+
+  if (userCard !== undefined) {
+    hp = userCard.newHp;
+    maxHp = userCard.newMaxHp;
+  }
+
+  /* --------- TEST ---------- */
+
   let barHealthWidth = (hp * 270) / maxHp;
   let barExpWidth = (experience * 270) / experienceToNextLevel;
   let hpComplete = `${hp}/${maxHp}`;
@@ -31,6 +41,7 @@ const UserCard = ({
         src={require("../img/class/" + aclass.name + ".webp")}
         width="270px"
         height="270px"
+        alt=""
       />
 
       <div className="bar--background" style={{ width: "270px" }}>

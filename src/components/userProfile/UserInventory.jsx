@@ -14,12 +14,12 @@ const UserInventory = ({
   itemDragBuy,
   level,
   itemDragSell,
+  updateStats,
 }) => {
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
   const [letterDrag, setLetterDrag] = useState("");
   const [dataItem, setDataItem] = useState({});
-
   const [showTooltip, setShowTooltip] = useState(true);
 
   function orderedObject(equipUser) {
@@ -53,7 +53,7 @@ const UserInventory = ({
 
   useEffect(() => {
     setInventoryUser(inventoryUser);
-  }, [inventory]);
+  }, [inventoryUser]);
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -69,8 +69,11 @@ const UserInventory = ({
     if (response.status === 200) {
       setInventoryUser(response.data.inventory);
       setEquipmentUser(response.data.equipment);
-      {
-        dataItem.name === "potion" ? sounds("potion") : sounds("equip");
+      updateStats(response.data); /* ---------------------------------- */
+      if (dataItem.name === "potion") {
+        sounds("potion");
+      } else {
+        sounds("equip");
       }
     }
   }
@@ -103,7 +106,7 @@ const UserInventory = ({
         className="inventory--equiped"
         id="inventory--equiped"
         onDragOver={dragOver}
-        onDrop={() => {
+        onDrop={(e) => {
           if (letterDrag === "I") {
             dropEquiped();
           }
@@ -135,6 +138,7 @@ const UserInventory = ({
                   <img
                     src={require(`../img/items/${item.name}.png`)}
                     className="item"
+                    alt=""
                   />
                 </div>
               );

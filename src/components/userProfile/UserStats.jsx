@@ -1,5 +1,5 @@
 import { hot } from "react-hot-loader/root";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/styles.css";
 
 import { post } from "../../functions/requestsApi";
@@ -21,6 +21,7 @@ const UserStats = ({
   defense,
   evasion,
   criticalChance,
+  userStats,
 }) => {
   const data = [
     { id: 1, skill: "strength" },
@@ -49,6 +50,19 @@ const UserStats = ({
     criticalChance,
   });
 
+  if (userStats !== undefined) {
+    stats.strength = userStats.newStrength;
+    stats.dexterity = userStats.newDexterity;
+    stats.vitality = userStats.newVitality;
+    stats.intelligence = userStats.newIntelligence;
+    stats.luck = userStats.newLuck;
+    stats.minDmg = userStats.newMinDmg;
+    stats.maxDmg = userStats.newMaxDmg;
+    stats.defense = userStats.newDefense;
+    stats.evasion = userStats.newEvasion;
+    stats.criticalChance = userStats.newCriticalChance;
+  }
+
   async function handleClickAddSkill(e) {
     e.preventDefault();
     const response = await post(
@@ -73,6 +87,9 @@ const UserStats = ({
       });
     }
   }
+  /*------------------------------- COMUNICACION ENTRE COMPONENTE ------------------------------- */
+  // window.addEventListener("message", (event) => {});
+  /*------------------------------- COMUNICACION ENTRE COMPONENTE ------------------------------- */
 
   function handleChangeAmount(e) {
     if (e.target.value < 0) {
@@ -124,6 +141,7 @@ const UserStats = ({
                 <img
                   onClick={handleClickAddSkill}
                   src={require("../img/utilities/addStats.webp")}
+                  alt=""
                 />
               </div>
             ))}
