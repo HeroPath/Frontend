@@ -299,7 +299,7 @@ body {
   height: 25px;
   text-align: center;
   background: -webkit-linear-gradient(to top, grey, clear);
-  background: linear-gradient(to top, #555, #aaa);
+  background: linear-gradient(to top, #888, #aaa);
   color: var(--button--textColor);
 }
 
