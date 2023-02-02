@@ -1,5 +1,5 @@
 import { hot } from "react-hot-loader/root";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/styles.css";
 
 import { post } from "../../functions/requestsApi";
@@ -25,11 +25,11 @@ const UserStats = ({
   statVitality,
 }) => {
   const data = [
-    { id: 1, skill: "strength" },
-    { id: 2, skill: "dexterity" },
-    { id: 3, skill: "vitality" },
-    { id: 4, skill: "intelligence" },
-    { id: 5, skill: "luck" },
+    { skill: "strength" },
+    { skill: "dexterity" },
+    { skill: "vitality" },
+    { skill: "intelligence" },
+    { skill: "luck" },
   ];
 
   const [stats, setStats] = useState({
@@ -46,18 +46,23 @@ const UserStats = ({
     criticalChance,
   });
 
-  if (userStats !== undefined) {
-    stats.strength = userStats.newStrength;
-    stats.dexterity = userStats.newDexterity;
-    stats.vitality = userStats.newVitality;
-    stats.intelligence = userStats.newIntelligence;
-    stats.luck = userStats.newLuck;
-    stats.minDmg = userStats.newMinDmg;
-    stats.maxDmg = userStats.newMaxDmg;
-    stats.defense = userStats.newDefense;
-    stats.evasion = userStats.newEvasion;
-    stats.criticalChance = userStats.newCriticalChance;
-  }
+  useEffect(() => {
+    if (userStats) {
+      setStats({
+        ...stats,
+        strength: userStats.newStrength,
+        dexterity: userStats.newDexterity,
+        vitality: userStats.newVitality,
+        intelligence: userStats.newIntelligence,
+        luck: userStats.newLuck,
+        minDmg: userStats.newMinDmg,
+        maxDmg: userStats.newMaxDmg,
+        defense: userStats.newDefense,
+        evasion: userStats.newEvasion,
+        criticalChance: userStats.newCriticalChance,
+      });
+    }
+  }, [userStats, stats]);
 
   async function handleClickAddSkill(skillName) {
     const response = await post(
@@ -80,12 +85,14 @@ const UserStats = ({
         evasion: response.data.evasion,
         criticalChance: response.data.criticalChance,
       });
+
+      if (statVitality) {
+        statVitality({
+          hp: response.data.hp,
+          maxHp: response.data.maxHp,
+        });
+      }
     }
-    if (statVitality !== undefined)
-      statVitality({
-        hp: response.data.hp,
-        maxHp: response.data.maxHp,
-      });
   }
 
   return (
@@ -104,14 +111,13 @@ const UserStats = ({
           </div>
 
           <div className="userstats--add">
-            {data.map((zone) => (
-              <div key={zone.id} className="userstats--add--form">
+            {data.map((zone, index) => (
+              <div key={index} className="userstats--add--form">
                 <a
                   className="links"
                   onClick={() => {
                     handleClickAddSkill(zone.skill);
                   }}
-                  href="#"
                 >
                   +
                 </a>

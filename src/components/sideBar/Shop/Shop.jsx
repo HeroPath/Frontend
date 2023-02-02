@@ -164,6 +164,7 @@ const Shop = () => {
                     <img
                       src={require(`../../img/items/${item.name}.png`)}
                       className="item"
+                      alt=""
                     />
                   </div>
                 ))}
