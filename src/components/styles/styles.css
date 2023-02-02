@@ -318,11 +318,10 @@ body {
 
 .userstats--form {
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 4fr 1fr;
 }
 
-.userstats--stats,
-.userstats--add {
+.userstats--stats {
   display: flex;
   flex-direction: column;
 }
@@ -334,28 +333,27 @@ body {
 }
 
 .userstats--add--form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
+  display: flex;
   justify-content: center;
-  column-gap: 15%;
+  align-items: center;
 }
 
-.userstats--add--form input,
-.userstats--add--form input:focus {
-  height: 70%;
-  font-size: 18px;
-}
-
-.userstats--add--form img {
-  width: 40%;
-  height: 60%;
+.userstats--add--form a,
+.userstats--add--form a:hover {
+  background-color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  color: var(--button--textColor);
+  margin: 5px;
   cursor: pointer;
+  width: 50%;
+  height: 50%;
 }
 
 .userstats--info {
   display: flex;
   flex-direction: column;
+  margin-top: 5%;
 }
 
 /* ---------------- //USERSTATS ----------------------*/
