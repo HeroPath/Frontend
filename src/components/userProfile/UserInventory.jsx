@@ -69,12 +69,12 @@ const UserInventory = ({
     if (response.status === 200) {
       setInventoryUser(response.data.inventory);
       setEquipmentUser(response.data.equipment);
-      updateStats(response.data); /* ---------------------------------- */
       if (dataItem.name === "potion") {
         sounds("potion");
       } else {
         sounds("equip");
       }
+      if (updateStats !== undefined) updateStats(response.data);
     }
   }
 
