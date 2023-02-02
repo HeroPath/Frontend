@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
-
-import { headers, sounds } from "../../../functions/utilities";
+import { TweenMax, Power2 } from "gsap";
+import { headers } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
 
 const PvEBattle = () => {
@@ -13,6 +13,58 @@ const PvEBattle = () => {
   const [winnerBattle, setWinnerBattle] = useState({});
   let i = 1;
 
+  /* -------------------------- TEST -----------------------------------*/
+  const [firstAttack, setFirstAttack] = useState({
+    x: 575,
+    y: 150,
+    rotation: -40,
+  });
+  const [secondAttack, setSecondAttack] = useState({
+    x: 1050,
+    y: 150,
+    rotation: -50,
+  });
+
+  const animateFirstAttack = () => {
+    TweenMax.to(firstAttack, 1, {
+      x: 1050,
+      y: 150,
+      rotation: 40,
+      ease: Power2.easeInOut,
+      onUpdate: () => setFirstAttack({ ...firstAttack }),
+      onComplete: () => {
+        setFirstAttack({
+          x: 575,
+          y: 150,
+          rotation: -40,
+        });
+        animateSecondAttack();
+      },
+    });
+  };
+
+  const animateSecondAttack = () => {
+    TweenMax.to(secondAttack, 1, {
+      x: 575,
+      y: 150,
+      rotation: -125,
+      ease: Power2.easeInOut,
+      onUpdate: () => setSecondAttack({ ...secondAttack }),
+      onComplete: () => {
+        setSecondAttack({
+          x: 1050,
+          y: 150,
+          rotation: -50,
+        });
+      },
+    });
+  };
+
+  useEffect(() => {
+    animateFirstAttack();
+  }, [battleData]);
+
+  /* -------------------------- TEST -----------------------------------*/
   const npcName = location.state.battleData.nameData.replace(
     /(^\w{1})/g,
     (letter) => letter.toUpperCase()
@@ -29,6 +81,7 @@ const PvEBattle = () => {
     }
     setWinnerBattle(location.state.battleData.pop());
     setBattleData(location.state.battleData);
+    // console.log(location.state.battleData);
   }
 
   useEffect(() => {
@@ -51,9 +104,42 @@ const PvEBattle = () => {
           />
         )}
       </div>
+
       <div className="battle--npccard">
         <NpcCard />
       </div>
+      {/* ----------------------------- TEST ----------------------------- */}
+
+      <div
+        id="firstAttack"
+        style={{
+          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+          width: "8%",
+          height: "15%",
+          position: "absolute",
+          transform: `rotate(${firstAttack.rotation}deg)`,
+          left: firstAttack.x,
+          top: firstAttack.y,
+        }}
+      />
+      <div
+        id="secondAttack"
+        style={{
+          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+          width: "8%",
+          height: "15%",
+          position: "absolute",
+          transform: `rotate(${secondAttack.rotation}deg)`,
+          left: secondAttack.x,
+          top: secondAttack.y,
+        }}
+      />
+
+      {/* ----------------------------- TEST ----------------------------- */}
 
       <div className="rounds--console">
         <div className="history-box">
@@ -96,7 +182,7 @@ const PvEBattle = () => {
                   <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>
                 )}
                 {winnerBattle.levelUp === true && (
-                  <li onLoad={sounds("levelUp")}>
+                  <li>
                     Congratulations, you have reached level {profile.level}
                   </li>
                 )}

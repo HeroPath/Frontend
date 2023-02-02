@@ -1,7 +1,5 @@
 import React from "react";
 
-import { sounds } from "../../functions/utilities";
-
 import "../styles/styles.css";
 
 const SideBar = () => {
