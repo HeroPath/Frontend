@@ -38,8 +38,8 @@ const Shop = () => {
     const data = { name: itemToBuy };
     const response = await post("/api/v1/items/buy", data, headers);
     if (response.status === 200) {
-      setItemDragShop(response.data);
-      /* actualizar oro aca */
+      setItemDragShop(response.data.inventory);
+      profile.gold = response.data.gold;
       sounds("buySell");
     }
   }
