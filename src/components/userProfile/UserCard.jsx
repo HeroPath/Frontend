@@ -38,7 +38,7 @@ const UserCard = ({
         <h3>{capitalizeFirstLetter(username)}</h3>
       </div>
       <img
-        src={require("../img/class/" + aclass.name + ".webp")}
+        src={require("../img/class/" + aclass + ".webp")}
         width="270px"
         height="270px"
         alt=""
@@ -70,7 +70,7 @@ const UserCard = ({
       </div>
 
       <label>Level: {level}</label>
-      <label>Class: {capitalizeFirstLetter(aclass.name)}</label>
+      <label>Class: {capitalizeFirstLetter(aclass)}</label>
     </div>
   );
 };

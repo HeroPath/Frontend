@@ -141,7 +141,7 @@ const Shop = () => {
                     style={ItemStyle}
                     className={
                       profile.aclass &&
-                      item.classRequired !== profile.aclass.name &&
+                      item.classRequired !== profile.aclass &&
                       item.classRequired !== "none"
                         ? "itemNoClass"
                         : item.lvlMin > profile.level

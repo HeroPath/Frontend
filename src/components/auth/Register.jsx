@@ -26,7 +26,7 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
-    classId: "",
+    className: "",
   });
 
   function handleChange(e) {
@@ -43,10 +43,8 @@ const Register = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (!Object.values(values).every(Boolean)) return;
-
-    values.classId = parseInt(values.classId);
+    console.log(values);
     const response = await post("/api/v1/auth/register", values);
     if (response.status === 200) {
       notifySuccess(
@@ -135,8 +133,8 @@ const Register = () => {
             <h1>Class</h1>
             <select
               className="form-select mt-4"
-              name="classId"
-              value={values.classId}
+              name="className"
+              value={values.className}
               onChange={handleChange}
               onClick={handleClickClass}
             >
@@ -145,18 +143,7 @@ const Register = () => {
               </option>
 
               {classData?.map((cChar) => (
-                <option
-                  key={cChar.id}
-                  value={[
-                    cChar.id,
-                    cChar.name,
-                    cChar.strength,
-                    cChar.dexterity,
-                    cChar.intelligence,
-                    cChar.vitality,
-                    cChar.luck,
-                  ]}
-                >
+                <option key={cChar.name} value={[cChar.name]}>
                   {capitalizeFirstLetter(cChar.name)}
                 </option>
               ))}

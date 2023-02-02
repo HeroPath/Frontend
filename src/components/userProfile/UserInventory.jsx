@@ -143,7 +143,7 @@ const UserInventory = ({
               id={item.id}
               style={ItemStyle}
               className={
-                item.classRequired !== aclass.name &&
+                item.classRequired !== aclass &&
                 item.classRequired !== "none"
                   ? "itemNoClass"
                   : item.lvlMin > level
