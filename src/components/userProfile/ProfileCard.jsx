@@ -29,11 +29,10 @@ function ProfileCard({ profile }) {
     criticalChance,
   } = profile;
 
-  const [userStats, setUserStats] = useState(undefined);
-  const [userCard, setUserCard] = useState(undefined);
+  const [userNewData, setUserNewData] = useState(undefined);
 
   const updateStats = (newStats) => {
-    setUserStats({
+    setUserNewData({
       newStrength: newStats.strength,
       newDexterity: newStats.dexterity,
       newVitality: newStats.vitality,
@@ -44,17 +43,8 @@ function ProfileCard({ profile }) {
       newDefense: newStats.defense,
       newEvasion: newStats.evasion,
       newCriticalChance: newStats.criticalChance,
-    });
-    setUserCard({
       newHp: newStats.hp,
       newMaxHp: newStats.maxHp,
-    });
-  };
-
-  const statVitality = (data) => {
-    setUserCard({
-      newHp: data.hp,
-      newMaxHp: data.maxHp,
     });
   };
 
@@ -79,7 +69,7 @@ function ProfileCard({ profile }) {
             experience={experience}
             experienceToNextLevel={experienceToNextLevel}
             level={level}
-            userCard={userCard}
+            userNewData={userNewData}
           />
         )}
         {strength &&
@@ -106,8 +96,8 @@ function ProfileCard({ profile }) {
               defense={defense}
               evasion={evasion}
               criticalChance={criticalChance}
-              statVitality={statVitality}
-              userStats={userStats}
+              updateStats={updateStats}
+              userNewData={userNewData}
             />
           )}
       </section>

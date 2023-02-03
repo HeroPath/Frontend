@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
@@ -25,7 +25,26 @@ const PvEBattle = () => {
     rotation: -50,
   });
 
-  const animateFirstAttack = () => {
+  const [damage, setDamage] = useState(0);
+  const damageRef = useRef(null);
+
+  const showDamage = (value) => {
+    TweenMax.to(damageRef.current, 0.5, {
+      y: -20,
+      opacity: 1,
+      ease: Power2.easeOut,
+      onComplete: () => {
+        TweenMax.to(damageRef.current, 0.5, {
+          opacity: 0,
+          delay: 1,
+        });
+      },
+    });
+    setDamage(value);
+    console.log(value);
+  };
+
+  const animateFirstAttack = (userDmg, npcDmg) => {
     TweenMax.to(firstAttack, 1, {
       x: "70%",
       y: "25%",
@@ -33,6 +52,7 @@ const PvEBattle = () => {
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
+        showDamage(userDmg);
         setFirstAttack({
           x: "35%",
           y: "25%",
@@ -43,14 +63,15 @@ const PvEBattle = () => {
     });
   };
 
-  const animateSecondAttack = () => {
-    TweenMax.to(secondAttack, 1, {
+  const animateSecondAttack = (userDmg, npcDmg) => {
+    TweenMax.to(secondAttack, 0.5, {
       x: "35%",
       y: "25%",
       rotation: -125,
       ease: Power2.easeInOut,
       onUpdate: () => setSecondAttack({ ...secondAttack }),
       onComplete: () => {
+        showDamage(npcDmg);
         setSecondAttack({
           x: "70%",
           y: "25%",
@@ -61,7 +82,10 @@ const PvEBattle = () => {
   };
 
   useEffect(() => {
-    animateFirstAttack();
+    battleData.forEach((data, index) => {
+      console.log(data.attackerDmg, data.npcDmg);
+      animateFirstAttack(data.attackerDmg, data.NpcDmg);
+    });
   }, [battleData]);
 
   /* -------------------------- TEST -----------------------------------*/
@@ -109,7 +133,18 @@ const PvEBattle = () => {
         <NpcCard />
       </div>
       {/* ----------------------------- TEST ----------------------------- */}
-
+      <div
+        ref={damageRef}
+        style={{
+          position: "absolute",
+          color: "red",
+          fontSize: "24px",
+          opacity: 0,
+        }}
+        onClick={showDamage}
+      >
+        {damage}
+      </div>
       <div
         id="firstAttack"
         style={{

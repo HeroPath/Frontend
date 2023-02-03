@@ -264,6 +264,12 @@ body {
   opacity: 0.9;
   width: 270px;
   color: var(--button--textColor);
+  align-items: center;
+  padding: 0.9%;
+}
+
+.userCard--card--bgName h3 {
+  margin: 0;
 }
 
 /* ---------------- //USERCARD ----------------------*/
@@ -563,18 +569,18 @@ body {
   background-size: 100% 100%;
   background-position: center;
   color: var(--button--textColor);
-  padding: 2px;
+  padding: 0.7%;
   width: 190px;
+  margin: 0;
 }
 
 .npcName h4 {
-  margin-top: 5%;
+  margin-top: 1%;
   font-size: 18px;
 }
 
 .npcName h6 {
   font-size: 11px;
-  bottom: 0;
 }
 
 .npcCards--form button {
