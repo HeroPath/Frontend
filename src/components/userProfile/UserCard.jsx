@@ -2,10 +2,10 @@ import React, { useMemo, useState } from "react";
 import { capitalizeFirstLetter } from "../../functions/utilities";
 
 const UserCard = ({ username, aclass, hp, maxHp, experience, experienceToNextLevel, level, userNewData }) => {
-  
+
   if (userNewData !== undefined) {
-    hp = userNewData.newHp;
-    maxHp = userNewData.newMaxHp;
+    hp = userNewData.hp;
+    maxHp = userNewData.maxHp;
   }
 
   const [showPercentExp, setShowPercentExp] = useState(true);

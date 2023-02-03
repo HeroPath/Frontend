@@ -48,19 +48,7 @@ const UserStats = ({
 
   useEffect(() => {
     if (userNewData) {
-      setStats({
-        freeSkillPoints: stats.freeSkillPoints,
-        strength: userNewData.newStrength,
-        dexterity: userNewData.newDexterity,
-        vitality: userNewData.newVitality,
-        intelligence: userNewData.newIntelligence,
-        luck: userNewData.newLuck,
-        minDmg: userNewData.newMinDmg,
-        maxDmg: userNewData.newMaxDmg,
-        defense: userNewData.newDefense,
-        evasion: userNewData.newEvasion,
-        criticalChance: userNewData.newCriticalChance,
-      });
+      setStats(userNewData);
     }
   }, [userNewData]);
 

@@ -32,20 +32,7 @@ function ProfileCard({ profile }) {
   const [userNewData, setUserNewData] = useState(undefined);
 
   const updateStats = (newStats) => {
-    setUserNewData({
-      newStrength: newStats.strength,
-      newDexterity: newStats.dexterity,
-      newVitality: newStats.vitality,
-      newIntelligence: newStats.intelligence,
-      newLuck: newStats.luck,
-      newMinDmg: newStats.minDmg,
-      newMaxDmg: newStats.maxDmg,
-      newDefense: newStats.defense,
-      newEvasion: newStats.evasion,
-      newCriticalChance: newStats.criticalChance,
-      newHp: newStats.hp,
-      newMaxHp: newStats.maxHp,
-    });
+    setUserNewData(newStats);
   };
 
   return (
