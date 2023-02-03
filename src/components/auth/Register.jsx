@@ -13,9 +13,7 @@ const Register = () => {
 
   async function getClasses() {
     const response = await get("/api/v1/classes");
-    if (response.status === 200) {
-      setClassData(response.data);
-    }
+    if (response.status === 200) setClassData(response.data);
   }
 
   useEffect(() => {
@@ -44,7 +42,7 @@ const Register = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     if (!Object.values(values).every(Boolean)) return;
-    console.log(values);
+    values.className = dataClassSelected;
     const response = await post("/api/v1/auth/register", values);
     if (response.status === 200) {
       notifySuccess(
@@ -66,7 +64,6 @@ const Register = () => {
 
   function handleClickClass(e) {
     e.preventDefault();
-
     const [, className, strength, dexterity, intelligence, vitality, luck] =
       e.target.value.split(",");
     setDataClassSelected(className.toLowerCase());
@@ -142,8 +139,19 @@ const Register = () => {
                 Select class
               </option>
 
-              {classData?.map((cChar) => (
-                <option key={cChar.name} value={[cChar.name]}>
+              {classData?.map((cChar, index) => (
+                <option
+                  key={index}
+                  value={[
+                    index,
+                    cChar.name,
+                    cChar.strength,
+                    cChar.dexterity,
+                    cChar.intelligence,
+                    cChar.vitality,
+                    cChar.luck,
+                  ]}
+                >
                   {capitalizeFirstLetter(cChar.name)}
                 </option>
               ))}
