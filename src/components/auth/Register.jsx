@@ -13,9 +13,7 @@ const Register = () => {
 
   async function getClasses() {
     const response = await get("/api/v1/classes");
-    if (response.status === 200) {
-      setClassData(response.data);
-    }
+    if (response.status === 200) setClassData(response.data);
   }
 
   useEffect(() => {
@@ -26,7 +24,7 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
-    classId: "",
+    className: "",
   });
 
   function handleChange(e) {
@@ -43,10 +41,8 @@ const Register = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (!Object.values(values).every(Boolean)) return;
-
-    values.classId = parseInt(values.classId);
+    values.className = dataClassSelected;
     const response = await post("/api/v1/auth/register", values);
     if (response.status === 200) {
       notifySuccess(
@@ -68,7 +64,6 @@ const Register = () => {
 
   function handleClickClass(e) {
     e.preventDefault();
-
     const [, className, strength, dexterity, intelligence, vitality, luck] =
       e.target.value.split(",");
     setDataClassSelected(className.toLowerCase());
@@ -135,8 +130,8 @@ const Register = () => {
             <h1>Class</h1>
             <select
               className="form-select mt-4"
-              name="classId"
-              value={values.classId}
+              name="className"
+              value={values.className}
               onChange={handleChange}
               onClick={handleClickClass}
             >
@@ -144,11 +139,11 @@ const Register = () => {
                 Select class
               </option>
 
-              {classData?.map((cChar) => (
+              {classData?.map((cChar, index) => (
                 <option
-                  key={cChar.id}
+                  key={index}
                   value={[
-                    cChar.id,
+                    index,
                     cChar.name,
                     cChar.strength,
                     cChar.dexterity,

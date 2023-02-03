@@ -3,10 +3,8 @@
 }
 
 body {
-  font-family: "Kingthings Calligraphica Light", sans-serif;
-  font-family: "Kingthings Calligraphica Italic", sans-serif;
-  font-family: "Kingthings Calligraphica", sans-serif;
-  font-size: 20px;
+  font-family: "Quicksand", sans-serif;
+  font-size: 18px;
   letter-spacing: 1px;
 }
 
@@ -21,7 +19,6 @@ body {
   background-position: center;
   background-size: 100% 100%;
   color: var(--button--textColor);
-  /* padding: 5px 10px; */
   padding: 2%;
   letter-spacing: 2px;
   border: none;
@@ -81,11 +78,6 @@ body {
   height: 50px;
 }
 
-.register--cards__form button,
-.login--footer {
-  font-size: 25px;
-}
-
 .register--cards__form select {
   font-size: 20px;
   appearance: none;
@@ -130,7 +122,7 @@ body {
   background-image: url("../img/bg-form-register-login.webp");
   background-position: bottom;
   background-repeat: no-repeat;
-  background-size: 100% 65%;
+  background-size: 100% 67%;
   width: 40%;
   margin-left: 5%;
 }
@@ -139,35 +131,29 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 52%;
+  margin-top: 50%;
 }
 
 .login--form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 25px;
 }
 
 .login--form button {
   background-color: unset;
-  font-size: 25px;
 }
 
 .login--form input {
   letter-spacing: 2px;
-  width: 50%;
+  width: 60%;
 }
 
 .login--footer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  font-size: 25px;
-}
-
-.login--footer p {
-  margin: 0;
+  font-size: 20px;
 }
 
 /* ---------------- //LOGIN ----------------------*/
@@ -186,20 +172,15 @@ body {
 }
 
 .sidebar--logo {
-  /* height: 100px; */
   height: 14%;
-  /* padding-top: 15px; */
   padding-top: 8%;
 }
 
 .button--sidebar {
-  /* margin-top: 15px; */
   margin-top: 7%;
-  font-size: 18px;
 }
 
 .button--sidebar:last-child {
-  /* margin-top: 50px; */
   margin-top: 35%;
 }
 
@@ -241,7 +222,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: 32px; */
   height: 90%;
 }
 
@@ -264,16 +244,12 @@ body {
   background-repeat: no-repeat;
   object-fit: fill;
   opacity: 0.9;
-  /* padding-top: 50px; */
-  /* padding-left: 130px; */
-  /* padding-right: 130px; */
   padding-top: 4%;
   padding-left: 10%;
   padding-right: 10%;
   font-weight: bold;
   width: 85%;
   height: 95%;
-  /* margin: 60px 90px; */
   margin: 3% 7%;
 }
 
@@ -299,8 +275,9 @@ body {
   height: 25px;
   text-align: center;
   background: -webkit-linear-gradient(to top, grey, clear);
-  background: linear-gradient(to top, #555, #aaa);
+  background: linear-gradient(to top, #888, #aaa);
   color: var(--button--textColor);
+  font-size: 15px;
 }
 
 .bar--foreground {
@@ -338,55 +315,47 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: 3%;
+  font-size: 15px;
 }
 
 .userstats--form {
   display: grid;
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: 4fr 1fr;
 }
 
-.userstats--stats,
-.userstats--add {
+.userstats--stats {
   display: flex;
   flex-direction: column;
-  /* min-height: 200px; */
-  font-size: 18px;
 }
 .userstats--stats label {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 30px; */
   height: 70%;
 }
 
 .userstats--add--form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
+  display: flex;
   justify-content: center;
-  /* column-gap: 15px; */
-  column-gap: 15%;
+  align-items: center;
 }
 
-.userstats--add--form input,
-.userstats--add--form input:focus {
-  /* height: 20px; */
-  height: 70%;
-  font-size: 18px;
-}
-
-.userstats--add--form img {
-  /* width: 20px; */
-  /* height: 20px; */
-  width: 40%;
-  height: 60%;
+.userstats--add--form a,
+.userstats--add--form a:hover {
+  background-color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  color: var(--button--textColor);
+  margin: 5px;
   cursor: pointer;
+  width: 50%;
+  height: 50%;
 }
 
 .userstats--info {
   display: flex;
   flex-direction: column;
+  margin-top: 5%;
 }
 
 /* ---------------- //USERSTATS ----------------------*/
@@ -417,8 +386,6 @@ body {
   background-image: url("../img/items/inventoryBox.webp");
   width: 247px;
   height: 165px;
-  /* padding: 3px; */
-  /* margin: 10px; */
   padding: 1%;
   margin: 3%;
 }
@@ -547,12 +514,11 @@ body {
 
 .buttons-zone,
 .buttons-zone:hover {
-  background-image: url("../img/utilities/btn-zone-card.webp");
+  background-image: url("../img/utilities/fondoname.webp");
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 25px;
-  /* height: 50px; */
   height: 20%;
   width: 100%;
 }
@@ -574,12 +540,10 @@ body {
   display: flex;
   flex-direction: column;
   width: 260px;
-  /* width: 280px;
-  height: 330px; */
+  height: auto;
   justify-content: center;
   align-items: center;
-  font-size: 22px;
-  /* padding: 15px 0; */
+  font-size: 20px;
   padding: 5.5% 0;
   background-image: url("../img/utilities/framework-card.webp");
   background-size: 83% 100%;
@@ -599,13 +563,18 @@ body {
   background-size: 100% 100%;
   background-position: center;
   color: var(--button--textColor);
-  margin: 0;
   padding: 2px;
   width: 190px;
 }
 
+.npcName h4 {
+  margin-top: 5%;
+  font-size: 18px;
+}
+
 .npcName h6 {
-  font-size: 15px;
+  font-size: 11px;
+  bottom: 0;
 }
 
 .npcCards--form button {
@@ -673,7 +642,6 @@ body {
   border-radius: 5px;
   border: 2px solid #646464;
   overflow-y: scroll;
-  font-size: 18px;
 }
 
 .rounds--console--buttons {
@@ -723,7 +691,6 @@ body {
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  font-size: 25px;
   font-weight: bold;
 }
 /* ---------------- //PVP ----------------------*/
@@ -819,6 +786,8 @@ body {
   padding: 50px;
   text-align: center;
   font-weight: bold;
+  font-size: 14px;
+  
 }
 
 /* ---------------- //QUESTS ----------------------*/

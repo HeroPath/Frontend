@@ -10,16 +10,16 @@ const UserInventory = ({
   inventory,
   equipment,
   aclass,
-  nameItemBuy,
   itemDragBuy,
   level,
-  itemDragSell,
+  itemDragShop,
+  updateStats,
+  handleItemBuy,
 }) => {
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
   const [letterDrag, setLetterDrag] = useState("");
   const [dataItem, setDataItem] = useState({});
-
   const [showTooltip, setShowTooltip] = useState(true);
 
   function orderedObject(equipUser) {
@@ -48,12 +48,12 @@ const UserInventory = ({
   orderedObject(equipmentUser);
 
   useEffect(() => {
-    if (itemDragSell !== null) setInventoryUser(itemDragSell);
-  }, [itemDragSell, inventory]);
+    if (itemDragShop !== null) setInventoryUser(itemDragShop);
+  }, [itemDragShop, inventory]);
 
   useEffect(() => {
     setInventoryUser(inventoryUser);
-  }, [inventory]);
+  }, [inventoryUser]);
 
   const dragOver = (e) => {
     e.preventDefault();
@@ -69,30 +69,12 @@ const UserInventory = ({
     if (response.status === 200) {
       setInventoryUser(response.data.inventory);
       setEquipmentUser(response.data.equipment);
-      {
-        dataItem.name === "potion" ? sounds("potion") : sounds("equip");
+      if (dataItem.name === "potion") {
+        sounds("potion");
+      } else {
+        sounds("equip");
       }
-    }
-  }
-
-  async function handleItemBuy(itemToBuy) {
-    const data = { name: itemToBuy };
-    const response = await post("/api/v1/items/buy", data, headers);
-    if (response.status === 200) {
-      setInventoryUser(response.data);
-      sounds("buySell");
-    }
-  }
-
-  const dropEquiped = () => {
-    handleItem(true);
-  };
-
-  function dropBox() {
-    if (itemDragBuy === "S") {
-      handleItemBuy(nameItemBuy);
-    } else {
-      handleItem(false);
+      if (updateStats !== undefined) updateStats(response.data);
     }
   }
 
@@ -105,7 +87,7 @@ const UserInventory = ({
         onDragOver={dragOver}
         onDrop={() => {
           if (letterDrag === "I") {
-            dropEquiped();
+            handleItem(true);
           }
         }}
       >
@@ -135,6 +117,7 @@ const UserInventory = ({
                   <img
                     src={require(`../img/items/${item.name}.png`)}
                     className="item"
+                    alt=""
                   />
                 </div>
               );
@@ -145,10 +128,11 @@ const UserInventory = ({
         className="inventory--box"
         id="inventory--box"
         onDragOver={dragOver}
-        onDrop={() => {
-          if (letterDrag === "E" || itemDragBuy === "S") {
-            dropBox();
-          }
+        onDrop={(e) => {
+          if (letterDrag === "E") handleItem(false);
+
+          if (itemDragBuy === "S")
+            handleItemBuy(e.dataTransfer.getData("itemBuy"));
         }}
       >
         {inventoryUser &&
@@ -159,7 +143,7 @@ const UserInventory = ({
               id={item.id}
               style={ItemStyle}
               className={
-                item.classRequired !== aclass.name &&
+                item.classRequired !== aclass &&
                 item.classRequired !== "none"
                   ? "itemNoClass"
                   : item.lvlMin > level

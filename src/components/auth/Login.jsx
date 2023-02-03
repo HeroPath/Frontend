@@ -71,10 +71,10 @@ const Login = () => {
             </button>
           </form>
           <div className="login--footer mt-4">
-            <a href="/register" className="button--links links p-2 ps-5 pe-5">
+            <a href="/register" className="button--links links p-3 ps-5 pe-5">
               Register
             </a>
-            <a href="" className="button--links links p-2 ps-5 pe-5">
+            <a href="" className="button--links links p-3 ps-5 pe-5">
               Forgot password?
             </a>
           </div>

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/styles.css";
 import UserCard from "./UserCard";
 import UserStats from "./UserStats";
 import UserInventory from "./UserInventory";
 
-const ProfileCard = ({ profile }) => {
+function ProfileCard({ profile }) {
   const {
     inventory,
     equipment,
@@ -28,6 +28,36 @@ const ProfileCard = ({ profile }) => {
     evasion,
     criticalChance,
   } = profile;
+
+  const [userStats, setUserStats] = useState(undefined);
+  const [userCard, setUserCard] = useState(undefined);
+
+  const updateStats = (newStats) => {
+    setUserStats({
+      newStrength: newStats.strength,
+      newDexterity: newStats.dexterity,
+      newVitality: newStats.vitality,
+      newIntelligence: newStats.intelligence,
+      newLuck: newStats.luck,
+      newMinDmg: newStats.minDmg,
+      newMaxDmg: newStats.maxDmg,
+      newDefense: newStats.defense,
+      newEvasion: newStats.evasion,
+      newCriticalChance: newStats.criticalChance,
+    });
+    setUserCard({
+      newHp: newStats.hp,
+      newMaxHp: newStats.maxHp,
+    });
+  };
+
+  const statVitality = (data) => {
+    setUserCard({
+      newHp: data.hp,
+      newMaxHp: data.maxHp,
+    });
+  };
+
   return (
     <div id="profileCard">
       <section className="userCard">
@@ -37,6 +67,7 @@ const ProfileCard = ({ profile }) => {
             equipment={equipment}
             aclass={aclass}
             level={level}
+            updateStats={updateStats}
           />
         )}
         {aclass && maxDmg && (
@@ -48,6 +79,7 @@ const ProfileCard = ({ profile }) => {
             experience={experience}
             experienceToNextLevel={experienceToNextLevel}
             level={level}
+            userCard={userCard}
           />
         )}
         {strength &&
@@ -74,11 +106,13 @@ const ProfileCard = ({ profile }) => {
               defense={defense}
               evasion={evasion}
               criticalChance={criticalChance}
+              statVitality={statVitality}
+              userStats={userStats}
             />
           )}
       </section>
     </div>
   );
-};
+}
 
 export default ProfileCard;

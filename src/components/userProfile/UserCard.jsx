@@ -9,11 +9,21 @@ const UserCard = ({
   experience,
   experienceToNextLevel,
   level,
+  userCard,
 }) => {
+  /* --------- TEST ---------- */
+
+  if (userCard !== undefined) {
+    hp = userCard.newHp;
+    maxHp = userCard.newMaxHp;
+  }
+
+  /* --------- TEST ---------- */
+
   let barHealthWidth = (hp * 270) / maxHp;
   let barExpWidth = (experience * 270) / experienceToNextLevel;
   let hpComplete = `${hp}/${maxHp}`;
-  let expComplete = `${experience} / ${experienceToNextLevel}`;
+  let expComplete = `${experience.toLocaleString()} / ${experienceToNextLevel.toLocaleString()}`;
   let percentExp =
     level < 300
       ? ((experience / experienceToNextLevel) * 100).toFixed(2) + "%"
@@ -28,9 +38,10 @@ const UserCard = ({
         <h3>{capitalizeFirstLetter(username)}</h3>
       </div>
       <img
-        src={require("../img/class/" + aclass.name + ".webp")}
+        src={require("../img/class/" + aclass + ".webp")}
         width="270px"
         height="270px"
+        alt=""
       />
 
       <div className="bar--background" style={{ width: "270px" }}>
@@ -59,7 +70,7 @@ const UserCard = ({
       </div>
 
       <label>Level: {level}</label>
-      <label>Class: {capitalizeFirstLetter(aclass.name)}</label>
+      <label>Class: {capitalizeFirstLetter(aclass)}</label>
     </div>
   );
 };

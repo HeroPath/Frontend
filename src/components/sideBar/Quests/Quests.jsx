@@ -54,7 +54,6 @@ const Quests = () => {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Name</th>
                 <th>Description</th>
                 <th>Npc Kill</th>
                 <th>Npc Kills</th>
@@ -72,7 +71,6 @@ const Quests = () => {
                 <tbody key={index}>
                   <tr>
                     <td>{acceptedQuestNumber++}</td>
-                    <td>{acceptedQuest.quest.name}</td>
                     <td>{acceptedQuest.quest.description}</td>
                     <td>{acceptedQuest.quest.nameNpcKill}</td>
                     <td>
