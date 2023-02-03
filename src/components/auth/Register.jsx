@@ -15,6 +15,7 @@ const Register = () => {
     const response = await get("/api/v1/classes");
     if (response.status === 200) {
       setClassData(response.data);
+      console.log(response.data)
     }
   }
 
@@ -66,7 +67,7 @@ const Register = () => {
 
   function handleClickClass(e) {
     e.preventDefault();
-
+    console.log(e.target.value)
     const [, className, strength, dexterity, intelligence, vitality, luck] =
       e.target.value.split(",");
     setDataClassSelected(className.toLowerCase());
@@ -143,7 +144,17 @@ const Register = () => {
               </option>
 
               {classData?.map((cChar) => (
-                <option key={cChar.name} value={[cChar.name]}>
+                <option key={cChar.name} 
+                value={[
+                    cChar.id,
+                    cChar.name,
+                    cChar.strength,
+                    cChar.dexterity,
+                    cChar.intelligence,
+                    cChar.vitality,
+                    cChar.luck,
+                  ]}
+                >
                   {capitalizeFirstLetter(cChar.name)}
                 </option>
               ))}
