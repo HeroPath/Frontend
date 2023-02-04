@@ -35,13 +35,13 @@ const PvEBattle = () => {
     x: "35%",
     y: "25%",
     rotation: -40,
-    opacity: 1,
+    opacity: 0,
   });
   const [secondAttack, setSecondAttack] = useState({
     x: "70%",
     y: "25%",
     rotation: -50,
-    opacity: 1,
+    opacity: 0,
   });
 
   const [userDamage, setUserDamage] = useState(0);
@@ -84,7 +84,7 @@ const PvEBattle = () => {
       x: "70%",
       y: "25%",
       rotation: 40,
-      opacity: 0,
+      opacity: 1,
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
@@ -93,13 +93,13 @@ const PvEBattle = () => {
           x: "35%",
           y: "25%",
           rotation: -40,
-          opacity: 1,
+          opacity: 0,
         });
         TweenMax.to(secondAttack, 1, {
           x: "35%",
           y: "25%",
           rotation: -125,
-          opacity: 0,
+          opacity: 1,
           ease: Power2.easeInOut,
           onUpdate: () => setSecondAttack({ ...secondAttack }),
           onComplete: () => {
@@ -108,7 +108,7 @@ const PvEBattle = () => {
               x: "70%",
               y: "25%",
               rotation: -50,
-              opacity: 1,
+              opacity: 0,
             });
           },
         });
