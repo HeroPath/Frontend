@@ -20,7 +20,7 @@ const Navbar = ({ gold, diamond, role }) => {
           />
           {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
-        {role && <label>Role: {role.roleName}</label>}
+        {role && <label>Role: {role}</label>}
       </div>
       <div className="navBarDivs">
         <label>Server Status</label>

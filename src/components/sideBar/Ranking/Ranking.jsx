@@ -15,13 +15,17 @@ const Ranking = () => {
   const [ranking, setRanking] = useState([]);
   const [guilds, setGuilds] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   async function getRankingUsers() {
     const responseRanking = await get(
       `/api/v1/users/ranking?page=${currentPage}`,
       headers
     );
-    if (responseRanking.status === 200) setRanking(responseRanking.data);
+    if (responseRanking.status === 200) {
+      setRanking(responseRanking.data.ranking);
+      setTotalPages(responseRanking.data.totalPages);
+    }
   }
 
   async function getRankingGuilds() {
@@ -41,7 +45,6 @@ const Ranking = () => {
   useEffect(() => {
     getRankingGuilds();
   }, []);
-  
 
   return (
     <div className="ranking">
@@ -97,11 +100,13 @@ const Ranking = () => {
             </tbody>
           ))}
         </Table>
-        <Pagination
-          totalPages={5}
-          currentPage={currentPage}
-          onPageChange={setCurrentPage}
-        />
+        {totalPages && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
+        )}
       </div>
       {guilds.length >= 1 && (
         <div>
