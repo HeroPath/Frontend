@@ -18,6 +18,7 @@ const Guild = () => {
     const response = await get("/api/v1/guilds/in-guild", headers);
     if (response.status === 200) {
       if (response.data.userInGuild) {
+        console.log(response.data);
         setUserGuild(response.data);
       }
     }
@@ -117,7 +118,7 @@ const Guild = () => {
                     >
                       <td>{memberCounter++}</td>
                       <td>{member.username}</td>
-                      <td>{member.className}</td>
+                      <td>{member.aclass}</td>
                       <td>{member.level}</td>
                       <td>{member.titleName}</td>
                       <td>{member.titlePoints}</td>
@@ -180,7 +181,7 @@ const Guild = () => {
                         <tr key={memberRequest.username}>
                           <td>{memberRequestCounter++}</td>
                           <td>{memberRequest.username}</td>
-                          <td>{memberRequest.className}</td>
+                          <td>{memberRequest.aclass}</td>
                           <td>{memberRequest.level}</td>
                           <td>{memberRequest.titleName}</td>
                           <td>{memberRequest.titlePoints}</td>
