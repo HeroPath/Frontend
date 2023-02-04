@@ -13,16 +13,35 @@ const PvEBattle = () => {
   const [winnerBattle, setWinnerBattle] = useState({});
   let i = 1;
 
+  const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+
+  async function getPveBattle() {
+    const response = await get("/api/v1/users/profile", headers);
+    if (response.status === 200) {
+      response.data.username = response.data.username.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+      setProfile(response.data);
+    }
+    setWinnerBattle(location.state.battleData.pop());
+    setBattleData(location.state.battleData);
+    // console.log(location.state.battleData);
+  }
+
+  useEffect(() => {
+    getPveBattle();
+  }, []);
+
   /* -------------------------- INICIO TEST -----------------------------------*/
   const [firstAttack, setFirstAttack] = useState({
     x: "35%",
     y: "25%",
     rotation: -40,
+    opacity: 1,
   });
   const [secondAttack, setSecondAttack] = useState({
     x: "70%",
     y: "25%",
     rotation: -50,
+    opacity: 1,
   });
 
   const [userDamage, setUserDamage] = useState(0);
@@ -61,10 +80,11 @@ const PvEBattle = () => {
   };
 
   const animateFirstAttack = (userDmg, npcDmg) => {
-    TweenMax.to(firstAttack, 0.5, {
+    TweenMax.to(firstAttack, 1, {
       x: "70%",
       y: "25%",
       rotation: 40,
+      opacity: 0,
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
@@ -73,11 +93,13 @@ const PvEBattle = () => {
           x: "35%",
           y: "25%",
           rotation: -40,
+          opacity: 1,
         });
-        TweenMax.to(secondAttack, 0.5, {
+        TweenMax.to(secondAttack, 1, {
           x: "35%",
           y: "25%",
           rotation: -125,
+          opacity: 0,
           ease: Power2.easeInOut,
           onUpdate: () => setSecondAttack({ ...secondAttack }),
           onComplete: () => {
@@ -86,6 +108,7 @@ const PvEBattle = () => {
               x: "70%",
               y: "25%",
               rotation: -50,
+              opacity: 1,
             });
           },
         });
@@ -100,30 +123,83 @@ const PvEBattle = () => {
       setTimeout(() => {
         animateFirstAttack(battleData[round].attackerDmg, battleData[round].NpcDmg);
         setRound(round + 1);
-      }, (round + 1) * 2000);
+      }, 3000);
     }
   }, [round, battleData]);
 
   /* -------------------------- FIN TEST -----------------------------------*/
-  const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
-
-  async function getPveBattle() {
-    const response = await get("/api/v1/users/profile", headers);
-    if (response.status === 200) {
-      response.data.username = response.data.username.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
-      setProfile(response.data);
-    }
-    setWinnerBattle(location.state.battleData.pop());
-    setBattleData(location.state.battleData);
-    // console.log(location.state.battleData);
-  }
-
-  useEffect(() => {
-    getPveBattle();
-  }, []);
 
   return (
     <div className="battle">
+      {/* ----------------------------- INICIO TEST ----------------------------- */}
+
+      <div
+        ref={userDmgRef}
+        style={{
+          position: "absolute",
+          backgroundColor: "red",
+          color: "white",
+          padding: "0px 15px",
+          borderRadius: "10px",
+          fontSize: "40px",
+          fontWeight: "bold",
+          opacity: 0,
+          left: "77%",
+          top: "15%",
+        }}
+      >
+        {userDamage}
+      </div>
+      <div
+        ref={npcDmgRef}
+        style={{
+          position: "absolute",
+          backgroundColor: "red",
+          color: "white",
+          padding: "0px 15px",
+          borderRadius: "10px",
+          fontSize: "40px",
+          fontWeight: "bold",
+          opacity: 0,
+          left: "33%",
+          top: "15%",
+        }}
+      >
+        {npcDamage}
+      </div>
+      <div
+        id="firstAttack"
+        style={{
+          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+          width: "8%",
+          height: "15%",
+          position: "absolute",
+          transform: `rotate(${firstAttack.rotation}deg)`,
+          left: firstAttack.x,
+          top: firstAttack.y,
+          opacity: firstAttack.opacity,
+        }}
+      />
+      <div
+        id="secondAttack"
+        style={{
+          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
+          width: "8%",
+          height: "15%",
+          position: "absolute",
+          transform: `rotate(${secondAttack.rotation}deg)`,
+          left: secondAttack.x,
+          top: secondAttack.y,
+          opacity: secondAttack.opacity,
+        }}
+      />
+
+      {/* ----------------------------- FIN TEST ----------------------------- */}
+
       <div className="battle--usercard">
         {profile.aclass && (
           <UserCard
@@ -142,72 +218,6 @@ const PvEBattle = () => {
       <div className="battle--npccard">
         <NpcCard />
       </div>
-      {/* ----------------------------- INICIO TEST ----------------------------- */}
-
-      <div
-        ref={userDmgRef}
-        style={{
-          position: "absolute",
-          backgroundColor: "red",
-          color: "white",
-          padding: "0px 20px",
-          borderRadius: "10px",
-          fontSize: "40px",
-          fontWeight: "bold",
-          opacity: 0,
-          left: 1165,
-          top: 120,
-        }}
-      >
-        {userDamage}
-      </div>
-      <div
-        ref={npcDmgRef}
-        style={{
-          position: "absolute",
-          backgroundColor: "red",
-          color: "white",
-          padding: "0px 20px",
-          borderRadius: "10px",
-          fontSize: "40px",
-          fontWeight: "bold",
-          opacity: 0,
-          left: 510,
-          top: 120,
-        }}
-      >
-        {npcDamage}
-      </div>
-      <div
-        id="firstAttack"
-        style={{
-          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          width: "8%",
-          height: "15%",
-          position: "absolute",
-          transform: `rotate(${firstAttack.rotation}deg)`,
-          left: firstAttack.x,
-          top: firstAttack.y,
-        }}
-      />
-      <div
-        id="secondAttack"
-        style={{
-          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          width: "8%",
-          height: "15%",
-          position: "absolute",
-          transform: `rotate(${secondAttack.rotation}deg)`,
-          left: secondAttack.x,
-          top: secondAttack.y,
-        }}
-      />
-
-      {/* ----------------------------- FIN TEST ----------------------------- */}
 
       <div className="rounds--console">
         <div className="history-box">
