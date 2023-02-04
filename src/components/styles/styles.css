@@ -569,7 +569,7 @@ body {
   background-size: 100% 100%;
   background-position: center;
   color: var(--button--textColor);
-  padding: 0.7%;
+  padding: 0.9%;
   width: 190px;
   margin: 0;
 }
@@ -793,7 +793,6 @@ body {
   text-align: center;
   font-weight: bold;
   font-size: 14px;
-  
 }
 
 /* ---------------- //QUESTS ----------------------*/

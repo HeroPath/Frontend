@@ -13,7 +13,7 @@ const PvEBattle = () => {
   const [winnerBattle, setWinnerBattle] = useState({});
   let i = 1;
 
-  /* -------------------------- TEST -----------------------------------*/
+  /* -------------------------- INICIO TEST -----------------------------------*/
   const [firstAttack, setFirstAttack] = useState({
     x: "35%",
     y: "25%",
@@ -25,82 +25,92 @@ const PvEBattle = () => {
     rotation: -50,
   });
 
-  const [damage, setDamage] = useState(0);
-  const damageRef = useRef(null);
+  const [userDamage, setUserDamage] = useState(0);
+  const [npcDamage, setNpcDamage] = useState(0);
+  const userDmgRef = useRef(null);
+  const npcDmgRef = useRef(null);
 
-  const showDamage = (value) => {
-    TweenMax.to(damageRef.current, 0.5, {
+  const showUserDmg = (value) => {
+    TweenMax.to(userDmgRef.current, 1, {
       y: -20,
       opacity: 1,
       ease: Power2.easeOut,
       onComplete: () => {
-        TweenMax.to(damageRef.current, 0.5, {
+        TweenMax.to(userDmgRef.current, 1, {
           opacity: 0,
           delay: 1,
         });
       },
     });
-    setDamage(value);
-    console.log(value);
+    setUserDamage(value);
+  };
+
+  const showNpcDmg = (value) => {
+    TweenMax.to(npcDmgRef.current, 1, {
+      y: -20,
+      opacity: 1,
+      ease: Power2.easeOut,
+      onComplete: () => {
+        TweenMax.to(npcDmgRef.current, 1, {
+          opacity: 0,
+          delay: 1,
+        });
+      },
+    });
+    setNpcDamage(value);
   };
 
   const animateFirstAttack = (userDmg, npcDmg) => {
-    TweenMax.to(firstAttack, 1, {
+    TweenMax.to(firstAttack, 0.5, {
       x: "70%",
       y: "25%",
       rotation: 40,
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
-        showDamage(userDmg);
+        showUserDmg(userDmg);
         setFirstAttack({
           x: "35%",
           y: "25%",
           rotation: -40,
         });
-        animateSecondAttack();
-      },
-    });
-  };
-
-  const animateSecondAttack = (userDmg, npcDmg) => {
-    TweenMax.to(secondAttack, 0.5, {
-      x: "35%",
-      y: "25%",
-      rotation: -125,
-      ease: Power2.easeInOut,
-      onUpdate: () => setSecondAttack({ ...secondAttack }),
-      onComplete: () => {
-        showDamage(npcDmg);
-        setSecondAttack({
-          x: "70%",
+        TweenMax.to(secondAttack, 0.5, {
+          x: "35%",
           y: "25%",
-          rotation: -50,
+          rotation: -125,
+          ease: Power2.easeInOut,
+          onUpdate: () => setSecondAttack({ ...secondAttack }),
+          onComplete: () => {
+            showNpcDmg(npcDmg);
+            setSecondAttack({
+              x: "70%",
+              y: "25%",
+              rotation: -50,
+            });
+          },
         });
       },
     });
   };
 
-  useEffect(() => {
-    battleData.forEach((data, index) => {
-      console.log(data.attackerDmg, data.npcDmg);
-      animateFirstAttack(data.attackerDmg, data.NpcDmg);
-    });
-  }, [battleData]);
+  const [round, setRound] = useState(0);
 
-  /* -------------------------- TEST -----------------------------------*/
-  const npcName = location.state.battleData.nameData.replace(
-    /(^\w{1})/g,
-    (letter) => letter.toUpperCase()
-  );
+  useEffect(() => {
+    if (round < battleData.length) {
+      setTimeout(() => {
+        animateFirstAttack(battleData[round].attackerDmg, battleData[round].NpcDmg);
+        setRound(round + 1);
+      }, (round + 1) * 2000);
+    }
+  }, [round, battleData]);
+
+  /* -------------------------- FIN TEST -----------------------------------*/
+  const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
 
   async function getPveBattle() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
-      response.data.username = response.data.username.replace(
-        /(^\w{1})/g,
-        (letter) => letter.toUpperCase()
-      );
+      response.data.username = response.data.username.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
       setProfile(response.data);
     }
     setWinnerBattle(location.state.battleData.pop());
@@ -132,18 +142,41 @@ const PvEBattle = () => {
       <div className="battle--npccard">
         <NpcCard />
       </div>
-      {/* ----------------------------- TEST ----------------------------- */}
+      {/* ----------------------------- INICIO TEST ----------------------------- */}
+
       <div
-        ref={damageRef}
+        ref={userDmgRef}
         style={{
           position: "absolute",
-          color: "red",
-          fontSize: "24px",
+          backgroundColor: "red",
+          color: "white",
+          padding: "0px 20px",
+          borderRadius: "10px",
+          fontSize: "40px",
+          fontWeight: "bold",
           opacity: 0,
+          left: 1165,
+          top: 120,
         }}
-        onClick={showDamage}
       >
-        {damage}
+        {userDamage}
+      </div>
+      <div
+        ref={npcDmgRef}
+        style={{
+          position: "absolute",
+          backgroundColor: "red",
+          color: "white",
+          padding: "0px 20px",
+          borderRadius: "10px",
+          fontSize: "40px",
+          fontWeight: "bold",
+          opacity: 0,
+          left: 510,
+          top: 120,
+        }}
+      >
+        {npcDamage}
       </div>
       <div
         id="firstAttack"
@@ -174,7 +207,7 @@ const PvEBattle = () => {
         }}
       />
 
-      {/* ----------------------------- TEST ----------------------------- */}
+      {/* ----------------------------- FIN TEST ----------------------------- */}
 
       <div className="rounds--console">
         <div className="history-box">
@@ -183,13 +216,11 @@ const PvEBattle = () => {
               <h6>Round: {rounds.round}</h6>
               <div>
                 <li>
-                  {profile.username} attacked {npcName} for{" "}
-                  {rounds.attackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
+                  {profile.username} attacked {npcName} for {rounds.attackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
                   {rounds.NpcLife.toLocaleString()})
                 </li>
                 <li>
-                  {npcName} attacked {profile.username} for{" "}
-                  {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
+                  {npcName} attacked {profile.username} for {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
                   life: {rounds.attackerLife.toLocaleString()})
                 </li>
               </div>
@@ -202,25 +233,12 @@ const PvEBattle = () => {
                 <li>Winner: {winnerBattle.win}</li>
                 <li>Loser: {winnerBattle.lose}</li>
                 {winnerBattle.userExperienceGain && (
-                  <li>
-                    Experience gained:{" "}
-                    {winnerBattle.userExperienceGain.toLocaleString()}
-                  </li>
+                  <li>Experience gained: {winnerBattle.userExperienceGain.toLocaleString()}</li>
                 )}
-                {winnerBattle.goldAmountWin && (
-                  <li>
-                    Gold won: {winnerBattle.goldAmountWin.toLocaleString()}
-                  </li>
-                )}
+                {winnerBattle.goldAmountWin && <li>Gold won: {winnerBattle.goldAmountWin.toLocaleString()}</li>}
 
-                {winnerBattle.diamondsAmonutWin && (
-                  <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>
-                )}
-                {winnerBattle.levelUp === true && (
-                  <li>
-                    Congratulations, you have reached level {profile.level}
-                  </li>
-                )}
+                {winnerBattle.diamondsAmonutWin && <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>}
+                {winnerBattle.levelUp === true && <li>Congratulations, you have reached level {profile.level}</li>}
               </div>
             </ul>
           )}
