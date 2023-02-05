@@ -15,18 +15,12 @@ const PvEBattle = () => {
   const [winnerBattle, setWinnerBattle] = useState({});
   let i = 1;
 
-  const npcName = location.state.battleData.nameData.replace(
-    /(^\w{1})/g,
-    (letter) => letter.toUpperCase()
-  );
+  const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
 
   async function getPveBattle() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
-      response.data.username = response.data.username.replace(
-        /(^\w{1})/g,
-        (letter) => letter.toUpperCase()
-      );
+      response.data.username = response.data.username.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
       setProfile(response.data);
     }
     setWinnerBattle(location.state.battleData.pop());
@@ -54,7 +48,7 @@ const PvEBattle = () => {
   const firstAttackRef = useRef(firstAttack);
   const secondAttackRef = useRef(secondAttack);
 
-  const animateFirstAttack = (userDmg, npcDmg, roundConsole, roundNumber) => {
+  const animateFirstAttack = (battle, roundNumber) => {
     setFirstAttack({ ...firstAttackRef.current });
     setSecondAttack({ ...secondAttackRef.current });
 
@@ -66,7 +60,7 @@ const PvEBattle = () => {
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
-        showUserDmg(userDmg);
+        showUserDmg(battle.attackerDmg);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
 
         TweenMax.to(secondAttack, 0.9, {
@@ -77,14 +71,15 @@ const PvEBattle = () => {
           ease: Power2.easeInOut,
           onUpdate: () => setSecondAttack({ ...secondAttack }),
           onComplete: () => {
-            showNpcDmg(npcDmg);
+            showNpcDmg(battle.NpcDmg);
+
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
-            stage.push(roundConsole);
-            if (roundNumber >= battleData.length - 1) setFinishBattle(true); 
+            stage.push(battle);
+            if (roundNumber >= battleData.length - 1) setFinishBattle(true);
           },
         });
       },
-    });      
+    });
   };
 
   const [round, setRound] = useState(0);
@@ -94,12 +89,7 @@ const PvEBattle = () => {
       firstAttackRef.current = firstAttack;
       secondAttackRef.current = secondAttack;
       setTimeout(() => {
-        animateFirstAttack(
-          battleData[round].attackerDmg,
-          battleData[round].NpcDmg,
-          battleData[round],
-          round
-        );
+        animateFirstAttack(battleData[round], round);
         setRound(round + 1);
       }, 2000 * (round >= 1 ? 1 : 0.25));
       return () => clearTimeout();
@@ -148,12 +138,13 @@ const PvEBattle = () => {
         ref={userDmgRef}
         style={{
           position: "absolute",
-          backgroundColor: "red",
-          color: "white",
-          padding: "0px 15px",
-          borderRadius: "10px",
-          fontSize: "40px",
+          backgroundColor: "transparent",
+          color: "#ff1744",
+          padding: "0",
+          borderRadius: "0",
+          fontSize: "60px",
           fontWeight: "bold",
+          textShadow: "3px 3px #333",
           opacity: 0,
           left: "77%",
           top: "15%",
@@ -165,14 +156,15 @@ const PvEBattle = () => {
         ref={npcDmgRef}
         style={{
           position: "absolute",
-          backgroundColor: "red",
-          color: "white",
-          padding: "0px 15px",
-          borderRadius: "10px",
-          fontSize: "40px",
+          backgroundColor: "transparent",
+          color: "#ff1744",
+          padding: "0",
+          borderRadius: "0",
+          fontSize: "60px",
           fontWeight: "bold",
+          textShadow: "3px 3px #333",
           opacity: 0,
-          left: "33%",
+          left: "34%",
           top: "15%",
         }}
       >
@@ -238,13 +230,11 @@ const PvEBattle = () => {
                 <h6>Round: {rounds.round}</h6>
                 <div>
                   <li>
-                    {profile.username} attacked {npcName} for{" "}
-                    {rounds.attackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
-                    {rounds.NpcLife.toLocaleString()})
+                    {profile.username} attacked {npcName} for {rounds.attackerDmg.toLocaleString()} dmg. ({npcName}{" "}
+                    life: {rounds.NpcLife.toLocaleString()})
                   </li>
                   <li>
-                    {npcName} attacked {profile.username} for{" "}
-                    {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
+                    {npcName} attacked {profile.username} for {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
                     life: {rounds.attackerLife.toLocaleString()})
                   </li>
                 </div>
@@ -257,25 +247,12 @@ const PvEBattle = () => {
                 <li>Winner: {winnerBattle.win}</li>
                 <li>Loser: {winnerBattle.lose}</li>
                 {winnerBattle.userExperienceGain && (
-                  <li>
-                    Experience gained:{" "}
-                    {winnerBattle.userExperienceGain.toLocaleString()}
-                  </li>
+                  <li>Experience gained: {winnerBattle.userExperienceGain.toLocaleString()}</li>
                 )}
-                {winnerBattle.goldAmountWin && (
-                  <li>
-                    Gold won: {winnerBattle.goldAmountWin.toLocaleString()}
-                  </li>
-                )}
+                {winnerBattle.goldAmountWin && <li>Gold won: {winnerBattle.goldAmountWin.toLocaleString()}</li>}
 
-                {winnerBattle.diamondsAmonutWin && (
-                  <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>
-                )}
-                {winnerBattle.levelUp === true && (
-                  <li>
-                    Congratulations, you have reached level {profile.level}
-                  </li>
-                )}
+                {winnerBattle.diamondsAmonutWin && <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>}
+                {winnerBattle.levelUp === true && <li>Congratulations, you have reached level {profile.level}</li>}
               </div>
             </ul>
           )}
