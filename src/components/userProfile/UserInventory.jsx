@@ -24,17 +24,7 @@ const UserInventory = ({
 
   function orderedObject(equipUser) {
     const objectEmpty = { type: "empty" };
-    const order = [
-      "ship",
-      "helmet",
-      "wings",
-      "weapon",
-      "armor",
-      "shield",
-      "gloves",
-      "pants",
-      "boots",
-    ];
+    const order = ["ship", "helmet", "wings", "weapon", "armor", "shield", "gloves", "pants", "boots"];
 
     let sortedItems = [];
     for (const itemType of order) {
@@ -114,11 +104,7 @@ const UserInventory = ({
                   }}
                   {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
                 >
-                  <img
-                    src={require(`../img/items/${item.name}.png`)}
-                    className="item"
-                    alt=""
-                  />
+                  <img src={require(`../img/items/${item.name}.png`)} className="item" alt="" />
                 </div>
               );
             }
@@ -131,8 +117,7 @@ const UserInventory = ({
         onDrop={(e) => {
           if (letterDrag === "E") handleItem(false);
 
-          if (itemDragBuy === "S")
-            handleItemBuy(e.dataTransfer.getData("itemBuy"));
+          if (itemDragBuy === "S") handleItemBuy(e.dataTransfer.getData("itemBuy"));
         }}
       >
         {inventoryUser &&
@@ -143,8 +128,7 @@ const UserInventory = ({
               id={item.id}
               style={ItemStyle}
               className={
-                item.classRequired !== aclass &&
-                item.classRequired !== "none"
+                item.classRequired !== aclass && item.classRequired !== "none"
                   ? "itemNoClass"
                   : item.lvlMin > level
                   ? "itemNoLevel"
@@ -163,11 +147,7 @@ const UserInventory = ({
               }}
               {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
             >
-              <img
-                src={require(`../img/items/${item.name}.png`)}
-                className="item"
-                alt=""
-              />
+              <img src={require(`../img/items/${item.name}.png`)} className="item" alt="" />
             </div>
           ))}
       </div>

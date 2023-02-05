@@ -18,7 +18,7 @@ const Quests = () => {
     if (response.status === 200 && actionUrl !== "complete")
       window.location.reload();
 
-    if (response.status === 200){
+    if (response.status === 200) {
       notifySuccess(
         "/quest",
         response.data.name + "- Completed!",
@@ -71,7 +71,13 @@ const Quests = () => {
                 <tbody key={index}>
                   <tr>
                     <td>{acceptedQuestNumber++}</td>
-                    <td>{acceptedQuest.quest.description}</td>
+                    <td>
+                      Kill {acceptedQuest.quest.npcKillAmountNeeded}{" "}
+                      {acceptedQuest.quest.nameNpcKill} and get reward{" "}
+                      {acceptedQuest.quest.giveExp} exp,{" "}
+                      {acceptedQuest.quest.giveGold} gold,{" "}
+                      {acceptedQuest.quest.giveDiamonds} diamonds.
+                    </td>
                     <td>{acceptedQuest.quest.nameNpcKill}</td>
                     <td>
                       {acceptedQuest.npcKillAmount} /{" "}
@@ -145,7 +151,14 @@ const Quests = () => {
                 <tr>
                   <td>{nonAcceptedQuestsNumber++}</td>
                   <td>{nonAcceptedQuest.quest.name}</td>
-                  <td>{nonAcceptedQuest.quest.description}</td>
+                  <td>
+                      Kill {nonAcceptedQuest.quest.npcKillAmountNeeded}{" "}
+                      {nonAcceptedQuest.quest.nameNpcKill}. Reward{" "}
+                      {nonAcceptedQuest.quest.giveExp} exp,{" "}
+                      {nonAcceptedQuest.quest.giveGold} gold,{" "}
+                      {nonAcceptedQuest.quest.giveDiamonds} diamonds
+                    </td>
+                  
                   <td>{nonAcceptedQuest.quest.nameNpcKill}</td>
                   <td>{nonAcceptedQuest.quest.npcKillAmountNeeded}</td>
                   <td>{nonAcceptedQuest.quest.userKillAmountNeeded}</td>

@@ -21,8 +21,8 @@ const UserStats = ({
   defense,
   evasion,
   criticalChance,
-  userStats,
-  statVitality,
+  userNewData,
+  updateStats,
 }) => {
   const data = [
     { skill: "strength" },
@@ -47,50 +47,18 @@ const UserStats = ({
   });
 
   useEffect(() => {
-    if (userStats) {
-      setStats({
-        ...stats,
-        strength: userStats.newStrength,
-        dexterity: userStats.newDexterity,
-        vitality: userStats.newVitality,
-        intelligence: userStats.newIntelligence,
-        luck: userStats.newLuck,
-        minDmg: userStats.newMinDmg,
-        maxDmg: userStats.newMaxDmg,
-        defense: userStats.newDefense,
-        evasion: userStats.newEvasion,
-        criticalChance: userStats.newCriticalChance,
-      });
+    if (userNewData) {
+      setStats(userNewData);
     }
-  }, [userStats, stats]);
+  }, [userNewData]);
 
   async function handleClickAddSkill(skillName) {
-    const response = await post(
-      "/api/v1/users/add-skill-points/" + skillName,
-      {},
-      headers
-    );
+    const response = await post("/api/v1/users/add-skill-points/" + skillName, {}, headers);
 
     if (response.status === 200) {
-      setStats({
-        freeSkillPoints: response.data.freeSkillPoints,
-        strength: response.data.strength,
-        dexterity: response.data.dexterity,
-        vitality: response.data.vitality,
-        intelligence: response.data.intelligence,
-        luck: response.data.luck,
-        minDmg: response.data.minDmg,
-        maxDmg: response.data.maxDmg,
-        defense: response.data.defense,
-        evasion: response.data.evasion,
-        criticalChance: response.data.criticalChance,
-      });
-
-      if (statVitality) {
-        statVitality({
-          hp: response.data.hp,
-          maxHp: response.data.maxHp,
-        });
+      setStats(response.data);
+      if (updateStats) {
+        updateStats(response.data);
       }
     }
   }
@@ -129,9 +97,7 @@ const UserStats = ({
         <div className="userstats--info">
           <label>Defense: {stats.defense}</label>
           <label>Evasion: {stats.evasion}</label>
-          <label>
-            Critical Chance: {Math.round(stats.criticalChance * 10) / 10}%
-          </label>
+          <label>Critical Chance: {Math.round(stats.criticalChance * 10) / 10}%</label>
           <label>
             Min/Max DMG: {stats.minDmg}/{stats.maxDmg}
           </label>

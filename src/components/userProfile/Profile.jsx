@@ -22,11 +22,7 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <Navbar
-        gold={profile.gold}
-        diamond={profile.diamond}
-        role={profile.role}
-      />
+      <Navbar gold={profile.gold} diamond={profile.diamond} role={profile.role} />
       <ProfileCard profile={profile} />
     </div>
   );
