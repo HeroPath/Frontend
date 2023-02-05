@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-
+import Pagination from "../Pagination";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,6 +12,8 @@ const Quests = () => {
   let acceptedQuestNumber = 1;
   const [nonAcceptedQuests, setNonAcceptedQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   async function handleQuests(actionUrl, values) {
     const response = await post("/api/v1/quests/" + actionUrl, values, headers);
@@ -30,8 +32,9 @@ const Quests = () => {
   }
 
   async function getQuests() {
-    const response = await get("/api/v1/quests", headers);
+    const response = await get(`/api/v1/quests?page=${currentPage}`, headers);
     if (response.status === 200) {
+      setTotalPages(response.data[0].totalPages);
       setAcceptedQuests(
         response.data.filter((quest) => quest.npcKillAmount !== undefined)
       );
@@ -43,7 +46,7 @@ const Quests = () => {
 
   useEffect(() => {
     getQuests();
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="quest">
@@ -182,8 +185,17 @@ const Quests = () => {
               </tbody>
             ))}
           </Table>
+          {totalPages && (
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
+        )}
         </div>
+      
       )}
+      
 
       <ToastContainer
         position="top-right"
