@@ -17,7 +17,7 @@ const Quests = () => {
 
   async function handleQuests(actionUrl, values) {
     const response = await post("/api/v1/quests/" + actionUrl, values, headers);
-    if (response.status === 200 && actionUrl != "complete")
+    if (response.status === 200 && actionUrl !== "complete")
       window.location.reload();
 
     if (response.status === 200) {
