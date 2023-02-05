@@ -146,7 +146,7 @@ const PvEBattle = () => {
           fontWeight: "bold",
           textShadow: "3px 3px #333",
           opacity: 0,
-          left: "77%",
+          left: "76%",
           top: "15%",
         }}
       >
