@@ -17,7 +17,7 @@ const Quests = () => {
 
   async function handleQuests(actionUrl, values) {
     const response = await post("/api/v1/quests/" + actionUrl, values, headers);
-    if (response.status === 200 && actionUrl !== "complete")
+    if (response.status === 200 && actionUrl != "complete")
       window.location.reload();
 
     if (response.status === 200) {
@@ -34,12 +34,12 @@ const Quests = () => {
   async function getQuests() {
     const response = await get(`/api/v1/quests?page=${currentPage}`, headers);
     if (response.status === 200) {
-      setTotalPages(response.data[0].totalPages);
+      setTotalPages(response.data.totalPages);
       setAcceptedQuests(
-        response.data.filter((quest) => quest.npcKillAmount !== undefined)
+        response.data.quests.filter((quest) => quest.npcKillAmount !== undefined)
       );
       setNonAcceptedQuests(
-        response.data.filter((quest) => quest.npcKillAmount === undefined)
+        response.data.quests.filter((quest) => quest.npcKillAmount === undefined)
       );
     }
   }
