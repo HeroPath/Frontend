@@ -10,6 +10,8 @@ const PvEBattle = () => {
   const location = useLocation();
   const [profile, setProfile] = useState({});
   const [battleData, setBattleData] = useState([]);
+  const [stage] = useState([]);
+  const [finishBattle, setFinishBattle] = useState(false);
   const [winnerBattle, setWinnerBattle] = useState({});
   let i = 1;
 
@@ -52,11 +54,11 @@ const PvEBattle = () => {
   const firstAttackRef = useRef(firstAttack);
   const secondAttackRef = useRef(secondAttack);
 
-  const animateFirstAttack = (userDmg, npcDmg) => {
+  const animateFirstAttack = (userDmg, npcDmg, roundConsole, roundNumber) => {
     setFirstAttack({ ...firstAttackRef.current });
     setSecondAttack({ ...secondAttackRef.current });
 
-    TweenMax.to(firstAttack, 1, {
+    TweenMax.to(firstAttack, 0.9, {
       x: "70%",
       y: "25%",
       rotation: 40,
@@ -67,7 +69,7 @@ const PvEBattle = () => {
         showUserDmg(userDmg);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
 
-        TweenMax.to(secondAttack, 1, {
+        TweenMax.to(secondAttack, 0.9, {
           x: "35%",
           y: "25%",
           rotation: -120,
@@ -77,10 +79,12 @@ const PvEBattle = () => {
           onComplete: () => {
             showNpcDmg(npcDmg);
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
+            stage.push(roundConsole);
+            if (roundNumber >= battleData.length - 1) setFinishBattle(true); 
           },
         });
       },
-    });
+    });      
   };
 
   const [round, setRound] = useState(0);
@@ -89,15 +93,15 @@ const PvEBattle = () => {
     if (round < battleData.length) {
       firstAttackRef.current = firstAttack;
       secondAttackRef.current = secondAttack;
-
       setTimeout(() => {
-        console.log(firstAttackRef.current.x);
         animateFirstAttack(
           battleData[round].attackerDmg,
-          battleData[round].NpcDmg
+          battleData[round].NpcDmg,
+          battleData[round],
+          round
         );
         setRound(round + 1);
-      }, 2500);
+      }, 2000 * (round >= 1 ? 1 : 0.25));
       return () => clearTimeout();
     }
   }, [round, battleData]);
@@ -108,14 +112,13 @@ const PvEBattle = () => {
   const npcDmgRef = useRef(null);
 
   const showUserDmg = (value) => {
-    TweenMax.to(userDmgRef.current, 1, {
+    TweenMax.to(userDmgRef.current, 0.5, {
       y: -20,
       opacity: 1,
       ease: Power2.easeOut,
       onComplete: () => {
-        TweenMax.to(userDmgRef.current, 1, {
+        TweenMax.to(userDmgRef.current, 0.5, {
           opacity: 0,
-          delay: 1,
         });
       },
     });
@@ -123,14 +126,13 @@ const PvEBattle = () => {
   };
 
   const showNpcDmg = (value) => {
-    TweenMax.to(npcDmgRef.current, 1, {
+    TweenMax.to(npcDmgRef.current, 0.5, {
       y: -20,
       opacity: 1,
       ease: Power2.easeOut,
       onComplete: () => {
-        TweenMax.to(npcDmgRef.current, 1, {
+        TweenMax.to(npcDmgRef.current, 0.5, {
           opacity: 0,
-          delay: 1,
         });
       },
     });
@@ -230,24 +232,25 @@ const PvEBattle = () => {
 
       <div className="rounds--console">
         <div className="history-box">
-          {battleData?.map((rounds) => (
-            <ul key={i++} className="round">
-              <h6>Round: {rounds.round}</h6>
-              <div>
-                <li>
-                  {profile.username} attacked {npcName} for{" "}
-                  {rounds.attackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
-                  {rounds.NpcLife.toLocaleString()})
-                </li>
-                <li>
-                  {npcName} attacked {profile.username} for{" "}
-                  {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
-                  life: {rounds.attackerLife.toLocaleString()})
-                </li>
-              </div>
-            </ul>
-          ))}
-          {winnerBattle && (
+          {stage.length >= 1 &&
+            stage?.map((rounds) => (
+              <ul key={i++} className="round">
+                <h6>Round: {rounds.round}</h6>
+                <div>
+                  <li>
+                    {profile.username} attacked {npcName} for{" "}
+                    {rounds.attackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
+                    {rounds.NpcLife.toLocaleString()})
+                  </li>
+                  <li>
+                    {npcName} attacked {profile.username} for{" "}
+                    {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
+                    life: {rounds.attackerLife.toLocaleString()})
+                  </li>
+                </div>
+              </ul>
+            ))}
+          {finishBattle && winnerBattle && (
             <ul className="round winner">
               <h6>Final</h6>
               <div>
