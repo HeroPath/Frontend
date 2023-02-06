@@ -46,6 +46,7 @@ import Quests from "./components/sideBar/Quests/Quests";
 /* -------------------------------- QUEST --------------------------------------------*/
 
 import Guild from "./components/sideBar/guild/Guild";
+import PvPBattle from "./components/sideBar/PvP/PvPBattle";
 
 /* -------------------------------- //QUEST --------------------------------------------*/
 
@@ -76,6 +77,7 @@ function App() {
             <Route path="/playervsnpc" element={<PlayerVsNPC />} />
             <Route path="/pvebattle" element={<PvEBattle />} />
             <Route path="/playervsplayer" element={<PlayerVsPlayer />} />
+            <Route path="/pvpbattle" element={<PvPBattle />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/quest" element={<Quests />} />

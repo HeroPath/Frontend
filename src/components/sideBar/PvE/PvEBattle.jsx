@@ -3,9 +3,8 @@ import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
 import { TweenMax, Power2 } from "gsap";
-import { headers } from "../../../functions/utilities";
+import { headers, sounds, capitalizeFirstLetter } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
-import { sounds } from "../../../functions/utilities";
 import HistoryConsole from "./HistoryConsole";
 import DamageDisplay from "./DamageDisplay";
 import Attack from "./Attack";
@@ -19,13 +18,13 @@ const PvEBattle = () => {
   const [winnerBattle, setWinnerBattle] = useState({});
 
   const npcName = useMemo(() => {
-    return location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+    return capitalizeFirstLetter(location.state.battleData.nameData);
   }, [location.state.battleData.nameData]);
 
   async function getPveBattle() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
-      response.data.username = response.data.username.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+      response.data.username = capitalizeFirstLetter(response.data.username);
       setProfile(response.data);
     }
     setWinnerBattle(location.state.battleData.pop());
@@ -74,6 +73,11 @@ const PvEBattle = () => {
         }
         showDamage(true, battle.AttackerDmg);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
+        if (battle.NpcLife === 0) {
+          stage.push(battle);
+          if (roundNumber >= battleData.length - 1) setFinishBattle(true);
+          return;
+        }
 
         TweenMax.to(secondAttack, 0.9, {
           x: "35%",
