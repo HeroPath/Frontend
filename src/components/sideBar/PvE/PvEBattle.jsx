@@ -7,6 +7,7 @@ import { headers } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
 import { sounds } from "../../../functions/utilities";
 import HistoryConsole from "./HistoryConsole";
+import DamageDisplay from "./DamageDisplay";
 
 const PvEBattle = () => {
   const location = useLocation();
@@ -134,42 +135,9 @@ const PvEBattle = () => {
     <div className="battle">
       {/* ----------------------------- INICIO TEST ----------------------------- */}
 
-      <div
-        ref={userDmgRef}
-        style={{
-          position: "absolute",
-          backgroundColor: "transparent",
-          color: "#ff1744",
-          padding: "0",
-          borderRadius: "0",
-          fontSize: "60px",
-          fontWeight: "bold",
-          textShadow: "3px 3px #333",
-          opacity: 0,
-          left: "76%",
-          top: "15%",
-        }}
-      >
-        {userDamage}
-      </div>
-      <div
-        ref={npcDmgRef}
-        style={{
-          position: "absolute",
-          backgroundColor: "transparent",
-          color: "#ff1744",
-          padding: "0",
-          borderRadius: "0",
-          fontSize: "60px",
-          fontWeight: "bold",
-          textShadow: "3px 3px #333",
-          opacity: 0,
-          left: "34%",
-          top: "15%",
-        }}
-      >
-        {npcDamage}
-      </div>
+      <DamageDisplay ref={userDmgRef} isUser={true} value={userDamage} />
+      <DamageDisplay ref={npcDmgRef} isUser={false} value={npcDamage} />
+
       <div
         id="firstAttack"
         style={{
