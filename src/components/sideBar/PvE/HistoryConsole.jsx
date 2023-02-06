@@ -11,10 +11,13 @@ const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName })
             <ul key={i++} className="round">
               <h6>Round: {rounds.round}</h6>
               <div>
-                <li>
-                  {profile.username} attacked {npcName} for {rounds.AttackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
-                  {rounds.NpcLife.toLocaleString()})
-                </li>
+                {rounds.AttackerLife !== 0 && (
+                  <li>
+                    {profile.username} attacked {npcName} for {rounds.AttackerDmg.toLocaleString()} dmg. ({npcName}{" "}
+                    life: {rounds.NpcLife.toLocaleString()})
+                  </li>
+                )}
+
                 {rounds.NpcLife !== 0 && (
                   <li>
                     {npcName} attacked {profile.username} for {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}

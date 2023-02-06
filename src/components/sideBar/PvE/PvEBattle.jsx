@@ -66,14 +66,10 @@ const PvEBattle = () => {
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
-        if (battle.AttackerDmg > 0) {
-          sounds("hit");
-        } else {
-          sounds("block");
-        }
+        sounds(battle.AttackerDmg > 0 ? "hit" : "block");
         showDamage(true, battle.AttackerDmg);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
-        if (battle.NpcLife === 0) {
+        if (battle.NpcLife === 0 || battle.AttackerLife === 0) {
           stage.push(battle);
           if (roundNumber >= battleData.length - 1) setFinishBattle(true);
           return;
@@ -87,13 +83,8 @@ const PvEBattle = () => {
           ease: Power2.easeInOut,
           onUpdate: () => setSecondAttack({ ...secondAttack }),
           onComplete: () => {
-            if (battle.NpcDmg > 0) {
-              sounds("hit");
-            } else {
-              sounds("block");
-            }
+            sounds(battle.NpcDmg > 0 ? "hit" : "block");
             showDamage(false, battle.NpcDmg);
-
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
             stage.push(battle);
             if (roundNumber >= battleData.length - 1) setFinishBattle(true);
