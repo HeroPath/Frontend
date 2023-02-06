@@ -17,8 +17,8 @@ const Guild = () => {
   async function checkUserInGuild() {
     const response = await get("/api/v1/guilds/in-guild", headers);
     if (response.status === 200) {
+      console.log(response.data);
       if (response.data.userInGuild) {
-        console.log(response.data);
         setUserGuild(response.data);
       }
     }
