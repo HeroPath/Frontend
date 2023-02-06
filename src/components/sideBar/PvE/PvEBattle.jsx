@@ -6,6 +6,7 @@ import { TweenMax, Power2 } from "gsap";
 import { headers } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
 import { sounds } from "../../../functions/utilities";
+import HistoryConsole from "./HistoryConsole";
 
 const PvEBattle = () => {
   const location = useLocation();
@@ -14,7 +15,6 @@ const PvEBattle = () => {
   const [stage] = useState([]);
   const [finishBattle, setFinishBattle] = useState(false);
   const [winnerBattle, setWinnerBattle] = useState({});
-  let i = 1;
 
   const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
 
@@ -64,7 +64,7 @@ const PvEBattle = () => {
         if (battle.AttackerDmg > 0) {
           sounds("hit");
         } else {
-          sounds("miss");
+          sounds("block");
         }
         showUserDmg(battle.AttackerDmg);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
@@ -80,7 +80,7 @@ const PvEBattle = () => {
             if (battle.NpcDmg > 0) {
               sounds("hit");
             } else {
-              sounds("miss");
+              sounds("block");
             }
             showNpcDmg(battle.NpcDmg);
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
@@ -232,50 +232,13 @@ const PvEBattle = () => {
         <NpcCard />
       </div>
 
-      <div className="rounds--console">
-        <div className="history-box">
-          {stage.length >= 1 &&
-            stage?.map((rounds) => (
-              <ul key={i++} className="round">
-                <h6>Round: {rounds.round}</h6>
-                <div>
-                  <li>
-                    {profile.username} attacked {npcName} for {rounds.AttackerDmg.toLocaleString()} dmg. ({npcName}{" "}
-                    life: {rounds.NpcLife.toLocaleString()})
-                  </li>
-                  <li>
-                    {npcName} attacked {profile.username} for {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
-                    life: {rounds.AttackerLife.toLocaleString()})
-                  </li>
-                </div>
-              </ul>
-            ))}
-          {finishBattle && winnerBattle && (
-            <ul className="round winner">
-              <h6>Final</h6>
-              <div>
-                <li>Winner: {winnerBattle.Win}</li>
-                <li>Loser: {winnerBattle.Lose}</li>
-                {winnerBattle.ExperienceWin && (
-                  <li>Experience gained: {winnerBattle.ExperienceWin.toLocaleString()}</li>
-                )}
-                {winnerBattle.GoldWin && <li>Gold won: {winnerBattle.GoldWin.toLocaleString()}</li>}
-
-                {winnerBattle.DiamondsWin && <li>Diamond won: {winnerBattle.DiamondsWin}</li>}
-                {winnerBattle.LevelUP === true && <li>Congratulations, you have reached level {profile.level}</li>}
-              </div>
-            </ul>
-          )}
-        </div>
-        <div className="rounds--console--buttons">
-          <a href="/profile" className="button--links links">
-            Profile
-          </a>
-          <a href="/zone" className="button--links links">
-            Zone
-          </a>
-        </div>
-      </div>
+      <HistoryConsole
+        profile={profile}
+        stage={stage}
+        winnerBattle={winnerBattle}
+        finishBattle={finishBattle}
+        npcName={npcName}
+      />
     </div>
   );
 };
