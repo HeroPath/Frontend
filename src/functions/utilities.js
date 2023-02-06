@@ -54,7 +54,6 @@ export const notifySuccess = (
       draggable: true,
       progress: undefined,
       closeButton: false,
-      onClose: () => window.location.replace(redirectTo),
       className: "custom-success-toast",
     }
   );
