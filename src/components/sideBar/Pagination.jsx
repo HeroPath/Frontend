@@ -9,9 +9,19 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
   };
 
   return (
-    <div>
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+
+    }}>
       {Array.from({ length: totalPages }, (_, i) => (
-        <button key={i} onClick={() => handlePageChange(i)}>
+        <button key={i} onClick={() => handlePageChange(i)} style={{          
+          backgroundColor: "black",
+          color: "white",
+          border: "2px solid grey",
+          marginBottom: "10px",
+        }}>
           {i + 1}
         </button>
       ))}

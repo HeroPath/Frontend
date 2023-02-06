@@ -29,7 +29,7 @@ const Shop = () => {
     const response = await post("/api/v1/items/sell", values, headers);
     if (response.status === 200) {
       setItemDragShop(response.data.inventory);
-      profile.gold = response.data.gold;
+      profile.gold = response.data.userGold;
       sounds("buySell");
     }
   }
@@ -39,7 +39,7 @@ const Shop = () => {
     const response = await post("/api/v1/items/buy", data, headers);
     if (response.status === 200) {
       setItemDragShop(response.data.inventory);
-      profile.gold = response.data.gold;
+      profile.gold = response.data.userGold;
       sounds("buySell");
     }
   }
