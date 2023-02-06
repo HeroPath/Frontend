@@ -66,7 +66,7 @@ const PvEBattle = () => {
         } else {
           sounds("block");
         }
-        showUserDmg(battle.AttackerDmg);
+        showDamage(true, battle.AttackerDmg);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
 
         TweenMax.to(secondAttack, 0.9, {
@@ -82,7 +82,8 @@ const PvEBattle = () => {
             } else {
               sounds("block");
             }
-            showNpcDmg(battle.NpcDmg);
+            showDamage(false, battle.NpcDmg);
+
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
             stage.push(battle);
             if (roundNumber >= battleData.length - 1) setFinishBattle(true);
@@ -111,33 +112,22 @@ const PvEBattle = () => {
   const userDmgRef = useRef(null);
   const npcDmgRef = useRef(null);
 
-  const showUserDmg = (value) => {
-    TweenMax.to(userDmgRef.current, 0.5, {
+  const showDamage = (isUser, value) => {
+    const damageRef = isUser ? userDmgRef : npcDmgRef;
+    const setDamage = isUser ? setUserDamage : setNpcDamage;
+    TweenMax.to(damageRef.current, 0.5, {
       y: -20,
       opacity: 1,
       ease: Power2.easeOut,
       onComplete: () => {
-        TweenMax.to(userDmgRef.current, 0.5, {
+        TweenMax.to(damageRef.current, 0.5, {
           opacity: 0,
         });
       },
     });
-    setUserDamage(value);
+    setDamage(value);
   };
 
-  const showNpcDmg = (value) => {
-    TweenMax.to(npcDmgRef.current, 0.5, {
-      y: -20,
-      opacity: 1,
-      ease: Power2.easeOut,
-      onComplete: () => {
-        TweenMax.to(npcDmgRef.current, 0.5, {
-          opacity: 0,
-        });
-      },
-    });
-    setNpcDamage(value);
-  };
   /* -------------------------- FIN TEST -----------------------------------*/
 
   return (
