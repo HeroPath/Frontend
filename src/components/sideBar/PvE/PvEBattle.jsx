@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
@@ -18,7 +18,9 @@ const PvEBattle = () => {
   const [finishBattle, setFinishBattle] = useState(false);
   const [winnerBattle, setWinnerBattle] = useState({});
 
-  const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+  const npcName = useMemo(() => {
+    return location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+  }, [location.state.battleData.nameData]);
 
   async function getPveBattle() {
     const response = await get("/api/v1/users/profile", headers);
@@ -51,7 +53,9 @@ const PvEBattle = () => {
   const firstAttackRef = useRef(firstAttack);
   const secondAttackRef = useRef(secondAttack);
 
-  const animateFirstAttack = (battle, roundNumber) => {
+  const animateFirstAttack = (roundNumber) => {
+    const battle = battleData[roundNumber];
+
     setFirstAttack({ ...firstAttackRef.current });
     setSecondAttack({ ...secondAttackRef.current });
 
@@ -101,11 +105,11 @@ const PvEBattle = () => {
     if (round < battleData.length) {
       firstAttackRef.current = firstAttack;
       secondAttackRef.current = secondAttack;
-      setTimeout(() => {
-        animateFirstAttack(battleData[round], round);
+      const timeout = setTimeout(() => {
+        animateFirstAttack(round);
         setRound(round + 1);
       }, 2000 * (round >= 1 ? 1 : 0.25));
-      return () => clearTimeout();
+      return () => clearTimeout(timeout);
     }
   }, [round, battleData]);
 
@@ -134,15 +138,11 @@ const PvEBattle = () => {
 
   return (
     <div className="battle">
-      {/* ----------------------------- INICIO TEST ----------------------------- */}
-
       <DamageDisplay ref={userDmgRef} isUser={true} value={userDamage} />
       <DamageDisplay ref={npcDmgRef} isUser={false} value={npcDamage} />
 
       <Attack attackData={firstAttack} />
       <Attack attackData={secondAttack} />
-
-      {/* ----------------------------- FIN TEST ----------------------------- */}
 
       <div className="battle--usercard">
         {profile.aclass && (
