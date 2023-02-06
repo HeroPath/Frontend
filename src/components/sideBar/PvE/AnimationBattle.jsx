@@ -1,38 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useLocation } from "react-router-dom";
-import UserCard from "../../userProfile/UserCard";
-import NpcCard from "./NpcCard";
 import { TweenMax, Power2 } from "gsap";
-import { headers } from "../../../functions/utilities";
-import { get } from "../../../functions/requestsApi";
-import { sounds } from "../../../functions/utilities";
 
-const PvEBattle = () => {
-  const location = useLocation();
-  const [profile, setProfile] = useState({});
-  const [battleData, setBattleData] = useState([]);
+const AnimationBattle = ({ battleData, setFinishBattle }) => {
   const [stage] = useState([]);
-  const [finishBattle, setFinishBattle] = useState(false);
-  const [winnerBattle, setWinnerBattle] = useState({});
-  let i = 1;
 
-  const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
-
-  async function getPveBattle() {
-    const response = await get("/api/v1/users/profile", headers);
-    if (response.status === 200) {
-      response.data.username = response.data.username.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
-      setProfile(response.data);
-    }
-    setWinnerBattle(location.state.battleData.pop());
-    setBattleData(location.state.battleData);
-  }
-
-  useEffect(() => {
-    getPveBattle();
-  }, []);
-
-  /* -------------------------- INICIO TEST -----------------------------------*/
   const [firstAttack, setFirstAttack] = useState({
     x: "35%",
     y: "25%",
@@ -61,12 +32,7 @@ const PvEBattle = () => {
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
-        if (battle.AttackerDmg > 0) {
-          sounds("hit");
-        } else {
-          sounds("miss");
-        }
-        showUserDmg(battle.AttackerDmg);
+        showUserDmg(battle.attackerDmg);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
 
         TweenMax.to(secondAttack, 0.9, {
@@ -77,12 +43,8 @@ const PvEBattle = () => {
           ease: Power2.easeInOut,
           onUpdate: () => setSecondAttack({ ...secondAttack }),
           onComplete: () => {
-            if (battle.NpcDmg > 0) {
-              sounds("hit");
-            } else {
-              sounds("miss");
-            }
             showNpcDmg(battle.NpcDmg);
+
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
             stage.push(battle);
             if (roundNumber >= battleData.length - 1) setFinishBattle(true);
@@ -138,12 +100,9 @@ const PvEBattle = () => {
     });
     setNpcDamage(value);
   };
-  /* -------------------------- FIN TEST -----------------------------------*/
 
   return (
-    <div className="battle">
-      {/* ----------------------------- INICIO TEST ----------------------------- */}
-
+    <div style={{ position: "absolute" }}>
       <div
         ref={userDmgRef}
         style={{
@@ -210,74 +169,8 @@ const PvEBattle = () => {
           opacity: secondAttack.opacity,
         }}
       />
-
-      {/* ----------------------------- FIN TEST ----------------------------- */}
-
-      <div className="battle--usercard">
-        {profile.aclass && (
-          <UserCard
-            key={profile.username}
-            username={profile.username}
-            aclass={profile.aclass}
-            hp={profile.hp}
-            maxHp={profile.maxHp}
-            experience={profile.experience}
-            experienceToNextLevel={profile.experienceToNextLevel}
-            level={profile.level}
-          />
-        )}
-      </div>
-
-      <div className="battle--npccard">
-        <NpcCard />
-      </div>
-
-      <div className="rounds--console">
-        <div className="history-box">
-          {stage.length >= 1 &&
-            stage?.map((rounds) => (
-              <ul key={i++} className="round">
-                <h6>Round: {rounds.round}</h6>
-                <div>
-                  <li>
-                    {profile.username} attacked {npcName} for {rounds.AttackerDmg.toLocaleString()} dmg. ({npcName}{" "}
-                    life: {rounds.NpcLife.toLocaleString()})
-                  </li>
-                  <li>
-                    {npcName} attacked {profile.username} for {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
-                    life: {rounds.AttackerLife.toLocaleString()})
-                  </li>
-                </div>
-              </ul>
-            ))}
-          {finishBattle && winnerBattle && (
-            <ul className="round winner">
-              <h6>Final</h6>
-              <div>
-                <li>Winner: {winnerBattle.Win}</li>
-                <li>Loser: {winnerBattle.Lose}</li>
-                {winnerBattle.ExperienceWin && (
-                  <li>Experience gained: {winnerBattle.ExperienceWin.toLocaleString()}</li>
-                )}
-                {winnerBattle.GoldWin && <li>Gold won: {winnerBattle.GoldWin.toLocaleString()}</li>}
-
-                {winnerBattle.DiamondsWin && <li>Diamond won: {winnerBattle.DiamondsWin}</li>}
-                {winnerBattle.LevelUP === true && <li>Congratulations, you have reached level {profile.level}</li>}
-              </div>
-            </ul>
-          )}
-        </div>
-        <div className="rounds--console--buttons">
-          <a href="/profile" className="button--links links">
-            Profile
-          </a>
-          <a href="/zone" className="button--links links">
-            Zone
-          </a>
-        </div>
-      </div>
     </div>
   );
 };
 
-export default PvEBattle;
+export default AnimationBattle;
