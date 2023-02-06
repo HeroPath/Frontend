@@ -8,6 +8,7 @@ import { get } from "../../../functions/requestsApi";
 import { sounds } from "../../../functions/utilities";
 import HistoryConsole from "./HistoryConsole";
 import DamageDisplay from "./DamageDisplay";
+import Attack from "./Attack";
 
 const PvEBattle = () => {
   const location = useLocation();
@@ -138,36 +139,8 @@ const PvEBattle = () => {
       <DamageDisplay ref={userDmgRef} isUser={true} value={userDamage} />
       <DamageDisplay ref={npcDmgRef} isUser={false} value={npcDamage} />
 
-      <div
-        id="firstAttack"
-        style={{
-          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          width: "8%",
-          height: "15%",
-          position: "absolute",
-          transform: `rotate(${firstAttack.rotation}deg)`,
-          left: firstAttack.x,
-          top: firstAttack.y,
-          opacity: firstAttack.opacity,
-        }}
-      />
-      <div
-        id="secondAttack"
-        style={{
-          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          width: "8%",
-          height: "15%",
-          position: "absolute",
-          transform: `rotate(${secondAttack.rotation}deg)`,
-          left: secondAttack.x,
-          top: secondAttack.y,
-          opacity: secondAttack.opacity,
-        }}
-      />
+      <Attack attackData={firstAttack} />
+      <Attack attackData={secondAttack} />
 
       {/* ----------------------------- FIN TEST ----------------------------- */}
 
