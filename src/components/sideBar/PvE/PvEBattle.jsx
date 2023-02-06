@@ -15,12 +15,18 @@ const PvEBattle = () => {
   const [winnerBattle, setWinnerBattle] = useState({});
   let i = 1;
 
-  const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+  const npcName = location.state.battleData.nameData.replace(
+    /(^\w{1})/g,
+    (letter) => letter.toUpperCase()
+  );
 
   async function getPveBattle() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
-      response.data.username = response.data.username.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+      response.data.username = response.data.username.replace(
+        /(^\w{1})/g,
+        (letter) => letter.toUpperCase()
+      );
       setProfile(response.data);
     }
     setWinnerBattle(location.state.battleData.pop());
@@ -60,7 +66,7 @@ const PvEBattle = () => {
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
-        showUserDmg(battle.attackerDmg);
+        showUserDmg(battle.AttackerDmg);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
 
         TweenMax.to(secondAttack, 0.9, {
@@ -230,12 +236,14 @@ const PvEBattle = () => {
                 <h6>Round: {rounds.round}</h6>
                 <div>
                   <li>
-                    {profile.username} attacked {npcName} for {rounds.attackerDmg.toLocaleString()} dmg. ({npcName}{" "}
-                    life: {rounds.NpcLife.toLocaleString()})
+                    {profile.username} attacked {npcName} for{" "}
+                    {rounds.AttackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
+                    {rounds.NpcLife.toLocaleString()})
                   </li>
                   <li>
-                    {npcName} attacked {profile.username} for {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
-                    life: {rounds.attackerLife.toLocaleString()})
+                    {npcName} attacked {profile.username} for{" "}
+                    {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
+                    life: {rounds.AttackerLife.toLocaleString()})
                   </li>
                 </div>
               </ul>
@@ -244,15 +252,28 @@ const PvEBattle = () => {
             <ul className="round winner">
               <h6>Final</h6>
               <div>
-                <li>Winner: {winnerBattle.win}</li>
-                <li>Loser: {winnerBattle.lose}</li>
-                {winnerBattle.userExperienceGain && (
-                  <li>Experience gained: {winnerBattle.userExperienceGain.toLocaleString()}</li>
+                <li>Winner: {winnerBattle.Win}</li>
+                <li>Loser: {winnerBattle.Lose}</li>
+                {winnerBattle.ExperienceWin && (
+                  <li>
+                    Experience gained:{" "}
+                    {winnerBattle.ExperienceWin.toLocaleString()}
+                  </li>
                 )}
-                {winnerBattle.goldAmountWin && <li>Gold won: {winnerBattle.goldAmountWin.toLocaleString()}</li>}
+                {winnerBattle.GoldWin && (
+                  <li>
+                    Gold won: {winnerBattle.GoldWin.toLocaleString()}
+                  </li>
+                )}
 
-                {winnerBattle.diamondsAmonutWin && <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>}
-                {winnerBattle.levelUp === true && <li>Congratulations, you have reached level {profile.level}</li>}
+                {winnerBattle.DiamondsWin && (
+                  <li>Diamond won: {winnerBattle.DiamondsWin}</li>
+                )}
+                {winnerBattle.LevelUP === true && (
+                  <li>
+                    Congratulations, you have reached level {profile.level}
+                  </li>
+                )}
               </div>
             </ul>
           )}
