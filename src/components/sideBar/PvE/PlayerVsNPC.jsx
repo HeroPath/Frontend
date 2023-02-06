@@ -18,6 +18,7 @@ const PlayerVsNPC = () => {
       headers
     );
     if (response.status === 200) {
+      console.log(response.data);
       response.data = Object.assign(response.data, {
         nameData: npcName,
       });
