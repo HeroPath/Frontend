@@ -29,6 +29,7 @@ const PvEBattle = () => {
     }
     setWinnerBattle(location.state.battleData.pop());
     setBattleData(location.state.battleData);
+    capitalizeFirstLetter(winnerBattle.Lose);
   }
 
   useEffect(() => {
@@ -36,6 +37,10 @@ const PvEBattle = () => {
   }, []);
 
   /* -------------------------- INICIO TEST -----------------------------------*/
+
+  const [userLife, setUserLife] = useState(undefined);
+  const [npcLife, setNpcLife] = useState(undefined);
+
   const [firstAttack, setFirstAttack] = useState({
     x: "35%",
     y: "25%",
@@ -68,6 +73,7 @@ const PvEBattle = () => {
       onComplete: () => {
         sounds(battle.AttackerDmg > 0 ? "hit" : "block");
         showDamage(true, battle.AttackerDmg);
+        setNpcLife(battle.NpcLife);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
         if (battle.NpcLife === 0 || battle.AttackerLife === 0) {
           stage.push(battle);
@@ -84,6 +90,7 @@ const PvEBattle = () => {
           onUpdate: () => setSecondAttack({ ...secondAttack }),
           onComplete: () => {
             sounds(battle.NpcDmg > 0 ? "hit" : "block");
+            setUserLife(battle.AttackerLife);
             showDamage(false, battle.NpcDmg);
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
             stage.push(battle);
@@ -150,12 +157,13 @@ const PvEBattle = () => {
             experience={profile.experience}
             experienceToNextLevel={profile.experienceToNextLevel}
             level={profile.level}
+            userLife={userLife}
           />
         )}
       </div>
 
       <div className="battle--npccard">
-        <NpcCard />
+        <NpcCard npcLife={npcLife} />
       </div>
 
       <HistoryConsole
