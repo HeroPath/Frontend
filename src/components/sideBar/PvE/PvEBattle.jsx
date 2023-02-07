@@ -26,6 +26,7 @@ const PvEBattle = () => {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
       response.data.username = capitalizeFirstLetter(response.data.username);
+      if (response.data.hp === 0) response.data.hp = response.data.maxHp;
       setProfile(response.data);
     }
     setWinnerBattle(location.state.battleData.pop());
