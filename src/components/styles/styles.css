@@ -98,6 +98,7 @@ body {
 
 .classSelected--stats__head {
   grid-column-start: span 2;
+  margin-bottom: 20px;
 }
 
 /* ---------------- //REGISTER ----------------------*/
