@@ -5,9 +5,10 @@ import NpcCard from "./NpcCard";
 import { TweenMax, Power2 } from "gsap";
 import { headers, sounds, capitalizeFirstLetter } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
-import HistoryConsole from "./HistoryConsole";
-import DamageDisplay from "./DamageDisplay";
-import Attack from "./Attack";
+
+import HistoryConsole from "../battle/HistoryConsole";
+import DamageDisplay from "../battle/DamageDisplay";
+import Attack from "../battle/Attack";
 
 const PvEBattle = () => {
   const location = useLocation();
@@ -75,7 +76,8 @@ const PvEBattle = () => {
         showDamage(true, battle.AttackerDmg);
         setNpcLife(battle.NpcLife);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
-        if (battle.NpcLife === 0 || battle.AttackerLife === 0) {
+
+        if (battle.NpcLife === 0) {
           stage.push(battle);
           if (roundNumber >= battleData.length - 1) setFinishBattle(true);
           return;
@@ -93,6 +95,7 @@ const PvEBattle = () => {
             setUserLife(battle.AttackerLife);
             showDamage(false, battle.NpcDmg);
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
+
             stage.push(battle);
             if (roundNumber >= battleData.length - 1) setFinishBattle(true);
           },
