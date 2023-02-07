@@ -1,4 +1,5 @@
 import React from "react";
+import { capitalizeFirstLetter } from "../../../functions/utilities";
 
 const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName }) => {
   let i = 1;
@@ -10,8 +11,8 @@ const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName })
           <ul className="round winner">
             <h6>Final</h6>
             <div>
-              <li>Winner: {winnerBattle.Win}</li>
-              <li>Loser: {winnerBattle.Lose}</li>
+              <li>Winner: {capitalizeFirstLetter(winnerBattle.Win)}</li>
+              <li>Loser: {capitalizeFirstLetter(winnerBattle.Lose)}</li>
               {winnerBattle.ExperienceWin && <li>Experience gained: {winnerBattle.ExperienceWin.toLocaleString()}</li>}
               {winnerBattle.GoldWin && <li>Gold won: {winnerBattle.GoldWin.toLocaleString()}</li>}
 

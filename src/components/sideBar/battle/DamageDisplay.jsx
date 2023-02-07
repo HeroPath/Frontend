@@ -1,10 +1,10 @@
 import React, { forwardRef } from "react";
 
-const DamageDisplay = forwardRef(({ isUser, value, ref }, forwardedRef) => {
+const DamageDisplay = forwardRef(({ isUser, value }, ref) => {
   const left = isUser ? "76%" : "34%";
   return (
     <div
-      ref={forwardedRef || ref}
+      ref={ref}
       style={{
         position: "absolute",
         backgroundColor: "transparent",

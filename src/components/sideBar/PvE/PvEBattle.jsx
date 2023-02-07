@@ -31,7 +31,6 @@ const PvEBattle = () => {
     }
     setWinnerBattle(location.state.battleData.pop());
     setBattleData(location.state.battleData);
-    capitalizeFirstLetter(winnerBattle.Lose);
   }
 
   useEffect(() => {
