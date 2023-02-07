@@ -79,7 +79,7 @@ const PvEBattle = () => {
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
 
         if (battle.NpcLife === 0) {
-          stage.push(battle);
+          stage.unshift(battle);
           if (roundNumber >= battleData.length - 1) setFinishBattle(true);
           return;
         }
@@ -97,7 +97,7 @@ const PvEBattle = () => {
             showDamage(false, battle.NpcDmg);
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
 
-            stage.push(battle);
+            stage.unshift(battle);
             if (roundNumber >= battleData.length - 1) setFinishBattle(true);
           },
         });
