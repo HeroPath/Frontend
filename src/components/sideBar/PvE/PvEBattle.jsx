@@ -1,10 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
 import { TweenMax, Power2 } from "gsap";
-import { headers } from "../../../functions/utilities";
+import { headers, sounds, capitalizeFirstLetter } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
+
+import HistoryConsole from "../battle/HistoryConsole";
+import DamageDisplay from "../battle/DamageDisplay";
+import Attack from "../battle/Attack";
 
 const PvEBattle = () => {
   const location = useLocation();
@@ -13,18 +17,21 @@ const PvEBattle = () => {
   const [stage] = useState([]);
   const [finishBattle, setFinishBattle] = useState(false);
   const [winnerBattle, setWinnerBattle] = useState({});
-  let i = 1;
 
-  const npcName = location.state.battleData.nameData.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+  const npcName = useMemo(() => {
+    return capitalizeFirstLetter(location.state.battleData.nameData);
+  }, [location.state.battleData.nameData]);
 
   async function getPveBattle() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
-      response.data.username = response.data.username.replace(/(^\w{1})/g, (letter) => letter.toUpperCase());
+      response.data.username = capitalizeFirstLetter(response.data.username);
+      if (response.data.hp === 0) response.data.hp = response.data.maxHp;
       setProfile(response.data);
     }
     setWinnerBattle(location.state.battleData.pop());
     setBattleData(location.state.battleData);
+    capitalizeFirstLetter(winnerBattle.Lose);
   }
 
   useEffect(() => {
@@ -32,6 +39,10 @@ const PvEBattle = () => {
   }, []);
 
   /* -------------------------- INICIO TEST -----------------------------------*/
+
+  const [userLife, setUserLife] = useState(undefined);
+  const [npcLife, setNpcLife] = useState(undefined);
+
   const [firstAttack, setFirstAttack] = useState({
     x: "35%",
     y: "25%",
@@ -48,7 +59,9 @@ const PvEBattle = () => {
   const firstAttackRef = useRef(firstAttack);
   const secondAttackRef = useRef(secondAttack);
 
-  const animateFirstAttack = (battle, roundNumber) => {
+  const animateFirstAttack = (roundNumber) => {
+    const battle = battleData[roundNumber];
+
     setFirstAttack({ ...firstAttackRef.current });
     setSecondAttack({ ...secondAttackRef.current });
 
@@ -60,8 +73,16 @@ const PvEBattle = () => {
       ease: Power2.easeInOut,
       onUpdate: () => setFirstAttack({ ...firstAttack }),
       onComplete: () => {
-        showUserDmg(battle.attackerDmg);
+        sounds(battle.AttackerDmg > 0 ? "hit" : "block");
+        showDamage(true, battle.AttackerDmg);
+        setNpcLife(battle.NpcLife);
         setFirstAttack({ ...firstAttackRef.current, opacity: 0 });
+
+        if (battle.NpcLife === 0) {
+          stage.push(battle);
+          if (roundNumber >= battleData.length - 1) setFinishBattle(true);
+          return;
+        }
 
         TweenMax.to(secondAttack, 0.9, {
           x: "35%",
@@ -71,9 +92,11 @@ const PvEBattle = () => {
           ease: Power2.easeInOut,
           onUpdate: () => setSecondAttack({ ...secondAttack }),
           onComplete: () => {
-            showNpcDmg(battle.NpcDmg);
-
+            sounds(battle.NpcDmg > 0 ? "hit" : "block");
+            setUserLife(battle.AttackerLife);
+            showDamage(false, battle.NpcDmg);
             setSecondAttack({ ...secondAttackRef.current, opacity: 0 });
+
             stage.push(battle);
             if (roundNumber >= battleData.length - 1) setFinishBattle(true);
           },
@@ -88,11 +111,11 @@ const PvEBattle = () => {
     if (round < battleData.length) {
       firstAttackRef.current = firstAttack;
       secondAttackRef.current = secondAttack;
-      setTimeout(() => {
-        animateFirstAttack(battleData[round], round);
+      const timeout = setTimeout(() => {
+        animateFirstAttack(round);
         setRound(round + 1);
       }, 2000 * (round >= 1 ? 1 : 0.25));
-      return () => clearTimeout();
+      return () => clearTimeout(timeout);
     }
   }, [round, battleData]);
 
@@ -101,107 +124,31 @@ const PvEBattle = () => {
   const userDmgRef = useRef(null);
   const npcDmgRef = useRef(null);
 
-  const showUserDmg = (value) => {
-    TweenMax.to(userDmgRef.current, 0.5, {
+  const showDamage = (isUser, value) => {
+    const damageRef = isUser ? userDmgRef : npcDmgRef;
+    const setDamage = isUser ? setUserDamage : setNpcDamage;
+    TweenMax.to(damageRef.current, 0.5, {
       y: -20,
       opacity: 1,
       ease: Power2.easeOut,
       onComplete: () => {
-        TweenMax.to(userDmgRef.current, 0.5, {
+        TweenMax.to(damageRef.current, 0.5, {
           opacity: 0,
         });
       },
     });
-    setUserDamage(value);
+    setDamage(value);
   };
 
-  const showNpcDmg = (value) => {
-    TweenMax.to(npcDmgRef.current, 0.5, {
-      y: -20,
-      opacity: 1,
-      ease: Power2.easeOut,
-      onComplete: () => {
-        TweenMax.to(npcDmgRef.current, 0.5, {
-          opacity: 0,
-        });
-      },
-    });
-    setNpcDamage(value);
-  };
   /* -------------------------- FIN TEST -----------------------------------*/
 
   return (
     <div className="battle">
-      {/* ----------------------------- INICIO TEST ----------------------------- */}
+      <DamageDisplay ref={userDmgRef} isUser={true} value={userDamage} />
+      <DamageDisplay ref={npcDmgRef} isUser={false} value={npcDamage} />
 
-      <div
-        ref={userDmgRef}
-        style={{
-          position: "absolute",
-          backgroundColor: "transparent",
-          color: "#ff1744",
-          padding: "0",
-          borderRadius: "0",
-          fontSize: "60px",
-          fontWeight: "bold",
-          textShadow: "3px 3px #333",
-          opacity: 0,
-          left: "76%",
-          top: "15%",
-        }}
-      >
-        {userDamage}
-      </div>
-      <div
-        ref={npcDmgRef}
-        style={{
-          position: "absolute",
-          backgroundColor: "transparent",
-          color: "#ff1744",
-          padding: "0",
-          borderRadius: "0",
-          fontSize: "60px",
-          fontWeight: "bold",
-          textShadow: "3px 3px #333",
-          opacity: 0,
-          left: "34%",
-          top: "15%",
-        }}
-      >
-        {npcDamage}
-      </div>
-      <div
-        id="firstAttack"
-        style={{
-          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          width: "8%",
-          height: "15%",
-          position: "absolute",
-          transform: `rotate(${firstAttack.rotation}deg)`,
-          left: firstAttack.x,
-          top: firstAttack.y,
-          opacity: firstAttack.opacity,
-        }}
-      />
-      <div
-        id="secondAttack"
-        style={{
-          backgroundImage: `url(${require("../../img/utilities/sword.webp")})`,
-          backgroundSize: "100% 100%",
-          backgroundRepeat: "no-repeat",
-          width: "8%",
-          height: "15%",
-          position: "absolute",
-          transform: `rotate(${secondAttack.rotation}deg)`,
-          left: secondAttack.x,
-          top: secondAttack.y,
-          opacity: secondAttack.opacity,
-        }}
-      />
-
-      {/* ----------------------------- FIN TEST ----------------------------- */}
+      <Attack attackData={firstAttack} />
+      <Attack attackData={secondAttack} />
 
       <div className="battle--usercard">
         {profile.aclass && (
@@ -214,58 +161,22 @@ const PvEBattle = () => {
             experience={profile.experience}
             experienceToNextLevel={profile.experienceToNextLevel}
             level={profile.level}
+            userLife={userLife}
           />
         )}
       </div>
 
       <div className="battle--npccard">
-        <NpcCard />
+        <NpcCard npcLife={npcLife} />
       </div>
 
-      <div className="rounds--console">
-        <div className="history-box">
-          {stage.length >= 1 &&
-            stage?.map((rounds) => (
-              <ul key={i++} className="round">
-                <h6>Round: {rounds.round}</h6>
-                <div>
-                  <li>
-                    {profile.username} attacked {npcName} for {rounds.attackerDmg.toLocaleString()} dmg. ({npcName}{" "}
-                    life: {rounds.NpcLife.toLocaleString()})
-                  </li>
-                  <li>
-                    {npcName} attacked {profile.username} for {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
-                    life: {rounds.attackerLife.toLocaleString()})
-                  </li>
-                </div>
-              </ul>
-            ))}
-          {finishBattle && winnerBattle && (
-            <ul className="round winner">
-              <h6>Final</h6>
-              <div>
-                <li>Winner: {winnerBattle.win}</li>
-                <li>Loser: {winnerBattle.lose}</li>
-                {winnerBattle.userExperienceGain && (
-                  <li>Experience gained: {winnerBattle.userExperienceGain.toLocaleString()}</li>
-                )}
-                {winnerBattle.goldAmountWin && <li>Gold won: {winnerBattle.goldAmountWin.toLocaleString()}</li>}
-
-                {winnerBattle.diamondsAmonutWin && <li>Diamond won: {winnerBattle.diamondsAmonutWin}</li>}
-                {winnerBattle.levelUp === true && <li>Congratulations, you have reached level {profile.level}</li>}
-              </div>
-            </ul>
-          )}
-        </div>
-        <div className="rounds--console--buttons">
-          <a href="/profile" className="button--links links">
-            Profile
-          </a>
-          <a href="/zone" className="button--links links">
-            Zone
-          </a>
-        </div>
-      </div>
+      <HistoryConsole
+        profile={profile}
+        stage={stage}
+        winnerBattle={winnerBattle}
+        finishBattle={finishBattle}
+        npcName={npcName}
+      />
     </div>
   );
 };

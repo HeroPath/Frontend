@@ -169,6 +169,11 @@ body {
   border: 2px solid;
   color: rgb(55, 255, 222);
   text-align: center;
+  align-items: center;
+}
+
+.sidebar a {
+  width: 90%;
 }
 
 .sidebar--logo {

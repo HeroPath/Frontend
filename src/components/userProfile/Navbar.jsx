@@ -12,7 +12,7 @@ const Navbar = ({ gold, diamond, role }) => {
           <img className="me-2" src={require(`../img/utilities/diamond.webp`)} alt="" />
           {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
-        {role && <label>Role: {role.roleName}</label>}
+        {role && <label>Role: {role}</label>}
       </div>
       <div className="navBarDivs">
         <label>Server Status</label>

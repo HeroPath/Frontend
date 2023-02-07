@@ -23,7 +23,7 @@ const PlayerVsPlayer = () => {
       { name: userAttack },
       headers
     );
-    if (response.status === 200) window.location.reload();
+    if (response.status === 200) console.log(response.data) //window.location.reload();
   }
 
   return (
