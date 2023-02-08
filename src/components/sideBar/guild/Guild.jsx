@@ -10,6 +10,10 @@ import { get } from "../../../functions/requestsApi";
 
 const Guild = () => {
   const [userGuild, setUserGuild] = useState({});
+  const [guildDiamondsAndLevel, setGuildDiamondsAndLevel] = useState({
+    level: 1,
+    diamonds: 0,
+  });
 
   let memberCounter = 1;
   let memberRequestCounter = 1;
@@ -19,6 +23,7 @@ const Guild = () => {
     if (response.status === 200) {
       if (response.data.userInGuild) {
         setUserGuild(response.data);
+        setGuildDiamondsAndLevel(response.data);
       }
     }
   }
@@ -34,6 +39,11 @@ const Guild = () => {
     if (response.status === 200) window.location.reload();
   }
 
+  async function handleUpgradeGuild() {
+    const response = await get("/api/v1/guilds/upgrade", headers);
+    if (response.status === 200) setGuildDiamondsAndLevel(response.data);
+  }
+
   useEffect(() => {
     checkUserInGuild();
   }, []);
@@ -41,10 +51,19 @@ const Guild = () => {
   return (
     <div className="guild">
       <div>
-        {userGuild.userInGuild ? (
+        {userGuild.userInGuild && guildDiamondsAndLevel ? (
           <div>
             <div>
               <h1>Guild Stats</h1>
+              <button
+                type="button"
+                className="btn btn-info"
+                onClick={() => {
+                  handleUpgradeGuild();
+                }}
+              >
+                UPGRADE
+              </button>
               <Table striped bordered hover className="guild--stats">
                 <thead>
                   <tr>
@@ -78,8 +97,8 @@ const Guild = () => {
                     <td>
                       {userGuild.memberAmount} / {userGuild.maxMembers}
                     </td>
-                    <td>{userGuild.level}</td>
-                    <td>{userGuild.diamonds}</td>
+                    <td>{guildDiamondsAndLevel.level}</td>
+                    <td>{guildDiamondsAndLevel.diamonds}</td>
                   </tr>
                 </tbody>
               </Table>
