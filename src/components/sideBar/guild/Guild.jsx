@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { headers } from "../../../functions/utilities";
-import { get } from "../../../functions/requestsApi";
+import { get, post } from "../../../functions/requestsApi";
 
 const Guild = () => {
   const [userGuild, setUserGuild] = useState({});
@@ -44,6 +44,15 @@ const Guild = () => {
     if (response.status === 200) setGuildDiamondsAndLevel(response.data);
   }
 
+  async function donateDiamondsToGuild(amount) {
+    const response = await post(
+      "/api/v1/guilds/donate",
+      { amountDiamonds: amount },
+      headers
+    );
+    if (response.status === 200) setGuildDiamondsAndLevel(response.data);
+  }
+
   useEffect(() => {
     checkUserInGuild();
   }, []);
@@ -55,15 +64,48 @@ const Guild = () => {
           <div>
             <div>
               <h1>Guild Stats</h1>
-              <button
-                type="button"
-                className="btn btn-info"
-                onClick={() => {
-                  handleUpgradeGuild();
-                }}
-              >
-                UPGRADE
-              </button>
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-success border border-dark"
+                  onClick={() => {
+                    handleUpgradeGuild();
+                  }}
+                >
+                  UPGRADE
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-info border border-dark"
+                  onClick={() => {
+                    donateDiamondsToGuild(100);
+                  }}
+                >
+                  DONATE 100 DIAMONDS
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-info border border-dark"
+                  onClick={() => {
+                    donateDiamondsToGuild(500);
+                  }}
+                >
+                  DONATE 500 DIAMONDS
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-info border border-dark"
+                  onClick={() => {
+                    donateDiamondsToGuild(1000);
+                  }}
+                >
+                  DONATE 1000 DIAMONDS
+                </button>
+              </div>
+
               <Table striped bordered hover className="guild--stats">
                 <thead>
                   <tr>
