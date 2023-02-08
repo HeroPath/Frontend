@@ -118,6 +118,7 @@ const Ranking = () => {
                 <th>Name</th>
                 <th>TAG</th>
                 <th>Description</th>
+                <th>Level</th>
                 <th>Title Points</th>
                 <th>Leader</th>
                 <th>Sub Leader</th>
@@ -143,6 +144,7 @@ const Ranking = () => {
                   <td>{guild.name}</td>
                   <td>{guild.tag}</td>
                   <td>{guild.description}</td>
+                  <td>{guild.level}</td>
                   <td>{guild.titlePoints}</td>
                   <td>{guild.leader}</td>
                   {guild.subLeader !== "" ? (
