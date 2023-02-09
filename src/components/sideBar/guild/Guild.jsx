@@ -219,9 +219,9 @@ const Guild = () => {
                 </tbody>
               </Table>
             </div>
-            {((userGuild.requests.length > 0 &&
-              userGuild.username === userGuild.leader) ||
-              userGuild.username === userGuild.subLeader) && (
+            {(userGuild.requests.length > 0 &&
+              (userGuild.username === userGuild.leader ||
+              userGuild.username === userGuild.subLeader)) && (
               <div>
                 <h1>Requests</h1>
                 <Table striped bordered hover className="guild--requests">
