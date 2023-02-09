@@ -219,62 +219,62 @@ const Guild = () => {
                 </tbody>
               </Table>
             </div>
-            {(userGuild.requests.length > 0 &&
+            {userGuild.requests.length > 0 &&
               (userGuild.username === userGuild.leader ||
-              userGuild.username === userGuild.subLeader)) && (
-              <div>
-                <h1>Requests</h1>
-                <Table striped bordered hover className="guild--requests">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Username</th>
-                      <th>Class</th>
-                      <th>Level</th>
-                      <th>Title</th>
-                      <th>Title Points</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    {userGuild.requests.map((memberRequest) => (
-                      <tr key={memberRequest.username}>
-                        <td>{memberRequestCounter++}</td>
-                        <td>{memberRequest.username}</td>
-                        <td>{memberRequest.aclass}</td>
-                        <td>{memberRequest.level}</td>
-                        <td>{memberRequest.titleName}</td>
-                        <td>{memberRequest.titlePoints}</td>
-
-                        <td>
-                          <CustomButton
-                            label="Reject"
-                            onClick={() => {
-                              handleRemovePromoteOrAcceptUserGuild(
-                                "reject/",
-                                memberRequest.username
-                              );
-                            }}
-                            color="danger"
-                          />
-                          <CustomButton
-                            label="Accept"
-                            onClick={() => {
-                              handleRemovePromoteOrAcceptUserGuild(
-                                "accept/",
-                                memberRequest.username
-                              );
-                            }}
-                            color="primary"
-                          />
-                        </td>
+                userGuild.username === userGuild.subLeader) && (
+                <div>
+                  <h1>Requests</h1>
+                  <Table striped bordered hover className="guild--requests">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Username</th>
+                        <th>Class</th>
+                        <th>Level</th>
+                        <th>Title</th>
+                        <th>Title Points</th>
+                        <th>Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </div>
-            )}
+                    </thead>
+
+                    <tbody>
+                      {userGuild.requests.map((memberRequest) => (
+                        <tr key={memberRequest.username}>
+                          <td>{memberRequestCounter++}</td>
+                          <td>{memberRequest.username}</td>
+                          <td>{memberRequest.aclass}</td>
+                          <td>{memberRequest.level}</td>
+                          <td>{memberRequest.titleName}</td>
+                          <td>{memberRequest.titlePoints}</td>
+
+                          <td>
+                            <CustomButton
+                              label="Reject"
+                              onClick={() => {
+                                handleRemovePromoteOrAcceptUserGuild(
+                                  "reject/",
+                                  memberRequest.username
+                                );
+                              }}
+                              color="danger"
+                            />
+                            <CustomButton
+                              label="Accept"
+                              onClick={() => {
+                                handleRemovePromoteOrAcceptUserGuild(
+                                  "accept/",
+                                  memberRequest.username
+                                );
+                              }}
+                              color="primary"
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
+              )}
           </div>
         ) : (
           <div style={{ display: "flex", justifyContent: "center" }}>
