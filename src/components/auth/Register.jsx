@@ -171,11 +171,36 @@ const Register = () => {
                   <h2 className="classSelected--stats__head">
                     {capitalizeFirstLetter(dataClassSelected)}
                   </h2>
-                  <label className="classSelected--stats__head">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-                    laboriosam perferendis ex illum enim similique, fugit
-                    ratione nisi quasi ipsam?
-                  </label>
+                  {dataClassSelected === "default" ? (
+                    <label className="classSelected--stats__head">
+                      You must select a class to know its story, as well as its
+                      corresponding stats...
+                    </label>
+                  ) : dataClassSelected === "mage" ? (
+                    <label className="classSelected--stats__head">
+                      In a magical kingdom called Azura, there exists a solitary
+                      wizard known as Raven. Despite his dark name, Raven is a
+                      wise and just character who uses his magical abilities to
+                      protect the inhabitants of the kingdom.
+                    </label>
+                  ) : dataClassSelected === "warrior" ? (
+                    <label className="classSelected--stats__head">
+                      In the kingdom of Azura, there exists a legendary warrior
+                      known as Thorgrimm. With his sword and shield, Thorgrimm
+                      has fought against all kinds of enemies, protecting the
+                      kingdom and its inhabitants against oppression and
+                      injustice.
+                    </label>
+                  ) : (
+                    dataClassSelected === "archer" && (
+                      <label className="classSelected--stats__head">
+                        In the kingdom of Azura, there exists a skilled and
+                        cunning archer known as Lyra. With her bow and arrows,
+                        Lyra is able to hit any target at long range with deadly
+                        precision.
+                      </label>
+                    )
+                  )}
                   <label>Strength: {classSelected.strength}</label>
                   <label>Dexterity: {classSelected.dexterity}</label>
                   <label>Intelligence: {classSelected.intelligence}</label>

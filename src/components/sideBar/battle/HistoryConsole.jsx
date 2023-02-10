@@ -1,4 +1,5 @@
 import React from "react";
+import { capitalizeFirstLetter } from "../../../functions/utilities";
 
 const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName }) => {
   let i = 1;
@@ -6,6 +7,20 @@ const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName })
   return (
     <div className="rounds--console">
       <div className="history-box">
+        {finishBattle && winnerBattle && (
+          <ul className="round winner">
+            <h6>Final</h6>
+            <div>
+              <li>Winner: {capitalizeFirstLetter(winnerBattle.Win)}</li>
+              <li>Loser: {capitalizeFirstLetter(winnerBattle.Lose)}</li>
+              {winnerBattle.ExperienceWin && <li>Experience gained: {winnerBattle.ExperienceWin.toLocaleString()}</li>}
+              {winnerBattle.GoldWin && <li>Gold won: {winnerBattle.GoldWin.toLocaleString()}</li>}
+
+              {winnerBattle.DiamondsWin && <li>Diamond won: {winnerBattle.DiamondsWin}</li>}
+              {winnerBattle.LevelUP === true && <li>Congratulations, you have reached level {profile.level}</li>}
+            </div>
+          </ul>
+        )}
         {stage.length >= 1 &&
           stage?.map((rounds) => (
             <ul key={i++} className="round">
@@ -27,20 +42,6 @@ const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName })
               </div>
             </ul>
           ))}
-        {finishBattle && winnerBattle && (
-          <ul className="round winner">
-            <h6>Final</h6>
-            <div>
-              <li>Winner: {winnerBattle.Win}</li>
-              <li>Loser: {winnerBattle.Lose}</li>
-              {winnerBattle.ExperienceWin && <li>Experience gained: {winnerBattle.ExperienceWin.toLocaleString()}</li>}
-              {winnerBattle.GoldWin && <li>Gold won: {winnerBattle.GoldWin.toLocaleString()}</li>}
-
-              {winnerBattle.DiamondsWin && <li>Diamond won: {winnerBattle.DiamondsWin}</li>}
-              {winnerBattle.LevelUP === true && <li>Congratulations, you have reached level {profile.level}</li>}
-            </div>
-          </ul>
-        )}
       </div>
       <div className="rounds--console--buttons">
         <a href="/profile" className="button--links links">

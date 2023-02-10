@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import CreateNewGuild from "./CreateNewGuild";
+import CustomButton from "./GenericButton";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { headers } from "../../../functions/utilities";
-import { get } from "../../../functions/requestsApi";
+import { get, post } from "../../../functions/requestsApi";
 
 const Guild = () => {
   const [userGuild, setUserGuild] = useState({});
@@ -31,7 +32,24 @@ const Guild = () => {
       "/api/v1/guilds/" + urlAction + memberUsername,
       headers
     );
-    if (response.status === 200) window.location.reload();
+    if (response.status === 200) {
+      if (!response.data.userInGuild) window.location.reload();
+      checkUserInGuild();
+    }
+  }
+
+  async function handleUpgradeGuild() {
+    const response = await get("/api/v1/guilds/upgrade", headers);
+    if (response.status === 200) checkUserInGuild();
+  }
+
+  async function donateDiamondsToGuild(amount) {
+    const response = await post(
+      "/api/v1/guilds/donate",
+      { amountDiamonds: amount },
+      headers
+    );
+    if (response.status === 200) checkUserInGuild();
   }
 
   useEffect(() => {
@@ -45,6 +63,32 @@ const Guild = () => {
           <div>
             <div>
               <h1>Guild Stats</h1>
+              <div>
+                <CustomButton
+                  label="UPGRADE"
+                  onClick={handleUpgradeGuild}
+                  color="success"
+                />
+
+                <CustomButton
+                  label="DONATE 100 DIAMONDS"
+                  onClick={() => donateDiamondsToGuild(100)}
+                  color="info"
+                />
+
+                <CustomButton
+                  label="DONATE 500 DIAMONDS"
+                  onClick={() => donateDiamondsToGuild(500)}
+                  color="info"
+                />
+
+                <CustomButton
+                  label="DONATE 1000 DIAMONDS"
+                  onClick={() => donateDiamondsToGuild(1000)}
+                  color="info"
+                />
+              </div>
+
               <Table striped bordered hover className="guild--stats">
                 <thead>
                   <tr>
@@ -96,10 +140,7 @@ const Guild = () => {
                     <th>Level</th>
                     <th>Title</th>
                     <th>Title Points</th>
-                    {(userGuild.username === userGuild.subLeader ||
-                      userGuild.username === userGuild.leader) && (
-                      <th>Actions</th>
-                    )}
+                    <th>Actions</th>
                   </tr>
                 </thead>
 
@@ -122,44 +163,65 @@ const Guild = () => {
                       <td>{member.titleName}</td>
                       <td>{member.titlePoints}</td>
 
-                      {(userGuild.username === userGuild.subLeader ||
-                        userGuild.username === userGuild.leader) && (
-                        <td>
-                          <button
-                            type="button"
-                            className="btn btn-danger"
+                      <td>
+                        {userGuild.username === member.username ? (
+                          <CustomButton
+                            label="Leave"
                             onClick={() => {
                               handleRemovePromoteOrAcceptUserGuild(
                                 "remove/",
                                 member.username
                               );
                             }}
-                          >
-                            Remove
-                          </button>
-                          {userGuild.username === userGuild.leader && (
-                            <button
-                              type="button"
-                              className="btn btn-success"
+                            color="warning"
+                          />
+                        ) : userGuild.username === userGuild.leader ? (
+                          <>
+                            <CustomButton
+                              label="Remove"
+                              onClick={() => {
+                                handleRemovePromoteOrAcceptUserGuild(
+                                  "remove/",
+                                  member.username
+                                );
+                              }}
+                              color="danger"
+                            />
+                            <CustomButton
+                              label="Make Sub-Leader"
                               onClick={() => {
                                 handleRemovePromoteOrAcceptUserGuild(
                                   "make-subleader/",
                                   member.username
                                 );
                               }}
-                            >
-                              Make Sub-Leader
-                            </button>
-                          )}
-                        </td>
-                      )}
+                              color="success"
+                            />
+                          </>
+                        ) : (
+                          userGuild.username === userGuild.subLeader &&
+                          userGuild.leader !== member.username && (
+                            <CustomButton
+                              label="Remove"
+                              onClick={() => {
+                                handleRemovePromoteOrAcceptUserGuild(
+                                  "remove/",
+                                  member.username
+                                );
+                              }}
+                              color="danger"
+                            />
+                          )
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </Table>
             </div>
             {userGuild.requests.length > 0 &&
-              userGuild.username === userGuild.leader && (
+              (userGuild.username === userGuild.leader ||
+                userGuild.username === userGuild.subLeader) && (
                 <div>
                   <h1>Requests</h1>
                   <Table striped bordered hover className="guild--requests">
@@ -186,19 +248,26 @@ const Guild = () => {
                           <td>{memberRequest.titlePoints}</td>
 
                           <td>
-                            <button
-                              type="button"
-                              className="btn btn-primary"
-                              size="lg"
+                            <CustomButton
+                              label="Reject"
+                              onClick={() => {
+                                handleRemovePromoteOrAcceptUserGuild(
+                                  "reject/",
+                                  memberRequest.username
+                                );
+                              }}
+                              color="danger"
+                            />
+                            <CustomButton
+                              label="Accept"
                               onClick={() => {
                                 handleRemovePromoteOrAcceptUserGuild(
                                   "accept/",
                                   memberRequest.username
                                 );
                               }}
-                            >
-                              Accept
-                            </button>
+                              color="primary"
+                            />
                           </td>
                         </tr>
                       ))}
