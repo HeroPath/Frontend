@@ -825,3 +825,31 @@ body {
   background-color: lightblue;
   cursor: grab;
 }
+
+/* ---------------- //MAIL ----------------------*/
+.mail {
+  width: 100vw;
+  height: 100vh;
+  padding: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mail--form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 30px;
+}
+
+.mail--form button {
+  background-color: unset;
+  font-size: 22px;
+  padding: 10px 20px;
+  margin: 0;
+}
+
+.mail--form input {
+  letter-spacing: 2px;
+  width: 60%;
+}
