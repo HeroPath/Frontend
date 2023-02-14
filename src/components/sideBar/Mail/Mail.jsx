@@ -5,7 +5,7 @@ import { Table } from "react-bootstrap";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers } from "../../../functions/utilities";
+import { headers, notifySuccess } from "../../../functions/utilities";
 import { get, post } from "../../../functions/requestsApi";
 
 const Mail = () => {
@@ -37,7 +37,14 @@ const Mail = () => {
       sendMail.message === ""
     )
       return;
-    await post("/api/v1/mails/send", sendMail, headers);
+    const response = await post("/api/v1/mails/send", sendMail, headers);
+    if (response.status === 200) {
+      notifySuccess(
+        "#",
+        "Mail sent successfully",
+        "receiver: " + sendMail.receiver
+      );
+    }
   }
 
   function handleChange(e) {
