@@ -106,8 +106,8 @@ const Mail = () => {
           </tr>
         </thead>
         <tbody>
-          {mails.map((mail, index) => (
-            <tr key={index}>
+          {mails.map((mail) => (
+            <tr key={mail.id}>
               <td>{mailCounter++}</td>
               <td>{mail.sender}</td>
               <td>{mail.subject}</td>
