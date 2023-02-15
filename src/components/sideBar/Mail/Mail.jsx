@@ -28,6 +28,7 @@ const Mail = () => {
   async function deleteMail(id) {
     const response = await deleteRequest("/api/v1/mails/" + id, headers);
     if (response.status === 200) {
+      getMails();
       notifySuccess("#", "Mail deleted successfully");
     }
   }
@@ -35,6 +36,7 @@ const Mail = () => {
   async function deleteAllMails() {
     const response = await deleteRequest("/api/v1/mails", headers);
     if (response.status === 200) {
+      setMails([])
       notifySuccess("#", "All mails deleted successfully");
     }
   }
