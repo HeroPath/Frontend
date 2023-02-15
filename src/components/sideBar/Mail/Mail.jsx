@@ -108,8 +108,15 @@ const Mail = () => {
           Send
         </button>
       </form>
+      <div>
+        <button className="button--links" onClick={deleteAllMails} style={{padding: "15px"}}>
+          {" "}
+          Delete All{" "}
+        </button>
+      </div>
 
       <h1>Mail</h1>
+
       <Table striped bordered hover>
         <thead>
           <tr>
