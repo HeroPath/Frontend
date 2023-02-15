@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { headers, notifySuccess } from "../../../functions/utilities";
-import { get, post } from "../../../functions/requestsApi";
+import { get, post, deleteRequest } from "../../../functions/requestsApi";
 
 const Mail = () => {
   let mailCounter = 1;
@@ -22,6 +22,20 @@ const Mail = () => {
     const responseMails = await get("/api/v1/mails", headers);
     if (responseMails.status === 200) {
       setMails(responseMails.data);
+    }
+  }
+
+  async function deleteMail(id) {
+    const response = await deleteRequest("/api/v1/mails/" + id, headers);
+    if (response.status === 200) {
+      notifySuccess("#", "Mail deleted successfully");
+    }
+  }
+
+  async function deleteAllMails() {
+    const response = await deleteRequest("/api/v1/mails", headers);
+    if (response.status === 200) {
+      notifySuccess("#", "All mails deleted successfully");
     }
   }
 
@@ -103,6 +117,7 @@ const Mail = () => {
             <th>From</th>
             <th>Subject</th>
             <th>Message</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -112,6 +127,16 @@ const Mail = () => {
               <td>{mail.sender}</td>
               <td>{mail.subject}</td>
               <td>{mail.message}</td>
+              <td>
+                <button
+                  className="button--links"
+                  onClick={() => {
+                    deleteMail(mail.id);
+                  }}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
