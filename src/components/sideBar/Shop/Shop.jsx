@@ -3,7 +3,7 @@ import UserInventory from "../../userProfile/UserInventory";
 import Navbar from "../../userProfile/Navbar";
 
 import { headers, dataTooltip, sounds } from "../../../functions/utilities";
-import { get, post } from "../../../functions/requestsApi";
+import { get } from "../../../functions/requestsApi";
 
 const Shop = () => {
   const [profile, setProfile] = useState({});
@@ -25,8 +25,8 @@ const Shop = () => {
     if (response.status === 200) setItemsShop(response.data);
   }
 
-  async function handleISelltems(values) {
-    const response = await post("/api/v1/items/sell", values, headers);
+  async function handleISelltems(itemToSellId) {
+    const response = await get("/api/v1/items/sell/" + itemToSellId, headers);
     if (response.status === 200) {
       setItemDragShop(response.data.inventory);
       profile.gold = response.data.userGold;
@@ -35,7 +35,7 @@ const Shop = () => {
   }
 
   async function handleItemBuy(itemToBuyId) {
-    const response = await post("/api/v1/items/buy/" + itemToBuyId, {}, headers);
+    const response = await get("/api/v1/items/buy/" + itemToBuyId, headers);
     if (response.status === 200) {
       setItemDragShop(response.data.inventory);
       profile.gold = response.data.userGold;
@@ -126,9 +126,7 @@ const Shop = () => {
                   ) {
                     return;
                   }
-                  handleISelltems({
-                    name: event.dataTransfer.getData("nameItemSell"),
-                  });
+                  handleISelltems(event.dataTransfer.getData("nameItemSell"));
                   setItemDragShop(null);
                 }}
               >
@@ -157,7 +155,7 @@ const Shop = () => {
                       setItemDragBuy("");
                     }}
                     {...(showTooltip && {
-                      "data-tooltip": dataTooltip(item, 1),
+                      "data-tooltip": dataTooltip(item),
                     })}
                   >
                     <img
