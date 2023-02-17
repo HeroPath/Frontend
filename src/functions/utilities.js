@@ -61,6 +61,8 @@ export const notifySuccess = (
 
 export function dataTooltip(item) {
   return `Name: ${item.name}
+  Quality: ${item.quality}
+  Level: ${item.itemLevel}
   Strength: ${item.strength}
   Dexterity: ${item.dexterity}
   Vitality: ${item.vitality}

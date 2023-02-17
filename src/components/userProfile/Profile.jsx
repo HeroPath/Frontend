@@ -12,6 +12,7 @@ const Profile = () => {
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
+      console.log(response.data);
       setProfile(response.data);
     }
   }
