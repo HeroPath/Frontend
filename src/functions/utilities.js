@@ -67,6 +67,7 @@ export function dataTooltip(item) {
   Dexterity: ${item.dexterity}
   Vitality: ${item.vitality}
   Intelligence: ${item.intelligence}
+  Luck: ${item.luck}
   Level Min: ${item.lvlMin}
   Class: ${item.classRequired}
 
