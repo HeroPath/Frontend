@@ -34,9 +34,8 @@ const Shop = () => {
     }
   }
 
-  async function handleItemBuy(itemToBuy) {
-    const data = { name: itemToBuy };
-    const response = await post("/api/v1/items/buy", data, headers);
+  async function handleItemBuy(itemToBuyId) {
+    const response = await post("/api/v1/items/buy/" + itemToBuyId, {}, headers);
     if (response.status === 200) {
       setItemDragShop(response.data.inventory);
       profile.gold = response.data.userGold;
@@ -151,7 +150,7 @@ const Shop = () => {
                     onDragStart={(event) => {
                       setShowTooltip(false);
                       setItemDragBuy("S");
-                      event.dataTransfer.setData("itemBuy", item.name);
+                      event.dataTransfer.setData("itemBuy", item.id);
                     }}
                     onDragEnd={() => {
                       setShowTooltip(true);
