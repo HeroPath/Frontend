@@ -30,8 +30,8 @@ const SideBar = () => {
       <a href="/ranking" className="button--links links button--sidebar">
         Ranking
       </a>
-      <a href="#" className="button--links links button--sidebar">
-        (Coming soon)
+      <a href="/mail" className="button--links links button--sidebar">
+        Mail
       </a>
       <a href="#" className="button--links links button--sidebar">
         (Coming soon)

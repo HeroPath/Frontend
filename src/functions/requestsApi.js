@@ -3,6 +3,20 @@ import { notify } from "./utilities";
 
 const API_URL = "http://localhost:8000";
 
+
+export async function get(route, headers) {
+  try {
+    const config = headers ? { headers } : {};
+    const response = await axios.get(API_URL + route, config);
+
+    if (response.status === 200) return response;
+  } catch (err) {
+    if (err.request.status !== 0) {
+      notify(err.response.data.message);
+    }
+  }
+}
+
 export async function post(route, objectData, headers) {
   try {
     const data = objectData ? objectData : {};
@@ -17,10 +31,10 @@ export async function post(route, objectData, headers) {
   }
 }
 
-export async function get(route, headers) {
+export async function deleteRequest(route, headers) {
   try {
     const config = headers ? { headers } : {};
-    const response = await axios.get(API_URL + route, config);
+    const response = await axios.delete(API_URL + route, config);
 
     if (response.status === 200) return response;
   } catch (err) {
@@ -29,3 +43,5 @@ export async function get(route, headers) {
     }
   }
 }
+
+

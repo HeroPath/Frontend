@@ -59,16 +59,19 @@ export const notifySuccess = (
   );
 };
 
-export function dataTooltip(item, divide) {
+export function dataTooltip(item) {
   return `Name: ${item.name}
+  Quality: ${item.quality}
+  Level: ${item.itemLevel}
   Strength: ${item.strength}
   Dexterity: ${item.dexterity}
   Vitality: ${item.vitality}
   Intelligence: ${item.intelligence}
+  Luck: ${item.luck}
   Level Min: ${item.lvlMin}
   Class: ${item.classRequired}
 
-  Price: ${(item.price / divide).toLocaleString()}`;
+  Price: ${(item.price).toLocaleString()}`;
 }
 
 export function sounds(sound) {
