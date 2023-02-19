@@ -20,7 +20,7 @@ const CreateNewGuild = () => {
       const response = await post("/api/v1/guilds", values, headers);
       if (response.status === 200) {
         notifySuccess(
-          "/guild",
+          "/Guild",
           "Guild created successfully!",
           "Name: " + values.name,
           "Tag: " + values.tag
