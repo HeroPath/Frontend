@@ -152,7 +152,6 @@ const PvEBattle = () => {
       <div className="battle--usercard">
         {profile.aclass && (
           <UserCard
-            key={profile.username}
             username={profile.username}
             aclass={profile.aclass}
             hp={profile.hp}
@@ -170,7 +169,8 @@ const PvEBattle = () => {
       </div>
 
       <HistoryConsole
-        profile={profile}
+        username={profile.username}
+        level={profile.level}
         stage={stage}
         winnerBattle={winnerBattle}
         finishBattle={finishBattle}

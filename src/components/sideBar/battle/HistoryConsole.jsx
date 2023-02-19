@@ -1,7 +1,7 @@
 import React from "react";
 import { capitalizeFirstLetter } from "../../../functions/utilities";
 
-const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName }) => {
+const HistoryConsole = ({ username, level, stage, winnerBattle, finishBattle, npcName }) => {
   let i = 1;
 
   return (
@@ -17,7 +17,7 @@ const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName })
               {winnerBattle.GoldWin && <li>Gold won: {winnerBattle.GoldWin.toLocaleString()}</li>}
 
               {winnerBattle.DiamondsWin && <li>Diamond won: {winnerBattle.DiamondsWin}</li>}
-              {winnerBattle.LevelUP === true && <li>Congratulations, you have reached level {profile.level}</li>}
+              {winnerBattle.LevelUP === true && <li>Congratulations, you have reached level {level}</li>}
             </div>
           </ul>
         )}
@@ -28,15 +28,15 @@ const HistoryConsole = ({ profile, stage, winnerBattle, finishBattle, npcName })
               <div>
                 {rounds.AttackerLife !== 0 && (
                   <li>
-                    {profile.username} attacked {npcName} for {rounds.AttackerDmg.toLocaleString()} dmg. ({npcName}{" "}
-                    life: {rounds.NpcLife.toLocaleString()})
+                    {username} attacked {npcName} for {rounds.AttackerDmg.toLocaleString()} dmg. ({npcName} life:{" "}
+                    {rounds.NpcLife.toLocaleString()})
                   </li>
                 )}
 
                 {rounds.NpcLife !== 0 && (
                   <li>
-                    {npcName} attacked {profile.username} for {rounds.NpcDmg.toLocaleString()} dmg. ({profile.username}{" "}
-                    life: {rounds.AttackerLife.toLocaleString()})
+                    {npcName} attacked {username} for {rounds.NpcDmg.toLocaleString()} dmg. ({username} life:{" "}
+                    {rounds.AttackerLife.toLocaleString()})
                   </li>
                 )}
               </div>

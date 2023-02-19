@@ -637,7 +637,6 @@ body {
 .rounds--console {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  width: 100%;
   grid-column-start: 1;
   grid-column-end: 3;
   align-items: center;
@@ -654,26 +653,32 @@ body {
   border-radius: 5px;
   border: 2px solid #646464;
   overflow-y: scroll;
+  font-size: 15px;
 }
 
 .rounds--console--buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   row-gap: 20px;
 }
 .rounds--console--buttons a,
 .rounds--console--buttons a:hover {
-  font-size: 25px;
-  padding: 10px 100px;
+  padding: 15px 75px;
+  width: 100%;
 }
 
 .round {
   display: grid;
-  grid-template-columns: 2fr 10fr;
+  grid-template-columns: 1fr 4fr;
   background-color: rgb(255, 183, 28);
   border: 1px solid #000;
   align-items: center;
+}
+
+.round h6 {
+  font-weight: bold;
 }
 
 .winner {
