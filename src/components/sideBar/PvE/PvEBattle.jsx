@@ -6,9 +6,9 @@ import { TweenMax, Power2 } from "gsap";
 import { headers, sounds, capitalizeFirstLetter } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
 
-import HistoryConsole from "../battle/HistoryConsole";
-import DamageDisplay from "../battle/DamageDisplay";
-import Attack from "../battle/Attack";
+import HistoryConsole from "../Battle/HistoryConsole";
+import DamageDisplay from "../Battle/DamageDisplay";
+import Attack from "../Battle/Attack";
 
 const PvEBattle = () => {
   const location = useLocation();

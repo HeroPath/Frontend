@@ -4,53 +4,20 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
 
-/* -------------------------------- AUTH --------------------------------------------*/
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-/* -------------------------------- //AUTH --------------------------------------------*/
-
-/* -------------------------------- USERPROFILE --------------------------------------------*/
 import Profile from "./components/userProfile/Profile";
-/* -------------------------------- //USERPROFILE --------------------------------------------*/
-
-/* -------------------------------- SIDEBAR --------------------------------------------*/
 import SideBar from "./components/sideBar/SideBar";
-
-/* -------------------------------- MAP --------------------------------------------*/
 import Zone from "./components/sideBar/PvE/Zone";
 import PlayerVsNPC from "./components/sideBar/PvE/PlayerVsNPC";
 import PvEBattle from "./components/sideBar/PvE/PvEBattle";
-/* -------------------------------- //MAP --------------------------------------------*/
-
-/* -------------------------------- ARENA --------------------------------------------*/
-
 import PlayerVsPlayer from "./components/sideBar/PvP/PlayerVsPlayer";
-
-/* -------------------------------- //ARENA --------------------------------------------*/
-/* -------------------------------- SHOP --------------------------------------------*/
-
 import Shop from "./components/sideBar/Shop/Shop";
-
-/* -------------------------------- //SHOP --------------------------------------------*/
-/* -------------------------------- RANKING --------------------------------------------*/
-
 import Ranking from "./components/sideBar/Ranking/Ranking";
-
-/* -------------------------------- //RANKING --------------------------------------------*/
-/* -------------------------------- QUEST --------------------------------------------*/
-
 import Quests from "./components/sideBar/Quests/Quests";
-
-/* -------------------------------- //QUEST --------------------------------------------*/
-
-/* -------------------------------- QUEST --------------------------------------------*/
-
-import Guild from "./components/sideBar/guild/Guild";
+import Guild from "./components/sideBar/Guild/Guild";
 import PvPBattle from "./components/sideBar/PvP/PvPBattle";
-
-/* -------------------------------- //QUEST --------------------------------------------*/
-
-/* -------------------------------- //SIDEBAR --------------------------------------------*/
+import Mail from "./components/sideBar/Mail/Mail";
 
 function App() {
   const [cookiesToken, setCookiesToken] = React.useState(null);
@@ -82,6 +49,7 @@ function App() {
             <Route path="/ranking" element={<Ranking />} />
             <Route path="/quest" element={<Quests />} />
             <Route path="/guild" element={<Guild />} />
+            <Route path="/mail" element={<Mail />} />
           </Routes>
         </BrowserRouter>
       </div>

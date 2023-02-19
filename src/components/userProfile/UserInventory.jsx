@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { post } from "../../functions/requestsApi";
+import { get } from "../../functions/requestsApi";
 import { headers, dataTooltip, sounds } from "../../functions/utilities";
 
 const UserInventory = ({
@@ -51,11 +51,9 @@ const UserInventory = ({
 
   async function handleItem(equipping) {
     if (dataItem === {}) return;
+    let equip = equipping === true ? "equip/" : "unequip/";
 
-    let data = { id: dataItem.id };
-    let equip = equipping === true ? "equip" : "unequip";
-
-    const response = await post("/api/v1/items/" + equip, data, headers);
+    const response = await get("/api/v1/items/" + equip + dataItem.id, headers);
     if (response.status === 200) {
       setInventoryUser(response.data.inventory);
       setEquipmentUser(response.data.equipment);
@@ -102,7 +100,7 @@ const UserInventory = ({
                     setShowTooltip(true);
                     setLetterDrag("");
                   }}
-                  {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
+                  {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
                 >
                   <img src={require(`../img/items/${item.name}.png`)} className="item" alt="" />
                 </div>
@@ -136,7 +134,7 @@ const UserInventory = ({
               }
               onDragStart={(event) => {
                 setShowTooltip(false);
-                event.dataTransfer.setData("nameItemSell", item.name);
+                event.dataTransfer.setData("nameItemSell", item.id);
                 setDataItem({ id: item.id, name: item.name });
                 setLetterDrag("I");
               }}
@@ -145,7 +143,7 @@ const UserInventory = ({
                 setLetterDrag("");
                 event.dataTransfer.setData("nameItemSell", "");
               }}
-              {...(showTooltip && { "data-tooltip": dataTooltip(item, 2) })}
+              {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
             >
               <img src={require(`../img/items/${item.name}.png`)} className="item" alt="" />
             </div>

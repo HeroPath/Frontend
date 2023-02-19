@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { headers } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
 import UserCard from "../../userProfile/UserCard";
-import HistoryConsole from "../battle/HistoryConsole";
+import HistoryConsole from "../Battle/HistoryConsole";
 // import { sounds } from "../../../functions/utilities";
 
 const PvPBattle = () => {
