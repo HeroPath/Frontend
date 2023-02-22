@@ -55,7 +55,7 @@ export const notifySuccess = (redirectTo, header, body1, body2, ...otherBodies) 
 
 export function dataTooltip(item) {
   let tooltip = `Name: ${capitalizeFirstLetter(item.name)}\n`;
-  if (item.quality != "") tooltip += `Quality: ${capitalizeFirstLetter(item.quality)}\n`;
+  if (item.quality !== "") tooltip += `Quality: ${capitalizeFirstLetter(item.quality)}\n`;
   if (item.itemLevel > 0) tooltip += `Level: ${item.itemLevel}\n`;
   if (item.strength > 0) tooltip += `Strength: ${item.strength}\n`;
   if (item.dexterity > 0) tooltip += `Dexterity: ${item.dexterity}\n`;
@@ -63,7 +63,8 @@ export function dataTooltip(item) {
   if (item.intelligence > 0) tooltip += `Intelligence: ${item.intelligence}\n`;
   if (item.luck > 0) tooltip += `Luck: ${item.luck}\n`;
   if (item.lvlMin > 0) tooltip += `Level Min: ${item.lvlMin}\n`;
-  if (item.classRequired) tooltip += `Class: ${capitalizeFirstLetter(item.classRequired)}\n`;
+  if (item.classRequired)
+    tooltip += `Class: ${item.classRequired === "none" ? "All" : capitalizeFirstLetter(item.classRequired)}\n`;
 
   tooltip += `\nPrice: ${item.price.toLocaleString()}`;
   return tooltip;
