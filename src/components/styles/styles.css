@@ -38,7 +38,8 @@ body {
   display: flex;
   background-image: url("../img/backgroundLogin.webp");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center;
+  background-size: 105% 123%;
   height: 100vh;
   width: 100vw;
 }
@@ -49,6 +50,7 @@ body {
   column-gap: 7%;
   height: 100vh;
   width: 100vw;
+  opacity: 0.9;
   align-items: center;
   text-align: center;
 }
@@ -109,7 +111,8 @@ body {
   display: flex;
   background-image: url("../img/backgroundLogin.webp");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-position: center;
+  background-size: 105% 123%;
   height: 100vh;
   width: 100vw;
 }
@@ -126,6 +129,7 @@ body {
   background-size: 100% 67%;
   width: 40%;
   margin-left: 5%;
+  opacity: 0.9;
 }
 
 .login--section {
@@ -178,8 +182,8 @@ body {
 }
 
 .sidebar--logo {
-  height: 14%;
-  padding-top: 8%;
+  height: 18%;
+  padding-top: 3%;
 }
 
 .button--sidebar {
@@ -702,6 +706,11 @@ body {
 /* ---------------- PVP ----------------------*/
 .pvpbattle {
   display: flex;
+  background-image: url("../img/bg-arena.webp");
+  background-size: 100% 100%;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
   flex-direction: column;
   text-align: center;
   align-items: center;
@@ -718,7 +727,7 @@ body {
   display: flex;
   flex-direction: column;
   background-image: url("../img/bg-shop.webp");
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   width: 100vw;
   height: 100vh;
