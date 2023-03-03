@@ -706,6 +706,11 @@ body {
 /* ---------------- PVP ----------------------*/
 .pvpbattle {
   display: flex;
+  background-image: url("../img/bg-arena.webp");
+  background-size: 100% 100%;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
   flex-direction: column;
   text-align: center;
   align-items: center;
@@ -722,7 +727,7 @@ body {
   display: flex;
   flex-direction: column;
   background-image: url("../img/bg-shop.webp");
-  background-size: cover;
+  background-size: 100% 100%;
   background-position: center;
   width: 100vw;
   height: 100vh;
