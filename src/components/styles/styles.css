@@ -254,13 +254,13 @@ body {
   background-repeat: no-repeat;
   object-fit: fill;
   opacity: 0.9;
-  padding-top: 4%;
+  padding-top: 5%;
   padding-left: 10%;
   padding-right: 10%;
   font-weight: bold;
   width: 85%;
   height: 95%;
-  margin: 3% 7%;
+  margin: 5% 7%;
 }
 
 .userCard--card--bgName {
