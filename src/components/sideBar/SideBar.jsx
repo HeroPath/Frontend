@@ -6,7 +6,7 @@ const SideBar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar--logo">
-        <img src={require("../img/logo.webp")} width="75px" height="75px" />
+        <img src={require("../img/logo.webp")} width="130px" height="130px" />
       </div>
 
       <a href="/profile" className="button--links links button--sidebar">
