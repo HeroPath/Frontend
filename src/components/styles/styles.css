@@ -112,9 +112,10 @@ body {
   background-image: url("../img/backgroundLogin.webp");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 105% 123%;
+  background-size: 100% 110%;
   height: 100vh;
   width: 100vw;
+  
 }
 
 .login h2 {
@@ -123,12 +124,14 @@ body {
 }
 
 .login--banner {
-  background-image: url("../img/bg-form-register-login.webp");
+  background-image: url("../img/bg-form-register-login.png");
   background-position: bottom;
   background-repeat: no-repeat;
-  background-size: 100% 67%;
-  width: 40%;
+  background-size: 110% 100%;
+  color: #fff;
+  width: 50%;
   margin-left: 5%;
+  margin-top: -40px;
   opacity: 0.9;
 }
 
@@ -136,7 +139,7 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 50%;
+  margin-top: 22%;
 }
 
 .login--form {
@@ -151,16 +154,22 @@ body {
 
 .login--form input {
   letter-spacing: 2px;
-  width: 60%;
+  width: 50%;
 }
 
 .login--footer {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
+  width: auto;
 }
 
+.login--stats {
+  margin-top: 2%;
+  font-size: 18px;
+
+}
 /* ---------------- //LOGIN ----------------------*/
 
 /* ---------------- SIDEBAR ----------------------*/
@@ -431,7 +440,7 @@ body {
 
 .form-control,
 .form-control:focus {
-  background-color: rgba(253, 168, 46, 0.25);
+  background-color: rgba(206, 206, 206, 0.856);
   text-align: center;
   box-shadow: none;
   font-size: 25px;

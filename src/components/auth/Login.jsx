@@ -1,27 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/styles.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { post } from "../../functions/requestsApi";
+import { post, get } from "../../functions/requestsApi";
 import { cookies } from "../../functions/utilities";
 
 const Login = () => {
-  const [dataLogin, setDataLogin] = React.useState({
+  const [dataLogin, setDataLogin] = useState({
     username: "",
     password: "",
   });
 
-  ["token", "username", "guildName"].forEach((cookie) =>
-    cookies.remove(cookie)
-  );
+  const [serverStats, setServerStats] = useState({});
+
+  ["token", "username", "guildName"].forEach((cookie) => cookies.remove(cookie));
+
+  async function getServerStats() {
+    const response = await get("/api/v1/stats");
+
+    if (response.status === 200) {
+      response.data.status = "Online";
+      setServerStats(response.data);
+    }
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     if (dataLogin.username === "" || dataLogin.password === "") return;
-
     const response = await post("/api/v1/auth/login", dataLogin);
 
     if (response.status === 200) {
@@ -42,6 +49,10 @@ const Login = () => {
 
     setDataLogin(newValues);
   }
+
+  useEffect(() => {
+    getServerStats();
+  }, []);
 
   return (
     <div className="login">
@@ -66,31 +77,56 @@ const Login = () => {
               value={dataLogin.password}
               onChange={handleChange}
             />
-            <button className="button--links mt-2 ps-5 pe-5" type="submit">
+            <button className="button--links mt-4 ps-5 pe-5" type="submit">
               Sign in
             </button>
           </form>
           <div className="login--footer mt-4">
-            <a href="/register" className="button--links links p-3 ps-5 pe-5">
+            <a href="/register" className="button--links links p-3 ps-5 pe-5" style={{marginRight: "2%"}}>
               Register
             </a>
             <a href="" className="button--links links p-3 ps-5 pe-5">
-              Forgot password?
+              Forgot pass?
             </a>
           </div>
-          <ToastContainer
-            position="top-right"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
+          {serverStats.status === "Online" ? (
+            <div className="login--stats">
+              <div>
+                <label>Server status: </label>
+                <img className="ms-2" src={require(`../img/utilities/online.webp`)} height="16px" width="16px" alt="" />
+              </div>
+              <div>
+                <label>Registered Users: {serverStats.userRegistered}</label>
+              </div>
+              <div>
+                <label>Exp. Mult.: {serverStats.expMultiplier}x</label>
+              </div>
+              <div>
+                <label>Gold Mult.: {serverStats.goldMultiplier}x</label>
+              </div>
+              <div>
+                <label>Level Max: {serverStats.lvlMax}</label>
+              </div>
+            </div>
+          ) : (
+            <div>
+              <label>Server status: </label>
+              <img className="ms-2" src={require(`../img/utilities/offline.webp`)} height="16px" width="16px" alt="" />
+            </div>
+          )}
         </section>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
