@@ -15,8 +15,7 @@ const Navbar = ({ gold, diamond, role }) => {
         {role && <label>Role: {role}</label>}
       </div>
       <div className="navBarDivs">
-        <label>Server Status</label>
-        <img className="ms-2" src={require(`../img/utilities/online.webp`)} height="16px" width="16px" alt="" />
+        <label>Coming Soon</label>
       </div>
       <div className="navBarDivs">
         <label>News</label>
