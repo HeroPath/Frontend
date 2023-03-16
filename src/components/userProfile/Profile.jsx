@@ -30,7 +30,7 @@ const Profile = () => {
         pvePts={profile.pvePts}
         pvpPts={profile.pvpPts}
       />
-      <ProfileCard profile={profile} />
+      <ProfileCard p={profile} />
     </div>
   );
 };

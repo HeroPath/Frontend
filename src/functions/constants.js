@@ -13,3 +13,8 @@ export const objectEmpty = { type: "empty" };
 export const orderEquipment = ["ship", "helmet", "wings", "weapon", "armor", "shield", "gloves", "pants", "boots"];
 
 // ------------ userInventory ------------ //
+// ------------ userInventory ------------ //
+// ------------ userInventory ------------ //
+// ------------ userInventory ------------ //
+// ------------ userInventory ------------ //
+// ------------ userInventory ------------ //

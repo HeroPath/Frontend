@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,14 +9,10 @@ import { get, post } from "../../../functions/requestsApi";
 const PlayerVsNPC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [npcData, setNpcData] = React.useState([]);
+  const [npcData, setNpcData] = useState([]);
 
   async function attackNpc(npcName) {
-    const response = await post(
-      "/api/v1/users/attack-npc",
-      { name: npcName },
-      headers
-    );
+    const response = await post("/api/v1/users/attack-npc", { name: npcName }, headers);
     if (response.status === 200) {
       response.data = Object.assign(response.data, {
         nameData: npcName,
@@ -28,10 +24,7 @@ const PlayerVsNPC = () => {
   }
 
   async function handleData() {
-    const response = await get(
-      "/api/v1/npcs/zone/" + location.state.name,
-      headers
-    );
+    const response = await get("/api/v1/npcs/zone/" + location.state.name, headers);
     if (response.status === 200) setNpcData(response.data);
   }
 
@@ -43,29 +36,17 @@ const PlayerVsNPC = () => {
     <div
       className="npcCards"
       style={{
-        backgroundImage: `url(${require("../../img/zone/bg-" +
-          location.state.name +
-          ".webp")})`,
+        backgroundImage: `url(${require("../../img/zone/bg-" + location.state.name + ".webp")})`,
       }}
     >
       {npcData?.map((npc) => (
         <form key={npc.id} className="npcCards--form">
           <div className="npcName">
-            <h4>
-              {npc.name.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}
-            </h4>
-            {npc.level < 6 ? (
-              <h6>Min Level: 1</h6>
-            ) : (
-              <h6>Min Level: {npc.level - 5}</h6>
-            )}
+            <h4>{npc.name.replace(/(^\w{1})/g, (letter) => letter.toUpperCase())}</h4>
+            {npc.level < 6 ? <h6>Min Level: 1</h6> : <h6>Min Level: {npc.level - 5}</h6>}
           </div>
           <div className="npcImg">
-            <img
-              src={require(`../../img/npc/${npc.name}.webp`)}
-              width="190px"
-              height="190px"
-            />
+            <img src={require(`../../img/npc/${npc.name}.webp`)} width="190px" height="190px" />
           </div>
           <button
             type="submit"

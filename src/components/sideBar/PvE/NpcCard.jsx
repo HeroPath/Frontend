@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 import { headers, capitalizeFirstLetter } from "../../../functions/utilities";
@@ -7,7 +7,7 @@ import { get } from "../../../functions/requestsApi";
 const NpcCard = ({ npcLife }) => {
   const location = useLocation();
   const npcName = location.state.battleData.nameData;
-  const [npcData, setNpcData] = React.useState([]);
+  const [npcData, setNpcData] = useState([]);
 
   async function getNpcData() {
     const response = await get("/api/v1/npcs/" + npcName, headers);

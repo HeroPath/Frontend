@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import UserCard from "../../userProfile/UserCard";
 import NpcCard from "./NpcCard";
@@ -18,10 +18,6 @@ const PvEBattle = () => {
   const [finishBattle, setFinishBattle] = useState(false);
   const [winnerBattle, setWinnerBattle] = useState({});
 
-  const npcName = useMemo(() => {
-    return capitalizeFirstLetter(location.state.battleData.nameData);
-  }, [location.state.battleData.nameData]);
-
   async function getPveBattle() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
@@ -29,6 +25,7 @@ const PvEBattle = () => {
       if (response.data.hp === 0) response.data.hp = response.data.maxHp;
       setProfile(response.data);
     }
+    capitalizeFirstLetter(location.state.battleData.nameData);
     setWinnerBattle(location.state.battleData.pop());
     setBattleData(location.state.battleData);
   }
@@ -174,7 +171,7 @@ const PvEBattle = () => {
         stage={stage}
         winnerBattle={winnerBattle}
         finishBattle={finishBattle}
-        npcName={npcName}
+        npcName={battleData.nameData}
       />
     </div>
   );

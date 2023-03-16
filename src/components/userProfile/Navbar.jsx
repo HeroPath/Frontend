@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-
 import { get } from "../../functions/requestsApi";
 import { headers } from "../../functions/utilities";
 
 const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
   const [pvpAndPvePts, setPvpAndPvePts] = useState({});
 
-  async function getPveAndPvpMaxPts() {
-    const response = await get("/api/v1/stats/pve-pvp/pts", headers);
-    if (response.status === 200) {
-      setPvpAndPvePts(response.data);
-    }
-  }
-
   useEffect(() => {
+    async function getPveAndPvpMaxPts() {
+      const response = await get("/api/v1/stats/pve-pvp/pts", headers);
+      if (response.status === 200) {
+        setPvpAndPvePts(response.data);
+      }
+    }
+
     getPveAndPvpMaxPts();
   }, []);
 
