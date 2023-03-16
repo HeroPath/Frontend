@@ -15,7 +15,9 @@ const Login = () => {
 
   const [serverStats, setServerStats] = useState({});
 
-  ["token", "username", "guildName"].forEach((cookie) => cookies.remove(cookie));
+  ["token", "username", "guildName"].forEach((cookie) =>
+    cookies.remove(cookie)
+  );
 
   async function getServerStats() {
     const response = await get("/api/v1/stats");
@@ -39,15 +41,7 @@ const Login = () => {
   }
 
   function handleChange(e) {
-    const { target } = e;
-    const { name, value } = target;
-
-    const newValues = {
-      ...dataLogin,
-      [name]: value,
-    };
-
-    setDataLogin(newValues);
+    setDataLogin({ ...dataLogin, [e.target.name]: e.targer.value });
   }
 
   useEffect(() => {
@@ -82,7 +76,11 @@ const Login = () => {
             </button>
           </form>
           <div className="login--footer mt-4">
-            <a href="/register" className="button--links links p-3 ps-5 pe-5" style={{marginRight: "2%"}}>
+            <a
+              href="/register"
+              className="button--links links p-3 ps-5 pe-5"
+              style={{ marginRight: "2%" }}
+            >
               Register
             </a>
             <a href="" className="button--links links p-3 ps-5 pe-5">
@@ -93,7 +91,13 @@ const Login = () => {
             <div className="login--stats">
               <div>
                 <label>Server status: </label>
-                <img className="ms-2" src={require(`../img/utilities/online.webp`)} height="16px" width="16px" alt="" />
+                <img
+                  className="ms-2"
+                  src={require(`../img/utilities/online.webp`)}
+                  height="16px"
+                  width="16px"
+                  alt=""
+                />
               </div>
               <div>
                 <label>Registered Users: {serverStats.userRegistered}</label>
@@ -111,7 +115,13 @@ const Login = () => {
           ) : (
             <div className="login--stats">
               <label>Server status: </label>
-              <img className="ms-2" src={require(`../img/utilities/offline.webp`)} height="16px" width="16px" alt="" />
+              <img
+                className="ms-2"
+                src={require(`../img/utilities/offline.webp`)}
+                height="16px"
+                width="16px"
+                alt=""
+              />
             </div>
           )}
         </section>
