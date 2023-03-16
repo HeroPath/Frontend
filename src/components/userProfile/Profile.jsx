@@ -12,7 +12,7 @@ const Profile = () => {
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
-      console.log(response.data.inventory)
+      console.log(response.data.inventory);
       setProfile(response.data);
     }
   }
@@ -23,7 +23,13 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <Navbar gold={profile.gold} diamond={profile.diamond} role={profile.role} />
+      <Navbar
+        gold={profile.gold}
+        diamond={profile.diamond}
+        role={profile.role}
+        pvePts={profile.pvePts}
+        pvpPts={profile.pvpPts}
+      />
       <ProfileCard profile={profile} />
     </div>
   );
