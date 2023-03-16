@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import "../styles/styles.css";
+import { useState, useEffect } from "react";
 import ProfileCard from "./ProfileCard";
 import Navbar from "./Navbar";
 

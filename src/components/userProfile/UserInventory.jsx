@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -100,7 +100,7 @@ const UserInventory = ({
                   }}
                   {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
                 >
-                  <img src={require(`../img/items/${item.name}.png`)} className="item" alt="" />
+                  <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
                 </div>
               );
             }
@@ -143,14 +143,14 @@ const UserInventory = ({
               }}
               {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
             >
-              <img src={require(`../img/items/${item.name}.png`)} className="item" alt="" />
+              <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
             </div>
           ))}
       </div>
 
       <ToastContainer
         position="top-right"
-        autoClose={2000}
+        autoClose={2000}antperuka
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

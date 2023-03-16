@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
-import { headers, capitalizeFirstLetter } from "../../../functions/utilities";
-import { get } from "../../../functions/requestsApi";
+import { headers, capitalizeFirstLetter } from "../../functions/utilities";
+import { get } from "../../functions/requestsApi";
 
 const NpcCard = ({ npcLife }) => {
   const location = useLocation();

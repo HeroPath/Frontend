@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import "../../styles/styles.css";
+import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import Pagination from "../Pagination";
+import Pagination from "../Pagination/Pagination";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers } from "../../../functions/utilities";
-import { get, post } from "../../../functions/requestsApi";
+import { headers } from "../../functions/utilities";
+import { get, post } from "../../functions/requestsApi";
 
 const Ranking = () => {
   let guildsCounter = 1;

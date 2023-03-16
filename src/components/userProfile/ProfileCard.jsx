@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import UserCard from "./UserCard";
 import UserStats from "./UserStats";
 import UserInventory from "./UserInventory";

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import "../styles/styles.css";
 
 import { capitalizeFirstLetter } from "../../functions/utilities";
 import { get, post } from "../../functions/requestsApi";
@@ -37,11 +36,7 @@ const Register = () => {
     dataRegister.className = dataClassSelected;
     const response = await post("/api/v1/auth/register", dataRegister);
     if (response.status === 200) {
-      notifySuccess(
-        "/",
-        "User created successfully!",
-        "Username: " + dataRegister.username
-      );
+      notifySuccess("/", "User created successfully!", "Username: " + dataRegister.username);
     }
   }
 
@@ -56,8 +51,7 @@ const Register = () => {
 
   function handleClickClass(e) {
     e.preventDefault();
-    const [, className, strength, dexterity, intelligence, vitality, luck] =
-      e.target.value.split(",");
+    const [, className, strength, dexterity, intelligence, vitality, luck] = e.target.value.split(",");
     setDataClassSelected(className.toLowerCase());
     setClassSelected({
       class: dataClassSelected,
@@ -127,9 +121,7 @@ const Register = () => {
               onChange={handleChange}
               onClick={handleClickClass}
             >
-              <option value={["0", "default", "-", "-", "-", "-", "-"]}>
-                Select class
-              </option>
+              <option value={["0", "default", "-", "-", "-", "-", "-"]}>Select class</option>
 
               {classData?.map((cChar, index) => (
                 <option
@@ -153,43 +145,35 @@ const Register = () => {
               <div className="classSelected">
                 <div className="classSelected--img">
                   <img
-                    src={require("../img/class/" + dataClassSelected + ".webp")}
+                    src={require("../../img/class/" + dataClassSelected + ".webp")}
                     width="250px"
                     height="315px"
                     alt=""
                   />
                 </div>
                 <div className="classSelected--stats">
-                  <h2 className="classSelected--stats__head">
-                    {capitalizeFirstLetter(dataClassSelected)}
-                  </h2>
+                  <h2 className="classSelected--stats__head">{capitalizeFirstLetter(dataClassSelected)}</h2>
                   {dataClassSelected === "default" ? (
                     <label className="classSelected--stats__head">
-                      You must select a class to know its story, as well as its
-                      corresponding stats...
+                      You must select a class to know its story, as well as its corresponding stats...
                     </label>
                   ) : dataClassSelected === "mage" ? (
                     <label className="classSelected--stats__head">
-                      In a magical kingdom called Azura, there exists a solitary
-                      wizard known as Raven. Despite his dark name, Raven is a
-                      wise and just character who uses his magical abilities to
-                      protect the inhabitants of the kingdom.
+                      In a magical kingdom called Azura, there exists a solitary wizard known as Raven. Despite his dark
+                      name, Raven is a wise and just character who uses his magical abilities to protect the inhabitants
+                      of the kingdom.
                     </label>
                   ) : dataClassSelected === "warrior" ? (
                     <label className="classSelected--stats__head">
-                      In the kingdom of Azura, there exists a legendary warrior
-                      known as Thorgrimm. With his sword and shield, Thorgrimm
-                      has fought against all kinds of enemies, protecting the
-                      kingdom and its inhabitants against oppression and
-                      injustice.
+                      In the kingdom of Azura, there exists a legendary warrior known as Thorgrimm. With his sword and
+                      shield, Thorgrimm has fought against all kinds of enemies, protecting the kingdom and its
+                      inhabitants against oppression and injustice.
                     </label>
                   ) : (
                     dataClassSelected === "archer" && (
                       <label className="classSelected--stats__head">
-                        In the kingdom of Azura, there exists a skilled and
-                        cunning archer known as Lyra. With her bow and arrows,
-                        Lyra is able to hit any target at long range with deadly
-                        precision.
+                        In the kingdom of Azura, there exists a skilled and cunning archer known as Lyra. With her bow
+                        and arrows, Lyra is able to hit any target at long range with deadly precision.
                       </label>
                     )
                   )}

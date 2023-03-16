@@ -1,5 +1,4 @@
-import React from "react";
-import { capitalizeFirstLetter } from "../../../functions/utilities";
+import { capitalizeFirstLetter } from "../../functions/utilities";
 
 const HistoryConsole = ({ username, level, stage, winnerBattle, finishBattle, npcName }) => {
   let i = 1;

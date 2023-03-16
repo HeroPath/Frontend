@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import CreateNewGuild from "./CreateNewGuild";
 import CustomButton from "./GenericButton";
@@ -6,8 +6,8 @@ import CustomButton from "./GenericButton";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers } from "../../../functions/utilities";
-import { get, post } from "../../../functions/requestsApi";
+import { headers } from "../../functions/utilities";
+import { get, post } from "../../functions/requestsApi";
 
 const Guild = () => {
   const [userGuild, setUserGuild] = useState({});

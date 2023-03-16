@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { get } from "../../functions/requestsApi";
 import { headers } from "../../functions/utilities";
 
@@ -20,11 +20,11 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
     <div className="profileNavbar">
       <div className="profileNavbar--labels">
         <div>
-          <img className="me-2" src={require(`../img/utilities/gold.webp`)} alt="" />
+          <img className="me-2" src={require(`../../img/utilities/gold.webp`)} alt="" />
           {gold && <label>{gold.toLocaleString()}</label>}
         </div>
         <div>
-          <img className="me-2" src={require(`../img/utilities/diamond.webp`)} alt="" />
+          <img className="me-2" src={require(`../../img/utilities/diamond.webp`)} alt="" />
           {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
       </div>

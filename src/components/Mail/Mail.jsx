@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import "../../styles/styles.css";
+import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers, notifySuccess } from "../../../functions/utilities";
-import { get, post, deleteRequest } from "../../../functions/requestsApi";
+import { headers, notifySuccess } from "../../functions/utilities";
+import { get, post, deleteRequest } from "../../functions/requestsApi";
 
 const Mail = () => {
   let mailCounter = 1;
@@ -47,20 +46,11 @@ const Mail = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    
-    if (
-      dataMail.receiver === "" ||
-      dataMail.subject === "" ||
-      dataMail.message === ""
-    )
-      return;
+
+    if (dataMail.receiver === "" || dataMail.subject === "" || dataMail.message === "") return;
     const response = await post("/api/v1/mails/send", dataMail, headers);
     if (response.status === 200) {
-      notifySuccess(
-        "#",
-        "Mail sent successfully",
-        "receiver: " + dataMail.receiver
-      );
+      notifySuccess("#", "Mail sent successfully", "receiver: " + dataMail.receiver);
     }
   }
 
@@ -104,11 +94,7 @@ const Mail = () => {
         </button>
       </form>
       <div>
-        <button
-          className="button--links"
-          onClick={deleteAllMails}
-          style={{ padding: "15px" }}
-        >
+        <button className="button--links" onClick={deleteAllMails} style={{ padding: "15px" }}>
           {" "}
           Delete All{" "}
         </button>

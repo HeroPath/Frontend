@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers, notifySuccess } from "../../../functions/utilities";
-import { post, get } from "../../../functions/requestsApi";
+import { headers, notifySuccess } from "../../functions/utilities";
+import { post, get } from "../../functions/requestsApi";
 
 const CreateNewGuild = () => {
   const [requirementesCreateGuild, setRequirementesCreateGuild] = useState({});
@@ -20,12 +20,7 @@ const CreateNewGuild = () => {
     if (dataGuild.name && dataGuild.description && dataGuild.tag) {
       const response = await post("/api/v1/guilds", dataGuild, headers);
       if (response.status === 200) {
-        notifySuccess(
-          "/Guild",
-          "Guild created successfully!",
-          "Name: " + dataGuild.name,
-          "Tag: " + dataGuild.tag
-        );
+        notifySuccess("/Guild", "Guild created successfully!", "Name: " + dataGuild.name, "Tag: " + dataGuild.tag);
       }
     }
   }
@@ -54,16 +49,8 @@ const CreateNewGuild = () => {
           <h2>Requirements:</h2>
           <h3>Level: {requirementesCreateGuild.lvl}</h3>
 
-          <h3>
-            Gold:{" "}
-            {requirementesCreateGuild.gold &&
-              requirementesCreateGuild.gold.toLocaleString()}
-          </h3>
-          <h3>
-            Diamonds:{" "}
-            {requirementesCreateGuild.diamonds &&
-              requirementesCreateGuild.diamonds.toLocaleString()}
-          </h3>
+          <h3>Gold: {requirementesCreateGuild.gold && requirementesCreateGuild.gold.toLocaleString()}</h3>
+          <h3>Diamonds: {requirementesCreateGuild.diamonds && requirementesCreateGuild.diamonds.toLocaleString()}</h3>
           <form onSubmit={handleSubmit}>
             <label className="form-label mt-3">Name</label>
             <input

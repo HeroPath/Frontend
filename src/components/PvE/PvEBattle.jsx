@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
-import UserCard from "../../userProfile/UserCard";
+import UserCard from "../userProfile/UserCard";
 import NpcCard from "./NpcCard";
 import { TweenMax, Power2 } from "gsap";
-import { headers, sounds, capitalizeFirstLetter } from "../../../functions/utilities";
-import { get } from "../../../functions/requestsApi";
+import { headers, sounds, capitalizeFirstLetter } from "../../functions/utilities";
+import { get } from "../../functions/requestsApi";
 
 import HistoryConsole from "../Battle/HistoryConsole";
 import DamageDisplay from "../Battle/DamageDisplay";

@@ -3,8 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers } from "../../../functions/utilities";
-import { get, post } from "../../../functions/requestsApi";
+import { headers } from "../../functions/utilities";
+import { get, post } from "../../functions/requestsApi";
 
 const PlayerVsNPC = () => {
   const location = useLocation();

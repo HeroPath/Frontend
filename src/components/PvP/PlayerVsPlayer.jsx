@@ -5,8 +5,8 @@ import Card from "react-bootstrap/Card";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers } from "../../../functions/utilities";
-import { post } from "../../../functions/requestsApi";
+import { headers } from "../../functions/utilities";
+import { post } from "../../functions/requestsApi";
 
 const PlayerVsPlayer = () => {
   const [userAttack, setUserAttack] = useState("");

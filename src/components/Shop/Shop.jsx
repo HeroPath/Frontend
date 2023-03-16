@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import UserInventory from "../../userProfile/UserInventory";
-import Navbar from "../../userProfile/Navbar";
+import { useEffect, useState } from "react";
+import UserInventory from "../userProfile/UserInventory";
+import Navbar from "../userProfile/Navbar";
 
-import { headers, dataTooltip, sounds } from "../../../functions/utilities";
-import { get } from "../../../functions/requestsApi";
+import { headers, dataTooltip, sounds } from "../../functions/utilities";
+import { get } from "../../functions/requestsApi";
 
 const Shop = () => {
   const [profile, setProfile] = useState({});
@@ -54,12 +54,7 @@ const Shop = () => {
 
   return (
     <div className="shop">
-      <Navbar
-        gold={profile.gold}
-        diamond={profile.diamond}
-        role={profile.role}
-        itemDragShop={itemDragShop}
-      />
+      <Navbar gold={profile.gold} diamond={profile.diamond} role={profile.role} itemDragShop={itemDragShop} />
       <div className="shop--items">
         <div className="shop--inventory">
           {profile.equipment && (
@@ -111,19 +106,12 @@ const Shop = () => {
                 Archer
               </button>
             </div>
-            <div
-              className="shop--npc--section"
-              id="shop--npc--card"
-              onDragOver={dragOver}
-            >
+            <div className="shop--npc--section" id="shop--npc--card" onDragOver={dragOver}>
               <div
                 className="shop--npc--card"
                 id="shopNpcSellBuy"
                 onDrop={(event) => {
-                  if (
-                    itemDragBuy === "S" ||
-                    event.dataTransfer.getData("ETransfer") === "E"
-                  ) {
+                  if (itemDragBuy === "S" || event.dataTransfer.getData("ETransfer") === "E") {
                     return;
                   }
                   handleISelltems(event.dataTransfer.getData("nameItemSell"));
@@ -137,9 +125,7 @@ const Shop = () => {
                     id={item.id}
                     style={ItemStyle}
                     className={
-                      profile.aclass &&
-                      item.classRequired !== profile.aclass &&
-                      item.classRequired !== "none"
+                      profile.aclass && item.classRequired !== profile.aclass && item.classRequired !== "none"
                         ? "itemNoClass"
                         : item.lvlMin > profile.level
                         ? "itemNoLevel"
@@ -158,11 +144,7 @@ const Shop = () => {
                       "data-tooltip": dataTooltip(item),
                     })}
                   >
-                    <img
-                      src={require(`../../img/items/${item.name}.png`)}
-                      className="item"
-                      alt=""
-                    />
+                    <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
                   </div>
                 ))}
               </div>

@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 
 const DamageDisplay = forwardRef(({ isUser, value }, ref) => {
   const left = isUser ? "76%" : "34%";

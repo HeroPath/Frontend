@@ -70,6 +70,6 @@ export function dataTooltip(item) {
 }
 
 export function sounds(sound) {
-  const playSound = new Audio(require(`../components/sounds/${sound}.wav`));
+  const playSound = new Audio(require(`../sounds/${sound}.wav`));
   return playSound.play();
 }

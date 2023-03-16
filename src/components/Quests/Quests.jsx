@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import Pagination from "../Pagination";
+import Pagination from "../Pagination/Pagination";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { headers, notifySuccess } from "../../../functions/utilities";
-import { get, post } from "../../../functions/requestsApi";
+import { headers, notifySuccess } from "../../functions/utilities";
+import { get, post } from "../../functions/requestsApi";
 
 const Quests = () => {
   let nonAcceptedQuestsNumber = 1;
