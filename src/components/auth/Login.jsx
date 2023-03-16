@@ -41,7 +41,7 @@ const Login = () => {
   }
 
   function handleChange(e) {
-    setDataLogin({ ...dataLogin, [e.target.name]: e.targer.value });
+    setDataLogin({ ...dataLogin, [e.target.name]: e.target.value });
   }
 
   useEffect(() => {

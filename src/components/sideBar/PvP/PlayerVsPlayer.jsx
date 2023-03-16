@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
@@ -9,7 +9,7 @@ import { headers } from "../../../functions/utilities";
 import { post } from "../../../functions/requestsApi";
 
 const PlayerVsPlayer = () => {
-  const [userAttack, setUserAttack] = React.useState("");
+  const [userAttack, setUserAttack] = useState("");
 
   function handleChange(e) {
     const userName = e.target.value;
@@ -23,7 +23,7 @@ const PlayerVsPlayer = () => {
       { name: userAttack },
       headers
     );
-    if (response.status === 200) console.log(response.data) //window.location.reload();
+    if (response.status === 200) console.log(response.data); //window.location.reload();
   }
 
   return (

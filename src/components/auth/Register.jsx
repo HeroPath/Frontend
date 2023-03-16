@@ -20,7 +20,7 @@ const Register = () => {
     getClasses();
   }, []);
 
-  const [dataRegister, setValues] = useState({
+  const [dataRegister, setDataRegister] = useState({
     username: "",
     email: "",
     password: "",
@@ -28,7 +28,7 @@ const Register = () => {
   });
 
   function handleChange(e) {
-    setValues({ ...dataRegister, [e.target.name]: e.targer.value });
+    setDataRegister({ ...dataRegister, [e.target.name]: e.target.value });
   }
 
   async function handleSubmit(e) {

@@ -8,7 +8,7 @@ import { post, get } from "../../../functions/requestsApi";
 
 const CreateNewGuild = () => {
   const [requirementesCreateGuild, setRequirementesCreateGuild] = useState({});
-  const [values, setValues] = useState({
+  const [dataGuild, setDataGuild] = useState({
     name: "",
     description: "",
     tag: "",
@@ -17,10 +17,15 @@ const CreateNewGuild = () => {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (values.name && values.description && values.tag) {
-      const response = await post("/api/v1/guilds", values, headers);
+    if (dataGuild.name && dataGuild.description && dataGuild.tag) {
+      const response = await post("/api/v1/guilds", dataGuild, headers);
       if (response.status === 200) {
-        notifySuccess("/Guild", "Guild created successfully!", "Name: " + values.name, "Tag: " + values.tag);
+        notifySuccess(
+          "/Guild",
+          "Guild created successfully!",
+          "Name: " + dataGuild.name,
+          "Tag: " + dataGuild.tag
+        );
       }
     }
   }
@@ -34,15 +39,7 @@ const CreateNewGuild = () => {
   }
 
   function handleChange(e) {
-    const { target } = e;
-    const { name, value } = target;
-
-    const newValues = {
-      ...values,
-      [name]: value,
-    };
-
-    setValues(newValues);
+    setDataGuild({ ...dataGuild, [e.target.name]: e.target.value });
   }
 
   useEffect(() => {
@@ -57,8 +54,16 @@ const CreateNewGuild = () => {
           <h2>Requirements:</h2>
           <h3>Level: {requirementesCreateGuild.lvl}</h3>
 
-          <h3>Gold: {requirementesCreateGuild.gold && requirementesCreateGuild.gold.toLocaleString()}</h3>
-          <h3>Diamonds: {requirementesCreateGuild.diamonds && requirementesCreateGuild.diamonds.toLocaleString()}</h3>
+          <h3>
+            Gold:{" "}
+            {requirementesCreateGuild.gold &&
+              requirementesCreateGuild.gold.toLocaleString()}
+          </h3>
+          <h3>
+            Diamonds:{" "}
+            {requirementesCreateGuild.diamonds &&
+              requirementesCreateGuild.diamonds.toLocaleString()}
+          </h3>
           <form onSubmit={handleSubmit}>
             <label className="form-label mt-3">Name</label>
             <input
@@ -66,7 +71,7 @@ const CreateNewGuild = () => {
               id="name"
               className="form-control mt-2"
               name="name"
-              value={values.name}
+              value={dataGuild.name}
               onChange={handleChange}
             />
 
@@ -76,7 +81,7 @@ const CreateNewGuild = () => {
               id="tag"
               className="form-control mt-2"
               name="tag"
-              value={values.tag}
+              value={dataGuild.tag}
               onChange={handleChange}
             />
 
@@ -86,7 +91,7 @@ const CreateNewGuild = () => {
               id="description"
               className="form-control mt-2"
               name="description"
-              value={values.description}
+              value={dataGuild.description}
               onChange={handleChange}
             />
 

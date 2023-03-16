@@ -12,7 +12,7 @@ const Mail = () => {
   let mailCounter = 1;
 
   const [mails, setMails] = useState([]);
-  const [sendMail, setSendMail] = useState({
+  const [dataMail, setDataMail] = useState({
     receiver: "",
     subject: "",
     message: "",
@@ -36,7 +36,7 @@ const Mail = () => {
   async function deleteAllMails() {
     const response = await deleteRequest("/api/v1/mails", headers);
     if (response.status === 200) {
-      setMails([])
+      setMails([]);
       notifySuccess("#", "All mails deleted successfully");
     }
   }
@@ -47,32 +47,25 @@ const Mail = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    
     if (
-      sendMail.receiver === "" ||
-      sendMail.subject === "" ||
-      sendMail.message === ""
+      dataMail.receiver === "" ||
+      dataMail.subject === "" ||
+      dataMail.message === ""
     )
       return;
-    const response = await post("/api/v1/mails/send", sendMail, headers);
+    const response = await post("/api/v1/mails/send", dataMail, headers);
     if (response.status === 200) {
       notifySuccess(
         "#",
         "Mail sent successfully",
-        "receiver: " + sendMail.receiver
+        "receiver: " + dataMail.receiver
       );
     }
   }
 
   function handleChange(e) {
-    const { target } = e;
-    const { name, value } = target;
-
-    const newValues = {
-      ...sendMail,
-      [name]: value,
-    };
-
-    setSendMail(newValues);
+    setDataMail({ ...dataMail, [e.target.name]: e.target.value });
   }
 
   return (
@@ -85,7 +78,7 @@ const Mail = () => {
           id="receiver"
           className="form-control"
           name="receiver"
-          value={sendMail.receiver}
+          value={dataMail.receiver}
           onChange={handleChange}
         />
         <h2>Subject</h2>
@@ -94,7 +87,7 @@ const Mail = () => {
           id="subject"
           className="form-control"
           name="subject"
-          value={sendMail.subject}
+          value={dataMail.subject}
           onChange={handleChange}
         />
         <h2>Message</h2>
@@ -103,7 +96,7 @@ const Mail = () => {
           id="message"
           className="form-control"
           name="message"
-          value={sendMail.message}
+          value={dataMail.message}
           onChange={handleChange}
         />
         <button className="button--links" type="submit">
@@ -111,7 +104,11 @@ const Mail = () => {
         </button>
       </form>
       <div>
-        <button className="button--links" onClick={deleteAllMails} style={{padding: "15px"}}>
+        <button
+          className="button--links"
+          onClick={deleteAllMails}
+          style={{ padding: "15px" }}
+        >
           {" "}
           Delete All{" "}
         </button>
