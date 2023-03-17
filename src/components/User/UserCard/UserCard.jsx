@@ -6,7 +6,6 @@ const UserCard = ({ username, aclass, hp, maxHp, experience, experienceToNextLev
   if (userLife !== undefined) hp = userLife;
 
   if (userNewData !== false && userNewData !== undefined) {
-    console.log(userNewData);
     hp = userNewData.hp;
     maxHp = userNewData.maxHp;
   }

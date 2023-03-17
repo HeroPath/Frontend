@@ -63,53 +63,60 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
   }
 
   return (
-    <section className="userstats">
-      <h2>Stats</h2>
-      <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
+    <>
+      <section className="userstats">
+        <h2>Stats</h2>
+        <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
 
-      <form className="userstats--form">
-        <Stat
-          firstStatName={"Strength"}
-          FirstStatValue={stats.strength}
-          secondStatName={aclass === "warrior" ? "Dmg" : "Defense"}
-          secondStatValue={aclass === "warrior" ? `${stats.minDmg}/${stats.maxDmg}` : stats.defense}
-          handleClickAddSkill={handleClickAddSkill}
-        />
-        <Stat
-          firstStatName={"Dexterity"}
-          FirstStatValue={stats.dexterity}
-          secondStatName={aclass === "archer" ? "Dmg" : "Evasion"}
-          secondStatValue={aclass === "archer" ? `${stats.minDmg}/${stats.maxDmg}` : stats.evasion}
-          handleClickAddSkill={handleClickAddSkill}
-        />
-        <Stat
-          firstStatName={"Intelligence"}
-          FirstStatValue={stats.intelligence}
-          secondStatName={aclass === "mage" ? "Dmg" : aclass === "archer" ? "Evasion" : "Defense"}
-          secondStatValue={
-            aclass === "mage" ? `${stats.minDmg}/${stats.maxDmg}` : aclass === "archer" ? stats.evasion : stats.defense
-          }
-          handleClickAddSkill={handleClickAddSkill}
-        />
-        <Stat
-          firstStatName={"Vitality"}
-          FirstStatValue={stats.vitality}
-          secondStatName={"Life"}
-          secondStatValue={`${stats.hp}/${stats.maxHp}`}
-          handleClickAddSkill={handleClickAddSkill}
-        />
-        <Stat
-          firstStatName={"Luck"}
-          FirstStatValue={stats.luck}
-          secondStatName={"Crit Dmg"}
-          secondStatValue={Math.round(stats.criticalChance * 10) / 10 + "%"}
-          handleClickAddSkill={handleClickAddSkill}
-        />
-      </form>
+        <form className="userstats--form">
+          <Stat
+            firstStatName={"Strength"}
+            FirstStatValue={stats.strength}
+            secondStatName={aclass === "warrior" ? "Dmg" : "Defense"}
+            secondStatValue={aclass === "warrior" ? `${stats.minDmg}/${stats.maxDmg}` : stats.defense}
+            handleClickAddSkill={handleClickAddSkill}
+          />
+          <Stat
+            firstStatName={"Dexterity"}
+            FirstStatValue={stats.dexterity}
+            secondStatName={aclass === "archer" ? "Dmg" : "Evasion"}
+            secondStatValue={aclass === "archer" ? `${stats.minDmg}/${stats.maxDmg}` : stats.evasion}
+            handleClickAddSkill={handleClickAddSkill}
+          />
+          <Stat
+            firstStatName={"Intelligence"}
+            FirstStatValue={stats.intelligence}
+            secondStatName={aclass === "mage" ? "Dmg" : aclass === "archer" ? "Evasion" : "Defense"}
+            secondStatValue={
+              aclass === "mage"
+                ? `${stats.minDmg}/${stats.maxDmg}`
+                : aclass === "archer"
+                ? stats.evasion
+                : stats.defense
+            }
+            handleClickAddSkill={handleClickAddSkill}
+          />
+          <Stat
+            firstStatName={"Vitality"}
+            FirstStatValue={stats.vitality}
+            secondStatName={"Life"}
+            secondStatValue={`${stats.hp}/${stats.maxHp}`}
+            handleClickAddSkill={handleClickAddSkill}
+          />
+          <Stat
+            firstStatName={"Luck"}
+            FirstStatValue={stats.luck}
+            secondStatName={"Crit Dmg"}
+            secondStatValue={Math.round(stats.criticalChance * 10) / 10 + "%"}
+            handleClickAddSkill={handleClickAddSkill}
+          />
+        </form>
 
-      <div className="userstats--info">
-        <label>Npc killed: {npcKills}</label>
-      </div>
+        <div className="userstats--info">
+          <label>Npc killed: {npcKills}</label>
+        </div>
+      </section>
+
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -121,7 +128,7 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
         draggable
         pauseOnHover
       />
-    </section>
+    </>
   );
 };
 
