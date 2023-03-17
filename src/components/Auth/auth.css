@@ -124,8 +124,7 @@
   color: var(--button--textColor);
 }
 
-.login--form input:-webkit-autofill,
-.login--form input:-webkit-autofill:focus {
+.login--form input:-webkit-autofill {
   font-size: 25px !important;
   -webkit-box-shadow: 0 0 0 30px rgb(23, 23, 23) inset !important;
   -webkit-text-fill-color: var(--button--textColor) !important;

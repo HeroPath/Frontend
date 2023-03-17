@@ -1,4 +1,5 @@
 import { capitalizeFirstLetter } from "../../functions/utilities";
+import "./historyConsole.css";
 
 const HistoryConsole = ({ username, level, stage, winnerBattle, finishBattle, npcName }) => {
   let i = 1;
