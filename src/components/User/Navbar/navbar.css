@@ -2,13 +2,11 @@
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   background-image: url("../../../img/bg-navbar.png");
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   color: white;
   font-size: 15px;
-  height: 5%;
   padding: 5px;
-  width: 100%;
 }
 
 .profileNavbar--labels {
