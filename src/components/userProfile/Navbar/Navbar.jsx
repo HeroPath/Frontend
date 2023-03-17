@@ -4,6 +4,7 @@ import { headers } from "../../../functions/utilities";
 
 const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
   const [pvpAndPvePts, setPvpAndPvePts] = useState({});
+  const [activeEvent, setActiveEvent] = useState({});
 
   useEffect(() => {
     async function getPveAndPvpMaxPts() {
@@ -13,7 +14,15 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
       }
     }
 
+    async function getActiveEvent() {
+      const response = await get("/api/v1/stats/active-event", headers);
+      if (response.status === 200) {
+        setActiveEvent(response.data);
+      }
+    }
+
     getPveAndPvpMaxPts();
+    getActiveEvent();
   }, []);
 
   return (
@@ -43,7 +52,12 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
         </div>
       )}
       <div className="navBarDivs">
-        <label>News (Coming Soon)</label>
+        {activeEvent &&
+          (activeEvent.eventName === "NONE" ? (
+            <label>No active events</label>
+          ) : (
+            <label>Event: {activeEvent.eventName}</label>
+          ))}
       </div>
     </div>
   );
