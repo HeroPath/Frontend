@@ -5,8 +5,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
 
-import Register from "./components/Authentication/Register";
-import Login from "./components/Authentication/Login";
+import Register from "./components/Auth/Register";
+import Login from "./components/Auth/Login";
 import Profile from "./components/User/Profile";
 import SideBar from "./components/SideBar/SideBar";
 import Zone from "./components/PvE/Zone";
