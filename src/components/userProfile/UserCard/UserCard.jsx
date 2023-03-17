@@ -5,7 +5,8 @@ import { capitalizeFirstLetter } from "../../../functions/utilities";
 const UserCard = ({ username, aclass, hp, maxHp, experience, experienceToNextLevel, level, userNewData, userLife }) => {
   if (userLife !== undefined) hp = userLife;
 
-  if (userNewData !== false) {
+  if (userNewData !== false && userNewData !== undefined) {
+    console.log(userNewData);
     hp = userNewData.hp;
     maxHp = userNewData.maxHp;
   }

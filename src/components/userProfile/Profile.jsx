@@ -36,7 +36,7 @@ const Profile = () => {
       />
       <div id="profileCard">
         <section className="userCard">
-          {profile.inventory && profile.equipment && (
+          {profile.inventory && (
             <UserInventory
               inventory={profile.inventory}
               equipment={profile.equipment}
@@ -58,34 +58,24 @@ const Profile = () => {
             />
           )}
 
-          {profile.strength &&
-            profile.dexterity &&
-            profile.vitality &&
-            profile.intelligence &&
-            profile.luck &&
-            profile.freeSkillPoints !== undefined &&
-            profile.minDmg &&
-            profile.maxDmg &&
-            profile.defense &&
-            profile.evasion &&
-            profile.criticalChance && (
-              <UserStats
-                freeSkillPoints={profile.freeSkillPoints}
-                strength={profile.strength}
-                dexterity={profile.dexterity}
-                vitality={profile.vitality}
-                intelligence={profile.intelligence}
-                luck={profile.luck}
-                minDmg={profile.minDmg}
-                maxDmg={profile.maxDmg}
-                npcKills={profile.npcKills}
-                defense={profile.defense}
-                evasion={profile.evasion}
-                criticalChance={profile.criticalChance}
-                updateStats={updateStats}
-                userNewData={userNewData}
-              />
-            )}
+          {profile.strength && (
+            <UserStats
+              freeSkillPoints={profile.freeSkillPoints}
+              strength={profile.strength}
+              dexterity={profile.dexterity}
+              vitality={profile.vitality}
+              intelligence={profile.intelligence}
+              luck={profile.luck}
+              minDmg={profile.minDmg}
+              maxDmg={profile.maxDmg}
+              npcKills={profile.npcKills}
+              defense={profile.defense}
+              evasion={profile.evasion}
+              criticalChance={profile.criticalChance}
+              updateStats={updateStats}
+              userNewData={userNewData}
+            />
+          )}
         </section>
       </div>
     </div>
