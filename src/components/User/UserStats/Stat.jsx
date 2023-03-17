@@ -1,4 +1,4 @@
-const Stat = ({ firstStatName, FirstStatValue, secondStatName, secondStatValue, handleClickAddSkill }) => {
+const Stat = ({ firstStatName, FirstStatValue, secondStatName, secondStatValue, handleClick }) => {
   return (
     <div className="userstats--stats">
       <div className="userstats--labels">
@@ -16,7 +16,7 @@ const Stat = ({ firstStatName, FirstStatValue, secondStatName, secondStatValue, 
         <a
           className="links"
           onClick={() => {
-            handleClickAddSkill(firstStatName);
+            handleClick(firstStatName);
           }}
         >
           +

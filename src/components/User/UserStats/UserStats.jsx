@@ -74,14 +74,14 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
             FirstStatValue={stats.strength}
             secondStatName={aclass === "warrior" ? "Dmg" : "Defense"}
             secondStatValue={aclass === "warrior" ? `${stats.minDmg}/${stats.maxDmg}` : stats.defense}
-            handleClickAddSkill={handleClickAddSkill}
+            handleClick={handleClickAddSkill}
           />
           <Stat
             firstStatName={"Dexterity"}
             FirstStatValue={stats.dexterity}
             secondStatName={aclass === "archer" ? "Dmg" : "Evasion"}
             secondStatValue={aclass === "archer" ? `${stats.minDmg}/${stats.maxDmg}` : stats.evasion}
-            handleClickAddSkill={handleClickAddSkill}
+            handleClick={handleClickAddSkill}
           />
           <Stat
             firstStatName={"Intelligence"}
@@ -94,21 +94,21 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
                 ? stats.evasion
                 : stats.defense
             }
-            handleClickAddSkill={handleClickAddSkill}
+            handleClick={handleClickAddSkill}
           />
           <Stat
             firstStatName={"Vitality"}
             FirstStatValue={stats.vitality}
             secondStatName={"Life"}
             secondStatValue={`${stats.hp}/${stats.maxHp}`}
-            handleClickAddSkill={handleClickAddSkill}
+            handleClick={handleClickAddSkill}
           />
           <Stat
             firstStatName={"Luck"}
             FirstStatValue={stats.luck}
             secondStatName={"Crit Dmg"}
             secondStatValue={Math.round(stats.criticalChance * 10) / 10 + "%"}
-            handleClickAddSkill={handleClickAddSkill}
+            handleClick={handleClickAddSkill}
           />
         </form>
 

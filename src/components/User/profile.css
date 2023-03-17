@@ -13,29 +13,6 @@
   height: 100vh;
   text-align: center;
 }
-.profileNavbar {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  background-color: rgb(53, 53, 53);
-  border-top: 2px solid;
-  border-right: 2px solid;
-  border-bottom: 2px solid;
-  color: rgb(55, 255, 222);
-  width: 100%;
-}
-
-.profileNavbar--labels {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-}
-
-.navBarDivs {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 90%;
-}
 
 /* ---------------- PROFILECARD ----------------------*/
 .profileCard {

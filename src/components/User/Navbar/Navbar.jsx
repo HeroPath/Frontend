@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { get } from "../../../functions/requestsApi";
 import { headers } from "../../../functions/utilities";
+import "./navbar.css";
 
 const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
   const [pvpAndPvePts, setPvpAndPvePts] = useState({});
@@ -29,16 +30,16 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
     <div className="profileNavbar">
       <div className="profileNavbar--labels">
         <div>
-          <img className="me-2" src={require(`../../../img/utilities/gold.webp`)} alt="" />
+          <img className="me-2" src={require(`../../../img/utilities/gold.webp`)} />
           {gold && <label>{gold.toLocaleString()}</label>}
         </div>
         <div>
-          <img className="me-2" src={require(`../../../img/utilities/diamond.webp`)} alt="" />
+          <img className="me-2" src={require(`../../../img/utilities/diamond.webp`)} />
           {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
       </div>
       {pvpAndPvePts.maxPvePts && pvePts >= 0 && (
-        <div>
+        <div className="navBarDivs">
           <label>
             PvE Pts: {pvePts}/{pvpAndPvePts.maxPvePts}
           </label>
