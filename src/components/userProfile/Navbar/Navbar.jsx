@@ -38,14 +38,14 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
           {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
       </div>
-      {pvpAndPvePts.maxPvePts && (
+      {pvpAndPvePts.maxPvePts && pvePts >= 0 && (
         <div>
           <label>
             PvE Pts: {pvePts}/{pvpAndPvePts.maxPvePts}
           </label>
         </div>
       )}
-      {pvpAndPvePts.maxPvpPts && (
+      {pvpAndPvePts.maxPvpPts && pvpPts >= 0 && (
         <div className="navBarDivs">
           <label>
             PvP Pts: {pvpPts}/{pvpAndPvePts.maxPvpPts}
