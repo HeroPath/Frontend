@@ -60,46 +60,44 @@ const UserStats = ({
   }
 
   return (
-    <div>
-      <section className="userstats">
-        <h2>Stats</h2>
-        <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
+    <section className="userstats">
+      <h2>Stats</h2>
+      <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
 
-        <form className="userstats--form">
-          <div className="userstats--stats">
-            <label>Strength: {stats.strength}</label>
-            <label>Dexterity: {stats.dexterity}</label>
-            <label>Vitality: {stats.vitality}</label>
-            <label>Intelligence: {stats.intelligence}</label>
-            <label>Luck: {stats.luck}</label>
-          </div>
-
-          <div className="userstats--add">
-            {dataStats.map((stat) => (
-              <div key={stat.skill} className="userstats--add--form">
-                <a
-                  className="links"
-                  onClick={() => {
-                    handleClickAddSkill(stat.skill);
-                  }}
-                >
-                  +
-                </a>
-              </div>
-            ))}
-          </div>
-        </form>
-
-        <div className="userstats--info">
-          <label>Defense: {stats.defense}</label>
-          <label>Evasion: {stats.evasion}</label>
-          <label>Critical Chance: {Math.round(stats.criticalChance * 10) / 10}%</label>
-          <label>
-            Min/Max DMG: {stats.minDmg}/{stats.maxDmg}
-          </label>
-          <label>Npc killed: {npcKills}</label>
+      <form className="userstats--form">
+        <div className="userstats--stats">
+          <label>Strength: {stats.strength}</label>
+          <label>Dexterity: {stats.dexterity}</label>
+          <label>Vitality: {stats.vitality}</label>
+          <label>Intelligence: {stats.intelligence}</label>
+          <label>Luck: {stats.luck}</label>
         </div>
-      </section>
+
+        <div className="userstats--add">
+          {dataStats.map((stat) => (
+            <div key={stat.skill} className="userstats--add--form">
+              <a
+                className="links"
+                onClick={() => {
+                  handleClickAddSkill(stat.skill);
+                }}
+              >
+                +
+              </a>
+            </div>
+          ))}
+        </div>
+      </form>
+
+      <div className="userstats--info">
+        <label>Defense: {stats.defense}</label>
+        <label>Evasion: {stats.evasion}</label>
+        <label>Critical Chance: {Math.round(stats.criticalChance * 10) / 10}%</label>
+        <label>
+          Min/Max DMG: {stats.minDmg}/{stats.maxDmg}
+        </label>
+        <label>Npc killed: {npcKills}</label>
+      </div>
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -111,7 +109,7 @@ const UserStats = ({
         draggable
         pauseOnHover
       />
-    </div>
+    </section>
   );
 };
 

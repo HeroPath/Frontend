@@ -11,7 +11,6 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
       const response = await get("/api/v1/stats/pve-pvp/pts", headers);
       if (response.status === 200) {
         setPvpAndPvePts(response.data);
-        console.log(response.data)
       }
     }
 

@@ -172,6 +172,4 @@ const ItemStyle = {
   display: "flex",
   maxWidth: "36px",
   maxHeight: "36px",
-  marginLeft: "3px",
-  marginTop: "2px",
 };

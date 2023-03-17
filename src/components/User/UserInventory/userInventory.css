@@ -5,35 +5,35 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  padding-top: 3%;
 }
 
 .inventory--equiped {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
-  background-image: url("../../../img/items/inventoryEquiped.webp");
-  width: 124px;
-  height: 124px;
-  margin: 6%;
+  background-image: url("../../../img/items/inventoryEquiped.png");
+  justify-items: center;
+  align-items: center;
+  padding: 30px 27px 31px 22px;
+  width: 183px;
+  height: 193px;
 }
 .inventory--box {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  background-image: url("../../../img/items/inventoryBox.webp");
-  width: 247px;
-  height: 165px;
-  padding: 1%;
-  margin: 3%;
+  background-image: url("../../../img/items/inventory.png");
+  justify-items: center;
+  align-items: center;
+  padding: 30px 19px;
+  width: 283px;
+  height: 226px;
 }
 
 .item {
   width: 32px;
   height: 32px;
-  filter: brightness(1.1);
-  margin-top: 2px;
-  margin-left: 1px;
+  filter: brightness(1.2);
 }
 
 .item:hover {
@@ -43,11 +43,14 @@
 
 .itemNoClass {
   margin-top: 1px;
+  padding: 1px;
   background-color: rgba(141, 17, 1, 0.5);
 }
 
 .itemNoLevel {
   margin-top: 1px;
+  padding: 1px;
+
   background-color: rgba(137, 128, 1, 0.5);
 }
 

@@ -3,18 +3,19 @@
 .userstats {
   display: flex;
   flex-direction: column;
-  padding-top: 3%;
-  font-size: 15px;
+  width: 100%;
+  border: 1px solid black;
 }
 
 .userstats--form {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .userstats--stats {
   display: flex;
   flex-direction: column;
+  
 }
 .userstats--stats label {
   display: flex;
