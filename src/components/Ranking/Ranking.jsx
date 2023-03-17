@@ -59,13 +59,7 @@ const Ranking = () => {
               <th>Level</th>
               <th>Title</th>
               <th>Title Pts</th>
-              <th>Strength</th>
-              <th>Dexterity</th>
-              <th>Vitality</th>
-              <th>Intelligence</th>
-              <th>Luck</th>
               <th>PvP Win</th>
-              <th>PvP Loss</th>
             </tr>
           </thead>
           {ranking?.map((users) => (
@@ -88,13 +82,7 @@ const Ranking = () => {
                 <td>{users.level}</td>
                 <td>{users.titleName}</td>
                 <td>{users.titlePoints}</td>
-                <td>{users.strength}</td>
-                <td>{users.dexterity}</td>
-                <td>{users.vitality}</td>
-                <td>{users.intelligence}</td>
-                <td>{users.luck}</td>
                 <td>{users.pvpWins}</td>
-                <td>{users.pvpLosses}</td>
               </tr>
             </tbody>
           ))}
