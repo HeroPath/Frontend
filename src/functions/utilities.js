@@ -24,13 +24,7 @@ export const notify = (alert) => {
   });
 };
 
-export const notifySuccess = (
-  redirectTo,
-  header,
-  body1,
-  body2,
-  ...otherBodies
-) => {
+export const notifySuccess = (redirectTo, header, body1, body2, ...otherBodies) => {
   toast.success(
     <>
       <strong>{header}</strong>
@@ -60,21 +54,22 @@ export const notifySuccess = (
 };
 
 export function dataTooltip(item) {
-  return `Name: ${item.name}
-  Quality: ${item.quality}
-  Level: ${item.itemLevel}
-  Strength: ${item.strength}
-  Dexterity: ${item.dexterity}
-  Vitality: ${item.vitality}
-  Intelligence: ${item.intelligence}
-  Luck: ${item.luck}
-  Level Min: ${item.lvlMin}
-  Class: ${item.classRequired}
+  let tooltip = `Name: ${capitalizeFirstLetter(item.name)}\n`;
+  if (item.quality !== "") tooltip += `Quality: ${capitalizeFirstLetter(item.quality)}\n`;
+  if (item.strength > 0) tooltip += `Strength: ${item.strength}\n`;
+  if (item.dexterity > 0) tooltip += `Dexterity: ${item.dexterity}\n`;
+  if (item.vitality > 0) tooltip += `Vitality: ${item.vitality}\n`;
+  if (item.intelligence > 0) tooltip += `Intelligence: ${item.intelligence}\n`;
+  if (item.luck > 0) tooltip += `Luck: ${item.luck}\n`;
+  if (item.lvlMin > 0) tooltip += `Level Min: ${item.lvlMin}\n`;
+  if (item.classRequired)
+    tooltip += `Class: ${item.classRequired === "none" ? "All" : capitalizeFirstLetter(item.classRequired)}\n`;
 
-  Price: ${(item.price).toLocaleString()}`;
+  tooltip += `\nPrice: ${item.price.toLocaleString()}`;
+  return tooltip;
 }
 
 export function sounds(sound) {
-  const playSound = new Audio(require(`../components/sounds/${sound}.wav`));
+  const playSound = new Audio(require(`../sounds/${sound}.wav`));
   return playSound.play();
 }

@@ -1,12 +1,13 @@
+import { useState, useEffect } from "react";
 import { hot } from "react-hot-loader/root";
-import React, { useState, useEffect } from "react";
-import "../styles/styles.css";
 
 import { post } from "../../functions/requestsApi";
 import { headers } from "../../functions/utilities";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { dataStats } from "../../functions/constants";
 
 const UserStats = ({
   freeSkillPoints,
@@ -24,14 +25,6 @@ const UserStats = ({
   userNewData,
   updateStats,
 }) => {
-  const data = [
-    { skill: "strength" },
-    { skill: "dexterity" },
-    { skill: "vitality" },
-    { skill: "intelligence" },
-    { skill: "luck" },
-  ];
-
   const [stats, setStats] = useState({
     freeSkillPoints,
     strength,
@@ -79,12 +72,12 @@ const UserStats = ({
           </div>
 
           <div className="userstats--add">
-            {data.map((zone, index) => (
-              <div key={index} className="userstats--add--form">
+            {dataStats.map((stat) => (
+              <div key={stat.skill} className="userstats--add--form">
                 <a
                   className="links"
                   onClick={() => {
-                    handleClickAddSkill(zone.skill);
+                    handleClickAddSkill(stat.skill);
                   }}
                 >
                   +

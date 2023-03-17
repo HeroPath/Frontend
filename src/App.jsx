@@ -1,5 +1,6 @@
 import React from "react";
-import "./App.css";
+import "./styles/styles.css";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
 import Cookies from "universal-cookie";
@@ -7,17 +8,17 @@ import Cookies from "universal-cookie";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Profile from "./components/userProfile/Profile";
-import SideBar from "./components/sideBar/SideBar";
-import Zone from "./components/sideBar/PvE/Zone";
-import PlayerVsNPC from "./components/sideBar/PvE/PlayerVsNPC";
-import PvEBattle from "./components/sideBar/PvE/PvEBattle";
-import PlayerVsPlayer from "./components/sideBar/PvP/PlayerVsPlayer";
-import Shop from "./components/sideBar/Shop/Shop";
-import Ranking from "./components/sideBar/Ranking/Ranking";
-import Quests from "./components/sideBar/Quests/Quests";
-import Guild from "./components/sideBar/Guild/Guild";
-import PvPBattle from "./components/sideBar/PvP/PvPBattle";
-import Mail from "./components/sideBar/Mail/Mail";
+import SideBar from "./components/SideBar/SideBar";
+import Zone from "./components/PvE/Zone";
+import PlayerVsNPC from "./components/PvE/PlayerVsNPC";
+import PvEBattle from "./components/PvE/PvEBattle";
+import PlayerVsPlayer from "./components/PvP/PlayerVsPlayer";
+import Shop from "./components/Shop/Shop";
+import Ranking from "./components/Ranking/Ranking";
+import Quests from "./components/Quests/Quests";
+import Guild from "./components/Guild/Guild";
+import PvPBattle from "./components/PvP/PvPBattle";
+import Mail from "./components/Mail/Mail";
 
 function App() {
   const [cookiesToken, setCookiesToken] = React.useState(null);

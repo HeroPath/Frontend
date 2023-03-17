@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "../styles/styles.css";
+import { useState, useEffect } from "react";
+import "./profile.css";
 import ProfileCard from "./ProfileCard";
 import Navbar from "./Navbar";
 
@@ -12,7 +12,7 @@ const Profile = () => {
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
-      console.log(response.data.inventory)
+      console.log(response.data.inventory);
       setProfile(response.data);
     }
   }
@@ -23,8 +23,14 @@ const Profile = () => {
 
   return (
     <div className="profile">
-      <Navbar gold={profile.gold} diamond={profile.diamond} role={profile.role} />
-      <ProfileCard profile={profile} />
+      <Navbar
+        gold={profile.gold}
+        diamond={profile.diamond}
+        role={profile.role}
+        pvePts={profile.pvePts}
+        pvpPts={profile.pvpPts}
+      />
+      <ProfileCard p={profile} />
     </div>
   );
 };

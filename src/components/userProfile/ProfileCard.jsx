@@ -1,92 +1,70 @@
-import React, { useState } from "react";
-import "../styles/styles.css";
+import { useState } from "react";
 import UserCard from "./UserCard";
 import UserStats from "./UserStats";
 import UserInventory from "./UserInventory";
 
-function ProfileCard({ profile }) {
-  const {
-    inventory,
-    equipment,
-    aclass,
-    level,
-    username,
-    hp,
-    maxHp,
-    experience,
-    experienceToNextLevel,
-    freeSkillPoints,
-    strength,
-    dexterity,
-    vitality,
-    intelligence,
-    luck,
-    minDmg,
-    maxDmg,
-    npcKills,
-    defense,
-    evasion,
-    criticalChance,
-  } = profile;
+function ProfileCard({ p }) {
+  const [userNewData, setUserNewData] = useState({});
 
-  const [userNewData, setUserNewData] = useState(undefined);
+  const updateStats = (newStats) => setUserNewData(newStats);
 
-  const updateStats = (newStats) => {
-    setUserNewData(newStats);
-  };
+  const hasInventoryAndEquipment = p.inventory && p.equipment;
+  const hasAclassAndMaxDmg = p.aclass && p.maxDmg;
+  const hasAllStats =
+    p.strength &&
+    p.dexterity &&
+    p.vitality &&
+    p.intelligence &&
+    p.luck &&
+    p.freeSkillPoints !== undefined &&
+    p.minDmg &&
+    p.maxDmg &&
+    p.defense &&
+    p.evasion &&
+    p.criticalChance;
 
   return (
     <div id="profileCard">
       <section className="userCard">
-        {inventory && equipment && (
+        {hasInventoryAndEquipment && (
           <UserInventory
-            inventory={inventory}
-            equipment={equipment}
-            aclass={aclass}
-            level={level}
+            inventory={p.inventory}
+            equipment={p.equipment}
+            aclass={p.aclass}
+            level={p.level}
             updateStats={updateStats}
           />
         )}
-        {aclass && maxDmg && (
+        {hasAclassAndMaxDmg && (
           <UserCard
-            username={username}
-            aclass={aclass}
-            hp={hp}
-            maxHp={maxHp}
-            experience={experience}
-            experienceToNextLevel={experienceToNextLevel}
-            level={level}
+            username={p.username}
+            aclass={p.aclass}
+            hp={p.hp}
+            maxHp={p.maxHp}
+            experience={p.experience}
+            experienceToNextLevel={p.experienceToNextLevel}
+            level={p.level}
             userNewData={userNewData}
           />
         )}
-        {strength &&
-          dexterity &&
-          vitality &&
-          intelligence &&
-          luck &&
-          freeSkillPoints !== undefined &&
-          minDmg &&
-          maxDmg &&
-          defense &&
-          evasion &&
-          criticalChance && (
-            <UserStats
-              freeSkillPoints={freeSkillPoints}
-              strength={strength}
-              dexterity={dexterity}
-              vitality={vitality}
-              intelligence={intelligence}
-              luck={luck}
-              minDmg={minDmg}
-              maxDmg={maxDmg}
-              npcKills={npcKills}
-              defense={defense}
-              evasion={evasion}
-              criticalChance={criticalChance}
-              updateStats={updateStats}
-              userNewData={userNewData}
-            />
-          )}
+        {hasAllStats && (
+          <UserStats
+            freeSkillPoints={p.freeSkillPoints}
+            strength={p.strength}
+            dexterity={p.dexterity}
+            vitality={p.vitality}
+            intelligence={p.intelligence}
+            luck={p.luck}
+            minDmg={p.minDmg}
+            maxDmg={p.maxDmg}
+            npcKills={p.npcKills}
+            defense={p.defense}
+            evasion={p.evasion}
+            criticalChance={p.criticalChance}
+            updateStats={updateStats}
+            userNewData={userNewData}
+          />
+        )}
       </section>
     </div>
   );

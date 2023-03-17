@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { get } from "../../functions/requestsApi";
 import { headers, dataTooltip, sounds } from "../../functions/utilities";
+import { objectEmpty, orderEquipment } from "../../functions/constants";
 
 const UserInventory = ({
   inventory,
@@ -23,11 +24,8 @@ const UserInventory = ({
   const [showTooltip, setShowTooltip] = useState(true);
 
   function orderedObject(equipUser) {
-    const objectEmpty = { type: "empty" };
-    const order = ["ship", "helmet", "wings", "weapon", "armor", "shield", "gloves", "pants", "boots"];
-
     let sortedItems = [];
-    for (const itemType of order) {
+    for (const itemType of orderEquipment) {
       let item = equipUser.items.find((item) => item.type === itemType);
       if (!item) item = objectEmpty;
       sortedItems.push(item);
@@ -102,7 +100,7 @@ const UserInventory = ({
                   }}
                   {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
                 >
-                  <img src={require(`../img/items/${item.name}.png`)} className="item" alt="" />
+                  <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
                 </div>
               );
             }
@@ -145,14 +143,14 @@ const UserInventory = ({
               }}
               {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
             >
-              <img src={require(`../img/items/${item.name}.png`)} className="item" alt="" />
+              <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
             </div>
           ))}
       </div>
 
       <ToastContainer
         position="top-right"
-        autoClose={2000}
+        autoClose={2000}antperuka
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

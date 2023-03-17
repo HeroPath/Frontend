@@ -1,0 +1,133 @@
+/* ---------------- REGISTER ----------------------*/
+.register--background {
+  display: flex;
+  background-image: url("../../img/backgroundLogin.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 105% 123%;
+  height: 100vh;
+  width: 100vw;
+}
+
+.register {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 7%;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.9;
+  align-items: center;
+  text-align: center;
+}
+
+.register--cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95%;
+  width: 100%;
+  background-image: url("../../img/bg-form-register.webp");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.register--cards:first-child {
+  margin-left: 10%;
+}
+
+.register--cards__form {
+  width: 80%;
+}
+
+.register--cards__form button {
+  background-color: unset;
+  height: 50px;
+}
+
+.register--cards__form select {
+  font-size: 20px;
+  appearance: none;
+  background-color: rgba(253, 168, 46, 0.25);
+}
+
+.classSelected {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  margin: 4% 0;
+}
+
+.classSelected--stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.classSelected--stats__head {
+  grid-column-start: span 2;
+  margin-bottom: 20px;
+}
+
+/* ---------------- LOGIN ----------------------*/
+
+.login {
+  display: flex;
+  background-image: url("../../img/backgroundLogin.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 125%;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login h2 {
+  letter-spacing: 5px;
+  font-weight: bold;
+}
+
+.login--banner {
+  background-image: url("../../img/bg-form-login.webp");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: 110% 100%;
+  color: #fff;
+  width: 50%;
+  margin-left: 5%;
+  margin-top: -40px;
+  opacity: 0.9;
+}
+
+.login--section {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 22%;
+}
+
+.login--form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login--form button {
+  background-color: unset;
+}
+
+.login--form input {
+  letter-spacing: 2px;
+  width: 50%;
+}
+
+.login--footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  width: auto;
+}
+
+.login--stats {
+  margin-top: 2%;
+  font-size: 18px;
+}
