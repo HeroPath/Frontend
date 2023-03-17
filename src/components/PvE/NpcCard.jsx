@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
+import "./pve.css";
+
 import { headers, capitalizeFirstLetter } from "../../functions/utilities";
 import { get } from "../../functions/requestsApi";
 

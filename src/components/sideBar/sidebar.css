@@ -5,16 +5,15 @@
   flex-direction: column;
   height: 100vh;
   width: 15%;
-  background-color: rgb(53, 53, 53);
-
-  border: 2px solid;
-  color: rgb(55, 255, 222);
+  background-image: url("../../img/bg-sidebar.png");
+  background-position: center;
+  background-size: 100% 100%;
   text-align: center;
   align-items: center;
 }
 
 .sidebar a {
-  width: 90%;
+  width: 80%;
 }
 
 .sidebar--logo {
@@ -27,5 +26,5 @@
 }
 
 .button--sidebar:last-child {
-  margin-top: 35%;
+  margin-top: 20%;
 }

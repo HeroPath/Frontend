@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./pve.css";
 
 import { headers } from "../../functions/utilities";
 import { get, post } from "../../functions/requestsApi";

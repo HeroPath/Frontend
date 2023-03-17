@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import "./mail.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

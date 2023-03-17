@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+import "./userInventory.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { get } from "../../functions/requestsApi";
-import { headers, dataTooltip, sounds } from "../../functions/utilities";
-import { objectEmpty, orderEquipment } from "../../functions/constants";
+import { get } from "../../../functions/requestsApi";
+import { headers, dataTooltip, sounds } from "../../../functions/utilities";
+import { objectEmpty, orderEquipment } from "../../../functions/constants";
 
 const UserInventory = ({
   inventory,
@@ -33,6 +34,7 @@ const UserInventory = ({
     equipUser.items = sortedItems;
     return equipUser;
   }
+
   orderedObject(equipmentUser);
 
   useEffect(() => {
@@ -100,7 +102,7 @@ const UserInventory = ({
                   }}
                   {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
                 >
-                  <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
+                  <img src={require(`../../../img/items/${item.name}.png`)} className="item" alt="" />
                 </div>
               );
             }
@@ -143,14 +145,15 @@ const UserInventory = ({
               }}
               {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
             >
-              <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
+              <img src={require(`../../../img/items/${item.name}.png`)} className="item" alt="" />
             </div>
           ))}
       </div>
 
       <ToastContainer
         position="top-right"
-        autoClose={2000}antperuka
+        autoClose={2000}
+        antperuka
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -169,6 +172,4 @@ const ItemStyle = {
   display: "flex",
   maxWidth: "36px",
   maxHeight: "36px",
-  marginLeft: "3px",
-  marginTop: "2px",
 };

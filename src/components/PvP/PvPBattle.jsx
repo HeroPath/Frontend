@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { headers } from "../../functions/utilities";
 import { get } from "../../functions/requestsApi";
-import UserCard from "../userProfile/UserCard";
+import UserCard from "../User/UserCard/UserCard";
 import HistoryConsole from "../Battle/HistoryConsole";
+import './pvp.css'
 // import { sounds } from "../../../functions/utilities";
 
 const PvPBattle = () => {

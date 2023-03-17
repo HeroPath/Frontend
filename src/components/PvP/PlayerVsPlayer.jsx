@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import "./pvp.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,11 +19,7 @@ const PlayerVsPlayer = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await post(
-      "/api/v1/users/attack-user",
-      { name: userAttack },
-      headers
-    );
+    const response = await post("/api/v1/users/attack-user", { name: userAttack }, headers);
     if (response.status === 200) console.log(response.data); //window.location.reload();
   }
 
@@ -32,16 +29,9 @@ const PlayerVsPlayer = () => {
         <Card className="text-center">
           <Card.Header>Pvp User Vs User</Card.Header>
           <Card.Body>
-            <Card.Title>
-              Ingresa el nombre del usuario que deseas atacar
-            </Card.Title>
+            <Card.Title>Ingresa el nombre del usuario que deseas atacar</Card.Title>
             <Card.Text>
-              <input
-                type="text"
-                placeholder="Username"
-                style={{ textAlign: "center" }}
-                onChange={handleChange}
-              />
+              <input type="text" placeholder="Username" style={{ textAlign: "center" }} onChange={handleChange} />
             </Card.Text>
           </Card.Body>
           <Card.Footer>

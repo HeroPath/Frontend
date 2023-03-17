@@ -43,3 +43,24 @@
   width: 100vw;
   height: 100vh;
 }
+
+/* ---------------- USERCARD ----------------------*/
+.userCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  padding: 3% 1%;
+  margin: 3% 6%;
+
+  background-image: url("../../img/bg-user-stats.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  align-self: center;
+  align-items: center;
+  color: #d3d3d3;
+  opacity: 0.95;
+}

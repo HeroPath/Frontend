@@ -1,12 +1,3 @@
-// ------------ userStats ------------ //
-export const dataStats = [
-  { skill: "strength" },
-  { skill: "dexterity" },
-  { skill: "vitality" },
-  { skill: "intelligence" },
-  { skill: "luck" },
-];
-
 // ------------ userInventory ------------ //
 
 export const objectEmpty = { type: "empty" };

@@ -1,0 +1,148 @@
+:root {
+  --button--textColor: #f5f5dc;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+@import url("https://fonts.cdnfonts.com/css/kingthings-calligraphica");
+
+/* ---------------- UTILIDAD ----------------------*/
+
+.button--links,
+.button--links:hover {
+  background-image: url("./img/utilities/btn-menu.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  color: var(--button--textColor);
+  padding: 2%;
+  letter-spacing: 2px;
+  border: none;
+  text-decoration: none;
+  color: #fff;
+  border: none;
+}
+
+.button--links:hover {
+  border: none;
+  filter: brightness(1.4);
+}
+
+/* ---------------- BAR HEALTH AND EXP ----------------------*/
+
+.bar--background {
+  position: relative;
+  height: 25px;
+  text-align: center;
+  background: -webkit-linear-gradient(to top, grey, clear);
+  background: linear-gradient(to top, #888, #aaa);
+  color: var(--button--textColor);
+  font-size: 15px;
+}
+
+.bar--foreground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 25px;
+  margin: 0px 0px -25px 0px;
+  user-select: none;
+  z-index: 2;
+}
+
+.bar--foreground--health {
+  position: relative;
+  height: 25px;
+  background: -webkit-linear-gradient(to top, #d20000, #d90101);
+  background: linear-gradient(to top, #ac0101, #d90101);
+  color: white;
+}
+
+.bar--foreground--exp {
+  position: relative;
+  height: 25px;
+  background: -webkit-linear-gradient(to top, #0c0, #0f0);
+  background: linear-gradient(to top, #090, #0f0);
+  color: white;
+}
+
+/* --------------------------- Tooltip --------------------------- */
+
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  font-weight: 400;
+}
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+[data-tooltip]:before {
+  white-space: pre-line;
+  position: absolute;
+  bottom: 120%;
+  left: 85%;
+  margin-bottom: 5px;
+  margin-left: -90px;
+  padding: 6px 8px;
+  width: 210px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.95);
+  text-align: start;
+  color: #fff;
+  content: attr(data-tooltip);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+/* --------------------------- Triangle tooltip --------------------------- */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 120%;
+  left: 85%;
+  margin-left: -20px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.92);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: "";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* --------------------------- Hover tooltip --------------------------- */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* ---------------- TOAST ----------------------*/
+.custom-success-toast {
+  font-size: 15px;
+}
+
+/* ---------------- DRAG ----------------------*/
+
+#draggable {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: lightblue;
+  cursor: grab;
+}

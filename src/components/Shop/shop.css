@@ -1,0 +1,54 @@
+.shop {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../img/bg-shop.webp");
+  background-size: 100% 100%;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  align-items: center;
+}
+
+.shop--items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 75%;
+  height: 100%;
+}
+
+.shop--inventory,
+.shop--npc {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../../img/bg-inventory-shop.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  align-self: center;
+  align-items: center;
+  padding: 10%;
+  color: #d3d3d3;
+}
+
+.shop--npc--button {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 307px;
+  height: 32px;
+}
+
+.shop--npc--button button {
+  background-image: url("../../img/items/buttons.jpg");
+  color: var(--button--textColor);
+}
+
+.shop--npc--card {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  background-image: url("../../img/items/shop.png");
+  width: 307px;
+  height: 387px;
+  padding: 35px 30px;
+}

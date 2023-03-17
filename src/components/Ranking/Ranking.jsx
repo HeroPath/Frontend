@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import Pagination from "../Pagination/Pagination";
+import "./ranking.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,10 +18,7 @@ const Ranking = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   async function getRankingUsers() {
-    const responseRanking = await get(
-      `/api/v1/users/ranking?page=${currentPage}`,
-      headers
-    );
+    const responseRanking = await get(`/api/v1/users/ranking?page=${currentPage}`, headers);
     if (responseRanking.status === 200) {
       setRanking(responseRanking.data.ranking);
       setTotalPages(responseRanking.data.totalPages);
@@ -59,13 +57,7 @@ const Ranking = () => {
               <th>Level</th>
               <th>Title</th>
               <th>Title Pts</th>
-              <th>Strength</th>
-              <th>Dexterity</th>
-              <th>Vitality</th>
-              <th>Intelligence</th>
-              <th>Luck</th>
               <th>PvP Win</th>
-              <th>PvP Loss</th>
             </tr>
           </thead>
           {ranking?.map((users) => (
@@ -88,24 +80,12 @@ const Ranking = () => {
                 <td>{users.level}</td>
                 <td>{users.titleName}</td>
                 <td>{users.titlePoints}</td>
-                <td>{users.strength}</td>
-                <td>{users.dexterity}</td>
-                <td>{users.vitality}</td>
-                <td>{users.intelligence}</td>
-                <td>{users.luck}</td>
                 <td>{users.pvpWins}</td>
-                <td>{users.pvpLosses}</td>
               </tr>
             </tbody>
           ))}
         </Table>
-        {totalPages && (
-          <Pagination
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
-          />
-        )}
+        {totalPages && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
       </div>
       {guilds.length >= 1 && (
         <div>
@@ -116,11 +96,9 @@ const Ranking = () => {
                 <th>#</th>
                 <th>Name</th>
                 <th>TAG</th>
-                <th>Description</th>
                 <th>Level</th>
                 <th>Title Points</th>
                 <th>Leader</th>
-                <th>Sub Leader</th>
                 <th>Members</th>
                 <th>Actions</th>
               </tr>
@@ -142,15 +120,10 @@ const Ranking = () => {
                   <td>{guildsCounter++}</td>
                   <td>{guild.name}</td>
                   <td>{guild.tag}</td>
-                  <td>{guild.description}</td>
                   <td>{guild.level}</td>
                   <td>{guild.titlePoints}</td>
                   <td>{guild.leader}</td>
-                  {guild.subLeader !== "" ? (
-                    <td>{guild.subLeader}</td>
-                  ) : (
-                    <td>---</td>
-                  )}
+
                   <td>
                     {guild.memberAmount} / {guild.maxMembers}
                   </td>

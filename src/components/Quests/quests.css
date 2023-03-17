@@ -1,0 +1,17 @@
+.quest {
+  width: 100vw;
+  height: 100vh;
+  padding-right: 50px;
+  padding-left: 50px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.quest--accepted {
+  padding-top: 10px;
+}
+
+.quest--nonAccepted {
+  padding-top: 20px;
+}
