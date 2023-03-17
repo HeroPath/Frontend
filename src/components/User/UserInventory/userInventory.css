@@ -11,7 +11,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr 1fr 1fr;
-  background-image: url("../../../img/items/inventoryEquiped.png");
+  background-image: url("../../../img/items/inventoryEquiped.webp");
   justify-items: center;
   align-items: center;
   padding: 30px 27px 31px 22px;
@@ -22,7 +22,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  background-image: url("../../../img/items/inventory.png");
+  background-image: url("../../../img/items/inventoryBox.webp");
   justify-items: center;
   align-items: center;
   padding: 30px 19px;
