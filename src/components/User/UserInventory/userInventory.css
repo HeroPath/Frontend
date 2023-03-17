@@ -17,6 +17,7 @@
   padding: 33px 27px;
   width: 183px;
   height: 193px;
+  margin-bottom: 10px;
 }
 .inventory--box {
   display: grid;
@@ -25,9 +26,9 @@
   background-image: url("../../../img/items/inventoryBox.webp");
   justify-items: center;
   align-items: center;
-  padding: 30px 19px;
-  width: 283px;
-  height: 226px;
+  padding: 30px 32px;
+  width: 307px;
+  height: 224px;
 }
 
 .item {

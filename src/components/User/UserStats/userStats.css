@@ -4,24 +4,27 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  border: 1px solid black;
+  height: 100%;
+  font-size: 12px;
 }
 
 .userstats--form {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  border: 1px solid #d3d3d3;
 }
 
 .userstats--stats {
   display: flex;
   flex-direction: column;
-  
 }
 .userstats--stats label {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 70%;
+  border: 1px solid #d3d3d3;
+
 }
 
 .userstats--add--form {
@@ -34,12 +37,13 @@
 .userstats--add--form a:hover {
   background-color: #000;
   text-decoration: none;
+  border: 1px solid #d3d3d3;
   border-radius: 5px;
   color: var(--button--textColor);
   margin: 5px;
   cursor: pointer;
-  width: 50%;
-  height: 50%;
+  width: 15%;
+  height: 15%;
 }
 
 .userstats--info {

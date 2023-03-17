@@ -48,15 +48,18 @@
 .userCard {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  background-color: #d3d3d3;
   font-weight: bold;
   text-align: center;
   align-items: center;
   justify-items: center;
-  padding: 2% 0%;
-  margin: 7% 5%;
+  padding: 3% 1%;
+  margin: 3% 6%;
 
-  border: 10px solid black;
-  background-image: linear-gradient(to right, #aaaaaa, #cccccc, #aaaaaa);
-  background-size: 100% 10px;
+  background-image: url("../../img/bg-inventory-shop.png");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  align-self: center;
+  align-items: center;
+  color: #d3d3d3;
 }
