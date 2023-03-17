@@ -18,7 +18,7 @@ const Login = () => {
   ["token", "username", "guildName"].forEach((cookie) => cookies.remove(cookie));
 
   async function getServerStats() {
-    const response = await get("/api/v1/stats");
+    const response = await get("/api/v1/stats/server");
 
     if (response.status === 200) {
       response.data.status = "Online";
