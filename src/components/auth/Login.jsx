@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./auth.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -84,7 +85,13 @@ const Login = () => {
             <div className="login--stats">
               <div>
                 <label>Server status: </label>
-                <img className="ms-2" src={require(`../../img/utilities/online.webp`)} height="16px" width="16px" alt="" />
+                <img
+                  className="ms-2"
+                  src={require(`../../img/utilities/online.webp`)}
+                  height="16px"
+                  width="16px"
+                  alt=""
+                />
               </div>
               <div>
                 <label>Registered Users: {serverStats.userRegistered}</label>
@@ -102,7 +109,13 @@ const Login = () => {
           ) : (
             <div className="login--stats">
               <label>Server status: </label>
-              <img className="ms-2" src={require(`../../img/utilities/offline.webp`)} height="16px" width="16px" alt="" />
+              <img
+                className="ms-2"
+                src={require(`../../img/utilities/offline.webp`)}
+                height="16px"
+                width="16px"
+                alt=""
+              />
             </div>
           )}
         </section>
