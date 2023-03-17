@@ -17,10 +17,7 @@ const Ranking = () => {
   const [totalPages, setTotalPages] = useState(0);
 
   async function getRankingUsers() {
-    const responseRanking = await get(
-      `/api/v1/users/ranking?page=${currentPage}`,
-      headers
-    );
+    const responseRanking = await get(`/api/v1/users/ranking?page=${currentPage}`, headers);
     if (responseRanking.status === 200) {
       setRanking(responseRanking.data.ranking);
       setTotalPages(responseRanking.data.totalPages);
@@ -87,13 +84,7 @@ const Ranking = () => {
             </tbody>
           ))}
         </Table>
-        {totalPages && (
-          <Pagination
-            totalPages={totalPages}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
-          />
-        )}
+        {totalPages && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
       </div>
       {guilds.length >= 1 && (
         <div>
@@ -104,11 +95,9 @@ const Ranking = () => {
                 <th>#</th>
                 <th>Name</th>
                 <th>TAG</th>
-                <th>Description</th>
                 <th>Level</th>
                 <th>Title Points</th>
                 <th>Leader</th>
-                <th>Sub Leader</th>
                 <th>Members</th>
                 <th>Actions</th>
               </tr>
@@ -130,15 +119,10 @@ const Ranking = () => {
                   <td>{guildsCounter++}</td>
                   <td>{guild.name}</td>
                   <td>{guild.tag}</td>
-                  <td>{guild.description}</td>
                   <td>{guild.level}</td>
                   <td>{guild.titlePoints}</td>
                   <td>{guild.leader}</td>
-                  {guild.subLeader !== "" ? (
-                    <td>{guild.subLeader}</td>
-                  ) : (
-                    <td>---</td>
-                  )}
+
                   <td>
                     {guild.memberAmount} / {guild.maxMembers}
                   </td>
