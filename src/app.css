@@ -14,12 +14,13 @@ body {
 
 .button--links,
 .button--links:hover {
-  background-image: url("./img/utilities/btn-menu.webp");
+  background-image: url("./img/utilities/btn-menu-black.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   color: var(--button--textColor);
   padding: 2%;
+  font-size: 15px;
   letter-spacing: 2px;
   border: none;
   text-decoration: none;
