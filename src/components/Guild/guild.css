@@ -1,0 +1,9 @@
+.guild {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  font-weight: bold;
+  text-align: center;
+}

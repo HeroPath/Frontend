@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap";
 import Pagination from "../Pagination/Pagination";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./quests.css";
 
 import { headers, notifySuccess } from "../../functions/utilities";
 import { get, post } from "../../functions/requestsApi";
@@ -75,37 +76,29 @@ const Quests = () => {
                       <td>{acceptedQuestNumber++}</td>
                       {acceptedQuest.quest.userAmountNeed === 0 ? (
                         <td>
-                          Kill {acceptedQuest.quest.npcAmountNeed}{" "}
-                          {acceptedQuest.quest.nameNpcKill}. Reward{" "}
-                          {acceptedQuest.quest.giveExp} exp,{" "}
-                          {acceptedQuest.quest.giveGold} gold,{" "}
+                          Kill {acceptedQuest.quest.npcAmountNeed} {acceptedQuest.quest.nameNpcKill}. Reward{" "}
+                          {acceptedQuest.quest.giveExp} exp, {acceptedQuest.quest.giveGold} gold,{" "}
                           {acceptedQuest.quest.giveDiamonds} diamonds
                         </td>
                       ) : (
                         <td>
-                          Kill {acceptedQuest.quest.userAmountNeed}{" "}
-                          {acceptedQuest.quest.nameNpcKill}. Reward{" "}
-                          {acceptedQuest.quest.giveExp} exp,{" "}
-                          {acceptedQuest.quest.giveGold} gold,{" "}
+                          Kill {acceptedQuest.quest.userAmountNeed} {acceptedQuest.quest.nameNpcKill}. Reward{" "}
+                          {acceptedQuest.quest.giveExp} exp, {acceptedQuest.quest.giveGold} gold,{" "}
                           {acceptedQuest.quest.giveDiamonds} diamonds
                         </td>
                       )}
                       <td>{acceptedQuest.quest.nameNpcKill}</td>
                       <td>
-                        {acceptedQuest.npcKillAmount} /{" "}
-                        {acceptedQuest.quest.npcAmountNeed}
+                        {acceptedQuest.npcKillAmount} / {acceptedQuest.quest.npcAmountNeed}
                       </td>
                       <td>
-                        {acceptedQuest.userKillAmount} /{" "}
-                        {acceptedQuest.quest.userAmountNeed}
+                        {acceptedQuest.userKillAmount} / {acceptedQuest.quest.userAmountNeed}
                       </td>
                       <td>{acceptedQuest.quest.giveExp}</td>
                       <td>{acceptedQuest.quest.giveGold}</td>
                       <td>{acceptedQuest.quest.giveDiamonds}</td>
-                      {acceptedQuest.npcKillAmount >=
-                        acceptedQuest.quest.npcAmountNeed &&
-                      acceptedQuest.userKillAmount >=
-                        acceptedQuest.quest.userAmountNeed ? (
+                      {acceptedQuest.npcKillAmount >= acceptedQuest.quest.npcAmountNeed &&
+                      acceptedQuest.userKillAmount >= acceptedQuest.quest.userAmountNeed ? (
                         <td>
                           <button
                             type="button"
@@ -146,11 +139,7 @@ const Quests = () => {
           <div>
             <h1>Quests</h1>
             {totalPages && (
-              <Pagination
-                totalPages={totalPages}
-                currentPage={currentPage}
-                onPageChange={setCurrentPage}
-              />
+              <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
             )}
             <Table striped bordered hover>
               <thead>
@@ -174,18 +163,14 @@ const Quests = () => {
                     <td>{nonAcceptedQuest.quest.name}</td>
                     {nonAcceptedQuest.quest.userAmountNeed === 0 ? (
                       <td>
-                        Kill {nonAcceptedQuest.quest.npcAmountNeed}{" "}
-                        {nonAcceptedQuest.quest.nameNpcKill}. Reward{" "}
-                        {nonAcceptedQuest.quest.giveExp} exp,{" "}
-                        {nonAcceptedQuest.quest.giveGold} gold,{" "}
+                        Kill {nonAcceptedQuest.quest.npcAmountNeed} {nonAcceptedQuest.quest.nameNpcKill}. Reward{" "}
+                        {nonAcceptedQuest.quest.giveExp} exp, {nonAcceptedQuest.quest.giveGold} gold,{" "}
                         {nonAcceptedQuest.quest.giveDiamonds} diamonds
                       </td>
                     ) : (
                       <td>
-                        Kill {nonAcceptedQuest.quest.userAmountNeed}{" "}
-                        {nonAcceptedQuest.quest.nameNpcKill}. Reward{" "}
-                        {nonAcceptedQuest.quest.giveExp} exp,{" "}
-                        {nonAcceptedQuest.quest.giveGold} gold,{" "}
+                        Kill {nonAcceptedQuest.quest.userAmountNeed} {nonAcceptedQuest.quest.nameNpcKill}. Reward{" "}
+                        {nonAcceptedQuest.quest.giveExp} exp, {nonAcceptedQuest.quest.giveGold} gold,{" "}
                         {nonAcceptedQuest.quest.giveDiamonds} diamonds
                       </td>
                     )}

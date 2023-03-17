@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./userInventory.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -33,7 +34,7 @@ const UserInventory = ({
     equipUser.items = sortedItems;
     return equipUser;
   }
-  
+
   orderedObject(equipmentUser);
 
   useEffect(() => {
@@ -151,7 +152,8 @@ const UserInventory = ({
 
       <ToastContainer
         position="top-right"
-        autoClose={2000}antperuka
+        autoClose={2000}
+        antperuka
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

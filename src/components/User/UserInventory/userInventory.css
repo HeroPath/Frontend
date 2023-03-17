@@ -1,0 +1,61 @@
+/* ----------------- USERINVENTORY -----------------------*/
+
+.inventory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 3%;
+}
+
+.inventory--equiped {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+  background-image: url("../../../img/items/inventoryEquiped.webp");
+  width: 124px;
+  height: 124px;
+  margin: 6%;
+}
+.inventory--box {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  background-image: url("../../../img/items/inventoryBox.webp");
+  width: 247px;
+  height: 165px;
+  padding: 1%;
+  margin: 3%;
+}
+
+.item {
+  width: 32px;
+  height: 32px;
+  filter: brightness(1.1);
+  margin-top: 2px;
+  margin-left: 1px;
+}
+
+.item:hover {
+  filter: brightness(1.8);
+  cursor: pointer;
+}
+
+.itemNoClass {
+  margin-top: 1px;
+  background-color: rgba(141, 17, 1, 0.5);
+}
+
+.itemNoLevel {
+  margin-top: 1px;
+  background-color: rgba(137, 128, 1, 0.5);
+}
+
+.form-control,
+.form-control:focus {
+  background-color: rgba(206, 206, 206, 0.856);
+  text-align: center;
+  box-shadow: none;
+  font-size: 25px;
+  border: 1px solid;
+}

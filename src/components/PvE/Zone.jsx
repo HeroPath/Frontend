@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { capitalizeFirstLetter } from "../../functions/utilities";
 import { zoneMap } from "../../functions/constants";
+import "./pve.css";
 
 const Zone = () => {
   const navigate = useNavigate();

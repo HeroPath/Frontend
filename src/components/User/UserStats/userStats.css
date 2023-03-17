@@ -1,0 +1,48 @@
+/* ---------------- USERSTATS ----------------------*/
+
+.userstats {
+  display: flex;
+  flex-direction: column;
+  padding-top: 3%;
+  font-size: 15px;
+}
+
+.userstats--form {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.userstats--stats {
+  display: flex;
+  flex-direction: column;
+}
+.userstats--stats label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+
+.userstats--add--form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userstats--add--form a,
+.userstats--add--form a:hover {
+  background-color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  color: var(--button--textColor);
+  margin: 5px;
+  cursor: pointer;
+  width: 50%;
+  height: 50%;
+}
+
+.userstats--info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+}

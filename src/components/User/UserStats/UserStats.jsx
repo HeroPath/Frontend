@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { hot } from "react-hot-loader/root";
+import "./userStats.css";
 
 import { post } from "../../../functions/requestsApi";
 import { headers } from "../../../functions/utilities";
