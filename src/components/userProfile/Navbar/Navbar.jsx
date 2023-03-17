@@ -11,6 +11,7 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
       const response = await get("/api/v1/stats/pve-pvp/pts", headers);
       if (response.status === 200) {
         setPvpAndPvePts(response.data);
+        console.log(response.data)
       }
     }
 
@@ -37,14 +38,14 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
           {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
       </div>
-      {pvpAndPvePts.maxPvePts && pvePts && (
+      {pvpAndPvePts.maxPvePts && (
         <div>
           <label>
             PvE Pts: {pvePts}/{pvpAndPvePts.maxPvePts}
           </label>
         </div>
       )}
-      {pvpAndPvePts.maxPvpPts && pvpPts && (
+      {pvpAndPvePts.maxPvpPts && (
         <div className="navBarDivs">
           <label>
             PvP Pts: {pvpPts}/{pvpAndPvePts.maxPvpPts}
