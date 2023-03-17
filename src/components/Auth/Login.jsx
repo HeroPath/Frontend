@@ -69,15 +69,15 @@ const Login = () => {
               value={dataLogin.password}
               onChange={handleChange}
             />
-            <button className="button--links mt-4 ps-5 pe-5" type="submit">
+            <button className="button--links mt-4 pe-5 ps-5" type="submit">
               Sign in
             </button>
           </form>
           <div className="login--footer mt-4">
-            <a href="/register" className="button--links links p-3 ps-5 pe-5" style={{ marginRight: "2%" }}>
+            <a href="/register" className="button--links pe-4 ps-4" style={{ marginRight: "2%" }}>
               Register
             </a>
-            <a href="" className="button--links links p-3 ps-5 pe-5">
+            <a href="" className="button--links pe-4 ps-4">
               Forgot pass?
             </a>
           </div>

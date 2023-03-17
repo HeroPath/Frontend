@@ -6,6 +6,7 @@ body {
   font-family: "Quicksand", sans-serif;
   font-size: 18px;
   letter-spacing: 1px;
+  color: var(--button--textColor);
 }
 
 @import url("https://fonts.cdnfonts.com/css/kingthings-calligraphica");
@@ -14,22 +15,21 @@ body {
 
 .button--links,
 .button--links:hover {
-  background-image: url("./img/utilities/btn-menu.webp");
+  background-image: url("./img/utilities/btn-menu-black.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
   color: var(--button--textColor);
-  padding: 2%;
+  padding: 1%;
   letter-spacing: 2px;
   border: none;
   text-decoration: none;
-  color: #fff;
-  border: none;
 }
 
 .button--links:hover {
   border: none;
   filter: brightness(1.4);
+  cursor: pointer;
 }
 
 /* ---------------- BAR HEALTH AND EXP ----------------------*/

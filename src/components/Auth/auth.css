@@ -94,7 +94,7 @@
   width: 50%;
   margin-left: 5%;
   margin-top: -40px;
-  opacity: 0.9;
+  opacity: 0.95;
 }
 
 .login--section {
@@ -114,20 +114,27 @@
   background-color: unset;
 }
 
-.login--form input {
+.login--form input,
+.login--form input:focus {
   letter-spacing: 2px;
-  width: 50%;
+  width: 40%;
+  height: 45%;
+  background-color: rgb(23, 23, 23);
+  border: 2px solid rgb(205, 166, 79);
+  color: var(--button--textColor);
+}
+
+.login--form input:-webkit-autofill {
+  font-size: 25px !important;
+  -webkit-box-shadow: 0 0 0 30px rgb(23, 23, 23) inset !important;
+  -webkit-text-fill-color: var(--button--textColor) !important;
 }
 
 .login--footer {
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  width: auto;
 }
 
 .login--stats {
   margin-top: 2%;
-  font-size: 18px;
 }

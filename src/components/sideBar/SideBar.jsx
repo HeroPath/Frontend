@@ -7,38 +7,38 @@ const SideBar = () => {
         <img src={require("../../img/logo.webp")} width="130px" height="130px" />
       </div>
 
-      <a href="/profile" className="button--links links button--sidebar">
+      <a href="/profile" className="button--sidebar button--links">
         Home
       </a>
-      <a href="/zone" className="button--links links button--sidebar">
+      <a href="/zone" className="button--sidebar button--links">
         Maps
       </a>
-      <a href="/playervsplayer" className="button--links links button--sidebar">
+      <a href="/playervsplayer" className="button--sidebar button--links">
         Arena
       </a>
-      <a href="/shop" className="button--links links button--sidebar">
+      <a href="/shop" className="button--sidebar button--links">
         Shop
       </a>
-      <a href="/quest" className="button--links links button--sidebar">
+      <a href="/quest" className="button--sidebar button--links">
         Quests
       </a>
-      <a href="/guild" className="button--links links button--sidebar">
+      <a href="/guild" className="button--sidebar button--links">
         Guild
       </a>
-      <a href="/ranking" className="button--links links button--sidebar">
+      <a href="/ranking" className="button--sidebar button--links">
         Ranking
       </a>
-      <a href="/mail" className="button--links links button--sidebar">
+      <a href="/mail" className="button--sidebar button--links">
         Mail
       </a>
-      <a href="#" className="button--links links button--sidebar">
+      <a href="#" className="button--sidebar button--links">
         (Coming soon)
       </a>
-      <a href="#" className="button--links links button--sidebar">
+      <a href="#" className="button--sidebar button--links">
         (Coming soon)
       </a>
 
-      <a href="/" className="button--links links button--sidebar">
+      <a href="/" className="button--sidebar button--links">
         Log Out
       </a>
     </div>

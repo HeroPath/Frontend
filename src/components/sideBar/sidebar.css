@@ -22,9 +22,10 @@
 }
 
 .button--sidebar {
-  margin-top: 7%;
+  margin-top: 8%;
+  font-size: 15px;
 }
 
 .button--sidebar:last-child {
-  margin-top: 20%;
+  margin-top: 50%;
 }
