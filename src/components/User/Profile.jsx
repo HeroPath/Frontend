@@ -60,18 +60,7 @@ const Profile = () => {
 
           {profile.strength && (
             <UserStats
-              freeSkillPoints={profile.freeSkillPoints}
-              strength={profile.strength}
-              dexterity={profile.dexterity}
-              vitality={profile.vitality}
-              intelligence={profile.intelligence}
-              luck={profile.luck}
-              minDmg={profile.minDmg}
-              maxDmg={profile.maxDmg}
-              npcKills={profile.npcKills}
-              defense={profile.defense}
-              evasion={profile.evasion}
-              criticalChance={profile.criticalChance}
+              profile={profile}
               updateStats={updateStats}
               userNewData={userNewData}
             />

@@ -8,24 +8,27 @@ import { headers } from "../../../functions/utilities";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { dataStats } from "../../../functions/constants";
+import Stat from "./Stat.jsx";
 
-const UserStats = ({
-  freeSkillPoints,
-  strength,
-  dexterity,
-  vitality,
-  intelligence,
-  luck,
-  minDmg,
-  maxDmg,
-  npcKills,
-  defense,
-  evasion,
-  criticalChance,
-  userNewData,
-  updateStats,
-}) => {
+const UserStats = ({ profile, userNewData, updateStats }) => {
+  const {
+    freeSkillPoints,
+    strength,
+    dexterity,
+    vitality,
+    intelligence,
+    luck,
+    minDmg,
+    maxDmg,
+    npcKills,
+    defense,
+    evasion,
+    criticalChance,
+    hp,
+    maxHp,
+    aclass,
+  } = profile;
+
   const [stats, setStats] = useState({
     freeSkillPoints,
     strength,
@@ -38,9 +41,9 @@ const UserStats = ({
     defense,
     evasion,
     criticalChance,
+    hp,
+    maxHp,
   });
-
-  // console.log(stats);
 
   useEffect(() => {
     if (userNewData !== false) {
@@ -60,44 +63,53 @@ const UserStats = ({
   }
 
   return (
-      <section className="userstats">
-        <h2>Stats</h2>
-        <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
+    <section className="userstats">
+      <h2>Stats</h2>
+      <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
 
-        <form className="userstats--form">
-          <div className="userstats--stats">
-            <label>Strength: {stats.strength}</label>
-            <label>Dexterity: {stats.dexterity}</label>
-            <label>Vitality: {stats.vitality}</label>
-            <label>Intelligence: {stats.intelligence}</label>
-            <label>Luck: {stats.luck}</label>
-          </div>
+      <form className="userstats--form">
+        <Stat
+          firstStatName={"Strength"}
+          FirstStatValue={stats.strength}
+          secondStatName={aclass === "warrior" ? "Dmg" : "Defense"}
+          secondStatValue={aclass === "warrior" ? `${stats.minDmg}/${stats.maxDmg}` : stats.defense}
+          handleClickAddSkill={handleClickAddSkill}
+        />
+        <Stat
+          firstStatName={"Dexterity"}
+          FirstStatValue={stats.dexterity}
+          secondStatName={aclass === "archer" ? "Dmg" : "Evasion"}
+          secondStatValue={aclass === "archer" ? `${stats.minDmg}/${stats.maxDmg}` : stats.evasion}
+          handleClickAddSkill={handleClickAddSkill}
+        />
+        <Stat
+          firstStatName={"Intelligence"}
+          FirstStatValue={stats.intelligence}
+          secondStatName={aclass === "mage" ? "Dmg" : aclass === "archer" ? "Evasion" : "Defense"}
+          secondStatValue={
+            aclass === "mage" ? `${stats.minDmg}/${stats.maxDmg}` : aclass === "archer" ? stats.evasion : stats.defense
+          }
+          handleClickAddSkill={handleClickAddSkill}
+        />
+        <Stat
+          firstStatName={"Vitality"}
+          FirstStatValue={stats.vitality}
+          secondStatName={"Life"}
+          secondStatValue={`${stats.hp}/${stats.maxHp}`}
+          handleClickAddSkill={handleClickAddSkill}
+        />
+        <Stat
+          firstStatName={"Luck"}
+          FirstStatValue={stats.luck}
+          secondStatName={"Crit Dmg"}
+          secondStatValue={Math.round(stats.criticalChance * 10) / 10 + "%"}
+          handleClickAddSkill={handleClickAddSkill}
+        />
+      </form>
 
-          <div className="userstats--add">
-            {dataStats.map((stat) => (
-              <div key={stat.skill} className="userstats--add--form">
-                <a
-                  className="links"
-                  onClick={() => {
-                    handleClickAddSkill(stat.skill);
-                  }}
-                >
-                  +
-                </a>
-              </div>
-            ))}
-          </div>
-        </form>
-
-        <div className="userstats--info">
-          <label>Defense: {stats.defense}</label>
-          <label>Evasion: {stats.evasion}</label>
-          <label>Critical Chance: {Math.round(stats.criticalChance * 10) / 10}%</label>
-          <label>
-            Min/Max DMG: {stats.minDmg}/{stats.maxDmg}
-          </label>
-          <label>Npc killed: {npcKills}</label>
-        </div>
+      <div className="userstats--info">
+        <label>Npc killed: {npcKills}</label>
+      </div>
       <ToastContainer
         position="top-right"
         autoClose={2000}
@@ -109,8 +121,7 @@ const UserStats = ({
         draggable
         pauseOnHover
       />
-      </section>
-
+    </section>
   );
 };
 

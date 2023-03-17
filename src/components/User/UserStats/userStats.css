@@ -3,47 +3,80 @@
 .userstats {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   height: 100%;
   font-size: 12px;
 }
 
 .userstats--form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 }
 
 .userstats--stats {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px;
+  border: 1px solid #d3d3d3;
+}
+
+.userstats--stats:first-child {
+  border-top: 1px solid #d3d3d3;
+}
+.userstats--stats {
+  border-top: none;
+}
+
+.userstats--stats:last-child {
+  justify-content: end;
+}
+
+.userstats--labels {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
-.userstats--stats label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70%;
-  border: 1px solid #d3d3d3;
-
+.userstats--firstStat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: flex-start;
+  width: 100%;
+  font-size: 13px;
+  color: #ff7070;
+}
+.userstats--secondStat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: flex-start;
+  width: 100%;
+  font-size: 11px;
+  color: #b4dbe8;
 }
 
 .userstats--add--form {
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.userstats--add--form a,
-.userstats--add--form a:hover {
-  background-color: #000;
+.userstats--add--form a {
+  background-color: #363636;
   text-decoration: none;
   border: 1px solid #d3d3d3;
-  border-radius: 5px;
   color: var(--button--textColor);
   margin: 5px;
+  padding: 0px 5px;
+  filter: brightness(0.9);
+}
+
+.userstats--add--form a:hover {
   cursor: pointer;
-  width: 15%;
-  height: 15%;
+  filter: brightness(1.5);
 }
 
 .userstats--info {
