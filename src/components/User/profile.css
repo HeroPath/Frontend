@@ -55,11 +55,12 @@
   padding: 3% 1%;
   margin: 3% 6%;
 
-  background-image: url("../../img/bg-inventory-shop.png");
+  background-image: url("../../img/bg-user-stats.png");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   align-self: center;
   align-items: center;
   color: #d3d3d3;
+  opacity: 0.95;
 }
