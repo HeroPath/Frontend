@@ -33,86 +33,9 @@ body {
 }
 /* ---------------- //UTILIDAD ----------------------*/
 
-/* ---------------- SIDEBAR ----------------------*/
 
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 15%;
-  background-color: rgb(53, 53, 53);
 
-  border: 2px solid;
-  color: rgb(55, 255, 222);
-  text-align: center;
-  align-items: center;
-}
 
-.sidebar a {
-  width: 90%;
-}
-
-.sidebar--logo {
-  height: 18%;
-  padding-top: 3%;
-}
-
-.button--sidebar {
-  margin-top: 7%;
-}
-
-.button--sidebar:last-child {
-  margin-top: 35%;
-}
-
-/* ---------------- //SIDEBAR ----------------------*/
-
-/* ---------------- PROFILE ----------------------*/
-
-.profile {
-  background-image: url("../img/bg-profile.webp");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  object-fit: fill;
-
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-}
-.profileNavbar {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  background-color: rgb(53, 53, 53);
-  border-top: 2px solid;
-  border-right: 2px solid;
-  border-bottom: 2px solid;
-  color: rgb(55, 255, 222);
-  width: 100%;
-}
-
-.profileNavbar--labels {
-  display: grid;
-  align-items: center;
-  grid-template-columns: 1fr 1fr;
-}
-
-.navBarDivs {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 90%;
-}
-
-/* ---------------- PROFILECARD ----------------------*/
-.profileCard {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-}
-/* ---------------- //PROFILECARD ----------------------*/
 
 /* ---------------- USERCARD ----------------------*/
 
