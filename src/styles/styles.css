@@ -33,51 +33,6 @@ body {
 }
 /* ---------------- //UTILIDAD ----------------------*/
 
-
-
-
-
-/* ---------------- USERCARD ----------------------*/
-
-.userCard {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  text-align: center;
-  background-image: url("../img/bg-user-stats.webp");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  object-fit: fill;
-  opacity: 0.9;
-  padding-top: 5%;
-  padding-left: 10%;
-  padding-right: 10%;
-  font-weight: bold;
-  width: 85%;
-  height: 95%;
-  margin: 5% 7%;
-}
-
-.userCard--card--bgName {
-  display: flex;
-  justify-content: center;
-  background-image: url("../img/utilities/fondoname.webp");
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  object-fit: fill;
-  opacity: 0.9;
-  width: 270px;
-  color: var(--button--textColor);
-  align-items: center;
-  padding: 0.9%;
-}
-
-.userCard--card--bgName h3 {
-  margin: 0;
-}
-
-/* ---------------- //USERCARD ----------------------*/
-
 /* ---------------- BAR HEALTH AND EXP ----------------------*/
 
 .bar--background {

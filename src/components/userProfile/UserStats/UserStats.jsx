@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { hot } from "react-hot-loader/root";
 
-import { post } from "../../functions/requestsApi";
-import { headers } from "../../functions/utilities";
+import { post } from "../../../functions/requestsApi";
+import { headers } from "../../../functions/utilities";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { dataStats } from "../../functions/constants";
+import { dataStats } from "../../../functions/constants";
 
 const UserStats = ({
   freeSkillPoints,
@@ -39,8 +39,10 @@ const UserStats = ({
     criticalChance,
   });
 
+  // console.log(stats);
+
   useEffect(() => {
-    if (userNewData) {
+    if (userNewData !== false) {
       setStats(userNewData);
     }
   }, [userNewData]);

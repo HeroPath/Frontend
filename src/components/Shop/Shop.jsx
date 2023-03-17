@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import UserInventory from "../userProfile/UserInventory";
-import Navbar from "../userProfile/Navbar";
+import UserInventory from "../userProfile/UserInventory/UserInventory";
+import Navbar from "../userProfile/Navbar/Navbar";
 
 import { headers, dataTooltip, sounds } from "../../functions/utilities";
 import { get } from "../../functions/requestsApi";

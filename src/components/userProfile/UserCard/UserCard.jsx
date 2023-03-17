@@ -1,10 +1,11 @@
 import { useMemo, useState } from "react";
-import { capitalizeFirstLetter } from "../../functions/utilities";
+import "./userCard.css";
+import { capitalizeFirstLetter } from "../../../functions/utilities";
 
 const UserCard = ({ username, aclass, hp, maxHp, experience, experienceToNextLevel, level, userNewData, userLife }) => {
   if (userLife !== undefined) hp = userLife;
 
-  if (userNewData !== undefined) {
+  if (userNewData !== false) {
     hp = userNewData.hp;
     maxHp = userNewData.maxHp;
   }
@@ -29,7 +30,7 @@ const UserCard = ({ username, aclass, hp, maxHp, experience, experienceToNextLev
       <div className="userCard--card--bgName">
         <h3>{capitalizeFirstLetter(username)}</h3>
       </div>
-      <img src={require(`../../img/class/${aclass}.webp`)} width="270px" height="270px" alt="" />
+      <img src={require(`../../../img/class/${aclass}.webp`)} width="270px" height="270px" />
 
       <div className="bar--background" style={{ width: "270px" }}>
         <div className="bar--foreground">{hpComplete}</div>

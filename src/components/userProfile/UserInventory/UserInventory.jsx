@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { get } from "../../functions/requestsApi";
-import { headers, dataTooltip, sounds } from "../../functions/utilities";
-import { objectEmpty, orderEquipment } from "../../functions/constants";
+import { get } from "../../../functions/requestsApi";
+import { headers, dataTooltip, sounds } from "../../../functions/utilities";
+import { objectEmpty, orderEquipment } from "../../../functions/constants";
 
 const UserInventory = ({
   inventory,
@@ -33,6 +33,7 @@ const UserInventory = ({
     equipUser.items = sortedItems;
     return equipUser;
   }
+  
   orderedObject(equipmentUser);
 
   useEffect(() => {
@@ -100,7 +101,7 @@ const UserInventory = ({
                   }}
                   {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
                 >
-                  <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
+                  <img src={require(`../../../img/items/${item.name}.png`)} className="item" alt="" />
                 </div>
               );
             }
@@ -143,7 +144,7 @@ const UserInventory = ({
               }}
               {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
             >
-              <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
+              <img src={require(`../../../img/items/${item.name}.png`)} className="item" alt="" />
             </div>
           ))}
       </div>
