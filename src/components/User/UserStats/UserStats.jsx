@@ -27,6 +27,11 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
     hp,
     maxHp,
     aclass,
+    guildName,
+    pvpLosses,
+    pvpWins,
+    titleName,
+    titlePoints,
   } = profile;
 
   const [stats, setStats] = useState({
@@ -113,6 +118,11 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
         </form>
 
         <div className="userstats--info">
+          <label>Guild: {guildName ? guildName : "None"}</label>
+          <label>Pvp wins: {pvpWins}</label>
+          <label>Pvp losses: {pvpLosses}</label>
+          <label>Title: {titleName}</label>
+          <label>Title points: {titlePoints}</label>
           <label>Npc killed: {npcKills}</label>
         </div>
       </section>
