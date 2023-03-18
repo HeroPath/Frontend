@@ -1,7 +1,7 @@
 .shop {
   display: flex;
   flex-direction: column;
-  background-image: url("../../img/bg-shop.webp");
+  background-image: url("../../img/background/bg-shop.webp");
   background-size: 100% 100%;
   background-position: center;
   width: 100vw;
@@ -21,7 +21,7 @@
 .shop--npc {
   display: flex;
   flex-direction: column;
-  background-image: url("../../img/bg-inventory-shop.png");
+  background-image: url("../../img/items/shop-interface/bg-inventory-shop.webp");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -36,10 +36,15 @@
   grid-template-columns: repeat(4, 1fr);
   width: 307px;
   height: 32px;
+  
 }
 
 .shop--npc--button button {
-  background-image: url("../../img/items/buttons.jpg");
+  background-image: url("../../img/items/shop-interface/btn-shop.webp");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
   color: var(--button--textColor);
 }
 
@@ -47,7 +52,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  background-image: url("../../img/items/shop.png");
+  background-image: url("../../img/items/shop-interface/shop.webp");
   width: 307px;
   height: 387px;
   padding: 35px 30px;
