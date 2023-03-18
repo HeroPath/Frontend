@@ -60,7 +60,6 @@ body {
   height: 25px;
   background: -webkit-linear-gradient(to top, #d20000, #d90101);
   background: linear-gradient(to top, #ac0101, #d90101);
-  color: white;
 }
 
 .bar--foreground--exp {
@@ -68,7 +67,6 @@ body {
   height: 25px;
   background: -webkit-linear-gradient(to top, #0c0, #00e900);
   background: linear-gradient(to top, #090, #00e900);
-  color: white;
 }
 
 /* --------------------------- Tooltip --------------------------- */
@@ -135,14 +133,4 @@ body {
 /* ---------------- TOAST ----------------------*/
 .custom-success-toast {
   font-size: 15px;
-}
-
-/* ---------------- DRAG ----------------------*/
-
-#draggable {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background-color: lightblue;
-  cursor: grab;
 }

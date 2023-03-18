@@ -7,6 +7,12 @@
   width: 100%;
   height: 100%;
   font-size: 12px;
+
+  background-image: url("../../../img/interfaces/bg-stats.webp");
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding: 2% 1%;
 }
 
 .userstats--form {

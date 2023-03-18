@@ -29,15 +29,15 @@
   text-align: center;
   align-items: center;
   justify-items: center;
-  padding: 3% 1%;
+  padding: 2% 1%;
   margin: 3% 6%;
 
-  background-image: url("../../img/interfaces/bg-user-stats.webp");
+  /* background-image: url("../../img/interfaces/bg-user-stats.webp");
   background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
   align-self: center;
   align-items: center;
   color: #d3d3d3;
-  opacity: 0.95;
+  opacity: 0.95; */
 }
