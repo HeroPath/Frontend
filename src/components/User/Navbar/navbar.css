@@ -1,7 +1,7 @@
 .profileNavbar {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
-  background-image: url("../../../img/interfaces/bg-navbar.png");
+  background-image: url("../../../img/interfaces/bg-navbar.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   color: white;
