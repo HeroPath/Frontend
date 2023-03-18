@@ -26,7 +26,7 @@
   align-items: center;
   height: 95%;
   width: 100%;
-  background-image: url("../../img/bg-form-register.webp");
+  background-image: url("../../img/interfaces/bg-form-register.webp");
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -86,7 +86,7 @@
 }
 
 .login--banner {
-  background-image: url("../../img/bg-form-login.webp");
+  background-image: url("../../img/interfaces/bg-form-login.webp");
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: 110% 100%;
