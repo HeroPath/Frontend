@@ -41,17 +41,18 @@
 .shop--npc--button button {
   background-image: url("../../img/items/shop-interface/btn-shop.webp");
   background-size: 100% 100%;
-  background-position: center;
   background-repeat: no-repeat;
   border: none;
   color: var(--button--textColor);
   filter: brightness(0.8);
 }
-.shop--npc--button button:hover {
+
+.shop--npc--button button.active {
   filter: brightness(1.4);
 }
-.shop--npc--button button:focus {
-  filter: brightness(1.4);
+
+.shop--npc--button button:hover {
+  filter: brightness(1.2);
 }
 
 .shop--npc--card {

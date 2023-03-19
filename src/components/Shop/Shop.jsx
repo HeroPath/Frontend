@@ -13,6 +13,7 @@ const Shop = () => {
   const [showTooltip, setShowTooltip] = useState(true);
 
   const [itemDragShop, setItemDragShop] = useState(null);
+  const [focusedButton, setFocusedButton] = useState("none");
 
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
@@ -22,6 +23,7 @@ const Shop = () => {
   }
 
   async function handleItems(iClass) {
+    setFocusedButton(iClass);
     const response = await get("/api/v1/items/shop/" + iClass, headers);
     if (response.status === 200) setItemsShop(response.data);
   }
@@ -79,6 +81,10 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("none");
                 }}
+                onFocus={() => {
+                  setFocusedButton("none");
+                }}
+                className={focusedButton === "none" ? "active" : ""}
               >
                 All
               </button>
@@ -87,6 +93,10 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("mage");
                 }}
+                onFocus={() => {
+                  setFocusedButton("mage");
+                }}
+                className={focusedButton === "mage" ? "active" : ""}
               >
                 Mage
               </button>
@@ -95,6 +105,10 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("warrior");
                 }}
+                onFocus={() => {
+                  setFocusedButton("warrior");
+                }}
+                className={focusedButton === "warrior" ? "active" : ""}
               >
                 Warrior
               </button>
@@ -103,6 +117,10 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("archer");
                 }}
+                onFocus={() => {
+                  setFocusedButton("archer");
+                }}
+                className={focusedButton === "archer" ? "active" : ""}
               >
                 Archer
               </button>

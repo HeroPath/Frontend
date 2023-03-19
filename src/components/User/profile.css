@@ -1,14 +1,12 @@
 /* ---------------- PROFILE ----------------------*/
 
 .profile {
-  background-image: url("../../img/background/bg-profile.webp");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
-  object-fit: fill;
-
   display: flex;
   flex-direction: column;
+  background-image: url("../../img/background/bg-profile.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  object-fit: fill;
   width: 100vw;
   height: 100vh;
   text-align: center;
@@ -19,17 +17,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   font-weight: bold;
-  text-align: center;
   align-items: center;
-  justify-items: center;
   padding: 2% 0%;
   margin: 4% 10%;
   background-image: url("../../img/interfaces/bg-user-stats.webp");
-  background-position: center;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  align-self: center;
-  align-items: center;
   color: #d3d3d3;
-  opacity: 0.9;
+  opacity: 0.95;
 }
