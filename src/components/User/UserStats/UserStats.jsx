@@ -118,12 +118,45 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
         </form>
 
         <div className="userstats--info">
-          <label>Guild: {guildName ? guildName : "None"}</label>
-          <label>Pvp wins: {pvpWins}</label>
-          <label>Pvp losses: {pvpLosses}</label>
-          <label>Title: {titleName}</label>
-          <label>Title points: {titlePoints}</label>
-          <label>Npc killed: {npcKills}</label>
+          <div className="userstats--data">
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Guild:</label>
+                <span>{guildName ? guildName : "None"}</span>
+              </div>
+            </div>
+
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Pvp wins:</label>
+                <span>{pvpWins}</span>
+              </div>
+            </div>
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Pvp losses:</label>
+                <span>{pvpLosses}</span>
+              </div>
+            </div>
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Title:</label>
+                <span>{titleName}</span>
+              </div>
+            </div>
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Title points:</label>
+                <span>{titlePoints}</span>
+              </div>
+            </div>
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Npc killed:</label>
+                <span>{npcKills}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
