@@ -48,10 +48,23 @@ const Quests = () => {
   }, [currentPage]);
 
   const [showAccepted, setShowAccepted] = useState(false);
-  const [questCompleted, setQuestCompleted] = useState(false);
   const [focusedButton, setFocusedButton] = useState(0);
   const [focusedButtonAccepted, setFocusedButtonAccepted] = useState(0);
   const [nameQuest, setNameQuest] = useState("");
+
+  {
+    !showAccepted
+      ? useEffect(() => {
+          if (nonAcceptedQuests.length > 0) {
+            setNameQuest(nonAcceptedQuests[0].quest.name);
+          }
+        }, [nonAcceptedQuests])
+      : useEffect(() => {
+          if (acceptedQuests.length > 0) {
+            setNameQuest(acceptedQuests[0].quest.name);
+          }
+        }, [nonAcceptedQuests]);
+  }
 
   return (
     <div className="quest">
@@ -92,8 +105,8 @@ const Quests = () => {
                     key={index}
                     className={focusedButton === index ? "active" : ""}
                     onClick={() => {
-                      setFocusedButton(index);
                       setNameQuest(nonAcceptedQuest.quest.name);
+                      setFocusedButton(index);
                     }}
                   >
                     <td>{nonAcceptedQuestsNumber++}</td>
@@ -126,8 +139,8 @@ const Quests = () => {
                         key={index}
                         className={focusedButtonAccepted === index ? "active" : ""}
                         onClick={() => {
-                          setFocusedButtonAccepted(index);
                           setNameQuest(acceptedQuest.quest.name);
+                          setFocusedButtonAccepted(index);
                         }}
                       >
                         <td>{acceptedQuestNumber++}</td>
@@ -175,7 +188,7 @@ const Quests = () => {
               className="completed"
               onClick={() => {
                 setFocusedButtonAccepted(0);
-                handleQuests("completed", { name: nameQuest });
+                handleQuests("complete", { name: nameQuest });
               }}
             >
               COMPLETED
