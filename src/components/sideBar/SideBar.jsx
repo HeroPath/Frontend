@@ -4,7 +4,9 @@ const SideBar = () => {
   return (
     <div className="sidebar">
       <div className="sidebar--logo">
-        <img src={require("../../img/logo.webp")} width="130px" height="130px" />
+        <a href="https://github.com/HeroPath" target="_blank">
+          <img src={require("../../img/logo.webp")} alt="Logo" width="130px" height="130px" />
+        </a>
       </div>
 
       <a href="/profile" className="button--sidebar button--links">
