@@ -39,10 +39,9 @@
 .ranking--table td {
   text-align: center;
   font-size: 15px;
-  text-transform: capitalize;
 }
 
-.ranking--table tbody:hover {
+.ranking--table tbody tr:hover {
   filter: brightness(1.2);
   background-color: #002d48;
   border: 1px solid #d7ab3c;

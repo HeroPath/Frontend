@@ -94,7 +94,7 @@ const UserCard = ({
       ) : (
         <>
           <label>Level: {level} </label>
-          <label>Class: {aclass}</label>
+          <label>Class: {capitalizeFirstLetter(aclass)}</label>
         </>
       )}
     </div>

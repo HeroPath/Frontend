@@ -60,9 +60,9 @@ const Ranking = () => {
               <th>PvP Win</th>
             </tr>
           </thead>
-          {ranking?.map((users) => (
-            <tbody key={users.username}>
-              <tr>
+          <tbody>
+            {ranking?.map((users) => (
+              <tr key={users.username}>
                 <td>{users.rankPosition}</td>
                 <td>{users.username}</td>
                 {users.guildName ? <td>{users.guildName}</td> : <td>---</td>}
@@ -72,8 +72,8 @@ const Ranking = () => {
                 <td>{users.titlePoints}</td>
                 <td>{users.pvpWins}</td>
               </tr>
-            </tbody>
-          ))}
+            ))}
+          </tbody>
         </table>
         {totalPages && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
       </div>
