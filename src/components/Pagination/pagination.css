@@ -13,6 +13,18 @@
   filter: brightness(0.9);
 }
 
+.buttonPagination:first-child {
+  border-right: none;
+}
+
+.buttonPagination:last-child {
+  border-left: none;
+}
+
+.buttonPagination:nth-child(2) {
+  border-left: 2px solid #ecd586;
+}
+
 .buttonPagination:hover {
   filter: brightness(1.2);
   background-color: #002d48;

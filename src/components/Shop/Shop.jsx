@@ -81,9 +81,6 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("none");
                 }}
-                onFocus={() => {
-                  setFocusedButton("none");
-                }}
                 className={focusedButton === "none" ? "active" : ""}
               >
                 All
@@ -92,9 +89,6 @@ const Shop = () => {
                 id="mage"
                 onClick={() => {
                   handleItems("mage");
-                }}
-                onFocus={() => {
-                  setFocusedButton("mage");
                 }}
                 className={focusedButton === "mage" ? "active" : ""}
               >
@@ -105,9 +99,6 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("warrior");
                 }}
-                onFocus={() => {
-                  setFocusedButton("warrior");
-                }}
                 className={focusedButton === "warrior" ? "active" : ""}
               >
                 Warrior
@@ -116,9 +107,6 @@ const Shop = () => {
                 id="archer"
                 onClick={() => {
                   handleItems("archer");
-                }}
-                onFocus={() => {
-                  setFocusedButton("archer");
                 }}
                 className={focusedButton === "archer" ? "active" : ""}
               >

@@ -79,7 +79,7 @@ const Ranking = () => {
       </div>
       {guilds.length >= 1 && (
         <div className="ranking--divTable">
-          <h1>Ranking Guilds</h1>
+          <h1>RANKING GUILDS</h1>
           <table className="ranking--table">
             <thead>
               <tr>
