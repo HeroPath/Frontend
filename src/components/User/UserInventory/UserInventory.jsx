@@ -145,7 +145,7 @@ const UserInventory = ({
               }}
               {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
             >
-              <img src={require(`../../../img/items/${item.name}.png`)} className="item" alt="" />
+              <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
             </div>
           ))}
       </div>
