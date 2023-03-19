@@ -21,8 +21,9 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: #525d69;
   margin: 10px;
+  color: var(--button--textColor);
+  font-weight: bold;
 }
 
 .zoneCard p {

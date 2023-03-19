@@ -36,7 +36,6 @@
   grid-template-columns: repeat(4, 1fr);
   width: 307px;
   height: 32px;
-  
 }
 
 .shop--npc--button button {
@@ -46,6 +45,13 @@
   background-repeat: no-repeat;
   border: none;
   color: var(--button--textColor);
+  filter: brightness(0.8);
+}
+.shop--npc--button button:hover {
+  filter: brightness(1.4);
+}
+.shop--npc--button button:focus {
+  filter: brightness(1.4);
 }
 
 .shop--npc--card {

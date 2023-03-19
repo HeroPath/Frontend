@@ -70,41 +70,41 @@ const Register = () => {
           <section className="register--cards__form">
             <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
-              <h2 className="mt-4">Username</h2>
+              <h3 className="mt-4">Username</h3>
               <input
                 type="text"
                 id="username"
-                className="form-control mt-1"
+                className="inputForm mt-1"
                 name="username"
                 value={dataRegister.username}
                 onChange={handleChange}
               />
-              <h2 className="mt-2">Email</h2>
+              <h3 className="mt-2">Email</h3>
               <input
                 type="email"
                 id="email"
-                className="form-control mt-1"
+                className="inputForm mt-1"
                 name="email"
                 value={dataRegister.email}
                 onChange={handleChange}
               />
-              <h2 className="mt-2">Password</h2>
+              <h3 className="mt-2">Password</h3>
               <input
                 type="password"
                 id="password"
-                className="form-control mt-1"
+                className="inputForm mt-1"
                 name="password"
                 value={dataRegister.password}
                 onChange={handleChange}
               />
 
-              <button className="button--links mt-2 ps-5 pe-5" type="submit">
+              <button className="button--links mt-4 ps-5 pe-5" type="submit">
                 Sign up
               </button>
 
-              <div className="login--footer">
-                <p>Are you already registered?</p>
-                <a href="/" className="button--links links">
+              <div className="register--footer">
+                <label>Are you already registered?</label>
+                <a href="/" className="button--links ps-4 pe-4">
                   Login
                 </a>
               </div>
@@ -115,7 +115,7 @@ const Register = () => {
           <section className="register--cards__form">
             <h1>Class</h1>
             <select
-              className="form-select mt-4"
+              className="selectClass mt-4"
               name="className"
               value={dataRegister.className}
               onChange={handleChange}
@@ -152,7 +152,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="classSelected--stats">
-                  <h2 className="classSelected--stats__head">{capitalizeFirstLetter(dataClassSelected)}</h2>
+                  <h3 className="classSelected--stats__head">{capitalizeFirstLetter(dataClassSelected)}</h3>
                   {dataClassSelected === "default" ? (
                     <label className="classSelected--stats__head">
                       You must select a class to know its story, as well as its corresponding stats...

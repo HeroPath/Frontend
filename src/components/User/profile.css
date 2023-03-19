@@ -14,13 +14,6 @@
   text-align: center;
 }
 
-/* ---------------- PROFILECARD ----------------------*/
-.profileCard {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-}
-
 /* ---------------- USERCARD ----------------------*/
 .userCard {
   display: grid;
@@ -31,7 +24,6 @@
   justify-items: center;
   padding: 2% 0%;
   margin: 4% 10%;
-
   background-image: url("../../img/interfaces/bg-user-stats.webp");
   background-position: center;
   background-size: 100% 100%;
@@ -39,5 +31,5 @@
   align-self: center;
   align-items: center;
   color: #d3d3d3;
-  opacity: 0.95;
+  opacity: 0.9;
 }

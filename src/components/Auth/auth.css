@@ -4,7 +4,7 @@
   background-image: url("../../img/background/bg-login-register.webp");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 105% 123%;
+  background-size: 100% 100%;
   height: 100vh;
   width: 100vw;
 }
@@ -12,31 +12,38 @@
 .register {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  column-gap: 7%;
+  column-gap: 2%;
+  margin: 0 2%;
   height: 100vh;
   width: 100vw;
   opacity: 0.9;
   align-items: center;
   text-align: center;
+  color: var(--button--textColor);
 }
 
 .register--cards {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 95%;
-  width: 100%;
-  background-image: url("../../img/interfaces/bg-form-register.webp");
-  background-size: 100% 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #000;
+  height: 75%;
 }
 
-.register--cards:first-child {
-  margin-left: 10%;
+.inputForm {
+  width: 80%;
+  padding: 3px;
+  appearance: none;
+  background-color: unset;
+  text-align: center;
+  color: var(--button--textColor);
+  border: 2px solid rgb(205, 166, 79);
 }
 
 .register--cards__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 80%;
 }
 
@@ -45,10 +52,19 @@
   height: 50px;
 }
 
-.register--cards__form select {
+.selectClass {
   font-size: 20px;
+  width: 90%;
+  padding: 3px;
   appearance: none;
-  background-color: rgba(253, 168, 46, 0.25);
+  background-color: unset;
+  text-align: center;
+  color: var(--button--textColor);
+  border: 2px solid rgb(205, 166, 79);
+}
+
+.selectClass option {
+  background-color: black;
 }
 
 .classSelected {
@@ -68,6 +84,15 @@
   margin-bottom: 20px;
 }
 
+.register--footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 3%;
+  margin-top: 10%;
+  font-size: 15px;
+}
+
 /* ---------------- LOGIN ----------------------*/
 
 .login {
@@ -80,28 +105,27 @@
   width: 100vw;
 }
 
-.login h2 {
+.login h3 {
   letter-spacing: 5px;
   font-weight: bold;
 }
 
 .login--banner {
-  background-image: url("../../img/interfaces/bg-form-login.webp");
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: 110% 100%;
-  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50%;
-  margin-left: 5%;
-  margin-top: -40px;
-  opacity: 0.95;
 }
 
 .login--section {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-top: 22%;
+  width: 70%;
+  padding: 3%;
+  background-color: #000;
+  border: 2px solid rgb(205, 166, 79);
 }
 
 .login--form {
@@ -117,24 +141,38 @@
 .login--form input,
 .login--form input:focus {
   letter-spacing: 2px;
-  width: 40%;
-  height: 45%;
-  background-color: rgb(23, 23, 23);
-  border: 2px solid rgb(205, 166, 79);
+  width: 75%;
+  height: 20%;
+  appearance: none;
+  background-color: unset;
   color: var(--button--textColor);
-}
-
-.login--form input:-webkit-autofill {
-  font-size: 25px !important;
-  -webkit-box-shadow: 0 0 0 30px rgb(23, 23, 23) inset !important;
-  -webkit-text-fill-color: var(--button--textColor) !important;
+  border: 2px solid rgb(205, 166, 79);
 }
 
 .login--footer {
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin: 3% 0%;
 }
 
 .login--stats {
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+  border: 2px solid rgb(205, 166, 79);
   margin-top: 2%;
+  padding: 1% 2%;
+  font-size: 15px;
+  width: 35%;
+}
+
+.login--divStat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login--divStat span {
+  color: #2ddb61;
 }
