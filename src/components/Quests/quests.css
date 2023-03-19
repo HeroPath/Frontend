@@ -30,6 +30,12 @@
   font-weight: bold;
 }
 
+.quest-button button:disabled,
+.quest-button button:disabled:hover {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .quest-button button:first-child {
   border-right: 1px solid #ecd586;
 }

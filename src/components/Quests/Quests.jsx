@@ -84,6 +84,7 @@ const Quests = () => {
                 setShowAccepted(true);
               }}
               className={showAccepted === true ? "active" : ""}
+              disabled={acceptedQuests.length === 0}
             >
               QUESTS ACCEPTED
             </button>
@@ -159,6 +160,7 @@ const Quests = () => {
             )
           )}
         </div>
+
         {showAccepted
           ? acceptedQuests[focusedButtonAccepted] && <QuestInfo focus={acceptedQuests[focusedButtonAccepted]} />
           : nonAcceptedQuests[focusedButton] && <QuestInfo focus={nonAcceptedQuests[focusedButton]} />}
