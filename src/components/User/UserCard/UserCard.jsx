@@ -87,9 +87,7 @@ const UserCard = ({
           </div>
           <div className="userCard--stats">
             <label>MMR: </label>
-            <span>
-              {titlePoints} / {titlePointsToNextLevel}
-            </span>
+            <span>{titlePoints}</span>
           </div>
         </div>
       ) : (

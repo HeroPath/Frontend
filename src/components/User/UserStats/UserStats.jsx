@@ -68,7 +68,7 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
     <>
       <section className="userstats">
         <h2>Stats</h2>
-        <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
+        <label className="m-2">Free skill points: {stats.freeSkillPoints}</label>
 
         <form className="userstats--form">
           <Stat
