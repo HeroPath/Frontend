@@ -3,15 +3,15 @@
   height: 100vh;
   padding: 20px;
   font-weight: bold;
-  background-color: rgb(21, 21, 21);
+  background-color: #151515;
+  color: #f9e2b8;
 }
 
 .ranking--tableUsers {
   max-width: 90%;
   margin: 0 auto;
-  background-color: rgb(0, 25, 40);
-  border: 2px solid rgb(215, 171, 60);
-  color: rgb(215, 171, 60);
+  background-color: #001928;
+  border: 2px solid #f9e2b8;
   padding: 5px;
 }
 
@@ -30,7 +30,7 @@
 
 .ranking--table th {
   text-align: center;
-  color: rgb(64, 136, 161);
+  color: #4088a1;
   font-size: 18px;
   text-transform: uppercase;
   font-weight: bold;
@@ -44,13 +44,7 @@
 
 .ranking--table tbody:hover {
   filter: brightness(1.2);
-  background-color: rgb(0, 45, 72);
-  border: 1px solid rgb(215, 171, 60);
+  background-color: #002d48;
+  border: 1px solid #d7ab3c;
   cursor: pointer;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
