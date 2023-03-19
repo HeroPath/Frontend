@@ -64,7 +64,7 @@
 .quests-tables td {
   text-align: center;
   font-size: 16px;
-  padding: 5% 0%;
+  padding: 1.5% 0%;
   width: 25%;
 }
 .quests-tables td:first-child {
@@ -162,11 +162,20 @@
   font-weight: bold;
   font-size: 25px;
 }
+.quest-info-button button:nth-child(2) {
+  margin-left: 5%;
+}
 
 .cancel {
   border: 2px solid #fe7a7a;
   color: #fe7a7a;
 }
+
+.completed {
+  border: 2px solid #fcdd7a;
+  color: #fcdd7a;
+}
+
 .accept {
   border: 2px solid #8ccd95;
   color: #8ccd95;

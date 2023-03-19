@@ -48,8 +48,10 @@ const Quests = () => {
   }, [currentPage]);
 
   const [showAccepted, setShowAccepted] = useState(false);
+  const [questCompleted, setQuestCompleted] = useState(false);
   const [focusedButton, setFocusedButton] = useState(0);
   const [focusedButtonAccepted, setFocusedButtonAccepted] = useState(0);
+  const [nameQuest, setNameQuest] = useState("");
 
   return (
     <div className="quest">
@@ -91,6 +93,7 @@ const Quests = () => {
                     className={focusedButton === index ? "active" : ""}
                     onClick={() => {
                       setFocusedButton(index);
+                      setNameQuest(nonAcceptedQuest.quest.name);
                     }}
                   >
                     <td>{nonAcceptedQuestsNumber++}</td>
@@ -124,6 +127,7 @@ const Quests = () => {
                         className={focusedButtonAccepted === index ? "active" : ""}
                         onClick={() => {
                           setFocusedButtonAccepted(index);
+                          setNameQuest(acceptedQuest.quest.name);
                         }}
                       >
                         <td>{acceptedQuestNumber++}</td>
@@ -146,15 +150,49 @@ const Quests = () => {
           ? acceptedQuests[focusedButtonAccepted] && <QuestInfo focus={acceptedQuests[focusedButtonAccepted]} />
           : nonAcceptedQuests[focusedButton] && <QuestInfo focus={nonAcceptedQuests[focusedButton]} />}
 
-        {totalPages && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
+        {!showAccepted ? (
+          totalPages > 1 ? (
+            <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
+          ) : (
+            <div></div>
+          )
+        ) : (
+          <div></div>
+        )}
 
         {showAccepted ? (
           <div className="quest-info-button">
-            <button className="cancel">CANCEL</button>
+            <button
+              className="cancel"
+              onClick={() => {
+                setFocusedButtonAccepted(0);
+                handleQuests("cancel", { name: nameQuest });
+              }}
+            >
+              CANCEL
+            </button>
+            <button
+              className="completed"
+              onClick={() => {
+                setFocusedButtonAccepted(0);
+                handleQuests("completed", { name: nameQuest });
+              }}
+            >
+              COMPLETED
+            </button>
           </div>
         ) : (
           <div className="quest-info-button">
-            <button className="accept">ACCEPT</button>
+            {nameQuest !== "" && (
+              <button
+                className="accept"
+                onClick={() => {
+                  handleQuests("accept", { name: nameQuest });
+                }}
+              >
+                ACCEPT
+              </button>
+            )}
           </div>
         )}
       </>
