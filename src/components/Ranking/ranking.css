@@ -1,8 +1,56 @@
 .ranking {
   width: 100vw;
   height: 100vh;
-  padding: 50px;
+  padding: 20px;
+  font-weight: bold;
+  background-color: rgb(21, 21, 21);
+}
+
+.ranking--tableUsers {
+  max-width: 90%;
+  margin: 0 auto;
+  background-color: rgb(0, 25, 40);
+  border: 2px solid rgb(215, 171, 60);
+  color: rgb(215, 171, 60);
+  padding: 5px;
+}
+
+.ranking--tableUsers h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
-  color: #000;
+}
+
+.ranking--table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.ranking--table th {
+  text-align: center;
+  color: rgb(64, 136, 161);
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ranking--table td {
+  text-align: center;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+.ranking--table tbody:hover {
+  filter: brightness(1.2);
+  background-color: rgb(0, 45, 72);
+  border: 1px solid rgb(215, 171, 60);
+  cursor: pointer;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

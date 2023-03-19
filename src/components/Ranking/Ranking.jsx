@@ -46,8 +46,8 @@ const Ranking = () => {
   return (
     <div className="ranking">
       <div className="ranking--tableUsers">
-        <h1>Ranking Users</h1>
-        <Table striped bordered hover>
+        <h1>RANKING USERS</h1>
+        <table className="ranking--table">
           <thead>
             <tr>
               <th>#</th>
@@ -62,17 +62,7 @@ const Ranking = () => {
           </thead>
           {ranking?.map((users) => (
             <tbody key={users.username}>
-              <tr
-                style={
-                  users.rankPosition === 1
-                    ? { backgroundColor: "#FFC300", fontSize: "22px" }
-                    : users.rankPosition === 2
-                    ? { backgroundColor: "#CDFD75", fontSize: "20px" }
-                    : users.rankPosition === 3
-                    ? { backgroundColor: "#DAF7A6", fontSize: "18px" }
-                    : { backgroundColor: "#DEDEDE" }
-                }
-              >
+              <tr>
                 <td>{users.rankPosition}</td>
                 <td>{users.username}</td>
                 {users.guildName ? <td>{users.guildName}</td> : <td>---</td>}
@@ -84,13 +74,13 @@ const Ranking = () => {
               </tr>
             </tbody>
           ))}
-        </Table>
+        </table>
         {totalPages && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
       </div>
       {guilds.length >= 1 && (
         <div>
           <h1>Ranking Guilds</h1>
-          <Table striped bordered hover>
+          <table>
             <thead>
               <tr>
                 <th>#</th>
@@ -141,7 +131,7 @@ const Ranking = () => {
                 </tr>
               </tbody>
             ))}
-          </Table>
+          </table>
         </div>
       )}
       <ToastContainer
