@@ -51,20 +51,20 @@ const Login = () => {
       <div className="login--banner">
         <section className="login--section">
           <form className="login--form" onSubmit={handleSubmit}>
-            <h2>Username</h2>
+            <h3>Username</h3>
             <input
               type="text"
+              className="p-2"
               id="username"
-              className="form-control"
               name="username"
               value={dataLogin.username}
               onChange={handleChange}
             />
-            <h2>Password</h2>
+            <h3>Password</h3>
             <input
               type="password"
+              className="p-2"
               id="password"
-              className="form-control"
               name="password"
               value={dataLogin.password}
               onChange={handleChange}
@@ -74,51 +74,47 @@ const Login = () => {
             </button>
           </form>
           <div className="login--footer mt-4">
-            <a href="/register" className="button--links pe-4 ps-4" style={{ marginRight: "2%" }}>
+            <a href="/register" className="button--links me-4 pe-4 ps-4">
               Register
             </a>
-            <a href="" className="button--links pe-4 ps-4">
-              Forgot pass?
-            </a>
+            <a className="button--links pe-4 ps-4">Forgot pass?</a>
           </div>
-          {serverStats.status === "Online" ? (
-            <div className="login--stats">
-              <div>
-                <label>Server status: </label>
-                <img
-                  className="ms-2"
-                  src={require(`../../img/utilities/online.webp`)}
-                  height="16px"
-                  width="16px"
-                  alt=""
-                />
-              </div>
-              <div>
-                <label>Registered Users: {serverStats.userRegistered}</label>
-              </div>
-              <div>
-                <label>Exp. Mult.: {serverStats.expMultiplier}x</label>
-              </div>
-              <div>
-                <label>Gold Mult.: {serverStats.goldMultiplier}x</label>
-              </div>
-              <div>
-                <label>Level Max: {serverStats.lvlMax}</label>
-              </div>
-            </div>
-          ) : (
-            <div className="login--stats">
+        </section>
+        {serverStats.status === "Online" ? (
+          <div className="login--stats">
+            <div className="login--divStat">
               <label>Server status: </label>
               <img
                 className="ms-2"
-                src={require(`../../img/utilities/offline.webp`)}
+                src={require(`../../img/utilities/online.webp`)}
                 height="16px"
                 width="16px"
                 alt=""
               />
             </div>
-          )}
-        </section>
+            <div className="login--divStat">
+              <label>Registered Users:</label>
+              <span>{serverStats.userRegistered}</span>
+            </div>
+            <div className="login--divStat">
+              <label>Exp. Mult.:</label>
+              <span>{serverStats.expMultiplier}x</span>
+            </div>
+            <div className="login--divStat">
+              <label>Gold Mult.: </label>
+              <span>{serverStats.goldMultiplier}x</span>
+            </div>
+            <div className="login--divStat">
+              <label>Level Max:</label>
+              <span>{serverStats.lvlMax}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="login--stats">
+            <label>Server status: </label>
+            <img className="ms-2" src={require(`../../img/utilities/offline.webp`)} height="16px" width="16px" alt="" />
+          </div>
+        )}
       </div>
       <ToastContainer
         position="top-right"

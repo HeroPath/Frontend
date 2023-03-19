@@ -9,7 +9,7 @@ const Zone = () => {
   return (
     <div className="zone">
       {zoneMap.map((zone, index) => (
-        <div style={divStyle} key={index}>
+        <div className="zoneCard" key={index}>
           <h4>{capitalizeFirstLetter(zone.name)}</h4>
           <form
             key={index}
@@ -19,8 +19,8 @@ const Zone = () => {
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",
-              height: "250px",
-              width: "405px",
+              height: "225px",
+              width: "365px",
               alignItems: "center",
               display: "flex",
               flexDirection: "column",
@@ -39,7 +39,7 @@ const Zone = () => {
               Travel
             </a>
           </form>
-          <p style={pStyle}>
+          <p>
             Recommended lvl: {zone.rLvlMin} / {zone.rLvlMax}
           </p>
         </div>
@@ -49,12 +49,3 @@ const Zone = () => {
 };
 
 export default Zone;
-
-const divStyle = {
-  alignItems: "center",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-};
-
-const pStyle = { fontWeight: "bold", fontSize: "20px" };

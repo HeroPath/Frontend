@@ -27,6 +27,8 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
     hp,
     maxHp,
     aclass,
+    pvpLosses,
+    pvpWins,
   } = profile;
 
   const [stats, setStats] = useState({
@@ -66,7 +68,7 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
     <>
       <section className="userstats">
         <h2>Stats</h2>
-        <label className="m-2">Skill points: {stats.freeSkillPoints}</label>
+        <label className="m-2">Free skill points: {stats.freeSkillPoints}</label>
 
         <form className="userstats--form">
           <Stat
@@ -113,7 +115,27 @@ const UserStats = ({ profile, userNewData, updateStats }) => {
         </form>
 
         <div className="userstats--info">
-          <label>Npc killed: {npcKills}</label>
+          <div className="userstats--data">
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Pvp wins:</label>
+                <span>{pvpWins}</span>
+              </div>
+            </div>
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Pvp losses:</label>
+                <span>{pvpLosses}</span>
+              </div>
+            </div>
+
+            <div className="userstats--labels">
+              <div className="userstats--dataStat">
+                <label>Npc killed:</label>
+                <span>{npcKills}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -3,6 +3,7 @@
 .zone {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
   text-align: center;
   align-items: center;
   background-image: url("../../img/zone/bg-zone.webp");
@@ -12,6 +13,22 @@
   object-fit: fill;
   color: #fff;
   width: 100vw;
+  padding: 10px;
+}
+
+.zoneCard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px;
+  color: var(--button--textColor);
+  font-weight: bold;
+}
+
+.zoneCard p {
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .zoneForm {

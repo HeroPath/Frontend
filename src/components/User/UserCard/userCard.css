@@ -16,3 +16,28 @@
 .userCard--card--bgName h3 {
   margin: 0;
 }
+
+.userCard--info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 270px;
+  border: 1px solid #d3d3d3;
+  border-top: none;
+  padding: 0% 3%;
+  text-align: start;
+}
+
+.userCard--stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 5%;
+  font-size: 14px;
+  color: var(--button--textColor);
+}
+
+.userCard--stats span {
+  color: #dbc46b;
+}
