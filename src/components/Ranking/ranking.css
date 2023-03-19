@@ -5,6 +5,7 @@
   font-weight: bold;
   background-color: #151515;
   color: #ecd586;
+  text-transform: capitalize;
 }
 
 .ranking--tableUsers {
@@ -46,4 +47,9 @@
   background-color: #002d48;
   border: 1px solid #d7ab3c;
   cursor: pointer;
+}
+
+.ranking--table td,
+.ranking--table th {
+  height: 30px;
 }
