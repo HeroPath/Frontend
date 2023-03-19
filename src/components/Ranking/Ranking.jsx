@@ -45,7 +45,7 @@ const Ranking = () => {
 
   return (
     <div className="ranking">
-      <div className="ranking--tableUsers">
+      <div className="ranking--divTable">
         <h1>RANKING USERS</h1>
         <table className="ranking--table">
           <thead>
@@ -78,9 +78,9 @@ const Ranking = () => {
         {totalPages && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
       </div>
       {guilds.length >= 1 && (
-        <div>
+        <div className="ranking--divTable">
           <h1>Ranking Guilds</h1>
-          <table>
+          <table className="ranking--table">
             <thead>
               <tr>
                 <th>#</th>
@@ -93,20 +93,9 @@ const Ranking = () => {
                 <th>Actions</th>
               </tr>
             </thead>
-            {guilds?.map((guild) => (
-              <tbody key={guild.name}>
-                <tr
-                  style={
-                    guildsCounter === 1
-                      ? { backgroundColor: "#FFC300", fontSize: "22px" }
-                      : guildsCounter === 2
-                      ? { backgroundColor: "#CDFD75", fontSize: "20px" }
-                      : guildsCounter === 3 && {
-                          backgroundColor: "#DAF7A6",
-                          fontSize: "18px",
-                        }
-                  }
-                >
+            <tbody>
+              {guilds?.map((guild) => (
+                <tr key={guild.name}>
                   <td>{guildsCounter++}</td>
                   <td>{guild.name}</td>
                   <td>{guild.tag}</td>
@@ -120,17 +109,17 @@ const Ranking = () => {
                   <td>
                     <button
                       type="button"
-                      className="btn btn-success"
+                      className="effect"
                       onClick={() => {
                         handleGuildRequest({ name: guild.name });
                       }}
                     >
-                      Apply
+                      APPLY
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            ))}
+              ))}
+            </tbody>
           </table>
         </div>
       )}

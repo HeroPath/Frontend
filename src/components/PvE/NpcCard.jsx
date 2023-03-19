@@ -42,7 +42,7 @@ const NpcCard = ({ npcLife }) => {
           Dmg: {npcData.minDmg}/{npcData.maxDmg}
         </label>
         <label>Level: {npcData.level}</label>
-        <label>Zone: {capitalizeFirstLetter(npcData.zone)} </label>
+        <label>Zone: {npcData.zone}</label>
       </form>
     </div>
   );
