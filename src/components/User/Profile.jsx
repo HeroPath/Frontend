@@ -11,6 +11,7 @@ import { headers } from "../../functions/utilities";
 
 const Profile = () => {
   const [profile, setProfile] = useState({});
+  let sendFromProfile = true;
   const [userNewData, setUserNewData] = useState(false);
   const updateStats = (newStats) => setUserNewData(newStats);
 
@@ -18,7 +19,7 @@ const Profile = () => {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
       setProfile(response.data);
-      console.log(response.data)
+      console.log(response.data);
     }
   }
 
@@ -55,17 +56,16 @@ const Profile = () => {
               experience={profile.experience}
               experienceToNextLevel={profile.experienceToNextLevel}
               level={profile.level}
+              guildName={profile.guildName}
+              titleName={profile.titleName}
+              titlePoints={profile.titlePoints}
+              titlePointsToNextLevel={profile.titlePointsToNextLevel}
+              sendFromProfile={sendFromProfile}
               userNewData={userNewData}
             />
           )}
 
-          {profile.strength && (
-            <UserStats
-              profile={profile}
-              updateStats={updateStats}
-              userNewData={userNewData}
-            />
-          )}
+          {profile.strength && <UserStats profile={profile} updateStats={updateStats} userNewData={userNewData} />}
         </section>
       </div>
     </div>

@@ -1,8 +1,24 @@
 import { useMemo, useState } from "react";
 import "./userCard.css";
 import { capitalizeFirstLetter } from "../../../functions/utilities";
+import { titleColor } from "../../../functions/constants";
 
-const UserCard = ({ username, aclass, hp, maxHp, experience, experienceToNextLevel, level, userNewData, userLife }) => {
+const UserCard = ({
+  username,
+  aclass,
+  hp,
+  maxHp,
+  experience,
+  experienceToNextLevel,
+  level,
+  userNewData,
+  userLife,
+  guildName,
+  titleName,
+  titlePoints,
+  titlePointsToNextLevel,
+  sendFromProfile,
+}) => {
   if (userLife !== undefined) hp = userLife;
 
   if (userNewData !== false && userNewData !== undefined) {
@@ -51,8 +67,37 @@ const UserCard = ({ username, aclass, hp, maxHp, experience, experienceToNextLev
         <div className="bar--foreground--exp" style={{ width: barExpWidth + "px" }} />
       </div>
 
-      <label>Level: {level}</label>
-      <label>Class: {capitalizeFirstLetter(aclass)}</label>
+      {sendFromProfile ? (
+        <div className="userCard--info">
+          <div className="userCard--stats">
+            <label>Level: </label>
+            <span>{level}</span>
+          </div>
+          <div className="userCard--stats">
+            <label>Class: </label>
+            <span>{capitalizeFirstLetter(aclass)}</span>
+          </div>
+          <div className="userCard--stats">
+            <label>Guild: </label>
+            <span>{guildName ? guildName : "None"}</span>
+          </div>
+          <div className="userCard--stats">
+            <label>Title: </label>
+            <span>{titleName}</span>
+          </div>
+          <div className="userCard--stats">
+            <label>MMR: </label>
+            <span>
+              {titlePoints} / {titlePointsToNextLevel}
+            </span>
+          </div>
+        </div>
+      ) : (
+        <>
+          <label>Level: {level} </label>
+          <label>Class: {aclass}</label>
+        </>
+      )}
     </div>
   );
 };
