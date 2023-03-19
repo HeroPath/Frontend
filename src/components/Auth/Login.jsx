@@ -74,12 +74,10 @@ const Login = () => {
             </button>
           </form>
           <div className="login--footer mt-4">
-            <a href="/register" className="button--links pe-4 ps-4" style={{ marginRight: "2%" }}>
+            <a href="/register" className="button--links me-4 pe-4 ps-4">
               Register
             </a>
-            <a href="" className="button--links pe-4 ps-4">
-              Forgot pass?
-            </a>
+            <a className="button--links pe-4 ps-4">Forgot pass?</a>
           </div>
         </section>
         {serverStats.status === "Online" ? (
