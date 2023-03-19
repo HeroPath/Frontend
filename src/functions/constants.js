@@ -16,11 +16,11 @@ export const zoneMap = [
 
 // ------------ userInventory ------------ //
 export const titleColor = {
-  iron: "#A9A9A9",
+  iron: "#8F8E8F",
   bronze: "#CD7F32",
   silver: "#C0C0C0",
   gold: "#FFD700",
-  platinum: "#E5E4E2",
+  platinum: "#87CEEB",
   diamond: "#B9F2FF",
-  challenger: '#800080'
+  challenger: "#FF69B4",
 };

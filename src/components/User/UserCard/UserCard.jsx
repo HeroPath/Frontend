@@ -26,6 +26,7 @@ const UserCard = ({
     maxHp = userNewData.maxHp;
   }
 
+  const titleColorValue = titleColor[titleName];
   const [showPercentExp, setShowPercentExp] = useState(true);
   const [showExpComplete, setShowExpComplete] = useState(false);
 
@@ -83,7 +84,7 @@ const UserCard = ({
           </div>
           <div className="userCard--stats">
             <label>Title: </label>
-            <span>{titleName}</span>
+            <span style={{ color: titleColorValue }}>{titleName}</span>
           </div>
           <div className="userCard--stats">
             <label>MMR: </label>
