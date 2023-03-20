@@ -240,6 +240,5 @@
 
 .quest-info-button button:hover {
   filter: brightness(1.2);
-  background-color: #002d48;
   cursor: pointer;
 }
