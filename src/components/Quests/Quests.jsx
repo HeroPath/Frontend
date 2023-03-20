@@ -175,30 +175,30 @@ const Quests = () => {
           <div></div>
         )}
 
-        {showAccepted ? (
-          <div className="quest-info-button">
-            <button
-              className="cancel"
-              onClick={() => {
-                setFocusedButtonAccepted(0);
-                handleQuests("cancel", { name: nameQuest });
-              }}
-            >
-              CANCEL
-            </button>
-            <button
-              className="completed"
-              onClick={() => {
-                setFocusedButtonAccepted(0);
-                handleQuests("complete", { name: nameQuest });
-              }}
-            >
-              COMPLETED
-            </button>
-          </div>
-        ) : (
-          <div className="quest-info-button">
-            {nameQuest !== "" && (
+        <div className="quest-info-button">
+          {showAccepted ? (
+            <>
+              <button
+                className="cancel"
+                onClick={() => {
+                  setFocusedButtonAccepted(0);
+                  handleQuests("cancel", { name: nameQuest });
+                }}
+              >
+                CANCEL
+              </button>
+              <button
+                className="completed"
+                onClick={() => {
+                  setFocusedButtonAccepted(0);
+                  handleQuests("complete", { name: nameQuest });
+                }}
+              >
+                COMPLETED
+              </button>
+            </>
+          ) : (
+            nameQuest !== "" && (
               <button
                 className="accept"
                 onClick={() => {
@@ -207,9 +207,9 @@ const Quests = () => {
               >
                 ACCEPT
               </button>
-            )}
-          </div>
-        )}
+            )
+          )}
+        </div>
       </>
       <ToastContainer
         position="top-right"

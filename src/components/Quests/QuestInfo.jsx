@@ -4,9 +4,7 @@ const QuestInfo = ({ focus }) => {
       <div className="divDescription">
         <h3>Description:</h3>
         <div className="scrollable-content">
-          <h5>
-            {focus.quest.description}
-          </h5>
+          <h5>{focus.quest.description}</h5>
         </div>
       </div>
       <div className="divRewards">
