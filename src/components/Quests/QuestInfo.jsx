@@ -12,7 +12,6 @@ const QuestInfo = ({ focus }) => {
         <h5>REQUERIMENTS</h5>
         <div>
           <label>Amount NPC: </label>
-
           <span>
             {focus.npcKillAmount >= 0 && focus.npcKillAmount + "/"}
             {focus.quest.npcAmountNeed}

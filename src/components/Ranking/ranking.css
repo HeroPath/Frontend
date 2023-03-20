@@ -14,7 +14,7 @@
 .ranking--divTable {
   width: 100%;
   margin: 0 auto;
-  background-color: #001928;
+  background-color: #1e1e1e;
   border: 2px solid #ecd586;
   padding: 5px;
 }
@@ -37,7 +37,7 @@
 
 .ranking--table th {
   text-align: center;
-  color: #4088a1;
+  color: #508ca0;
   font-size: 18px;
   text-transform: uppercase;
   font-weight: bold;
@@ -50,7 +50,7 @@
 
 .ranking--table tbody tr:hover {
   filter: brightness(1.2);
-  background-color: #002d48;
+  background-color: #2a4d58;
   cursor: pointer;
 }
 

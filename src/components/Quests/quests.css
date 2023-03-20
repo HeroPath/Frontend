@@ -9,7 +9,7 @@
 .divTables {
   display: flex;
   flex-direction: column;
-  background-color: #001928;
+  background-color: #1e1e1e;
   border: 2px solid #ecd586;
   margin: 3%;
   height: 550px;
@@ -21,7 +21,7 @@
   justify-content: center;
 }
 .quest-button button {
-  background-color: #001928;
+  background-color: #1e1e1e;
   border-bottom: 2px solid #ecd586;
   color: var(--button--textColor);
   filter: brightness(0.8);
@@ -44,13 +44,13 @@
 
 .quest-button button:hover {
   filter: brightness(1.2);
-  background-color: #002d48;
+  background-color: #21404a;
   cursor: pointer;
 }
 
 .quest-button button.active {
   filter: brightness(1.1);
-  background-color: #002d48;
+  background-color: #21404a;
 }
 
 .quests-tables {
@@ -68,10 +68,9 @@
 
 .quests-tables th {
   text-align: center;
-  color: #4088a1;
+  color: #508ca0;
   font-size: 18px;
   text-transform: uppercase;
-  font-weight: bold;
   padding: 2%;
 }
 
@@ -87,20 +86,20 @@
 }
 
 .quests-tables tbody tr:hover {
-  filter: brightness(1.2);
-  background-color: #002d48;
+  filter: brightness(1.1);
+  background-color: #21404a;
   cursor: pointer;
 }
 
 .quests-tables tbody tr.active {
   filter: brightness(1.4);
-  background-color: #002d48;
+  background-color: #21404a;
 }
 
 .quest-info {
   display: flex;
   flex-direction: column;
-  background-color: #001928;
+  background-color: #1e1e1e;
   border: 2px solid #ecd586;
   margin: 3%;
   height: 550px;
@@ -136,7 +135,7 @@
 
 ::-webkit-scrollbar-track,
 .scrollable-content::-webkit-scrollbar-track {
-  background-color: #001928;
+  background-color: #1e1e1e;
   border: 1px solid #ecd586;
   border-top: none;
   border-bottom: none;
@@ -149,7 +148,7 @@
 
 ::-webkit-scrollbar-thumb:hover,
 .scrollable-content::-webkit-scrollbar-thumb:hover {
-  background-color: #d1a148;
+  background-color: #d2a655;
 }
 
 /* scroll */
@@ -174,7 +173,7 @@
   align-items: center;
 }
 .divRequeriments span {
-  color: #8ccd95;
+  color: #d2a655;
 }
 
 .divRewards {
@@ -208,7 +207,7 @@
 }
 
 .quest-info-button button {
-  background-color: #001928;
+  background-color: #1e1e1e;
   filter: brightness(0.8);
   padding: 0% 10%;
   margin: 5% 0;
@@ -235,8 +234,8 @@
 }
 
 .questComplete {
-  border: 1px solid #22a433;
-  color: #22a433;
+  border: 1px solid #66c673;
+  color: #66c673;
 }
 
 .quest-info-button button:hover {
