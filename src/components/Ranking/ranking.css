@@ -1,4 +1,7 @@
 .ranking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   padding: 20px;
@@ -9,7 +12,7 @@
 }
 
 .ranking--divTable {
-  max-width: 90%;
+  width: 100%;
   margin: 0 auto;
   background-color: #001928;
   border: 2px solid #ecd586;

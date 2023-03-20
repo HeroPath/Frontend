@@ -10,18 +10,7 @@
   color: #ecd586;
   padding: 3px 10px;
   filter: brightness(0.9);
-}
-
-.buttonPagination:first-child {
-  border-right: none;
-}
-
-.buttonPagination:last-child {
-  border-left: none;
-}
-
-.buttonPagination:nth-child(2) {
-  border-left: 2px solid #ecd586;
+  margin-left: -1px;
 }
 
 .buttonPagination:hover {

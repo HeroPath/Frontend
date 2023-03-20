@@ -57,6 +57,7 @@
 .quests-tables {
   margin: 0 2%;
   text-transform: capitalize;
+  overflow-x: auto;
 }
 
 .quests-tables th {
