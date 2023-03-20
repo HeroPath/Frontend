@@ -63,6 +63,7 @@ const Quests = () => {
 
   useEffect(() => {
     if (acceptedQuests.length === 0) setShowAccepted(false);
+    if (nonAcceptedQuests.length === 0) setShowAccepted(true);
   }, [acceptedQuests]);
 
   return (
@@ -75,6 +76,7 @@ const Quests = () => {
                 setShowAccepted(false);
               }}
               className={showAccepted === false ? "active" : ""}
+              disabled={nonAcceptedQuests.length === 0}
             >
               QUESTS
             </button>
