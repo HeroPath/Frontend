@@ -61,10 +61,12 @@
   text-align: center;
   color: var(--button--textColor);
   border: 2px solid rgb(205, 166, 79);
+  text-transform: capitalize;
 }
 
 .selectClass option {
   background-color: black;
+  text-transform: capitalize;
 }
 
 .classSelected {

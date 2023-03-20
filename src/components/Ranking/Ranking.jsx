@@ -45,9 +45,9 @@ const Ranking = () => {
 
   return (
     <div className="ranking">
-      <div className="ranking--tableUsers">
-        <h1>Ranking Users</h1>
-        <Table striped bordered hover>
+      <div className="ranking--divTable">
+        <h1>RANKING USERS</h1>
+        <table className="ranking--table">
           <thead>
             <tr>
               <th>#</th>
@@ -60,19 +60,9 @@ const Ranking = () => {
               <th>PvP Win</th>
             </tr>
           </thead>
-          {ranking?.map((users) => (
-            <tbody key={users.username}>
-              <tr
-                style={
-                  users.rankPosition === 1
-                    ? { backgroundColor: "#FFC300", fontSize: "22px" }
-                    : users.rankPosition === 2
-                    ? { backgroundColor: "#CDFD75", fontSize: "20px" }
-                    : users.rankPosition === 3
-                    ? { backgroundColor: "#DAF7A6", fontSize: "18px" }
-                    : { backgroundColor: "#DEDEDE" }
-                }
-              >
+          <tbody>
+            {ranking?.map((users) => (
+              <tr key={users.username}>
                 <td>{users.rankPosition}</td>
                 <td>{users.username}</td>
                 {users.guildName ? <td>{users.guildName}</td> : <td>---</td>}
@@ -82,15 +72,15 @@ const Ranking = () => {
                 <td>{users.titlePoints}</td>
                 <td>{users.pvpWins}</td>
               </tr>
-            </tbody>
-          ))}
-        </Table>
-        {totalPages && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
+            ))}
+          </tbody>
+        </table>
+        {totalPages.length > 0 && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
       </div>
       {guilds.length >= 1 && (
-        <div>
-          <h1>Ranking Guilds</h1>
-          <Table striped bordered hover>
+        <div className="ranking--divTable">
+          <h1>RANKING GUILDS</h1>
+          <table className="ranking--table">
             <thead>
               <tr>
                 <th>#</th>
@@ -103,20 +93,9 @@ const Ranking = () => {
                 <th>Actions</th>
               </tr>
             </thead>
-            {guilds?.map((guild) => (
-              <tbody key={guild.name}>
-                <tr
-                  style={
-                    guildsCounter === 1
-                      ? { backgroundColor: "#FFC300", fontSize: "22px" }
-                      : guildsCounter === 2
-                      ? { backgroundColor: "#CDFD75", fontSize: "20px" }
-                      : guildsCounter === 3 && {
-                          backgroundColor: "#DAF7A6",
-                          fontSize: "18px",
-                        }
-                  }
-                >
+            <tbody>
+              {guilds?.map((guild) => (
+                <tr key={guild.name}>
                   <td>{guildsCounter++}</td>
                   <td>{guild.name}</td>
                   <td>{guild.tag}</td>
@@ -130,18 +109,18 @@ const Ranking = () => {
                   <td>
                     <button
                       type="button"
-                      className="btn btn-success"
+                      className="effect"
                       onClick={() => {
                         handleGuildRequest({ name: guild.name });
                       }}
                     >
-                      Apply
+                      APPLY
                     </button>
                   </td>
                 </tr>
-              </tbody>
-            ))}
-          </Table>
+              ))}
+            </tbody>
+          </table>
         </div>
       )}
       <ToastContainer

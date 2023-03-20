@@ -111,8 +111,10 @@ const Login = () => {
           </div>
         ) : (
           <div className="login--stats">
-            <label>Server status: </label>
-            <img className="ms-2" src={require(`../../img/utilities/offline.webp`)} height="16px" width="16px" alt="" />
+            <div className="login--divStat">
+              <label>Server status: </label>
+              <img className="ms-2" src={require(`../../img/utilities/offline.webp`)} height="16px" width="16px" />
+            </div>
           </div>
         )}
       </div>

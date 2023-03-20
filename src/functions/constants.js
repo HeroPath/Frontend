@@ -14,7 +14,7 @@ export const zoneMap = [
   { name: "hell", rLvlMin: "226", rLvlMax: "300" },
 ];
 
-// ------------ userInventory ------------ //
+// ------------ userCard ------------ //
 export const titleColor = {
   iron: "#8F8E8F",
   bronze: "#CD7F32",

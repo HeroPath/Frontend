@@ -52,7 +52,7 @@ const UserInventory = ({
   async function handleItem(equipping) {
     if (dataItem === {}) return;
     let equip = equipping === true ? "equip/" : "unequip/";
-
+    
     const response = await get("/api/v1/items/" + equip + dataItem.id, headers);
     if (response.status === 200) {
       setInventoryUser(response.data.inventory);
@@ -102,7 +102,7 @@ const UserInventory = ({
                   }}
                   {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
                 >
-                  <img src={require(`../../../img/items/${item.name}.png`)} className="item" alt="" />
+                  <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" alt="" />
                 </div>
               );
             }
@@ -145,7 +145,7 @@ const UserInventory = ({
               }}
               {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
             >
-              <img src={require(`../../../img/items/${item.name}.png`)} className="item" alt="" />
+              <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
             </div>
           ))}
       </div>

@@ -13,6 +13,7 @@ const Shop = () => {
   const [showTooltip, setShowTooltip] = useState(true);
 
   const [itemDragShop, setItemDragShop] = useState(null);
+  const [focusedButton, setFocusedButton] = useState("none");
 
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
@@ -22,6 +23,7 @@ const Shop = () => {
   }
 
   async function handleItems(iClass) {
+    setFocusedButton(iClass);
     const response = await get("/api/v1/items/shop/" + iClass, headers);
     if (response.status === 200) setItemsShop(response.data);
   }
@@ -79,6 +81,7 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("none");
                 }}
+                className={focusedButton === "none" ? "active" : ""}
               >
                 All
               </button>
@@ -87,6 +90,7 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("mage");
                 }}
+                className={focusedButton === "mage" ? "active" : ""}
               >
                 Mage
               </button>
@@ -95,6 +99,7 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("warrior");
                 }}
+                className={focusedButton === "warrior" ? "active" : ""}
               >
                 Warrior
               </button>
@@ -103,6 +108,7 @@ const Shop = () => {
                 onClick={() => {
                   handleItems("archer");
                 }}
+                className={focusedButton === "archer" ? "active" : ""}
               >
                 Archer
               </button>
@@ -145,7 +151,7 @@ const Shop = () => {
                       "data-tooltip": dataTooltip(item),
                     })}
                   >
-                    <img src={require(`../../img/items/${item.name}.png`)} className="item" alt="" />
+                    <img src={require(`../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
                   </div>
                 ))}
               </div>

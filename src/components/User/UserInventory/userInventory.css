@@ -45,14 +45,14 @@
 .itemNoClass {
   margin-top: 1px;
   padding: 1px;
-  background-color: rgba(141, 17, 1, 0.5);
+  background-color: rgba(128, 16, 1, 0.5);
 }
 
 .itemNoLevel {
   margin-top: 1px;
   padding: 1px;
 
-  background-color: rgba(137, 128, 1, 0.5);
+  background-color: rgba(110, 103, 0, 0.5);
 }
 
 .form-control,

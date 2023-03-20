@@ -24,18 +24,9 @@
   align-items: center;
   width: 100%;
   padding: 0 15px;
-  border: 1px solid #d3d3d3;
-}
-
-.userstats--stats:first-child {
-  border-top: 1px solid #d3d3d3;
-}
-.userstats--stats {
-  border-top: none;
-}
-
-.userstats--stats:last-child {
-  justify-content: end;
+  background-color: rgb(0, 25, 40);
+  border: 1px solid rgb(100, 80, 30);
+  margin: 3px 0;
 }
 
 .userstats--labels {
@@ -49,7 +40,7 @@
   justify-items: flex-start;
   width: 100%;
   font-size: 13px;
-  color: #ff7070;
+  color: #fe7a7a;
 }
 .userstats--secondStat {
   display: grid;
@@ -57,7 +48,7 @@
   justify-items: flex-start;
   width: 100%;
   font-size: 11px;
-  color: #b4dbe8;
+  color: #95bfcd;
 }
 
 .userstats--add--form {
@@ -107,5 +98,5 @@
   color: var(--button--textColor);
 }
 .userstats--dataStat span {
-  color: #dbc46b;
+  color: #ecd586;
 }

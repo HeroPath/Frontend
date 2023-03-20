@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-
-import { capitalizeFirstLetter } from "../../functions/utilities";
 import { get, post } from "../../functions/requestsApi";
 import { notifySuccess } from "../../functions/utilities";
 
@@ -136,7 +134,7 @@ const Register = () => {
                     cChar.luck,
                   ]}
                 >
-                  {capitalizeFirstLetter(cChar.name)}
+                  {cChar.name}
                 </option>
               ))}
             </select>
@@ -152,7 +150,7 @@ const Register = () => {
                   />
                 </div>
                 <div className="classSelected--stats">
-                  <h3 className="classSelected--stats__head">{capitalizeFirstLetter(dataClassSelected)}</h3>
+                  <h3 className="classSelected--stats__head">{dataClassSelected}</h3>
                   {dataClassSelected === "default" ? (
                     <label className="classSelected--stats__head">
                       You must select a class to know its story, as well as its corresponding stats...

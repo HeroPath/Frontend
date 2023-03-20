@@ -1,8 +1,94 @@
 .ranking {
   width: 100vw;
   height: 100vh;
-  padding: 50px;
+  padding: 20px;
+  font-weight: bold;
+  background-color: #151515;
+  color: #ecd586;
+  text-transform: capitalize;
+}
+
+.ranking--divTable {
+  max-width: 90%;
+  margin: 0 auto;
+  background-color: #001928;
+  border: 2px solid #ecd586;
+  padding: 5px;
+}
+.ranking--divTable:first-child {
+  margin-bottom: 2%;
+}
+
+.ranking--divTable h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
   text-align: center;
   font-weight: bold;
-  color: #000;
+}
+
+.ranking--table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.ranking--table th {
+  text-align: center;
+  color: #4088a1;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.ranking--table td {
+  text-align: center;
+  font-size: 15px;
+}
+
+.ranking--table tbody tr:hover {
+  filter: brightness(1.2);
+  background-color: #002d48;
+  cursor: pointer;
+}
+
+.ranking--table tbody button {
+  padding: 5% 10%;
+  filter: brightness(0.9);
+  background-color: unset;
+  border: 1px solid #ecd586;
+  margin: 2px;
+  color: #ecd586;
+  border-radius: 5px;
+}
+.ranking--table tbody button:hover {
+  filter: brightness(1.2);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ranking--table tbody button.effect {
+  overflow: hidden;
+  transition: all 1s;
+  position: relative;
+  z-index: 1;
+}
+.ranking--table tbody button.effect::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0%;
+  height: 0%;
+  background-color: #ecd586;
+  border-radius: 50%;
+  transition: all 1s;
+  z-index: -1;
+}
+.ranking--table tbody button.effect:hover {
+  color: #001928;
+}
+.ranking--table tbody button.effect:hover::after {
+  width: 150%;
+  height: 250%;
 }
