@@ -19,7 +19,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
-  margin-bottom: 3%;
 }
 .quest-button button {
   background-color: #001928;
@@ -58,6 +57,13 @@
   margin: 0 2%;
   text-transform: capitalize;
   overflow-x: auto;
+  width: 100%;
+}
+
+.tableScroll {
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
 }
 
 .quests-tables th {
@@ -66,6 +72,7 @@
   font-size: 18px;
   text-transform: uppercase;
   font-weight: bold;
+  padding: 2%;
 }
 
 .quests-tables td {

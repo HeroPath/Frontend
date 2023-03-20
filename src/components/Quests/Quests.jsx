@@ -92,23 +92,25 @@ const Quests = () => {
               QUESTS ACCEPTED
             </button>
           </div>
-          {showAccepted === false ? (
-            nonAcceptedQuests.length > 0 && (
+          <div className="tableScroll">
+            {showAccepted === false ? (
+              nonAcceptedQuests.length > 0 && (
+                <Table
+                  quests={nonAcceptedQuests}
+                  focus={focusedButton}
+                  setNameQuest={setNameQuest}
+                  setFocus={setFocusedButton}
+                />
+              )
+            ) : (
               <Table
-                quests={nonAcceptedQuests}
-                focus={focusedButton}
+                quests={acceptedQuests}
+                focus={focusedButtonAccepted}
                 setNameQuest={setNameQuest}
-                setFocus={setFocusedButton}
+                setFocus={setFocusedButtonAccepted}
               />
-            )
-          ) : (
-            <Table
-              quests={acceptedQuests}
-              focus={focusedButtonAccepted}
-              setNameQuest={setNameQuest}
-              setFocus={setFocusedButtonAccepted}
-            />
-          )}
+            )}
+          </div>
         </div>
 
         {showAccepted
