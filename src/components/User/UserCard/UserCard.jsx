@@ -37,7 +37,7 @@ const UserCard = ({
     [experience, experienceToNextLevel]
   );
   const percentExp = useMemo(
-    () => (level < 300 ? ((experience / experienceToNextLevel) * 100).toFixed(2) + "%" : "Lvl Max"),
+    () => (level < 350 ? ((experience / experienceToNextLevel) * 100).toFixed(2) + "%" : "Lvl Max"),
     [level, experience, experienceToNextLevel]
   );
 
