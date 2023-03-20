@@ -98,31 +98,34 @@
 }
 
 .quest-info {
+  display: flex;
+  flex-direction: column;
   background-color: #001928;
   border: 2px solid #ecd586;
   margin: 3%;
   height: 550px;
 }
+
 .divDescription {
   display: flex;
   flex-direction: column;
   align-items: center;
   border-bottom: 2px solid #ecd586;
-  height: 70%;
+  height: 55%;
+  font-size: 15px;
 }
 
 /* scroll */
 
 .scrollable-content {
-  width: 80%;
-  height: 70%;
   overflow: hidden;
   overflow-y: auto;
   border: 1px solid #ecd586;
-  margin-top: 5%;
+  margin: 2% 5%;
+  height: 70%;
 }
 
-.scrollable-content h5 {
+.scrollable-content label {
   margin: 3% 5%;
 }
 
@@ -151,16 +154,50 @@
 
 /* scroll */
 
+.divRequeriments {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 2px solid #ecd586;
+  height: 25%;
+  text-align: start;
+}
+.divRequeriments h5 {
+  padding: 2%;
+  letter-spacing: 3px;
+}
+
+.divRequeriments div {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  align-items: center;
+}
+.divRequeriments span {
+  color: #8ccd95;
+}
+
 .divRewards {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.divRewards h3 {
+.divRewards h5 {
+  padding: 1%;
+  letter-spacing: 3px;
+}
+
+.rewards {
+  display: flex;
+  justify-content: space-evenly;
+  width: 60%;
+  align-items: center;
+}
+
+.rewards div {
   display: flex;
   justify-content: center;
-  width: 100%;
-  padding: 1%;
+  align-items: center;
 }
 
 .quest-info-button {
