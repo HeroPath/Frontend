@@ -1,7 +1,7 @@
 import axios from "axios";
 import { notify } from "./utilities";
 
-const API_URL = "http://192.168.18.8:8000";
+const API_URL = "http://localhost:8000";
 
 
 export async function get(route, headers) {
