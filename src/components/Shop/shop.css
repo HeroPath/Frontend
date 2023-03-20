@@ -28,6 +28,11 @@
   align-items: center;
   padding: 10%;
   color: #d3d3d3;
+  height: 85%;
+}
+
+.shop--npc {
+  padding-top: 3%;
 }
 
 .shop--npc--button {
@@ -62,4 +67,27 @@
   width: 307px;
   height: 387px;
   padding: 35px 30px;
+}
+
+.divSelectNpc {
+  display: flex;
+  justify-content: center;
+  width: 307px;
+  height: 32px;
+  margin-bottom: 10%;
+}
+
+.divSelectNpc button {
+  background-image: url("../../img/items/shop-interface/btn-shop.webp");
+  width: 100%;
+}
+
+/* UPGRADE */
+
+.upgrade--npc--card {
+  display: flex;
+  background-image: url("../../img/items/shop-interface/shop.webp");
+  background-size: 100% 100%;
+  width: 50px;
+  height: 50px;
 }

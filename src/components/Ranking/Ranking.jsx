@@ -78,7 +78,7 @@ const Ranking = () => {
       </div>
       {totalPages > 1 && <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />}
       {guilds.length >= 1 && (
-        <div className="ranking--divTable">
+        <div className="ranking--divTable mt-4">
           <h1>RANKING GUILDS</h1>
           <table className="ranking--table">
             <thead>
