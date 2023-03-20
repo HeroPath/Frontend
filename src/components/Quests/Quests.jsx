@@ -65,6 +65,10 @@ const Quests = () => {
         }, [nonAcceptedQuests]);
   }
 
+  useEffect(() => {
+    if (acceptedQuests.length === 0) setShowAccepted(false);
+  }, [acceptedQuests]);
+
   return (
     <div className="quest">
       <>

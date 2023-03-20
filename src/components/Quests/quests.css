@@ -164,7 +164,8 @@
 .quest-info-button button {
   background-color: #001928;
   filter: brightness(0.8);
-  padding: 1% 10%;
+  padding: 0% 10%;
+  margin: 5% 0;
   font-weight: bold;
   font-size: 25px;
 }
