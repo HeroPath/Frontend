@@ -1,4 +1,5 @@
 const QuestInfo = ({ focus }) => {
+  console.log(focus);
   return (
     <div className="quest-info">
       <div className="divDescription">
@@ -11,11 +12,18 @@ const QuestInfo = ({ focus }) => {
         <h5>REQUERIMENTS</h5>
         <div>
           <label>Amount NPC: </label>
-          <span>{focus.quest.npcAmountNeed}</span>
+
+          <span>
+            {focus.npcKillAmount >= 0 && focus.npcKillAmount + "/"}
+            {focus.quest.npcAmountNeed}
+          </span>
         </div>
         <div>
           <label>User NPC:</label>
-          <span>{focus.quest.userAmountNeed}</span>
+          <span>
+            {focus.userKillAmount >= 0 && focus.userKillAmount + "/"}
+            {focus.quest.userAmountNeed}
+          </span>
         </div>
       </div>
 

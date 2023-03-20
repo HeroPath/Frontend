@@ -27,14 +27,8 @@ const Table = ({ quests, focus, setNameQuest, setFocus }) => {
           >
             <td>{questNumber++}</td>
             <td>{quest.quest.name}</td>
+            <td>{quest.quest.nameNpcKill}</td>
             <td>{quest.quest.levelRequired}</td>
-            {quest.npcKillAmount >= 0 ? (
-              <td>
-                {quest.npcKillAmount} / {quest.quest.npcAmountNeed}
-              </td>
-            ) : (
-              <td>{quest.quest.npcAmountNeed}</td>
-            )}
           </tr>
         ))}
       </tbody>

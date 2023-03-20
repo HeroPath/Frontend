@@ -12,14 +12,11 @@ import { get, post } from "../../functions/requestsApi";
 const Quests = () => {
   const [nonAcceptedQuests, setNonAcceptedQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
 
   async function handleQuests(actionUrl, values) {
     const response = await post("/api/v1/quests/" + actionUrl, values, headers);
     if (response.status === 200) {
-      if (nonAcceptedQuests.length <= 1) getQuests(currentPage - 1);
-      else getQuests(currentPage);
+      getQuests();
     }
 
     if (response.status === 200 && actionUrl === "complete") {
@@ -33,18 +30,17 @@ const Quests = () => {
     }
   }
 
-  async function getQuests(page) {
-    const response = await get(`/api/v1/quests?page=${page}`, headers);
+  async function getQuests() {
+    const response = await get("/api/v1/quests", headers);
     if (response.status === 200) {
-      setTotalPages(response.data.totalPages);
       setAcceptedQuests(response.data.acceptedQuests);
       setNonAcceptedQuests(response.data.quests);
     }
   }
 
   useEffect(() => {
-    getQuests(currentPage);
-  }, [currentPage]);
+    getQuests();
+  }, []);
 
   const [showAccepted, setShowAccepted] = useState(false);
   const [focusedButton, setFocusedButton] = useState(0);
