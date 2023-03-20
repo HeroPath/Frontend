@@ -4,13 +4,12 @@ import Pagination from "../Pagination/Pagination";
 import "react-toastify/dist/ReactToastify.css";
 import "./quests.css";
 import QuestInfo from "./QuestInfo";
+import Table from "./Table";
 
 import { headers, notifySuccess } from "../../functions/utilities";
 import { get, post } from "../../functions/requestsApi";
 
 const Quests = () => {
-  let nonAcceptedQuestsNumber = 1;
-  let acceptedQuestNumber = 1;
   const [nonAcceptedQuests, setNonAcceptedQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
@@ -90,90 +89,27 @@ const Quests = () => {
             </button>
           </div>
           {showAccepted === false ? (
-            <table className="quests-tables">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Target</th>
-                  <th>Req NPC</th>
-                  <th>Req User</th>
-                </tr>
-              </thead>
-              <tbody>
-                {nonAcceptedQuests?.map((nonAcceptedQuest, index) => (
-                  <tr
-                    key={index}
-                    className={focusedButton === index ? "active" : ""}
-                    onClick={() => {
-                      setNameQuest(nonAcceptedQuest.quest.name);
-                      setFocusedButton(index);
-                    }}
-                  >
-                    <td>{nonAcceptedQuestsNumber++}</td>
-                    <td>{nonAcceptedQuest.quest.name}</td>
-                    <td>{nonAcceptedQuest.quest.nameNpcKill}</td>
-                    <td>{nonAcceptedQuest.quest.npcAmountNeed}</td>
-                    <td>{nonAcceptedQuest.quest.userAmountNeed}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            acceptedQuests.length >= 1 && (
-              <table className="quests-tables">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Target</th>
-                    <th>Req NPC</th>
-                    <th>Req User</th>
-                  </tr>
-                </thead>
-
-                {acceptedQuests &&
-                  acceptedQuests?.length >= 1 &&
-                  acceptedQuests?.map((acceptedQuest, index) => (
-                    <tbody key={index}>
-                      <tr
-                        key={index}
-                        className={focusedButtonAccepted === index ? "active" : ""}
-                        onClick={() => {
-                          setNameQuest(acceptedQuest.quest.name);
-                          setFocusedButtonAccepted(index);
-                        }}
-                      >
-                        <td>{acceptedQuestNumber++}</td>
-                        <td>{acceptedQuest.quest.name}</td>
-                        <td>{acceptedQuest.quest.nameNpcKill}</td>
-                        <td>
-                          {acceptedQuest.npcKillAmount} / {acceptedQuest.quest.npcAmountNeed}
-                        </td>
-                        <td>
-                          {acceptedQuest.userKillAmount} / {acceptedQuest.quest.userAmountNeed}
-                        </td>
-                      </tr>
-                    </tbody>
-                  ))}
-              </table>
+            nonAcceptedQuests.length > 0 && (
+              <Table
+                quests={nonAcceptedQuests}
+                focus={focusedButton}
+                setNameQuest={setNameQuest}
+                setFocus={setFocusedButton}
+              />
             )
+          ) : (
+            <Table
+              quests={acceptedQuests}
+              focus={focusedButtonAccepted}
+              setNameQuest={setNameQuest}
+              setFocus={setFocusedButtonAccepted}
+            />
           )}
         </div>
 
         {showAccepted
           ? acceptedQuests[focusedButtonAccepted] && <QuestInfo focus={acceptedQuests[focusedButtonAccepted]} />
           : nonAcceptedQuests[focusedButton] && <QuestInfo focus={nonAcceptedQuests[focusedButton]} />}
-
-        {!showAccepted ? (
-          totalPages > 1 ? (
-            <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
-          ) : (
-            <div></div>
-          )
-        ) : (
-          <div></div>
-        )}
 
         <div className="quest-info-button">
           {showAccepted ? (
