@@ -6,18 +6,17 @@
   align-items: center;
   justify-items: center;
   font-weight: bold;
-  color: #000;
+  color: #ecd586;
 }
 
 .history-box {
   width: 80%;
   height: 200px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #001928;
+  border: 2px solid #ecd586;
   margin-top: 10px;
   padding: 10px;
-  border-radius: 5px;
-  border: 2px solid #646464;
-  overflow-y: scroll;
+  overflow-y: auto;
   font-size: 15px;
 }
 
@@ -37,15 +36,20 @@
 .round {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  background-color: rgb(255, 183, 28);
+  background-color: #002d48;
   border: 1px solid #000;
+  align-content: center;
   align-items: center;
 }
 
 .round h6 {
   font-weight: bold;
+  padding: 0;
+  margin: 0;
 }
 
 .winner {
-  background-color: rgb(242, 160, 255);
+  background-color: #002d48;
+  color: #ecd586;
+  border: 2px solid #d1a148;
 }

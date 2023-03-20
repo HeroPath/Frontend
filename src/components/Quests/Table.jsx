@@ -16,7 +16,11 @@ const Table = ({ quests, focus, setNameQuest, setFocus }) => {
         {quests?.map((quest, index) => (
           <tr
             key={index}
-            className={focus === index ? "active" : ""}
+            className={`${focus === index ? "active" : ""} ${
+              quest.npcKillAmount === quest.quest.npcAmountNeed && quest.userKillAmount === quest.quest.userAmountNeed
+                ? "questComplete"
+                : ""
+            }`}
             onClick={() => {
               setNameQuest(quest.quest.name);
               setFocus(index);
