@@ -19,7 +19,6 @@ const UserInventory = ({
   handleItemBuy,
   setDataItemUpgrade,
 }) => {
-
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
   const [letterDrag, setLetterDrag] = useState("");
@@ -46,6 +45,10 @@ const UserInventory = ({
   useEffect(() => {
     setInventoryUser(inventoryUser);
   }, [inventoryUser]);
+
+  useEffect(() => {
+    setInventoryUser(inventory);
+  }, [inventory]);
 
   const dragOver = (e) => {
     e.preventDefault();

@@ -59,6 +59,14 @@ const Shop = () => {
   const [dataItemUpgrade, setDataItemUpgrade] = useState({});
   const [itemUpgrade, setItemUpgrade] = useState(undefined);
 
+  {
+    itemUpgrade !== undefined && (profile.inventory = itemUpgrade);
+  }
+
+  {
+    profile.inventory && console.log(profile.inventory);
+  }
+
   return (
     <div className="shop">
       <Navbar gold={profile.gold} diamond={profile.diamond} role={profile.role} itemDragShop={itemDragShop} />
