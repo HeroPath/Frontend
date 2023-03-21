@@ -48,17 +48,17 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
         <div className="upgrade--npc--card" id="upgradeNpc">
           <div className="upgradeDiv">
             {lvlItem !== undefined && lvlItem < 5 && (
-              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+              <img src={require(`../../../img/items/none/progress gem.png`)} className="item" />
             )}
           </div>
           <div className="upgradeDiv">
             {lvlItem > 3 && lvlItem < 5 && (
-              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+              <img src={require(`../../../img/items/none/progress gem.png`)} className="item" />
             )}
           </div>
           <div className="upgradeDiv">
             {lvlItem > 0 && lvlItem < 5 && (
-              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+              <img src={require(`../../../img/items/none/progress gem.png`)} className="item" />
             )}
           </div>
           <div
@@ -73,7 +73,7 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
           >
             {itemUpgradeExist && (
               <img
-                src={require(`../../img/items/${dataItemUpgrade.classRequired}/${dataItemUpgrade.name}.png`)}
+                src={require(`../../../img/items/${dataItemUpgrade.classRequired}/${dataItemUpgrade.name}.png`)}
                 className="item"
               />
             )}
@@ -81,12 +81,12 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
 
           <div className="upgradeDiv">
             {lvlItem > 2 && lvlItem < 5 && (
-              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+              <img src={require(`../../../img/items/none/progress gem.png`)} className="item" />
             )}
           </div>
           <div className="upgradeDiv">
             {lvlItem > 1 && lvlItem < 5 && (
-              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+              <img src={require(`../../../img/items/none/progress gem.png`)} className="item" />
             )}
           </div>
         </div>

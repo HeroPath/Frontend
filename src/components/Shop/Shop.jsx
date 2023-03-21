@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import UserInventory from "../User/UserInventory/UserInventory";
 import Navbar from "../User/Navbar/Navbar";
 import "./shop.css";
-import ShopNPC from "./ShopNPC";
-import UpgradeNPC from "./UpgradeNPC";
+import ShopNPC from "./ShopNPC/ShopNPC";
+import UpgradeNPC from "./UpgradeNPC/UpgradeNPC";
 
 import { headers, sounds, sortedInventory, countGemInventory } from "../../functions/utilities";
 import { get } from "../../functions/requestsApi";

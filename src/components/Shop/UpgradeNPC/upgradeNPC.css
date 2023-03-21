@@ -1,6 +1,6 @@
 .upgrade--npc--card {
   display: flex;
-  background-image: url("../../img/upgrade.png");
+  background-image: url("../../../img/upgrade.png");
   background-size: 100% 100%;
   width: 231px;
   height: 227px;

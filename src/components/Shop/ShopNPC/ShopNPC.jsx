@@ -96,7 +96,7 @@ const ShopNPC = ({
                 "data-tooltip": dataTooltip(item),
               })}
             >
-              <img src={require(`../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
+              <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
             </div>
           ))}
         </div>

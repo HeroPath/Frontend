@@ -6,7 +6,7 @@
 }
 
 .shop--npc--button button {
-  background-image: url("../../img/items/shop-interface/btn-shop.webp");
+  background-image: url("../../../img/items/shop-interface/btn-shop.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   border: none;
@@ -26,7 +26,7 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(8, 1fr);
-  background-image: url("../../img/items/shop-interface/shop.webp");
+  background-image: url("../../../img/items/shop-interface/shop.webp");
   width: 307px;
   height: 387px;
   padding: 35px 30px;
