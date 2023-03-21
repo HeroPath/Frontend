@@ -8,15 +8,18 @@ const Table = ({ quests, focus, setNameQuest, setFocus }) => {
           <th>#</th>
           <th>Name</th>
           <th>Target</th>
-          <th>Req NPC</th>
-          <th>Req User</th>
+          <th>Lvl Required</th>
         </tr>
       </thead>
       <tbody>
         {quests?.map((quest, index) => (
           <tr
             key={index}
-            className={focus === index ? "active" : ""}
+            className={`${focus === index ? "active" : ""} ${
+              quest.npcKillAmount === quest.quest.npcAmountNeed && quest.userKillAmount === quest.quest.userAmountNeed
+                ? "questComplete"
+                : ""
+            }`}
             onClick={() => {
               setNameQuest(quest.quest.name);
               setFocus(index);
@@ -25,21 +28,7 @@ const Table = ({ quests, focus, setNameQuest, setFocus }) => {
             <td>{questNumber++}</td>
             <td>{quest.quest.name}</td>
             <td>{quest.quest.nameNpcKill}</td>
-            {quest.npcKillAmount >= 0 ? (
-              <>
-                <td>
-                  {quest.npcKillAmount} / {quest.quest.npcAmountNeed}
-                </td>
-                <td>
-                  {quest.userKillAmount} / {quest.quest.userAmountNeed}
-                </td>
-              </>
-            ) : (
-              <>
-                <td>{quest.quest.npcAmountNeed}</td>
-                <td>{quest.quest.userAmountNeed}</td>
-              </>
-            )}
+            <td>{quest.quest.levelRequired}</td>
           </tr>
         ))}
       </tbody>

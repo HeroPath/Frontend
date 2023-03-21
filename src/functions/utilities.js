@@ -54,7 +54,8 @@ export const notifySuccess = (redirectTo, header, body1, body2, ...otherBodies) 
 };
 
 export function dataTooltip(item) {
-  let tooltip = `Name: ${capitalizeFirstLetter(item.name)}\n`;
+  let tooltip = `Name: ${capitalizeFirstLetter(item.name)}` + (item.itemLevel >= 1 ? ` +${item.itemLevel}` : "") + `\n`;
+
   if (item.quality !== "") tooltip += `Quality: ${capitalizeFirstLetter(item.quality)}\n`;
   if (item.strength > 0) tooltip += `Strength: ${item.strength}\n`;
   if (item.dexterity > 0) tooltip += `Dexterity: ${item.dexterity}\n`;
@@ -72,4 +73,14 @@ export function dataTooltip(item) {
 export function sounds(sound) {
   const playSound = new Audio(require(`../sounds/${sound}.wav`));
   return playSound.play();
+}
+
+export function sortedInventory(itemsUnsorted) {
+  let items = itemsUnsorted.slice().sort((a, b) => (a.lvlMin > b.lvlMin ? 1 : -1));
+  return { items };
+}
+
+export function countGemInventory(items) {
+  const countGem = items.filter((item) => item.name === "progress gem").length;
+  return countGem;
 }

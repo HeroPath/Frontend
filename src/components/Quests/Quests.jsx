@@ -12,14 +12,11 @@ import { get, post } from "../../functions/requestsApi";
 const Quests = () => {
   const [nonAcceptedQuests, setNonAcceptedQuests] = useState([]);
   const [acceptedQuests, setAcceptedQuests] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
 
   async function handleQuests(actionUrl, values) {
     const response = await post("/api/v1/quests/" + actionUrl, values, headers);
     if (response.status === 200) {
-      if (nonAcceptedQuests.length <= 1) getQuests(currentPage - 1);
-      else getQuests(currentPage);
+      getQuests();
     }
 
     if (response.status === 200 && actionUrl === "complete") {
@@ -33,18 +30,17 @@ const Quests = () => {
     }
   }
 
-  async function getQuests(page) {
-    const response = await get(`/api/v1/quests?page=${page}`, headers);
+  async function getQuests() {
+    const response = await get("/api/v1/quests", headers);
     if (response.status === 200) {
-      setTotalPages(response.data.totalPages);
       setAcceptedQuests(response.data.acceptedQuests);
       setNonAcceptedQuests(response.data.quests);
     }
   }
 
   useEffect(() => {
-    getQuests(currentPage);
-  }, [currentPage]);
+    getQuests();
+  }, []);
 
   const [showAccepted, setShowAccepted] = useState(false);
   const [focusedButton, setFocusedButton] = useState(0);
@@ -62,12 +58,13 @@ const Quests = () => {
           if (acceptedQuests.length > 0) {
             setNameQuest(acceptedQuests[0].quest.name);
           }
-        }, [nonAcceptedQuests]);
+        }, [acceptedQuests]);
   }
 
   useEffect(() => {
+    if (nonAcceptedQuests.length === 0) setShowAccepted(true);
     if (acceptedQuests.length === 0) setShowAccepted(false);
-  }, [acceptedQuests]);
+  }, [acceptedQuests, nonAcceptedQuests]);
 
   return (
     <div className="quest">
@@ -79,6 +76,7 @@ const Quests = () => {
                 setShowAccepted(false);
               }}
               className={showAccepted === false ? "active" : ""}
+              disabled={nonAcceptedQuests.length === 0}
             >
               QUESTS
             </button>
@@ -92,23 +90,25 @@ const Quests = () => {
               QUESTS ACCEPTED
             </button>
           </div>
-          {showAccepted === false ? (
-            nonAcceptedQuests.length > 0 && (
+          <div className="tableScroll">
+            {showAccepted === false ? (
+              nonAcceptedQuests.length > 0 && (
+                <Table
+                  quests={nonAcceptedQuests}
+                  focus={focusedButton}
+                  setNameQuest={setNameQuest}
+                  setFocus={setFocusedButton}
+                />
+              )
+            ) : (
               <Table
-                quests={nonAcceptedQuests}
-                focus={focusedButton}
+                quests={acceptedQuests}
+                focus={focusedButtonAccepted}
                 setNameQuest={setNameQuest}
-                setFocus={setFocusedButton}
+                setFocus={setFocusedButtonAccepted}
               />
-            )
-          ) : (
-            <Table
-              quests={acceptedQuests}
-              focus={focusedButtonAccepted}
-              setNameQuest={setNameQuest}
-              setFocus={setFocusedButtonAccepted}
-            />
-          )}
+            )}
+          </div>
         </div>
 
         {showAccepted

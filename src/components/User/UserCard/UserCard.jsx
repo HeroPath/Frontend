@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import "./userCard.css";
-import { capitalizeFirstLetter } from "../../../functions/utilities";
 import { titleColor } from "../../../functions/constants";
 
 const UserCard = ({
@@ -38,14 +37,14 @@ const UserCard = ({
     [experience, experienceToNextLevel]
   );
   const percentExp = useMemo(
-    () => (level < 300 ? ((experience / experienceToNextLevel) * 100).toFixed(2) + "%" : "Lvl Max"),
+    () => (level < 350 ? ((experience / experienceToNextLevel) * 100).toFixed(2) + "%" : "Lvl Max"),
     [level, experience, experienceToNextLevel]
   );
 
   return (
     <div className="userCard--card">
       <div className="userCard--card--bgName">
-        <h3>{capitalizeFirstLetter(username)}</h3>
+        <h3>{username}</h3>
       </div>
       <img src={require(`../../../img/class/${aclass}.webp`)} width="270px" height="270px" />
 
@@ -76,7 +75,7 @@ const UserCard = ({
           </div>
           <div className="userCard--stats">
             <label>Class: </label>
-            <span>{capitalizeFirstLetter(aclass)}</span>
+            <span>{aclass}</span>
           </div>
           <div className="userCard--stats">
             <label>Guild: </label>
@@ -94,7 +93,7 @@ const UserCard = ({
       ) : (
         <>
           <label>Level: {level} </label>
-          <label>Class: {capitalizeFirstLetter(aclass)}</label>
+          <label>Class: {aclass}</label>
         </>
       )}
     </div>

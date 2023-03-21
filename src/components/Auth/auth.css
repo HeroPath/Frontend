@@ -60,7 +60,7 @@
   background-color: unset;
   text-align: center;
   color: var(--button--textColor);
-  border: 2px solid rgb(205, 166, 79);
+  border: 2px solid #cda64f;
   text-transform: capitalize;
 }
 
