@@ -5,7 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { get } from "../../../functions/requestsApi";
-import { headers, dataTooltip, sounds } from "../../../functions/utilities";
+import { headers, dataTooltip, sounds, sortedInventory } from "../../../functions/utilities";
 import { objectEmpty, orderEquipment } from "../../../functions/constants";
 
 const UserInventory = ({
@@ -42,12 +42,14 @@ const UserInventory = ({
     if (itemDragShop !== null) setInventoryUser(itemDragShop);
   }, [itemDragShop, inventory]);
 
+  /*TODO: LUCHO
   useEffect(() => {
-    setInventoryUser(inventoryUser);
+    setInventoryUser(sortedInventory(inventoryUser.items));
   }, [inventoryUser]);
+  */
 
   useEffect(() => {
-    setInventoryUser(inventory);
+    setInventoryUser(sortedInventory(inventory.items));
   }, [inventory]);
 
   const dragOver = (e) => {
@@ -60,7 +62,7 @@ const UserInventory = ({
 
     const response = await get("/api/v1/items/" + equip + dataItem.id, headers);
     if (response.status === 200) {
-      setInventoryUser(response.data.inventory);
+      setInventoryUser(sortedInventory(response.data.inventory.items));
       setEquipmentUser(response.data.equipment);
       if (dataItem.name === "potion") {
         sounds("potion");

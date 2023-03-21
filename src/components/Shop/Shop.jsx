@@ -5,7 +5,7 @@ import "./shop.css";
 import ShopNPC from "./ShopNPC";
 import UpgradeNPC from "./UpgradeNPC";
 
-import { headers, sounds } from "../../functions/utilities";
+import { headers, sounds, sortedInventory, countGemInventory } from "../../functions/utilities";
 import { get } from "../../functions/requestsApi";
 
 const Shop = () => {
@@ -18,23 +18,29 @@ const Shop = () => {
 
   const [npcCommerce, setNpcCommerce] = useState("shop");
 
+  const [amountGems, setAmountGems] = useState(0);
+
   async function getProfile() {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
       setProfile(response.data);
+      setAmountGems(countGemInventory(response.data.inventory.items));
     }
   }
 
   async function handleItems(iClass) {
     setFocusedButton(iClass);
     const response = await get("/api/v1/items/shop/" + iClass, headers);
-    if (response.status === 200) setItemsShop(response.data);
+    if (response.status === 200) {
+      setItemsShop(response.data);
+    }
   }
 
   async function handleISelltems(itemToSellId) {
     const response = await get("/api/v1/items/sell/" + itemToSellId, headers);
     if (response.status === 200) {
-      setItemDragShop(response.data.inventory);
+      setItemDragShop(sortedInventory(response.data.inventory.items));
+      setAmountGems(countGemInventory(response.data.inventory.items));
       profile.gold = response.data.userGold;
       sounds("buySell");
     }
@@ -43,7 +49,8 @@ const Shop = () => {
   async function handleItemBuy(itemToBuyId) {
     const response = await get("/api/v1/items/buy/" + itemToBuyId, headers);
     if (response.status === 200) {
-      setItemDragShop(response.data.inventory);
+      setItemDragShop(sortedInventory(response.data.inventory.items));
+      setAmountGems(countGemInventory(response.data.inventory.items));
       profile.gold = response.data.userGold;
       sounds("buySell");
     }
@@ -61,10 +68,6 @@ const Shop = () => {
 
   {
     itemUpgrade !== undefined && (profile.inventory = itemUpgrade);
-  }
-
-  {
-    profile.inventory && console.log(profile.inventory);
   }
 
   return (
@@ -120,7 +123,8 @@ const Shop = () => {
             <UpgradeNPC
               dataItemUpgrade={dataItemUpgrade}
               setDataItemUpgrade={setDataItemUpgrade}
-              inventory={profile.inventory.items}
+              amountGems={amountGems}
+              setAmountGems={setAmountGems}
               setItemUpgrade={setItemUpgrade}
             />
           )}

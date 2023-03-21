@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { headers, dataTooltip, sounds } from "../../functions/utilities";
+import { headers, dataTooltip, sounds, sortedInventory, countGemInventory } from "../../functions/utilities";
 import { get } from "../../functions/requestsApi";
 
-const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, inventory, setItemUpgrade }) => {
+const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmountGems, setItemUpgrade }) => {
   const [itemUpgradeExist, setItemUpgradeExist] = useState(false);
   const [lvlItem, setLvlItem] = useState(undefined);
   const [canUpgrade, setCanUpgrade] = useState(undefined);
@@ -10,18 +10,14 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, inventory, setItemUpg
   async function handleUpgrade(itemId) {
     const response = await get("/api/v1/items/upgrade/" + itemId, headers);
     if (response.status === 200) {
-      //   sounds("buySell");
-      //   window.location.reload("/shop");
-
       setItemUpgradeExist(false);
       setCanUpgrade(undefined);
       setLvlItem(undefined);
-      setItemUpgrade(response.data);
+      setItemUpgrade(sortedInventory(response.data.items));
+      setAmountGems(countGemInventory(response.data.items));
       setDataItemUpgrade({});
     }
   }
-
-  const amountGems = inventory.filter((item) => item.name === "progress gem").length;
 
   useEffect(() => {
     if (dataItemUpgrade.id) {
@@ -36,6 +32,13 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, inventory, setItemUpg
       setLvlItem(dataItemUpgrade.itemLevel);
     }
   }, [dataItemUpgrade]);
+
+  useEffect(() => {
+    setItemUpgradeExist(false);
+    setCanUpgrade(undefined);
+    setLvlItem(undefined);
+    setDataItemUpgrade({});
+  }, []);
 
   return (
     <>

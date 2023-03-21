@@ -74,3 +74,13 @@ export function sounds(sound) {
   const playSound = new Audio(require(`../sounds/${sound}.wav`));
   return playSound.play();
 }
+
+export function sortedInventory(itemsUnsorted) {
+  let items = itemsUnsorted.slice().sort((a, b) => (a.lvlMin > b.lvlMin ? 1 : -1));
+  return { items };
+}
+
+export function countGemInventory(items) {
+  const countGem = items.filter((item) => item.name === "progress gem").length;
+  return countGem;
+}
