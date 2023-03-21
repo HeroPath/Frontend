@@ -1,60 +1,63 @@
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import Typography from "@mui/material/Typography";
 import Tooltip from "@mui/material/Tooltip";
 import "./itemTooltip.css";
 
 const ItemTooltip = ({ item }) => {
+  const { name, quality, itemLevel, strength, dexterity, intelligence, vitality, luck, lvlMin, classRequired, price } =
+    useMemo(() => item, [item]);
+
   return (
     <Tooltip
       title={
         <Fragment>
           <div className="tooltipClass">
             <Typography className="itemTooltip--name mb-2">
-              <label style={{ color: `${item.quality}` }}>{item.name}</label>
-              <span>{item.itemLevel >= 1 ? ` +${item.itemLevel}` : ""}</span>
+              <label style={{ color: `${quality}` }}>{name}</label>
+              <span>{itemLevel >= 1 ? ` +${itemLevel}` : ""}</span>
             </Typography>
             <div className="itemTooltip--stats">
-              {item.strength > 0 && (
+              {strength > 0 && (
                 <div className="tooltipStat">
                   <label>Strength:</label>
-                  <span>{item.strength}</span>
+                  <span>{strength}</span>
                 </div>
               )}
-              {item.dexterity > 0 && (
+              {dexterity > 0 && (
                 <div className="tooltipStat">
                   <label>Dexterity:</label>
-                  <span>{item.dexterity}</span>
+                  <span>{dexterity}</span>
                 </div>
               )}
-              {item.intelligence > 0 && (
+              {intelligence > 0 && (
                 <div className="tooltipStat">
                   <label>Intelligence:</label>
-                  <span>{item.intelligence}</span>
+                  <span>{intelligence}</span>
                 </div>
               )}
-              {item.vitality > 0 && (
+              {vitality > 0 && (
                 <div className="tooltipStat">
                   <label>Vitality:</label>
-                  <span>{item.vitality}</span>
+                  <span>{vitality}</span>
                 </div>
               )}
-              {item.luck > 0 && (
+              {luck > 0 && (
                 <div className="tooltipStat">
                   <label>Luck:</label>
-                  <span>{item.luck}</span>
+                  <span>{luck}</span>
                 </div>
               )}
               <div className="tooltipStat mt-1">
                 <label>Level Req:</label>
-                <span>{item.lvlMin}</span>
+                <span>{lvlMin}</span>
               </div>
               <div className="tooltipStat">
                 <label>Class:</label>
-                <span>{item.classRequired === "none" ? "All" : item.classRequired}</span>
+                <span>{classRequired === "none" ? "All" : classRequired}</span>
               </div>
               <div className="tooltipStat mt-2">
                 <label>Price:</label>
-                <span>{item.price.toLocaleString()}</span>
+                <span>{price.toLocaleString()}</span>
               </div>
             </div>
           </div>
@@ -64,7 +67,7 @@ const ItemTooltip = ({ item }) => {
       followCursor
       disableInteractive
     >
-      <img src={require(`../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
+      <img src={require(`../img/items/${classRequired}/${name}.png`)} className="item" />
     </Tooltip>
   );
 };
