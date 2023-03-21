@@ -135,6 +135,16 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  width: 80%;
+  font-weight: bold;
+  font-size: 17px;
+  color: #fe7a7a;
+}
+.undefinedUpgrade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   font-weight: bold;
   font-size: 17px;
 }

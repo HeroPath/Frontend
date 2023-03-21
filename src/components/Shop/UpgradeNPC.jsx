@@ -4,13 +4,9 @@ import { dataTooltip } from "../../functions/utilities";
 const UpgradeNPC = ({ dataItemUpgrade, inventory }) => {
   const [itemUpgradeExist, setItemUpgradeExist] = useState(false);
   const [lvlItem, setLvlItem] = useState(undefined);
-  const [canUpgrade, setCanUpgrade] = useState(false);
+  const [canUpgrade, setCanUpgrade] = useState(undefined);
 
   const amountGems = inventory.filter((item) => item.name === "progress gem").length;
-
-  const dragOver = (e) => {
-    e.preventDefault();
-  };
 
   useEffect(() => {
     if (dataItemUpgrade.id) {
@@ -29,7 +25,7 @@ const UpgradeNPC = ({ dataItemUpgrade, inventory }) => {
   return (
     <>
       <div className="shop--npc--section" id="shop--npc--card">
-        <div className="upgrade--npc--card" id="upgradeNpc" onDragOver={dragOver}>
+        <div className="upgrade--npc--card" id="upgradeNpc">
           <div className="upgradeDiv">
             {lvlItem !== undefined && <img src={require(`../../img/items/none/progress gem.png`)} className="item" />}
           </div>
@@ -65,7 +61,11 @@ const UpgradeNPC = ({ dataItemUpgrade, inventory }) => {
           </div>
         </div>
       </div>
-      {canUpgrade ? (
+      {canUpgrade === undefined ? (
+        <div className="undefinedUpgrade">
+          <label>Click on the item you want to upgrade</label>
+        </div>
+      ) : canUpgrade === true ? (
         <div className="canUpgrade">
           <h5>Upgrade details:</h5>
           <div className="upgradeDetails">
@@ -83,7 +83,7 @@ const UpgradeNPC = ({ dataItemUpgrade, inventory }) => {
         </div>
       ) : (
         <div className="cantUpgrade">
-          <label>Click on the item you want to upgrade</label>
+          <label>You do not have enough gems to upgrade this item.</label>
         </div>
       )}
     </>
