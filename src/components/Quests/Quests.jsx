@@ -58,13 +58,13 @@ const Quests = () => {
           if (acceptedQuests.length > 0) {
             setNameQuest(acceptedQuests[0].quest.name);
           }
-        }, [nonAcceptedQuests]);
+        }, [acceptedQuests]);
   }
 
   useEffect(() => {
-    if (acceptedQuests.length === 0) setShowAccepted(false);
     if (nonAcceptedQuests.length === 0) setShowAccepted(true);
-  }, [acceptedQuests]);
+    if (acceptedQuests.length === 0) setShowAccepted(false);
+  }, [acceptedQuests, nonAcceptedQuests]);
 
   return (
     <div className="quest">
