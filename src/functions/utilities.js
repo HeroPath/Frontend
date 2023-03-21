@@ -54,7 +54,7 @@ export const notifySuccess = (redirectTo, header, body1, body2, ...otherBodies) 
 };
 
 export function dataTooltip(item) {
-  let tooltip = `Name: ${capitalizeFirstLetter(item.name)}` + (item.itemLevel >= 1 ? ` +${item.itemLevel}` : "") + `\n`;
+  let tooltip = `${capitalizeFirstLetter(item.name)}` + (item.itemLevel >= 1 ? ` +${item.itemLevel}` : "");
 
   if (item.quality !== "") tooltip += `Quality: ${item.quality}\n`;
   if (item.strength > 0) tooltip += `Strength: ${item.strength}\n`;

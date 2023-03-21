@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import "./userInventory.css";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { get } from "../../../functions/requestsApi";
-import { headers, dataTooltip, sounds, sortedInventory } from "../../../functions/utilities";
+import { headers, sounds, sortedInventory } from "../../../functions/utilities";
 import { objectEmpty, orderEquipment } from "../../../functions/constants";
+
+import Tooltip from "@mui/material/Tooltip";
+import ItemTooltip from "../../ItemTooltip";
 
 const UserInventory = ({
   inventory,
@@ -23,7 +26,6 @@ const UserInventory = ({
   const [equipmentUser, setEquipmentUser] = useState(equipment);
   const [letterDrag, setLetterDrag] = useState("");
   const [dataItem, setDataItem] = useState({});
-  const [showTooltip, setShowTooltip] = useState(true);
 
   function orderedObject(equipUser) {
     let sortedItems = [];
@@ -98,22 +100,26 @@ const UserInventory = ({
                   id={index}
                   style={ItemStyle}
                   onDragStart={(event) => {
-                    setShowTooltip(false);
                     setDataItem({ id: item.id, name: item.name });
                     setLetterDrag("E");
                     event.dataTransfer.setData("ETransfer", "E");
                   }}
                   onDragEnd={() => {
-                    setShowTooltip(true);
                     setLetterDrag("");
                   }}
-                  {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
                 >
-                  <img
-                    src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)}
-                    className="item"
-                    alt=""
-                  />
+                  <Tooltip
+                    title={
+                      <Fragment>
+                        <ItemTooltip item={item} />
+                      </Fragment>
+                    }
+                    placement="top"
+                    followCursor
+                    disableInteractive
+                  >
+                    <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
+                  </Tooltip>
                 </div>
               );
             }
@@ -148,19 +154,27 @@ const UserInventory = ({
                 setDataItemUpgrade(item);
               }}
               onDragStart={(event) => {
-                setShowTooltip(false);
                 event.dataTransfer.setData("nameItemSell", item.id);
                 setDataItem({ id: item.id, name: item.name });
                 setLetterDrag("I");
               }}
               onDragEnd={(event) => {
-                setShowTooltip(true);
                 setLetterDrag("");
                 event.dataTransfer.setData("nameItemSell", "");
               }}
-              {...(showTooltip && { "data-tooltip": dataTooltip(item) })}
             >
-              <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
+              <Tooltip
+                title={
+                  <Fragment>
+                    <ItemTooltip item={item} />
+                  </Fragment>
+                }
+                placement="top"
+                followCursor
+                disableInteractive
+              >
+                <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
+              </Tooltip>
             </div>
           ))}
       </div>

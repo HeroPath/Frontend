@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
-import { headers, dataTooltip, sounds, sortedInventory, countGemInventory } from "../../../functions/utilities";
+import { headers, sounds, sortedInventory, countGemInventory } from "../../../functions/utilities";
 import { get } from "../../../functions/requestsApi";
 import "./upgradeNPC.css";
+
+import { Fragment } from "react";
+import Tooltip from "@mui/material/Tooltip";
+import ItemTooltip from "../../ItemTooltip";
 
 const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmountGems, setItemUpgrade }) => {
   const [itemUpgradeExist, setItemUpgradeExist] = useState(false);
@@ -69,13 +73,23 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
               }
               setItemUpgradeExist(true);
             }}
-            {...(itemUpgradeExist && { "data-tooltip": dataTooltip(dataItemUpgrade) })}
           >
             {itemUpgradeExist && (
-              <img
-                src={require(`../../../img/items/${dataItemUpgrade.classRequired}/${dataItemUpgrade.name}.png`)}
-                className="item"
-              />
+              <Tooltip
+                title={
+                  <Fragment>
+                    <ItemTooltip item={dataItemUpgrade} />
+                  </Fragment>
+                }
+                placement="top"
+                followCursor
+                disableInteractive
+              >
+                <img
+                  src={require(`../../../img/items/${dataItemUpgrade.classRequired}/${dataItemUpgrade.name}.png`)}
+                  className="item"
+                />
+              </Tooltip>
             )}
           </div>
 

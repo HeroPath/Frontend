@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { dataTooltip } from "../../../functions/utilities";
 import "./shopNPC.css";
+import { Fragment } from "react";
+import Tooltip from "@mui/material/Tooltip";
+import ItemTooltip from "../../ItemTooltip";
 
 const ShopNPC = ({
   focusedButton,
@@ -13,8 +14,6 @@ const ShopNPC = ({
   setItemDragShop,
   setItemDragBuy,
 }) => {
-  const [showTooltip, setShowTooltip] = useState(true);
-
   const dragOver = (e) => {
     e.preventDefault();
   };
@@ -84,19 +83,25 @@ const ShopNPC = ({
                   : ""
               }
               onDragStart={(event) => {
-                setShowTooltip(false);
                 setItemDragBuy("S");
                 event.dataTransfer.setData("itemBuy", item.id);
               }}
               onDragEnd={() => {
-                setShowTooltip(true);
                 setItemDragBuy("");
               }}
-              {...(showTooltip && {
-                "data-tooltip": dataTooltip(item),
-              })}
             >
-              <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
+              <Tooltip
+                title={
+                  <Fragment>
+                    <ItemTooltip item={item} />
+                  </Fragment>
+                }
+                placement="top"
+                followCursor
+                disableInteractive
+              >
+                <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
+              </Tooltip>
             </div>
           ))}
         </div>
