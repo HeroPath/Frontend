@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { dataTooltip } from "../../functions/utilities";
+import "./shopNPC.css";
 
 const ShopNPC = ({
   focusedButton,

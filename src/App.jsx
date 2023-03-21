@@ -8,7 +8,7 @@ import Cookies from "universal-cookie";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
 import Profile from "./components/User/Profile";
-import SideBar from "./components/SideBar/SideBar";
+import SideBar from "./components/sideBar/SideBar";
 import Zone from "./components/PvE/Zone";
 import PlayerVsNPC from "./components/PvE/PlayerVsNPC";
 import PvEBattle from "./components/PvE/PvEBattle";

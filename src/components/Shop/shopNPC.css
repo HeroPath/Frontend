@@ -1,0 +1,33 @@
+.shop--npc--button {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 307px;
+  height: 32px;
+}
+
+.shop--npc--button button {
+  background-image: url("../../img/items/shop-interface/btn-shop.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border: none;
+  color: var(--button--textColor);
+  filter: brightness(0.8);
+}
+
+.shop--npc--button button.active {
+  filter: brightness(1.4);
+}
+
+.shop--npc--button button:hover {
+  filter: brightness(1.2);
+}
+
+.shop--npc--card {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  background-image: url("../../img/items/shop-interface/shop.webp");
+  width: 307px;
+  height: 387px;
+  padding: 35px 30px;
+}

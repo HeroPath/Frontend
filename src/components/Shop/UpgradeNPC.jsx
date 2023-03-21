@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { headers, dataTooltip, sounds, sortedInventory, countGemInventory } from "../../functions/utilities";
 import { get } from "../../functions/requestsApi";
+import "./upgradeNPC.css";
 
 const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmountGems, setItemUpgrade }) => {
   const [itemUpgradeExist, setItemUpgradeExist] = useState(false);
@@ -22,11 +23,12 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
   useEffect(() => {
     if (dataItemUpgrade.id) {
       if (!(amountGems >= dataItemUpgrade.itemLevel + 1)) {
-        setCanUpgrade(false);
         setItemUpgradeExist(false);
+        setCanUpgrade(false);
         setLvlItem(undefined);
         return;
       }
+
       setCanUpgrade(true);
       setItemUpgradeExist(true);
       setLvlItem(dataItemUpgrade.itemLevel);
@@ -45,13 +47,19 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
       <div className="shop--npc--section" id="shop--npc--card">
         <div className="upgrade--npc--card" id="upgradeNpc">
           <div className="upgradeDiv">
-            {lvlItem !== undefined && <img src={require(`../../img/items/none/progress gem.png`)} className="item" />}
+            {lvlItem !== undefined && lvlItem < 5 && (
+              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+            )}
           </div>
           <div className="upgradeDiv">
-            {lvlItem > 3 && <img src={require(`../../img/items/none/progress gem.png`)} className="item" />}
+            {lvlItem > 3 && lvlItem < 5 && (
+              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+            )}
           </div>
           <div className="upgradeDiv">
-            {lvlItem > 0 && <img src={require(`../../img/items/none/progress gem.png`)} className="item" />}
+            {lvlItem > 0 && lvlItem < 5 && (
+              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+            )}
           </div>
           <div
             className="upgradeDiv"
@@ -72,13 +80,18 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
           </div>
 
           <div className="upgradeDiv">
-            {lvlItem > 2 && <img src={require(`../../img/items/none/progress gem.png`)} className="item" />}
+            {lvlItem > 2 && lvlItem < 5 && (
+              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+            )}
           </div>
           <div className="upgradeDiv">
-            {lvlItem > 1 && <img src={require(`../../img/items/none/progress gem.png`)} className="item" />}
+            {lvlItem > 1 && lvlItem < 5 && (
+              <img src={require(`../../img/items/none/progress gem.png`)} className="item" />
+            )}
           </div>
         </div>
       </div>
+
       {canUpgrade === undefined ? (
         <div className="undefinedUpgrade">
           <label>Click on the item you want to upgrade</label>
@@ -123,7 +136,11 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
         </div>
       ) : (
         <div className="cantUpgrade">
-          <label>You do not have enough gems to upgrade this item.</label>
+          {dataItemUpgrade.itemLevel >= 5 ? (
+            <label className="itemMaximumLvl">The item is already maximum level</label>
+          ) : (
+            <label className="notEnoughGems">You do not have enough gems to upgrade this item.</label>
+          )}
         </div>
       )}
     </>
