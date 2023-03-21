@@ -97,31 +97,38 @@
 .upgradeDiv {
   height: 32px;
   width: 32px;
-  background-color: #d3d3d3;
+  background-color: unset;
+  border: 1px solid #ecd586;
 }
 
 .upgradeDiv:nth-child(1) {
   margin-top: 33.5%;
-  margin-left: 3%;
+  margin-left: 6%;
 }
 
 .upgradeDiv:nth-child(2) {
   margin-top: 76%;
-  margin-left: -3%;
+  margin-left: -1%;
 }
 
 .upgradeDiv:nth-child(3) {
   margin-top: 7%;
-  margin-left: 5%;
+  margin-left: 8%;
 }
 
 .upgradeDiv:nth-child(4) {
-  margin-top: 76%;
-  margin-left: 5%;
+  margin-top: 45%;
+  margin-left: -15%;
+  margin-right: 10%;
 }
 
 .upgradeDiv:nth-child(5) {
+  margin-top: 76%;
+  margin-left: -3%;
+  margin-right: 2%;
+}
+.upgradeDiv:nth-child(6) {
   margin-top: 33.5%;
   margin-left: -3%;
-  margin-right: 3%;
+  margin-right: 6%;
 }
