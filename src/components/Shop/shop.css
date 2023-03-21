@@ -157,15 +157,28 @@
   margin-top: 4%;
 }
 
-.upgradeDetails {
+.canUpgrade--info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150%;
+  border: 1px solid #d3d3d3;
+  padding: 2% 5%;
   text-align: start;
+}
+
+.canUpgrade--stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  color: var(--button--textColor);
+}
+
+.canUpgrade--stats span {
   font-size: 15px;
-  border: 1px solid #ecd586;
-  padding: 5%;
-  text-transform: capitalize;
-  overflow-y: auto;
-  margin-bottom: 2%;
-  height: 40%;
+  color: #66c673;
 }
 
 .canUpgrade button {
@@ -173,6 +186,8 @@
   border: 1px solid #ecd586;
   font-weight: bold;
   color: #ecd586;
+  margin-top: 10%;
+  padding: 3% 15%;
 }
 
 .canUpgrade button:hover {

@@ -1,10 +1,25 @@
 import { useState, useEffect } from "react";
-import { dataTooltip } from "../../functions/utilities";
+import { headers, dataTooltip, sounds } from "../../functions/utilities";
+import { get } from "../../functions/requestsApi";
 
-const UpgradeNPC = ({ dataItemUpgrade, inventory }) => {
+const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, inventory, setItemUpgrade }) => {
   const [itemUpgradeExist, setItemUpgradeExist] = useState(false);
   const [lvlItem, setLvlItem] = useState(undefined);
   const [canUpgrade, setCanUpgrade] = useState(undefined);
+
+  async function handleUpgrade(itemId) {
+    const response = await get("/api/v1/items/upgrade/" + itemId, headers);
+    if (response.status === 200) {
+      //   sounds("buySell");
+      //   window.location.reload("/shop");
+
+      setItemUpgradeExist(false);
+      setCanUpgrade(undefined);
+      setLvlItem(undefined);
+      setItemUpgrade(response.data);
+      setDataItemUpgrade({});
+    }
+  }
 
   const amountGems = inventory.filter((item) => item.name === "progress gem").length;
 
@@ -68,18 +83,40 @@ const UpgradeNPC = ({ dataItemUpgrade, inventory }) => {
       ) : canUpgrade === true ? (
         <div className="canUpgrade">
           <h5>Upgrade details:</h5>
-          <div className="upgradeDetails">
-            <ul>
-              <li>asdsd</li>
-              <li>asdadsdasdasdasdasdasda</li>
-              <li>asdsadasdasdada</li>
-              <li>asdsadasdasdada</li>
-              <li>asdsadasdasdada</li>
-              <li>asdsadasdasdada</li>
-              <li>asdsadasdasdada</li>
-            </ul>
+          <div className="canUpgrade--info">
+            <div className="canUpgrade--stats">
+              <label>Level: {dataItemUpgrade.itemLevel}</label>
+              <span>+{dataItemUpgrade.itemLevel + 1} </span>
+            </div>
+            <div className="canUpgrade--stats">
+              <label>Strength: {dataItemUpgrade.strength}</label>
+              <span>+{dataItemUpgrade.itemLevel + 1} </span>
+            </div>
+            <div className="canUpgrade--stats">
+              <label>Dexterity: {dataItemUpgrade.dexterity}</label>
+              <span>+{dataItemUpgrade.itemLevel + 1} </span>
+            </div>
+            <div className="canUpgrade--stats">
+              <label>Intelligence: {dataItemUpgrade.intelligence}</label>
+              <span>+{dataItemUpgrade.itemLevel + 1} </span>
+            </div>
+            <div className="canUpgrade--stats">
+              <label>Vitality: {dataItemUpgrade.vitality}</label>
+              <span>+{dataItemUpgrade.itemLevel + 1} </span>
+            </div>
+            <div className="canUpgrade--stats">
+              <label>Luck: {dataItemUpgrade.luck}</label>
+              <span>+{dataItemUpgrade.itemLevel + 1} </span>
+            </div>
           </div>
-          <button className="effect">UPGRADE</button>
+          <button
+            className="effect"
+            onClick={() => {
+              handleUpgrade(dataItemUpgrade.id);
+            }}
+          >
+            UPGRADE
+          </button>
         </div>
       ) : (
         <div className="cantUpgrade">

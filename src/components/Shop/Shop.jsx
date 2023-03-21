@@ -57,6 +57,7 @@ const Shop = () => {
   /* ITEM UPGRADE */
 
   const [dataItemUpgrade, setDataItemUpgrade] = useState({});
+  const [itemUpgrade, setItemUpgrade] = useState(undefined);
 
   return (
     <div className="shop">
@@ -96,25 +97,24 @@ const Shop = () => {
             </button>
           </div>
           {npcCommerce === "shop" ? (
-            <>
-              <h3>Shop</h3>
-              <ShopNPC
-                focusedButton={focusedButton}
-                itemDragBuy={itemDragBuy}
-                itemsShop={itemsShop}
-                aclass={profile.aclass}
-                level={profile.level}
-                handleItems={handleItems}
-                handleISelltems={handleISelltems}
-                setItemDragShop={setItemDragShop}
-                setItemDragBuy={setItemDragBuy}
-              />
-            </>
+            <ShopNPC
+              focusedButton={focusedButton}
+              itemDragBuy={itemDragBuy}
+              itemsShop={itemsShop}
+              aclass={profile.aclass}
+              level={profile.level}
+              handleItems={handleItems}
+              handleISelltems={handleISelltems}
+              setItemDragShop={setItemDragShop}
+              setItemDragBuy={setItemDragBuy}
+            />
           ) : (
-            <>
-              <h3>Upgrade</h3>
-              <UpgradeNPC dataItemUpgrade={dataItemUpgrade} inventory={profile.inventory.items} />
-            </>
+            <UpgradeNPC
+              dataItemUpgrade={dataItemUpgrade}
+              setDataItemUpgrade={setDataItemUpgrade}
+              inventory={profile.inventory.items}
+              setItemUpgrade={setItemUpgrade}
+            />
           )}
         </div>
       </div>

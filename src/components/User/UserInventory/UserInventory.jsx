@@ -19,6 +19,7 @@ const UserInventory = ({
   handleItemBuy,
   setDataItemUpgrade,
 }) => {
+
   const [inventoryUser, setInventoryUser] = useState(inventory);
   const [equipmentUser, setEquipmentUser] = useState(equipment);
   const [letterDrag, setLetterDrag] = useState("");
