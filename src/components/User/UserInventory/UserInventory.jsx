@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import "./userInventory.css";
 
 import { ToastContainer } from "react-toastify";
@@ -8,7 +8,6 @@ import { get } from "../../../functions/requestsApi";
 import { headers, sounds, sortedInventory } from "../../../functions/utilities";
 import { objectEmpty, orderEquipment } from "../../../functions/constants";
 
-import Tooltip from "@mui/material/Tooltip";
 import ItemTooltip from "../../ItemTooltip";
 
 const UserInventory = ({
@@ -108,18 +107,7 @@ const UserInventory = ({
                     setLetterDrag("");
                   }}
                 >
-                  <Tooltip
-                    title={
-                      <Fragment>
-                        <ItemTooltip item={item} />
-                      </Fragment>
-                    }
-                    placement="top"
-                    followCursor
-                    disableInteractive
-                  >
-                    <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
-                  </Tooltip>
+                  <ItemTooltip item={item} />
                 </div>
               );
             }
@@ -150,7 +138,7 @@ const UserInventory = ({
                   : ""
               }
               onClick={() => {
-                if (item.name === "progress gem") return;
+                if (item.name === "progress gem" || item.name === "potion") return;
                 setDataItemUpgrade(item);
               }}
               onDragStart={(event) => {
@@ -163,18 +151,7 @@ const UserInventory = ({
                 event.dataTransfer.setData("nameItemSell", "");
               }}
             >
-              <Tooltip
-                title={
-                  <Fragment>
-                    <ItemTooltip item={item} />
-                  </Fragment>
-                }
-                placement="top"
-                followCursor
-                disableInteractive
-              >
-                <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
-              </Tooltip>
+              <ItemTooltip item={item} />
             </div>
           ))}
       </div>

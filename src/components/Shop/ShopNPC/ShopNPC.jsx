@@ -1,6 +1,4 @@
 import "./shopNPC.css";
-import { Fragment } from "react";
-import Tooltip from "@mui/material/Tooltip";
 import ItemTooltip from "../../ItemTooltip";
 
 const ShopNPC = ({
@@ -90,18 +88,7 @@ const ShopNPC = ({
                 setItemDragBuy("");
               }}
             >
-              <Tooltip
-                title={
-                  <Fragment>
-                    <ItemTooltip item={item} />
-                  </Fragment>
-                }
-                placement="top"
-                followCursor
-                disableInteractive
-              >
-                <img src={require(`../../../img/items/${item.classRequired}/${item.name}.png`)} className="item" />
-              </Tooltip>
+              <ItemTooltip item={item} />
             </div>
           ))}
         </div>

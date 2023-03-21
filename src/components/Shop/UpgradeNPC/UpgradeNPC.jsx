@@ -3,8 +3,6 @@ import { headers, sounds, sortedInventory, countGemInventory } from "../../../fu
 import { get } from "../../../functions/requestsApi";
 import "./upgradeNPC.css";
 
-import { Fragment } from "react";
-import Tooltip from "@mui/material/Tooltip";
 import ItemTooltip from "../../ItemTooltip";
 
 const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmountGems, setItemUpgrade }) => {
@@ -74,23 +72,7 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
               setItemUpgradeExist(true);
             }}
           >
-            {itemUpgradeExist && (
-              <Tooltip
-                title={
-                  <Fragment>
-                    <ItemTooltip item={dataItemUpgrade} />
-                  </Fragment>
-                }
-                placement="top"
-                followCursor
-                disableInteractive
-              >
-                <img
-                  src={require(`../../../img/items/${dataItemUpgrade.classRequired}/${dataItemUpgrade.name}.png`)}
-                  className="item"
-                />
-              </Tooltip>
-            )}
+            {itemUpgradeExist && <ItemTooltip item={dataItemUpgrade} />}
           </div>
 
           <div className="upgradeDiv">
