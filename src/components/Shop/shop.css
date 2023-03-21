@@ -74,20 +74,54 @@
   justify-content: center;
   width: 307px;
   height: 32px;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 
 .divSelectNpc button {
   background-image: url("../../img/items/shop-interface/btn-shop.webp");
   width: 100%;
+  height: 32px;
 }
 
 /* UPGRADE */
 
 .upgrade--npc--card {
   display: flex;
-  background-image: url("../../img/items/shop-interface/shop.webp");
+  background-image: url("../../img/upgrade.png");
   background-size: 100% 100%;
-  width: 50px;
-  height: 50px;
+  width: 231px;
+  height: 227px;
+  justify-content: space-evenly;
+}
+
+.upgradeDiv {
+  height: 32px;
+  width: 32px;
+  background-color: #d3d3d3;
+}
+
+.upgradeDiv:nth-child(1) {
+  margin-top: 33.5%;
+  margin-left: 3%;
+}
+
+.upgradeDiv:nth-child(2) {
+  margin-top: 76%;
+  margin-left: -3%;
+}
+
+.upgradeDiv:nth-child(3) {
+  margin-top: 7%;
+  margin-left: 5%;
+}
+
+.upgradeDiv:nth-child(4) {
+  margin-top: 76%;
+  margin-left: 5%;
+}
+
+.upgradeDiv:nth-child(5) {
+  margin-top: 33.5%;
+  margin-left: -3%;
+  margin-right: 3%;
 }
