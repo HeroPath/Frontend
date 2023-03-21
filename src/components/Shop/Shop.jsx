@@ -54,6 +54,10 @@ const Shop = () => {
     handleItems("none");
   }, []);
 
+  /* ITEM UPGRADE */
+
+  const [dataItemUpgrade, setDataItemUpgrade] = useState({});
+
   return (
     <div className="shop">
       <Navbar gold={profile.gold} diamond={profile.diamond} role={profile.role} itemDragShop={itemDragShop} />
@@ -68,6 +72,7 @@ const Shop = () => {
               level={profile.level}
               itemDragShop={itemDragShop}
               handleItemBuy={handleItemBuy}
+              setDataItemUpgrade={setDataItemUpgrade}
             />
           )}
         </div>
@@ -108,7 +113,7 @@ const Shop = () => {
           ) : (
             <>
               <h3>Upgrade</h3>
-              <UpgradeNPC />
+              <UpgradeNPC dataItemUpgrade={dataItemUpgrade} inventory={profile.inventory.items} />
             </>
           )}
         </div>
