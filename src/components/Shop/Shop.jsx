@@ -88,8 +88,8 @@ const Shop = () => {
             />
           )}
         </div>
-        <div className="shop--npc">
-          <div className="shop--npc--button divSelectNpc">
+        <section className="section--NPCs">
+          <div className="divSelectNpc">
             <button
               id="shop"
               onClick={() => {
@@ -107,28 +107,30 @@ const Shop = () => {
               UPGRADE
             </button>
           </div>
-          {npcCommerce === "shop" ? (
-            <ShopNPC
-              focusedButton={focusedButton}
-              itemDragBuy={itemDragBuy}
-              itemsShop={itemsShop}
-              aclass={profile.aclass}
-              level={profile.level}
-              handleItems={handleItems}
-              handleISelltems={handleISelltems}
-              setItemDragShop={setItemDragShop}
-              setItemDragBuy={setItemDragBuy}
-            />
-          ) : (
-            <UpgradeNPC
-              dataItemUpgrade={dataItemUpgrade}
-              setDataItemUpgrade={setDataItemUpgrade}
-              amountGems={amountGems}
-              setAmountGems={setAmountGems}
-              setItemUpgrade={setItemUpgrade}
-            />
-          )}
-        </div>
+          <div className="shop--npc">
+            {npcCommerce === "shop" ? (
+              <ShopNPC
+                focusedButton={focusedButton}
+                itemDragBuy={itemDragBuy}
+                itemsShop={itemsShop}
+                aclass={profile.aclass}
+                level={profile.level}
+                handleItems={handleItems}
+                handleISelltems={handleISelltems}
+                setItemDragShop={setItemDragShop}
+                setItemDragBuy={setItemDragBuy}
+              />
+            ) : (
+              <UpgradeNPC
+                dataItemUpgrade={dataItemUpgrade}
+                setDataItemUpgrade={setDataItemUpgrade}
+                amountGems={amountGems}
+                setAmountGems={setAmountGems}
+                setItemUpgrade={setItemUpgrade}
+              />
+            )}
+          </div>
+        </section>
       </div>
     </div>
   );

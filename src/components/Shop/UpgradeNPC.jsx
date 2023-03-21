@@ -89,7 +89,7 @@ const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmount
           <div className="canUpgrade--info">
             <div className="canUpgrade--stats">
               <label>Level: {dataItemUpgrade.itemLevel}</label>
-              <span>+{dataItemUpgrade.itemLevel + 1} </span>
+              <span>+1</span>
             </div>
             <div className="canUpgrade--stats">
               <label>Strength: {dataItemUpgrade.strength}</label>
