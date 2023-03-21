@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { headers, dataTooltip, sounds, sortedInventory, countGemInventory } from "../../functions/utilities";
-import { get } from "../../functions/requestsApi";
+import { headers, dataTooltip, sounds, sortedInventory, countGemInventory } from "../../../functions/utilities";
+import { get } from "../../../functions/requestsApi";
 import "./upgradeNPC.css";
 
 const UpgradeNPC = ({ dataItemUpgrade, setDataItemUpgrade, amountGems, setAmountGems, setItemUpgrade }) => {
