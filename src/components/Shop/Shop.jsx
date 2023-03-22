@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import UserInventory from "../User/UserInventory/UserInventory";
 import Navbar from "../User/Navbar/Navbar";
 import "./shop.css";
-import ShopNPC from "./ShopNPC";
-import UpgradeNPC from "./UpgradeNPC";
+import ShopNPC from "./ShopNPC/ShopNPC";
+import UpgradeNPC from "./UpgradeNPC/UpgradeNPC";
 
 import { headers, sounds, sortedInventory, countGemInventory } from "../../functions/utilities";
 import { get } from "../../functions/requestsApi";
@@ -88,8 +88,8 @@ const Shop = () => {
             />
           )}
         </div>
-        <div className="shop--npc">
-          <div className="shop--npc--button divSelectNpc">
+        <section className="section--NPCs">
+          <div className="divSelectNpc">
             <button
               id="shop"
               onClick={() => {
@@ -107,28 +107,30 @@ const Shop = () => {
               UPGRADE
             </button>
           </div>
-          {npcCommerce === "shop" ? (
-            <ShopNPC
-              focusedButton={focusedButton}
-              itemDragBuy={itemDragBuy}
-              itemsShop={itemsShop}
-              aclass={profile.aclass}
-              level={profile.level}
-              handleItems={handleItems}
-              handleISelltems={handleISelltems}
-              setItemDragShop={setItemDragShop}
-              setItemDragBuy={setItemDragBuy}
-            />
-          ) : (
-            <UpgradeNPC
-              dataItemUpgrade={dataItemUpgrade}
-              setDataItemUpgrade={setDataItemUpgrade}
-              amountGems={amountGems}
-              setAmountGems={setAmountGems}
-              setItemUpgrade={setItemUpgrade}
-            />
-          )}
-        </div>
+          <div className="shop--npc">
+            {npcCommerce === "shop" ? (
+              <ShopNPC
+                focusedButton={focusedButton}
+                itemDragBuy={itemDragBuy}
+                itemsShop={itemsShop}
+                aclass={profile.aclass}
+                level={profile.level}
+                handleItems={handleItems}
+                handleISelltems={handleISelltems}
+                setItemDragShop={setItemDragShop}
+                setItemDragBuy={setItemDragBuy}
+              />
+            ) : (
+              <UpgradeNPC
+                dataItemUpgrade={dataItemUpgrade}
+                setDataItemUpgrade={setDataItemUpgrade}
+                amountGems={amountGems}
+                setAmountGems={setAmountGems}
+                setItemUpgrade={setItemUpgrade}
+              />
+            )}
+          </div>
+        </section>
       </div>
     </div>
   );

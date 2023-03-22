@@ -1,0 +1,151 @@
+.upgrade--npc--card {
+  display: flex;
+  background-image: url("../../../img/upgrade.png");
+  background-size: 100% 100%;
+  width: 231px;
+  height: 227px;
+  justify-content: space-evenly;
+  margin-top: 15%;
+  margin-bottom: 5%;
+}
+
+.upgradeDiv {
+  height: 32px;
+  width: 32px;
+  background-color: black;
+  filter: brightness(1.2);
+}
+
+.upgradeDiv:nth-child(1) {
+  margin-top: 34%;
+  margin-left: 6%;
+}
+
+.upgradeDiv:nth-child(2) {
+  margin-top: 76.5%;
+  margin-left: -1%;
+}
+
+.upgradeDiv:nth-child(3) {
+  margin-top: 8%;
+  margin-left: 8%;
+}
+
+.upgradeDiv:nth-child(4) {
+  margin-top: 45%;
+  margin-left: -15%;
+  margin-right: 10%;
+  filter: brightness(1);
+}
+
+.upgradeDiv:nth-child(5) {
+  margin-top: 76.5%;
+  margin-left: -2.5%;
+  margin-right: 1.5%;
+}
+.upgradeDiv:nth-child(6) {
+  margin-top: 34%;
+  margin-left: -3%;
+  margin-right: 6%;
+}
+
+.cantUpgrade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 80%;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.itemMaximumLvl {
+  color: #d2a655;
+}
+
+.notEnoughGems {
+  color: #fe7a7a;
+}
+
+.undefinedUpgrade {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.canUpgrade {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  margin-top: 4%;
+}
+
+.canUpgrade--info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150%;
+  border: 1px solid #d3d3d3;
+  padding: 2% 5%;
+  text-align: start;
+}
+
+.canUpgrade--stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  color: var(--button--textColor);
+}
+
+.canUpgrade--stats span {
+  font-size: 15px;
+  color: #66c673;
+}
+
+.canUpgrade button {
+  background-color: unset;
+  border: 1px solid #ecd586;
+  font-weight: bold;
+  color: #ecd586;
+  margin-top: 10%;
+  padding: 3% 15%;
+}
+
+.canUpgrade button:hover {
+  filter: brightness(1.2);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.canUpgrade button.effect {
+  overflow: hidden;
+  transition: all 1s;
+  position: relative;
+  z-index: 1;
+}
+.canUpgrade button.effect::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0%;
+  height: 0%;
+  background-color: #ecd586;
+  border-radius: 50%;
+  transition: all 1s;
+  z-index: -1;
+}
+.canUpgrade button.effect:hover {
+  color: #001928;
+}
+.canUpgrade button.effect:hover::after {
+  width: 150%;
+  height: 250%;
+}

@@ -53,23 +53,6 @@ export const notifySuccess = (redirectTo, header, body1, body2, ...otherBodies) 
   );
 };
 
-export function dataTooltip(item) {
-  let tooltip = `Name: ${capitalizeFirstLetter(item.name)}` + (item.itemLevel >= 1 ? ` +${item.itemLevel}` : "") + `\n`;
-
-  if (item.quality !== "") tooltip += `Quality: ${capitalizeFirstLetter(item.quality)}\n`;
-  if (item.strength > 0) tooltip += `Strength: ${item.strength}\n`;
-  if (item.dexterity > 0) tooltip += `Dexterity: ${item.dexterity}\n`;
-  if (item.vitality > 0) tooltip += `Vitality: ${item.vitality}\n`;
-  if (item.intelligence > 0) tooltip += `Intelligence: ${item.intelligence}\n`;
-  if (item.luck > 0) tooltip += `Luck: ${item.luck}\n`;
-  if (item.lvlMin > 0) tooltip += `Level Min: ${item.lvlMin}\n`;
-  if (item.classRequired)
-    tooltip += `Class: ${item.classRequired === "none" ? "All" : capitalizeFirstLetter(item.classRequired)}\n`;
-
-  tooltip += `\nPrice: ${item.price.toLocaleString()}`;
-  return tooltip;
-}
-
 export function sounds(sound) {
   const playSound = new Audio(require(`../sounds/${sound}.wav`));
   return playSound.play();

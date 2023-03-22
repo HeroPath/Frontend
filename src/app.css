@@ -68,67 +68,6 @@ body {
   background: linear-gradient(to top, #090, #00e900);
 }
 
-/* --------------------------- Tooltip --------------------------- */
-
-[data-tooltip] {
-  position: relative;
-  z-index: 2;
-  cursor: pointer;
-  font-weight: 400;
-}
-[data-tooltip]:before,
-[data-tooltip]:after {
-  visibility: hidden;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  pointer-events: none;
-}
-
-[data-tooltip]:before {
-  white-space: pre-line;
-  position: absolute;
-  bottom: 120%;
-  left: 85%;
-  margin-bottom: 5px;
-  margin-left: -90px;
-  padding: 6px 8px;
-  width: 210px;
-  border-radius: 3px;
-  background-color: #000;
-  background-color: hsla(0, 0%, 20%, 0.95);
-  text-align: start;
-  color: #fff;
-  content: attr(data-tooltip);
-  font-size: 15px;
-  line-height: 1.4;
-}
-
-/* --------------------------- Triangle tooltip --------------------------- */
-[data-tooltip]:after {
-  position: absolute;
-  bottom: 120%;
-  left: 85%;
-  margin-left: -20px;
-  width: 0;
-  border-top: 5px solid #000;
-  border-top: 5px solid hsla(0, 0%, 20%, 0.92);
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-  content: "";
-  font-size: 0;
-  line-height: 0;
-}
-
-/* --------------------------- Hover tooltip --------------------------- */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
-  visibility: visible;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
-
 /* ---------------- TOAST ----------------------*/
 .custom-success-toast {
   font-size: 15px;

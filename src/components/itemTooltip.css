@@ -1,0 +1,37 @@
+.tooltipClass {
+  display: flex;
+  flex-direction: column;
+  background-color: #232323f2;
+  text-transform: capitalize;
+  margin: -3% -6%;
+  min-width: 150px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--button--textColor);
+}
+
+.itemTooltip--name {
+  font-size: 15px;
+  padding-top: 3px;
+}
+
+.itemTooltip--stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+.itemTooltip--stats div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+}
+
+.tooltipStat span {
+  color: #86bbec;
+}
+
+.tooltipStat:last-child span {
+  color: gold;
+}
