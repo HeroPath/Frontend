@@ -33,8 +33,8 @@ const SideBar = () => {
       <a href="/mail" className="button--sidebar button--links">
         Mail
       </a>
-      <a href="#" className="button--sidebar button--links">
-        (Coming soon)
+      <a href="/market" className="button--sidebar button--links">
+        Market
       </a>
       <a href="#" className="button--sidebar button--links">
         (Coming soon)

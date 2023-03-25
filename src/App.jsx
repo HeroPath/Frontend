@@ -19,6 +19,7 @@ import Quests from "./components/Quests/Quests";
 import Guild from "./components/Guild/Guild";
 import PvPBattle from "./components/PvP/PvPBattle";
 import Mail from "./components/Mail/Mail";
+import Market from "./components/Market/Market";
 
 function App() {
   const [cookiesToken, setCookiesToken] = React.useState(null);
@@ -51,6 +52,7 @@ function App() {
             <Route path="/quest" element={<Quests />} />
             <Route path="/guild" element={<Guild />} />
             <Route path="/mail" element={<Mail />} />
+            <Route path="/market" element={<Market />} />
           </Routes>
         </BrowserRouter>
       </div>
