@@ -1,8 +1,7 @@
-import React from "react";
 import "./app.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "universal-cookie";
 
 import Register from "./components/Auth/Register";
@@ -22,7 +21,7 @@ import Mail from "./components/Mail/Mail";
 import Market from "./components/Market/Market";
 
 function App() {
-  const [cookiesToken, setCookiesToken] = React.useState(null);
+  const [cookiesToken, setCookiesToken] = useState(null);
 
   useEffect(() => {
     const cookies = new Cookies();
