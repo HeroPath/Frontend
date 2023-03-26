@@ -49,8 +49,8 @@ const Market = () => {
                   <ItemTooltip item={market.item} />
                 </div>
               </td>
-              <td>{market.goldPrice}</td>
-              <td>{market.diamondPrice}</td>
+              <td>{market.goldPrice.toLocaleString()}</td>
+              <td>{market.diamondPrice.toLocaleString()}</td>
               <td>{market.usernameSeller}</td>
             </tr>
           ))}
