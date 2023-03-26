@@ -38,6 +38,7 @@ const Market = () => {
             <th>Gold</th>
             <th>Diamonds</th>
             <th>User seller</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +53,9 @@ const Market = () => {
               <td>{market.goldPrice.toLocaleString()}</td>
               <td>{market.diamondPrice.toLocaleString()}</td>
               <td>{market.usernameSeller}</td>
+              <td>
+                <button className="btn btn-success">Buy</button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -78,4 +82,6 @@ const ItemStyle = {
   display: "flex",
   maxWidth: "36px",
   maxHeight: "36px",
+  justifyContent: "center",
+  margin: "0 auto",
 };
