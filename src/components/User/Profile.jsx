@@ -19,7 +19,9 @@ const Profile = () => {
     const response = await get("/api/v1/users/profile", headers);
     if (response.status === 200) {
       setProfile(response.data);
-      console.log(response.data.inventory.items)
+      for (let i = 0; i < response.data.inventory.items.length; i++) {
+        console.log(response.data.inventory.items[i].id, response.data.inventory.items[i].name)
+      }
     }
   }
 
