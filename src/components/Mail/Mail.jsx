@@ -94,47 +94,50 @@ const Mail = () => {
           Send
         </button>
       </form>
-      <div>
-        <button className="button--links" onClick={deleteAllMails} style={{ padding: "15px" }}>
-          {" "}
-          Delete All{" "}
-        </button>
-      </div>
+      {mails.length > 0 && (
+        <div>
+          <div>
+            <button className="button--links" onClick={deleteAllMails} style={{ padding: "15px" }}>
+              {" "}
+              Delete All{" "}
+            </button>
+          </div>
 
-      <h1>Mail</h1>
+          <h1>Mail</h1>
 
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>From</th>
-            <th>Subject</th>
-            <th>Message</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mails.map((mail) => (
-            <tr key={mail.id}>
-              <td>{mailCounter++}</td>
-              <td>{mail.sender}</td>
-              <td>{mail.subject}</td>
-              <td>{mail.message}</td>
-              <td>
-                <button
-                  className="button--links"
-                  onClick={() => {
-                    deleteMail(mail.id);
-                  }}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>From</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mails.map((mail) => (
+                <tr key={mail.id}>
+                  <td>{mailCounter++}</td>
+                  <td>{mail.sender}</td>
+                  <td>{mail.subject}</td>
+                  <td>{mail.message}</td>
+                  <td>
+                    <button
+                      className="button--links"
+                      onClick={() => {
+                        deleteMail(mail.id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
       <ToastContainer
         position="top-right"
         autoClose={2000}
