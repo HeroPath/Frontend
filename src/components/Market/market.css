@@ -1,0 +1,41 @@
+.market {
+  background-image: url("../../img/background/bg-market.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  
+  margin-top: 2%;
+}
+
+.market h1 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+}
+
+.navbarMarket {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1%;
+  margin-top: -2.3%;
+}
+
+.divMarket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  width: 60%;
+}
+
+
+.market_table {
+  text-align: center;
+}
