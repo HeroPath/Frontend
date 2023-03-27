@@ -56,12 +56,10 @@ const Guild = () => {
               <h1>Guild Stats</h1>
               <div>
                 <CustomButton label="UPGRADE" onClick={handleUpgradeGuild} color="success" />
-
                 <CustomButton label="DONATE 100 DIAMONDS" onClick={() => donateDiamondsToGuild(100)} color="info" />
-
                 <CustomButton label="DONATE 500 DIAMONDS" onClick={() => donateDiamondsToGuild(500)} color="info" />
-
                 <CustomButton label="DONATE 1000 DIAMONDS" onClick={() => donateDiamondsToGuild(1000)} color="info" />
+                <CustomButton label="DONATE 10000 DIAMONDS" onClick={() => donateDiamondsToGuild(10000)} color="info" />
               </div>
 
               <Table striped bordered hover className="guild--stats">
