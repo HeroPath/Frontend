@@ -11,7 +11,9 @@ import { get } from "../../functions/requestsApi";
 import ItemTooltip from "../ItemTooltip";
 
 const Market = () => {
+  let myMarketCounter = 1;
   let marketCounter = 1;
+
 
   const [myMarket, setMyMarket] = useState([]);
   const [markets, setMarkets] = useState([]);
@@ -43,7 +45,7 @@ const Market = () => {
   return (
     <div className="market">
       {myMarket.length >= 1 && (
-        <div>
+        <div className="divMarket">
           <h1>My Market</h1>
 
           <Table className="market_table" striped bordered hover variant="dark">
@@ -60,7 +62,7 @@ const Market = () => {
             <tbody>
               {myMarket.map((myMarket, index) => (
                 <tr key={myMarket.id}>
-                  <td>{marketCounter++}</td>
+                  <td>{myMarketCounter++}</td>
                   <td>
                     <div key={index} id={myMarket.item.id} style={ItemStyle}>
                       <ItemTooltip item={myMarket.item} />
@@ -80,7 +82,7 @@ const Market = () => {
           </Table>
         </div>
       )}
-      <div>
+      <div className="divMarket">
         <h1>Market</h1>
 
         <Table className="market_table" striped bordered hover variant="dark">
