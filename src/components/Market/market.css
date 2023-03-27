@@ -2,13 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3%;
-  margin-left: 12%;
-  width: 60%;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  width: 100%;
 }
 
 .market h1 {
   color: black;
+  text-align: center;
 }
 
 .market_table {
