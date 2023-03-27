@@ -6,14 +6,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { headers } from "../../functions/utilities";
-import { get } from "../../functions/requestsApi";
+import { get, deleteRequest } from "../../functions/requestsApi";
 
 import ItemTooltip from "../ItemTooltip";
 
 const Market = () => {
   let myMarketCounter = 1;
   let marketCounter = 1;
-
 
   const [myMarket, setMyMarket] = useState([]);
   const [markets, setMarkets] = useState([]);
@@ -37,6 +36,11 @@ const Market = () => {
     if (response.status === 200) window.location.href = "/profile";
   }
 
+  async function handleRemoveItemMarket(marketId) {
+    const response = await deleteRequest("/api/v1/market/" + marketId, headers);
+    if (response.status === 200) window.location.reload();
+  }
+
   useEffect(() => {
     getMarket();
     getMyMarket();
@@ -55,7 +59,6 @@ const Market = () => {
                 <th>Item</th>
                 <th>Gold</th>
                 <th>Diamonds</th>
-                <th>User seller</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -70,9 +73,14 @@ const Market = () => {
                   </td>
                   <td>{myMarket.goldPrice.toLocaleString()}</td>
                   <td>{myMarket.diamondPrice.toLocaleString()}</td>
-                  <td>{myMarket.usernameSeller}</td>
                   <td>
-                    <button type="button" className="btn btn-danger">
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => {
+                        handleRemoveItemMarket(myMarket.id);
+                      }}
+                    >
                       REMOVE
                     </button>
                   </td>
