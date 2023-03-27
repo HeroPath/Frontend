@@ -12,6 +12,15 @@
   text-align: center;
 }
 
+.navbarMarket {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1%;
+  margin-top: -2.3%;
+}
+
 .divMarket {
   display: flex;
   flex-direction: column;

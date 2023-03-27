@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { headers } from "../../functions/utilities";
 import { get, deleteRequest } from "../../functions/requestsApi";
 
+import Navbar from "../User/Navbar/Navbar";
+
 import ItemTooltip from "../ItemTooltip";
 
 const Market = () => {
@@ -16,11 +18,17 @@ const Market = () => {
 
   const [myMarket, setMyMarket] = useState([]);
   const [markets, setMarkets] = useState([]);
+  const [userNabvar, setUserNavbar] = useState({});
 
   async function getMarket() {
     const responseMarket = await get("/api/v1/market", headers);
     if (responseMarket.status === 200) {
-      setMarkets(responseMarket.data);
+      setUserNavbar({
+        gold: responseMarket.data.userGold,
+        diamond: responseMarket.data.userDiamond,
+      });
+
+      setMarkets(responseMarket.data.markets);
     }
   }
 
@@ -48,6 +56,8 @@ const Market = () => {
 
   return (
     <div className="market">
+      <div className="navbarMarket">{userNabvar && <Navbar gold={userNabvar.gold} diamond={userNabvar.diamond} />}</div>
+
       {myMarket.length >= 1 && (
         <div className="divMarket">
           <h1>My Market</h1>

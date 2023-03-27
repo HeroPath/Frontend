@@ -34,7 +34,6 @@ const Profile = () => {
       <Navbar
         gold={profile.gold}
         diamond={profile.diamond}
-        role={profile.role}
         pvePts={profile.pvePts}
         pvpPts={profile.pvpPts}
       />
