@@ -90,48 +90,50 @@ const Market = () => {
           </Table>
         </div>
       )}
-      <div className="divMarket">
-        <h1>Market</h1>
+      {markets.length >= 1 && (
+        <div className="divMarket">
+          <h1>Market</h1>
 
-        <Table className="market_table" striped bordered hover variant="dark">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Item</th>
-              <th>Gold</th>
-              <th>Diamonds</th>
-              <th>User seller</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {markets.map((market, index) => (
-              <tr key={market.id}>
-                <td>{marketCounter++}</td>
-                <td>
-                  <div key={index} id={market.item.id} style={ItemStyle}>
-                    <ItemTooltip item={market.item} />
-                  </div>
-                </td>
-                <td>{market.goldPrice.toLocaleString()}</td>
-                <td>{market.diamondPrice.toLocaleString()}</td>
-                <td>{market.usernameSeller}</td>
-                <td>
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                    onClick={() => {
-                      handleBuyItemMarket(market.id);
-                    }}
-                  >
-                    BUY
-                  </button>
-                </td>
+          <Table className="market_table" striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Item</th>
+                <th>Gold</th>
+                <th>Diamonds</th>
+                <th>User seller</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
-      </div>
+            </thead>
+            <tbody>
+              {markets.map((market, index) => (
+                <tr key={market.id}>
+                  <td>{marketCounter++}</td>
+                  <td>
+                    <div key={index} id={market.item.id} style={ItemStyle}>
+                      <ItemTooltip item={market.item} />
+                    </div>
+                  </td>
+                  <td>{market.goldPrice.toLocaleString()}</td>
+                  <td>{market.diamondPrice.toLocaleString()}</td>
+                  <td>{market.usernameSeller}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => {
+                        handleBuyItemMarket(market.id);
+                      }}
+                    >
+                      BUY
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
+      )}
       <ToastContainer
         position="top-right"
         autoClose={2000}
