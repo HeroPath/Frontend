@@ -22,6 +22,12 @@ const Market = () => {
     }
   }
 
+  async function handleBuyItemMarket(marketId) {
+    const response = await get("/api/v1/market/buy/" + marketId, headers);
+    if (response.status === 200) window.location.href = "/profile";
+  }
+
+
   useEffect(() => {
     getMarket();
   }, []);
@@ -54,8 +60,16 @@ const Market = () => {
               <td>{market.diamondPrice.toLocaleString()}</td>
               <td>{market.usernameSeller}</td>
               <td>
-                <button className="btn btn-success">Buy</button>
-              </td>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => {
+                        handleBuyItemMarket(market.id);
+                      }}
+                    >
+                      BUY
+                    </button>
+                  </td>
             </tr>
           ))}
         </tbody>
