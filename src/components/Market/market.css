@@ -1,14 +1,19 @@
 .market {
+  background-image: url("../../img/background/bg-market.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 2%;
-  margin-bottom: 1%;
   width: 100%;
+  
+  margin-top: 2%;
 }
 
 .market h1 {
-  color: black;
+  color: rgb(255, 255, 255);
   text-align: center;
 }
 
