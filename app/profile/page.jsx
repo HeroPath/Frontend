@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "@/store/slice";
 
@@ -16,6 +16,9 @@ const page = () => {
   useEffect(() => {
     dispatch(fetchUserData());
   }, []);
+
+  const [userNewData, setUserNewData] = useState(false);
+  const updateStats = (newStats) => setUserNewData(newStats);
 
   return (
     <div className="profile">
@@ -44,12 +47,12 @@ const page = () => {
               titleName={profile.titleName}
               titlePoints={profile.titlePoints}
               titlePointsToNextLevel={profile.titlePointsToNextLevel}
-              sendFromProfile={sendFromProfile}
+              // sendFromProfile={sendFromProfile}
               userNewData={userNewData}
             />
           )}
 
-          {profile.strength && <UserStats profile={profile} updateStats={updateStats} userNewData={userNewData} />}
+          {profile.strength && <UserStats profile={profile} />}
         </section>
       </div>
     </div>

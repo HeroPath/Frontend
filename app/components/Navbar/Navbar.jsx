@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -18,11 +19,11 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
     <div className="profileNavbar">
       <div className="profileNavbar--labels">
         <div>
-          <img className="me-2" src={require(`@/public/img/utilities/gold.webp`)} />
+          <Image src={require(`@/public/img/utilities/gold.webp`)} alt="gold" />
           {gold && <label>{gold.toLocaleString()}</label>}
         </div>
         <div>
-          <img className="me-2" src={require(`@/public/img/utilities/diamond.webp`)} />
+          <Image src={require(`@/public/img/utilities/diamond.webp`)} alt="diamond" />
           {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
       </div>

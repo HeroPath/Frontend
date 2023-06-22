@@ -5,7 +5,7 @@ import { headers } from "@/functions/utilities";
 const initialState = {
   statusMsg: "",
   serverStatus: "",
-  userData: "",
+  userData: {},
   activeEvent: "",
   pvpAndPvePts: "",
 };
@@ -28,6 +28,12 @@ export const Slice = createSlice({
     },
     getPvpAndPvePts: (state, action) => {
       state.pvpAndPvePts = action.payload;
+    },
+    addStat: (state, action) => {
+      state.userData = {
+        ...state.userData,
+        ...action.payload,
+      };
     },
   },
 });
@@ -81,6 +87,7 @@ export const fetchEvent = () => {
     }
   };
 };
+
 /* -------------------------------- GET PveAndPvpMaxPts -------------------------------- */
 
 export const fetchPveAndPvpMaxPts = () => {
@@ -97,6 +104,22 @@ export const fetchPveAndPvpMaxPts = () => {
     }
   };
 };
+/* -------------------------------- POST Add Stat -------------------------------- */
 
-export const { getServerStatus, getProfile, getEvent, setStatusMsg } = Slice.actions;
+export const fetchAddStat = (skillName) => {
+  return async (dispatch) => {
+    try {
+      const response = await POST("/api/v1/users/add-skill-points/" + skillName, {}, headers);
+
+      if (response.status === 200) {
+        dispatch(addStat(response.data));
+      }
+    } catch (err) {
+      console.error("fetchUserData", err);
+      dispatch(setStatusMsg(err.message));
+    }
+  };
+};
+
+export const { setStatusMsg, getServerStatus, getProfile, getEvent, getPvpAndPvePts, addStat } = Slice.actions;
 export default Slice.reducer;
