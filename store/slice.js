@@ -1,11 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GET, POST } from "@/app/api/route";
 import { headers } from "@/functions/utilities";
+import { orderedObject, sortedInventory, sounds } from "@/functions/functions";
 
 const initialState = {
   statusMsg: "",
-  serverStatus: "",
+  serverStatus: {},
   userData: {},
+  userBox: {
+    userInventory: {},
+    userEquipment: {},
+  },
   activeEvent: "",
   pvpAndPvePts: "",
 };
@@ -21,7 +26,11 @@ export const Slice = createSlice({
       state.serverStatus = action.payload;
     },
     getProfile: (state, action) => {
-      state.userData = action.payload;
+      state.userData = {
+        ...action.payload,
+        inventory: sortedInventory(action.payload.inventory.items),
+        equipment: orderedObject(action.payload.equipment),
+      };
     },
     getEvent: (state, action) => {
       state.activeEvent = action.payload;
@@ -33,6 +42,12 @@ export const Slice = createSlice({
       state.userData = {
         ...state.userData,
         ...action.payload,
+      };
+    },
+    getUserBox: (state, action) => {
+      state.userBox = {
+        userInventory: sortedInventory(action.payload.inventory.items),
+        userEquipment: orderedObject(action.payload.equipment),
       };
     },
   },
@@ -121,5 +136,31 @@ export const fetchAddStat = (skillName) => {
   };
 };
 
-export const { setStatusMsg, getServerStatus, getProfile, getEvent, getPvpAndPvePts, addStat } = Slice.actions;
+/* -------------------------------- GET User inventory and equipment -------------------------------- */
+
+export const fetchUserBox = (equipping, dataItem) => {
+  return async (dispatch) => {
+    try {
+      if (dataItem === {}) return;
+      let equip = equipping === true ? "equip/" : "unequip/";
+
+      const response = await GET("/api/v1/items/" + equip + dataItem.id, headers);
+
+      if (response.status === 200) {
+        dispatch(getUserBox(response.data));
+        if (dataItem.name === "potion") {
+          sounds("potion");
+        } else {
+          sounds("equip");
+        }
+      }
+    } catch (err) {
+      console.error("fetchUserData", err);
+      dispatch(setStatusMsg(err.message));
+    }
+  };
+};
+
+export const { setStatusMsg, getServerStatus, getProfile, getEvent, getPvpAndPvePts, addStat, getUserBox } =
+  Slice.actions;
 export default Slice.reducer;

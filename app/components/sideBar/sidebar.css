@@ -1,0 +1,36 @@
+/* ---------------- SIDEBAR ----------------------*/
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 15%;
+  background-image: url("../../../public/img/interfaces/bg-sidebar.webp");
+  background-position: center;
+  background-size: 100% 100%;
+  text-align: center;
+  align-items: center;
+}
+
+.sidebar a {
+  width: 80%;
+}
+
+.sidebar--logo {
+  height: 20%;
+  padding-top: 7%;
+  filter: brightness(0.9);
+}
+.sidebar--logo:hover {
+  filter: brightness(1.1);
+  cursor: pointer;
+}
+
+.button--sidebar {
+  margin-top: 8%;
+  font-size: 15px;
+}
+
+.button--sidebar:last-child {
+  margin-top: 35%;
+}

@@ -1,0 +1,34 @@
+.profileNavbar {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  background-image: url("../../../public/img/interfaces/bg-navbar.webp");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  color: white;
+  font-size: 15px;
+  padding: 5px;
+  width: 100%;
+}
+
+.profileNavbar--labels {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+
+.profileNavbar--labels div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileNavbar--labels div label {
+  margin-left: 10px;
+}
+
+.navBarDivs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
+}

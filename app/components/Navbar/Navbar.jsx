@@ -1,8 +1,12 @@
 import Image from "next/image";
 import { useEffect } from "react";
+import "./navbar.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEvent, fetchPveAndPvpMaxPts } from "@/store/slice";
+
+import GoldIcon from "@/public/img/utilities/gold.webp";
+import DiamondIcon from "@/public/img/utilities/diamond.webp";
 
 const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
   const dispatch = useDispatch();
@@ -19,11 +23,11 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
     <div className="profileNavbar">
       <div className="profileNavbar--labels">
         <div>
-          <Image src={require(`@/public/img/utilities/gold.webp`)} alt="gold" />
+          <Image src={GoldIcon} alt="gold" className="me-2" />
           {gold && <label>{gold.toLocaleString()}</label>}
         </div>
         <div>
-          <Image src={require(`@/public/img/utilities/diamond.webp`)} alt="diamond" />
+          <Image src={DiamondIcon} alt="diamond" className="me-2" />
           {diamond && <label>{diamond.toLocaleString()}</label>}
         </div>
       </div>

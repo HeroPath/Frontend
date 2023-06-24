@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Stat from "./Stat.jsx";
+import "./userStats.css";
 
 const UserStats = ({ profile }) => {
   const dispatch = useDispatch();

@@ -1,0 +1,102 @@
+/* ---------------- USERSTATS ----------------------*/
+
+.userstats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 12px;
+}
+
+.userstats--form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+.userstats--stats {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 15px;
+  background-color: rgb(0, 25, 40);
+  border: 1px solid rgb(100, 80, 30);
+  margin: 3px 0;
+}
+
+.userstats--labels {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.userstats--firstStat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: flex-start;
+  width: 100%;
+  font-size: 13px;
+  color: #fe7a7a;
+}
+.userstats--secondStat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: flex-start;
+  width: 100%;
+  font-size: 11px;
+  color: #95bfcd;
+}
+
+.userstats--add--form {
+  display: flex;
+}
+
+.userstats--add--form a {
+  background-color: #363636;
+  text-decoration: none;
+  border: 1px solid #d3d3d3;
+  color: var(--button--textColor);
+  margin: 5px;
+  padding: 0px 5px;
+  filter: brightness(0.9);
+}
+
+.userstats--add--form a:hover {
+  cursor: pointer;
+  filter: brightness(1.5);
+}
+
+.userstats--info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin-top: 5%;
+}
+
+.userstats--data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  border: 1px solid #d3d3d3;
+}
+
+.userstats--dataStat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 5%;
+  font-size: 13px;
+  color: var(--button--textColor);
+}
+.userstats--dataStat span {
+  color: #ecd586;
+}

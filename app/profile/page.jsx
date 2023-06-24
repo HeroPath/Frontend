@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "@/store/slice";
+import "./profile.css";
 
 import Navbar from "../components/Navbar/Navbar";
 import UserInventory from "./components/UserInventory/UserInventory";
@@ -12,6 +13,7 @@ import UserStats from "./components/UserStats/UserStats";
 const page = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.Slice.userData);
+  let sendFromProfile = true;
 
   useEffect(() => {
     dispatch(fetchUserData());
@@ -47,8 +49,8 @@ const page = () => {
               titleName={profile.titleName}
               titlePoints={profile.titlePoints}
               titlePointsToNextLevel={profile.titlePointsToNextLevel}
-              // sendFromProfile={sendFromProfile}
               userNewData={userNewData}
+              sendFromProfile={sendFromProfile}
             />
           )}
 

@@ -1,0 +1,65 @@
+/* ----------------- USERINVENTORY -----------------------*/
+
+.inventory {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.inventory--equiped {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr 1fr;
+  background-image: url("../../../../public/img/items/shop-interface/inventoryEquiped.webp");
+  justify-items: center;
+  align-items: center;
+  padding: 33px 27px;
+  width: 183px;
+  height: 193px;
+  margin-bottom: 10px;
+}
+.inventory--box {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  background-image: url("../../../../public/img/items/shop-interface/inventoryBox.webp");
+  justify-items: center;
+  align-items: center;
+  padding: 30px 32px;
+  width: 307px;
+  height: 224px;
+}
+
+.item {
+  width: 32px;
+  height: 32px;
+  filter: brightness(1.2);
+}
+
+.item:hover {
+  filter: brightness(1.8);
+  cursor: pointer;
+}
+
+.itemNoClass {
+  margin-top: 1px;
+  padding: 1px;
+  background-color: rgba(128, 16, 1, 0.5);
+}
+
+.itemNoLevel {
+  margin-top: 1px;
+  padding: 1px;
+
+  background-color: rgba(110, 103, 0, 0.5);
+}
+
+.form-control,
+.form-control:focus {
+  background-color: rgba(206, 206, 206, 0.856);
+  text-align: center;
+  box-shadow: none;
+  font-size: 25px;
+  border: 1px solid;
+}
