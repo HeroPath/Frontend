@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { notify } from "../../functions/utilities";
 import axios from "axios";
 
@@ -42,48 +41,3 @@ export async function deleteRequest(route, headers) {
     }
   }
 }
-
-// export async function GET(route, headers) {
-//   try {
-//     const apiUrl = API_URL + route;
-
-//     const requestHeaders = headers
-//       ? { ...headers, "Content-Type": "application/json" }
-//       : { "Content-Type": "application/json" };
-
-//     const res = await fetch(apiUrl, {
-//       headers: requestHeaders,
-//     });
-//     const data = await res.json();
-
-//     return NextResponse.json({ data });
-//   } catch (err) {
-//     if (err.request.status !== 0) {
-//       notify(err.response.data.message);
-//     }
-//   }
-// }
-
-// export async function POST(route, objectData, headers) {
-//   try {
-//     const apiUrl = API_URL + route;
-//     const requestData = objectData ? JSON.stringify(objectData) : undefined;
-//     const requestHeaders = headers
-//       ? { ...headers, "Content-Type": "application/json" }
-//       : { "Content-Type": "application/json" };
-
-//     const res = await fetch(apiUrl, {
-//       method: "POST",
-//       body: requestData,
-//       headers: requestHeaders,
-//     });
-
-//     const data = await res.json();
-
-//     if (res.status === 200) return NextResponse.json(data);
-//   } catch (err) {
-//     if (err.status !== 0) {
-//       notify(err.response.data.message);
-//     }
-//   }
-// }

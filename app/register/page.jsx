@@ -7,6 +7,7 @@ import { GET, POST } from "../api/route";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "../components/login/auth.css";
 
 const Register = () => {
   const [classData, setClassData] = useState([]);

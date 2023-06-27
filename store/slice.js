@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { GET, POST } from "@/app/api/route";
-import { headers } from "@/functions/utilities";
+import { headers, cookies } from "@/functions/utilities";
 import { orderedObject, sortedInventory, sounds } from "@/functions/functions";
 
 const initialState = {
@@ -13,6 +13,8 @@ const initialState = {
   },
   activeEvent: "",
   pvpAndPvePts: "",
+  npcAttacked: [],
+  battleData: {},
 };
 
 export const Slice = createSlice({
@@ -50,6 +52,13 @@ export const Slice = createSlice({
         userEquipment: orderedObject(action.payload.equipment),
       };
     },
+    getNpcAttack: (state, action) => {
+      state.npcAttacked = action.payload;
+    },
+    getBattleData: (state, action) => {
+      state.battleData = action.payload;
+      console.log(action.payload);
+    },
   },
 });
 
@@ -65,6 +74,25 @@ export const fetchServerStatus = () => {
       }
     } catch (err) {
       console.error("fetchServerStatus", err);
+      dispatch(setStatusMsg(err.message));
+    }
+  };
+};
+
+/* -------------------------------- POST Login -------------------------------- */
+export const handleLoginUser = (dataLogin) => {
+  return async (dispatch) => {
+    try {
+      if (dataLogin.username === "" || dataLogin.password === "") return;
+      const response = await POST("/api/v1/auth/login", dataLogin);
+
+      if (response.status === 200) {
+        cookies.set("token", response.data.token, { path: "/" });
+        cookies.set("username", dataLogin.username, { path: "/" });
+        window.location.href = "/profile";
+      }
+    } catch (err) {
+      console.error("handleLoginUser", err);
       dispatch(setStatusMsg(err.message));
     }
   };
@@ -161,6 +189,54 @@ export const fetchUserBox = (equipping, dataItem) => {
   };
 };
 
-export const { setStatusMsg, getServerStatus, getProfile, getEvent, getPvpAndPvePts, addStat, getUserBox } =
-  Slice.actions;
+/* -------------------------------- GET NPC Attack -------------------------------- */
+
+export const fetchNpcAttack = (zoneName) => {
+  return async (dispatch) => {
+    try {
+      const response = await GET("/api/v1/npcs/zone/" + zoneName, headers);
+      if (response.status === 200) {
+        dispatch(getNpcAttack(response.data));
+      }
+    } catch (err) {
+      console.error("fetchUserData", err);
+      dispatch(setStatusMsg(err.message));
+    }
+  };
+};
+
+/* -------------------------------- POST Attack NPC -------------------------------- */
+
+export const handleNpcAttack = (npcName) => {
+  return async (dispatch) => {
+    try {
+      const response = await POST("/api/v1/users/attack-npc", { name: npcName }, headers);
+
+      if (response.status === 200) {
+        response.data = {
+          ...response.data,
+          nameData: npcName,
+        };
+
+        dispatch(getBattleData(response.data));
+        window.location.href = "/pvebattle";
+      }
+    } catch (err) {
+      console.error("handleLoginUser", err);
+      dispatch(setStatusMsg(err.message));
+    }
+  };
+};
+
+export const {
+  setStatusMsg,
+  getServerStatus,
+  getProfile,
+  getEvent,
+  getPvpAndPvePts,
+  addStat,
+  getUserBox,
+  getNpcAttack,
+  getBattleData,
+} = Slice.actions;
 export default Slice.reducer;

@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { POST } from "../../api/route";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,7 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { cookies } from "@/functions/utilities";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchServerStatus } from "@/store/slice";
+import { fetchServerStatus, handleLoginUser } from "@/store/slice";
+
+import "./auth.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -25,18 +26,11 @@ const Login = () => {
 
   useEffect(() => {
     dispatch(fetchServerStatus());
-  }, []);
+  }, [dispatch]);
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (dataLogin.username === "" || dataLogin.password === "") return;
-    const response = await POST("/api/v1/auth/login", dataLogin);
-
-    if (response.status === 200) {
-      cookies.set("token", response.data.token, { path: "/" });
-      cookies.set("username", dataLogin.username, { path: "/" });
-      window.location.href = "/profile";
-    }
+    dispatch(handleLoginUser(dataLogin));
   }
 
   function handleChange(e) {

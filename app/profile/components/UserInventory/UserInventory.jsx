@@ -45,7 +45,8 @@ const UserInventory = ({
 
   return (
     <div className="inventory" id="inventory">
-      <h2>Inventory</h2>
+      {/* <h2>Inventory</h2> */}
+      <h1 className="text-3xl font-bold underline">Inventory</h1>
       <div
         className="inventory--equiped"
         id="inventory--equiped"

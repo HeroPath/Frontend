@@ -17,7 +17,7 @@ const Navbar = ({ gold, diamond, pvePts, pvpPts }) => {
   useEffect(() => {
     dispatch(fetchPveAndPvpMaxPts());
     dispatch(fetchEvent());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="profileNavbar">

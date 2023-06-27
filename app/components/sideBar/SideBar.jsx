@@ -12,7 +12,7 @@ const SideBar = () => {
         </a>
       </div>
 
-      <Link href="/profile" className="button--sidebar button--links m-2">
+      <Link href="/profile" className="button--sidebar button--links">
         Home
       </Link>
 

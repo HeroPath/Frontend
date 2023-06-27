@@ -1,23 +1,22 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserData } from "@/store/slice";
-import "./profile.css";
 
 import Navbar from "../components/Navbar/Navbar";
 import UserInventory from "./components/UserInventory/UserInventory";
 import UserCard from "./components/UserCard/UserCard";
 import UserStats from "./components/UserStats/UserStats";
+import "./profile.css";
 
-const page = () => {
+const Profile = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.Slice.userData);
   let sendFromProfile = true;
 
   useEffect(() => {
     dispatch(fetchUserData());
-  }, []);
+  }, [dispatch]);
 
   const [userNewData, setUserNewData] = useState(false);
   const updateStats = (newStats) => setUserNewData(newStats);
@@ -61,4 +60,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Profile;
