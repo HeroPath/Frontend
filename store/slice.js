@@ -14,7 +14,7 @@ const initialState = {
   activeEvent: "",
   pvpAndPvePts: "",
   npcAttacked: [],
-  battleData: {},
+  battleData: [],
 };
 
 export const Slice = createSlice({
@@ -55,9 +55,9 @@ export const Slice = createSlice({
     getNpcAttack: (state, action) => {
       state.npcAttacked = action.payload;
     },
+
     getBattleData: (state, action) => {
       state.battleData = action.payload;
-      console.log(action.payload);
     },
   },
 });
@@ -125,7 +125,7 @@ export const fetchEvent = () => {
         dispatch(getEvent(response.data));
       }
     } catch (err) {
-      console.error("fetchUserData", err);
+      console.error("fetchEvent", err);
       dispatch(setStatusMsg(err.message));
     }
   };
@@ -142,7 +142,7 @@ export const fetchPveAndPvpMaxPts = () => {
         dispatch(getPvpAndPvePts(response.data));
       }
     } catch (err) {
-      console.error("fetchUserData", err);
+      console.error("fetchPveAndPvpMaxPts", err);
       dispatch(setStatusMsg(err.message));
     }
   };
@@ -158,7 +158,7 @@ export const fetchAddStat = (skillName) => {
         dispatch(addStat(response.data));
       }
     } catch (err) {
-      console.error("fetchUserData", err);
+      console.error("fetchAddStat", err);
       dispatch(setStatusMsg(err.message));
     }
   };
@@ -183,7 +183,7 @@ export const fetchUserBox = (equipping, dataItem) => {
         }
       }
     } catch (err) {
-      console.error("fetchUserData", err);
+      console.error("fetchUserBox", err);
       dispatch(setStatusMsg(err.message));
     }
   };
@@ -199,7 +199,7 @@ export const fetchNpcAttack = (zoneName) => {
         dispatch(getNpcAttack(response.data));
       }
     } catch (err) {
-      console.error("fetchUserData", err);
+      console.error("fetchNpcAttack", err);
       dispatch(setStatusMsg(err.message));
     }
   };
@@ -222,7 +222,7 @@ export const handleNpcAttack = (npcName) => {
         window.location.href = "/pvebattle";
       }
     } catch (err) {
-      console.error("handleLoginUser", err);
+      console.error("handleNpcAttack", err);
       dispatch(setStatusMsg(err.message));
     }
   };

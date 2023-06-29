@@ -1,0 +1,55 @@
+.rounds--console {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  align-items: center;
+  justify-items: center;
+  font-weight: bold;
+  color: #ecd586;
+}
+
+.history-box {
+  width: 80%;
+  height: 200px;
+  background-color: #1e1e1e;
+  border: 2px solid #ecd586;
+  margin-top: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 15px;
+}
+
+.rounds--console--buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  row-gap: 20px;
+}
+.rounds--console--buttons a,
+.rounds--console--buttons a:hover {
+  padding: 15px 75px;
+  width: 100%;
+}
+
+.round {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background-color: #21404a;
+
+  align-content: center;
+  align-items: center;
+}
+
+.round h6 {
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.winner {
+  background-color: #2c5463;
+  color: #ecd586;
+  border: 2px solid #d1a148;
+}

@@ -21,10 +21,26 @@
   align-items: center;
   padding: 2% 0%;
   margin: 0% 10%;
-  margin-top: 5.5%;
+  margin-top: 3.5%;
   background-image: url("../../public/img/interfaces/bg-user-stats.webp");
   background-size: 100% 100%;
+  min-height: 600px;
   background-repeat: no-repeat;
   color: #d3d3d3;
   opacity: 0.95;
+}
+
+.loading-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: 30px;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #d3d3d3;
 }

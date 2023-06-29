@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar/Navbar";
 import UserInventory from "./components/UserInventory/UserInventory";
 import UserCard from "./components/UserCard/UserCard";
 import UserStats from "./components/UserStats/UserStats";
+import LoadingComponent from "../components/LoadingComponent/LoadingComponent";
 import "./profile.css";
 
 const Profile = () => {
@@ -26,7 +27,7 @@ const Profile = () => {
       <Navbar gold={profile.gold} diamond={profile.diamond} pvePts={profile.pvePts} pvpPts={profile.pvpPts} />
       <div id="profileCard">
         <section className="userCard">
-          {profile.inventory && (
+          {profile.inventory ? (
             <UserInventory
               inventory={profile.inventory}
               equipment={profile.equipment}
@@ -34,8 +35,10 @@ const Profile = () => {
               level={profile.level}
               updateStats={updateStats}
             />
+          ) : (
+            <LoadingComponent />
           )}
-          {profile.aclass && (
+          {profile.aclass ? (
             <UserCard
               username={profile.username}
               aclass={profile.aclass}
@@ -51,9 +54,11 @@ const Profile = () => {
               userNewData={userNewData}
               sendFromProfile={sendFromProfile}
             />
+          ) : (
+            <LoadingComponent />
           )}
 
-          {profile.strength && <UserStats profile={profile} />}
+          {profile.strength ? <UserStats profile={profile} /> : <LoadingComponent />}
         </section>
       </div>
     </div>

@@ -14,7 +14,7 @@ const page = () => {
             key={index}
             className="zoneForm"
             style={{
-              backgroundImage: `url(${require("../../public/img/zone/" + zone.name + ".webp")})`,
+              backgroundImage: `url(/img/zone/${zone.name}.webp)`,
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               backgroundPosition: "center",

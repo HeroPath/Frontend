@@ -12,15 +12,9 @@ const PlayerVsNPC = ({ searchParams }) => {
   const dispatch = useDispatch();
   const npcData = useSelector((state) => state.Slice.npcAttacked);
 
-  const battleData = useSelector((state) => state.Slice.battleData);
-
-  console.log(battleData);
-
   function attackNpc(npcName) {
     dispatch(handleNpcAttack(npcName));
   }
-
-  console.log(searchParams.name);
 
   useEffect(() => {
     dispatch(fetchNpcAttack(searchParams.name));
@@ -30,7 +24,7 @@ const PlayerVsNPC = ({ searchParams }) => {
     <div
       className="npcCards"
       style={{
-        backgroundImage: "../../img/zone/bg-" + searchParams.name + ".webp",
+        backgroundImage: `url(/img/zone/bg-${searchParams.name}.webp)`,
       }}
     >
       {npcData?.map((npc) => (
@@ -40,7 +34,7 @@ const PlayerVsNPC = ({ searchParams }) => {
             {npc.level < 6 ? <h6>Min Level: 1</h6> : <h6>Min Level: {npc.level - 5}</h6>}
           </div>
           <div className="npcImg">
-            <Image src={require(`../../public/img/npc/${npc.name}.webp`)} width={190} height={190} alt="Npc" />
+            <Image src={require(`@/public/img/npc/${npc.name}.webp`)} width={190} height={190} alt="Npc" />
           </div>
           <button
             type="submit"

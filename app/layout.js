@@ -1,10 +1,15 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Quicksand } from "next/font/google";
 import Providers from "@/store/providers";
 import SideBar from "./components/SideBar/SideBar.jsx";
 import { cookies } from "next/headers";
 
-const inter = Inter({ subsets: ["latin"] });
+const quicksand = Quicksand({
+  weight: ["400", "700"],
+  style: ["normal"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata = {
   title: `Heros Path`,
@@ -18,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Providers>
-        <body className={inter.className}>
+        <body className={quicksand.className}>
           {token && <SideBar />}
           {children}
         </body>
